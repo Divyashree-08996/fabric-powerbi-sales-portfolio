@@ -1,0 +1,85 @@
+// ===============================================================================
+// ADVANCED DAX LIBRARY: 10_Dynamic_Row_Level_Security_RLS.dax
+// Enterprise Dynamic Row-Level Security (RLS) & Hierarchical Role Filter DAX
+// Applied in Power BI Desktop -> Modeling -> Manage Roles
+// Author: Alex Rivera | DP-600 & PL-300 Certified Analytics Engineer
+// ===============================================================================
+
+/*
+---------------------------------------------------------------------------------
+ROLE 1: 'Account_Manager_Direct'
+Business Rule: Account Managers may only view transactional and customer data
+for accounts where their corporate email matches 'Dim_Customer'[AccountManagerEmail].
+---------------------------------------------------------------------------------
+*/
+
+// Table Filter DAX on 'Dim_Customer':
+'Dim_Customer'[AccountManagerEmail] = USERPRINCIPALNAME ()
+
+
+/*
+---------------------------------------------------------------------------------
+ROLE 2: 'Regional_Sales_Hierarchy'
+Business Rule: Sales Directors and Regional VPs should see their own territory
+as well as all subordinate sales reps reporting to them in the organizational tree.
+Uses DAX Parent-Child hierarchy functions: PATHCONTAINS.
+---------------------------------------------------------------------------------
+*/
+
+// Table Filter DAX on 'Dim_Store_Region':
+VAR _CurrentUser = USERPRINCIPALNAME ()
+VAR _IsExecutive = 
+    _CurrentUser IN { 
+        "executive@company.com", 
+        "cfo@company.com", 
+        "alex.rivera@company.com" 
+    }
+RETURN
+    IF ( 
+        _IsExecutive, 
+        TRUE (), // Executive bypass: Full global visibility
+        PATHCONTAINS ( 
+            'Dim_Store_Region'[HierarchyPath], 
+            _CurrentUser 
+        ) 
+    )
+
+
+/*
+---------------------------------------------------------------------------------
+ROLE 3: 'Strategic_Accounts_Only'
+Business Rule: Specialist key account directors only see Strategic Accounts
+within their assigned geographic territory.
+---------------------------------------------------------------------------------
+*/
+
+// Table Filter DAX on 'Dim_Customer':
+'Dim_Customer'[IsStrategicAccount] = 1 && 
+'Dim_Customer'[Region] IN 
+    CALCULATETABLE ( 
+        VALUES ( 'Dim_Store_Region'[RegionName] ), 
+        FILTER ( 
+            ALL ( 'Dim_Store_Region' ), 
+            'Dim_Store_Region'[RegionalVP] = USERPRINCIPALNAME () || 
+            'Dim_Store_Region'[SalesDirector] = USERPRINCIPALNAME () 
+        ) 
+    )
+
+
+/*
+---------------------------------------------------------------------------------
+TESTING & VALIDATION PATTERN:
+Measure to verify active security context in DAX Studio or report header:
+---------------------------------------------------------------------------------
+*/
+
+/// <summary>
+/// Diagnostic measure displaying active user context and security tier.
+/// </summary>
+Current Security Context Display = 
+VAR _User = USERPRINCIPALNAME ()
+VAR _CustomerScope = DISTINCTCOUNT ( 'Dim_Customer'[CustomerID] )
+VAR _TotalUniverseCustomers = CALCULATE ( DISTINCTCOUNT ( 'Dim_Customer'[CustomerID] ), ALL ( 'Dim_Customer' ) )
+RETURN
+    "User: " & _User & " | Visible Accounts: " & _CustomerScope & " of " & _TotalUniverseCustomers & 
+    IF ( _CustomerScope = _TotalUniverseCustomers, " (Unrestricted Enterprise Access)", " (Restricted Territory RLS)" )

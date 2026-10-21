@@ -1,0 +1,152 @@
+// ===============================================================================
+// ADVANCED DAX LIBRARY: 01_Base_Core_Measures.dax
+// Enterprise Core Financial & Operational Measures
+// Table: '_Measures_Core'
+// Author: Alex Rivera | DP-600 & PL-300 Certified Analytics Engineer
+// ===============================================================================
+
+// -------------------------------------------------------------------------------
+// 1. Transaction & Volume Measures
+// -------------------------------------------------------------------------------
+
+/// <summary>
+/// Total count of individual order line items processed.
+/// Storage Engine: Highly compressed VertiPaq column scan.
+/// </summary>
+Total Transactions = 
+COUNTROWS ( 'Fact_Sales' )
+
+
+/// <summary>
+/// Total count of unique sales orders (distinct order headers).
+/// </summary>
+Total Orders = 
+DISTINCTCOUNTNOBLANK ( 'Fact_Sales'[SalesOrderNumber] )
+
+
+/// <summary>
+/// Total physical or license units sold across all transactions.
+/// </summary>
+Total Units Sold = 
+SUM ( 'Fact_Sales'[Quantity] )
+
+
+/// <summary>
+/// Count of active distinct customers who generated at least one transaction in the current filter context.
+/// </summary>
+Distinct Customer Count = 
+DISTINCTCOUNTNOBLANK ( 'Fact_Sales'[CustomerID] )
+
+
+/// <summary>
+/// Average number of orders per purchasing customer.
+/// </summary>
+Orders per Customer = 
+DIVIDE ( 
+    [Total Orders], 
+    [Distinct Customer Count], 
+    BLANK () 
+)
+
+
+// -------------------------------------------------------------------------------
+// 2. Financial Revenue & Profitability Measures
+// -------------------------------------------------------------------------------
+
+/// <summary>
+/// Gross revenue before any customer discounts or promotions (USD Canonical).
+/// </summary>
+Gross Revenue = 
+SUM ( 'Fact_Sales'[GrossSalesUSD] )
+
+
+/// <summary>
+/// Total discount value conceded across all transactions (USD Canonical).
+/// </summary>
+Total Discounts = 
+SUM ( 'Fact_Sales'[DiscountAmountUSD] )
+
+
+/// <summary>
+/// Effective average discount rate as a percentage of gross revenue.
+/// Protected against division by zero using DIVIDE().
+/// </summary>
+Discount Rate % = 
+DIVIDE ( 
+    [Total Discounts], 
+    [Gross Revenue], 
+    0 
+)
+
+
+/// <summary>
+/// Net sales revenue after contractual customer discounts (USD Canonical).
+/// This serves as the primary top-line metric across the entire data model.
+/// </summary>
+Net Revenue = 
+SUM ( 'Fact_Sales'[NetSalesUSD] )
+
+
+/// <summary>
+/// Total Cost of Goods Sold (COGS) including product cost and hosting infrastructure (USD Canonical).
+/// </summary>
+Total COGS = 
+SUM ( 'Fact_Sales'[TotalCostUSD] )
+
+
+/// <summary>
+/// Gross Profit Margin in absolute dollars: Net Revenue minus Total COGS.
+/// </summary>
+Gross Margin = 
+[Net Revenue] - [Total COGS]
+
+
+/// <summary>
+/// Gross Margin percentage relative to Net Revenue.
+/// Benchmark target: > 45.0% for enterprise software and cloud services.
+/// </summary>
+Gross Margin % = 
+DIVIDE ( 
+    [Gross Margin], 
+    [Net Revenue], 
+    BLANK () 
+)
+
+
+// -------------------------------------------------------------------------------
+// 3. Operational Unit Economics
+// -------------------------------------------------------------------------------
+
+/// <summary>
+/// Average Order Value (AOV): Net Revenue divided by distinct orders.
+/// Used to track deal sizing and cart expansion.
+/// </summary>
+Average Order Value = 
+DIVIDE ( 
+    [Net Revenue], 
+    [Total Orders], 
+    BLANK () 
+)
+
+
+/// <summary>
+/// Average Selling Price (ASP): Net Revenue divided by total physical/licensed units sold.
+/// Reflects realized price per unit after discounting.
+/// </summary>
+Average Selling Price = 
+DIVIDE ( 
+    [Net Revenue], 
+    [Total Units Sold], 
+    BLANK () 
+)
+
+
+/// <summary>
+/// Average Cost per Unit sold.
+/// </summary>
+Average Unit Cost = 
+DIVIDE ( 
+    [Total COGS], 
+    [Total Units Sold], 
+    BLANK () 
+)

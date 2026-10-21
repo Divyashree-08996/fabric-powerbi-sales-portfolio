@@ -1,0 +1,138 @@
+// ===============================================================================
+// ADVANCED DAX LIBRARY: 11_Dynamic_SVG_Visuals_in_DAX.dax
+// Dynamic Vector SVG Visuals (Sparklines, Progress Bars, KPI Badges) in DAX
+// Set Data Category = 'Image URL' on these measures in Power BI Desktop!
+// Author: Alex Rivera | DP-600 & PL-300 Certified Analytics Engineer
+// ===============================================================================
+
+// -------------------------------------------------------------------------------
+// 1. Dynamic SVG Progress Data Bar (Target Attainment)
+// -------------------------------------------------------------------------------
+
+/// <summary>
+/// Renders an in-cell micro progress bar showing budget attainment percentage.
+/// Requires Data Category: Image URL.
+/// </summary>
+SVG Progress Bar Attainment = 
+VAR _Attainment = [Revenue Target Attainment %]
+VAR _Width = 120
+VAR _Height = 18
+VAR _ClampedPct = MIN ( MAX ( _Attainment, 0 ), 1.2 )
+VAR _BarWidth = ROUND ( _ClampedPct * 100, 0 )
+VAR _BarColor = 
+    SWITCH ( 
+        TRUE (), 
+        _Attainment >= 1.05, "#107C41", // Green
+        _Attainment >= 0.98, "#F7630C", // Orange
+        "#D83B01"                      // Red
+    )
+VAR _Svg = 
+    "data:image/svg+xml;utf8," & 
+    "<svg xmlns='http://www.w3.org/2000/svg' width='" & _Width & "' height='" & _Height & "'>" & 
+    "  <rect x='0' y='3' width='100' height='12' rx='6' fill='#EDEBE9'/>" & 
+    "  <rect x='0' y='3' width='" & _BarWidth & "' height='12' rx='6' fill='" & _BarColor & "'/>" & 
+    "  <line x1='100' y1='1' x2='100' y2='17' stroke='#323130' stroke-width='1.5' stroke-dasharray='2,2'/>" & 
+    "</svg>"
+RETURN
+    IF ( NOT ISBLANK ( _Attainment ), _Svg, BLANK () )
+
+
+// -------------------------------------------------------------------------------
+// 2. Dynamic SVG Status Badge Pill
+// -------------------------------------------------------------------------------
+
+/// <summary>
+/// Renders a modern UI badge pill with rounded corners, custom label, and color.
+/// Requires Data Category: Image URL.
+/// </summary>
+SVG Status Badge = 
+VAR _MarginPct = [Gross Margin %]
+VAR _StatusText = 
+    SWITCH ( 
+        TRUE (), 
+        ISBLANK ( _MarginPct ), "N/A", 
+        _MarginPct >= 0.50, "OPTIMAL", 
+        _MarginPct >= 0.40, "HEALTHY", 
+        "DILUTIVE" 
+    )
+VAR _BgColor = 
+    SWITCH ( 
+        _StatusText, 
+        "OPTIMAL", "#DFF6DD", 
+        "HEALTHY", "#E0F2FE", 
+        "#FDE8E8" 
+    )
+VAR _TextColor = 
+    SWITCH ( 
+        _StatusText, 
+        "OPTIMAL", "#107C41", 
+        "HEALTHY", "#0078D4", 
+        "#D83B01" 
+    )
+VAR _Svg = 
+    "data:image/svg+xml;utf8," & 
+    "<svg xmlns='http://www.w3.org/2000/svg' width='90' height='22'>" & 
+    "  <rect x='0' y='0' width='90' height='22' rx='11' fill='" & _BgColor & "'/>" & 
+    "  <text x='45' y='15' text-anchor='middle' font-family='Segoe UI, sans-serif' font-size='10' font-weight='600' fill='" & _TextColor & "'>" & 
+    _StatusText & 
+    "  </text>" & 
+    "</svg>"
+RETURN
+    _Svg
+
+
+// -------------------------------------------------------------------------------
+// 3. Dynamic SVG 12-Month Sparkline Polyline
+// -------------------------------------------------------------------------------
+
+/// <summary>
+/// Dynamically renders a 12-point trendline sparkline directly inside table cells.
+/// Iterates over the last 12 YearMonths, normalizes values between 0 and 24px height,
+/// and constructs an SVG <polyline> string.
+/// Requires Data Category: Image URL.
+/// </summary>
+SVG Sparkline 12M Trend = 
+VAR _PointsCount = 12
+VAR _Width = 140
+VAR _Height = 28
+VAR _MonthsTable = 
+    TOPN ( 
+        _PointsCount, 
+        ALLSELECTED ( 'Dim_Date'[YearMonth] ), 
+        'Dim_Date'[YearMonth], 
+        DESC 
+    )
+VAR _TableWithSales = 
+    ADDCOLUMNS ( 
+        _MonthsTable, 
+        "@MonthlyRev", CALCULATE ( [Net Revenue] ) 
+    )
+VAR _MinRev = MINX ( _TableWithSales, [@MonthlyRev] )
+VAR _MaxRev = MAXX ( _TableWithSales, [@MonthlyRev] )
+VAR _RevRange = IF ( _MaxRev - _MinRev = 0, 1, _MaxRev - _MinRev )
+
+// Generate SVG coordinate points string: "x1,y1 x2,y2 ..."
+VAR _SortedMonths = 
+    ADDCOLUMNS ( 
+        _TableWithSales, 
+        "@SortOrder", RANKX ( _TableWithSales, 'Dim_Date'[YearMonth], , ASC ) 
+    )
+VAR _PolylinePoints = 
+    CONCATENATEX ( 
+        _SortedMonths, 
+        VAR _X = ROUND ( ( [@SortOrder] - 1 ) * ( _Width / ( _PointsCount - 1 ) ), 1 )
+        VAR _NormalizedY = DIVIDE ( [@MonthlyRev] - _MinRev, _RevRange, 0 )
+        VAR _Y = ROUND ( _Height - 4 - ( _NormalizedY * ( _Height - 8 ) ), 1 )
+        RETURN 
+            _X & "," & _Y, 
+        " ", 
+        [@SortOrder], 
+        ASC 
+    )
+VAR _Svg = 
+    "data:image/svg+xml;utf8," & 
+    "<svg xmlns='http://www.w3.org/2000/svg' width='" & _Width & "' height='" & _Height & "'>" & 
+    "  <polyline fill='none' stroke='#0078D4' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' points='" & _PolylinePoints & "' />" & 
+    "</svg>"
+RETURN
+    IF ( COUNTROWS ( _TableWithSales ) > 1, _Svg, BLANK () )

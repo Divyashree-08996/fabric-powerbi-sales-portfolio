@@ -1,0 +1,580 @@
+{
+  "name": "Omnichannel_Revenue_Intelligence",
+  "compatibilityLevel": 1567,
+  "model": {
+    "culture": "en-US",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "defaultPowerBIDataSourceVersion": "powerBI_V3",
+    "sourceQueryCulture": "en-US",
+    "tables": [
+      {
+        "name": "_Measures",
+        "description": "Central container for all enterprise DAX measures organized by business domain display folders.",
+        "columns": [
+          {
+            "name": "MeasureHolder",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "MeasureHolder"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i44BAA==\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [MeasureHolder = _t]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"MeasureHolder\", Int64.Type}})",
+                "in",
+                "    #\"Changed Type\""
+              ]
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Total Transactions",
+            "expression": "COUNTROWS ( 'Fact_Sales' )",
+            "formatString": "#,##0",
+            "displayFolder": "01 Core Metrics"
+          },
+          {
+            "name": "Total Orders",
+            "expression": "DISTINCTCOUNTNOBLANK ( 'Fact_Sales'[SalesOrderNumber] )",
+            "formatString": "#,##0",
+            "displayFolder": "01 Core Metrics"
+          },
+          {
+            "name": "Total Units Sold",
+            "expression": "SUM ( 'Fact_Sales'[Quantity] )",
+            "formatString": "#,##0",
+            "displayFolder": "01 Core Metrics"
+          },
+          {
+            "name": "Distinct Customer Count",
+            "expression": "DISTINCTCOUNTNOBLANK ( 'Fact_Sales'[CustomerID] )",
+            "formatString": "#,##0",
+            "displayFolder": "01 Core Metrics"
+          },
+          {
+            "name": "Gross Revenue",
+            "expression": "SUM ( 'Fact_Sales'[GrossSalesUSD] )",
+            "formatString": "$#,##0",
+            "displayFolder": "01 Core Metrics"
+          },
+          {
+            "name": "Total Discounts",
+            "expression": "SUM ( 'Fact_Sales'[DiscountAmountUSD] )",
+            "formatString": "$#,##0",
+            "displayFolder": "01 Core Metrics"
+          },
+          {
+            "name": "Discount Rate %",
+            "expression": "DIVIDE ( [Total Discounts], [Gross Revenue], 0 )",
+            "formatString": "0.0%",
+            "displayFolder": "01 Core Metrics"
+          },
+          {
+            "name": "Net Revenue",
+            "expression": "SUM ( 'Fact_Sales'[NetSalesUSD] )",
+            "formatString": "$#,##0",
+            "displayFolder": "01 Core Metrics"
+          },
+          {
+            "name": "Total COGS",
+            "expression": "SUM ( 'Fact_Sales'[TotalCostUSD] )",
+            "formatString": "$#,##0",
+            "displayFolder": "01 Core Metrics"
+          },
+          {
+            "name": "Gross Margin",
+            "expression": "[Net Revenue] - [Total COGS]",
+            "formatString": "$#,##0",
+            "displayFolder": "01 Core Metrics"
+          },
+          {
+            "name": "Gross Margin %",
+            "expression": "DIVIDE ( [Gross Margin], [Net Revenue], BLANK () )",
+            "formatString": "0.0%",
+            "displayFolder": "01 Core Metrics"
+          },
+          {
+            "name": "Average Order Value",
+            "expression": "DIVIDE ( [Net Revenue], [Total Orders], BLANK () )",
+            "formatString": "$#,##0.00",
+            "displayFolder": "01 Core Metrics"
+          },
+          {
+            "name": "Net Revenue PY",
+            "expression": "CALCULATE ( [Net Revenue], SAMEPERIODLASTYEAR ( 'Dim_Date'[Date] ) )",
+            "formatString": "$#,##0",
+            "displayFolder": "02 Time Intelligence"
+          },
+          {
+            "name": "Net Revenue YoY Growth $",
+            "expression": "VAR _Current = [Net Revenue] VAR _Prior = [Net Revenue PY] RETURN IF ( NOT ISBLANK ( _Current ) && NOT ISBLANK ( _Prior ), _Current - _Prior, BLANK () )",
+            "formatString": "$#,##0",
+            "displayFolder": "02 Time Intelligence"
+          },
+          {
+            "name": "Net Revenue YoY %",
+            "expression": "VAR _Current = [Net Revenue] VAR _Prior = [Net Revenue PY] RETURN DIVIDE ( _Current - _Prior, _Prior, BLANK () )",
+            "formatString": "+0.0%;-0.0%;0.0%",
+            "displayFolder": "02 Time Intelligence"
+          },
+          {
+            "name": "Net Revenue YTD",
+            "expression": "TOTALYTD ( [Net Revenue], 'Dim_Date'[Date] )",
+            "formatString": "$#,##0",
+            "displayFolder": "02 Time Intelligence"
+          },
+          {
+            "name": "Net Revenue PYTD",
+            "expression": "CALCULATE ( [Net Revenue YTD], SAMEPERIODLASTYEAR ( 'Dim_Date'[Date] ) )",
+            "formatString": "$#,##0",
+            "displayFolder": "02 Time Intelligence"
+          },
+          {
+            "name": "Net Revenue YTD YoY %",
+            "expression": "VAR _CurrentYTD = [Net Revenue YTD] VAR _PriorYTD = [Net Revenue PYTD] RETURN DIVIDE ( _CurrentYTD - _PriorYTD, _PriorYTD, BLANK () )",
+            "formatString": "+0.0%;-0.0%;0.0%",
+            "displayFolder": "02 Time Intelligence"
+          },
+          {
+            "name": "Net Revenue Prior Month (OFFSET)",
+            "expression": "CALCULATE ( [Net Revenue], OFFSET ( -1, ALLSELECTED ( 'Dim_Date'[YearMonth], 'Dim_Date'[MonthShort] ), ORDERBY ( 'Dim_Date'[YearMonth], ASC ) ) )",
+            "formatString": "$#,##0",
+            "displayFolder": "02 Time Intelligence"
+          },
+          {
+            "name": "Net Revenue Rolling 3M Avg (WINDOW)",
+            "expression": "VAR _WindowRows = WINDOW ( -2, RELATIVE, 0, RELATIVE, ALLSELECTED ( 'Dim_Date'[YearMonth] ), ORDERBY ( 'Dim_Date'[YearMonth], ASC ) ) RETURN CALCULATE ( AVERAGEX ( VALUES ( 'Dim_Date'[YearMonth] ), [Net Revenue] ), _WindowRows )",
+            "formatString": "$#,##0",
+            "displayFolder": "02 Time Intelligence"
+          },
+          {
+            "name": "Customer Rank by Revenue",
+            "expression": "IF ( NOT ISBLANK ( [Net Revenue] ), RANKX ( ALLSELECTED ( 'Dim_Customer'[CustomerID] ), [Net Revenue], , DESC, Dense ) )",
+            "formatString": "#,##0",
+            "displayFolder": "03 Pareto & Top N"
+          },
+          {
+            "name": "Total Revenue All Selected Customers",
+            "expression": "CALCULATE ( [Net Revenue], ALLSELECTED ( 'Dim_Customer' ) )",
+            "formatString": "$#,##0",
+            "displayFolder": "03 Pareto & Top N"
+          },
+          {
+            "name": "Cumulative Revenue Pareto",
+            "expression": "VAR _CurrentCustomerRev = [Net Revenue] VAR _AllSelected = ADDCOLUMNS ( ALLSELECTED ( 'Dim_Customer'[CustomerID] ), \"@Rev\", [Net Revenue] ) VAR _HigherOrEqual = FILTER ( _AllSelected, [@Rev] >= _CurrentCustomerRev ) RETURN IF ( NOT ISBLANK ( _CurrentCustomerRev ), SUMX ( _HigherOrEqual, [@Rev] ) )",
+            "formatString": "$#,##0",
+            "displayFolder": "03 Pareto & Top N"
+          },
+          {
+            "name": "Cumulative Revenue Pareto %",
+            "expression": "DIVIDE ( [Cumulative Revenue Pareto], [Total Revenue All Selected Customers], BLANK () )",
+            "formatString": "0.0%",
+            "displayFolder": "03 Pareto & Top N"
+          },
+          {
+            "name": "Pareto Customer Segment",
+            "expression": "VAR _CumPct = [Cumulative Revenue Pareto %] RETURN SWITCH ( TRUE (), ISBLANK ( _CumPct ), BLANK (), _CumPct <= 0.80, \"Tier A — Core 80% Driver\", _CumPct <= 0.95, \"Tier B — Growth 15%\", \"Tier C — Long Tail 5%\" )",
+            "displayFolder": "03 Pareto & Top N"
+          },
+          {
+            "name": "Selected Top N Cutoff",
+            "expression": "SELECTEDVALUE ( 'Param_TopN'[TopNValue], 10 )",
+            "formatString": "#,##0",
+            "displayFolder": "03 Pareto & Top N"
+          },
+          {
+            "name": "Revenue Top N Only",
+            "expression": "VAR _Threshold = [Selected Top N Cutoff] VAR _Rank = [Customer Rank by Revenue] RETURN IF ( _Rank <= _Threshold, [Net Revenue], BLANK () )",
+            "formatString": "$#,##0",
+            "displayFolder": "03 Pareto & Top N"
+          },
+          {
+            "name": "Customer Last Purchase Date",
+            "expression": "CALCULATE ( MAX ( 'Fact_Sales'[OrderDate] ), ALLEXCEPT ( 'Fact_Sales', 'Dim_Customer'[CustomerID] ) )",
+            "formatString": "yyyy-mm-dd",
+            "displayFolder": "04 Customer Intelligence"
+          },
+          {
+            "name": "Customer First Purchase Date",
+            "expression": "CALCULATE ( MIN ( 'Fact_Sales'[OrderDate] ), ALLEXCEPT ( 'Fact_Sales', 'Dim_Customer'[CustomerID] ) )",
+            "formatString": "yyyy-mm-dd",
+            "displayFolder": "04 Customer Intelligence"
+          },
+          {
+            "name": "Customer Recency Days",
+            "expression": "VAR _LastDate = [Customer Last Purchase Date] VAR _ReferenceDate = MAX ( 'Dim_Date'[Date] ) RETURN IF ( NOT ISBLANK ( _LastDate ), DATEDIFF ( _LastDate, _ReferenceDate, DAY ), BLANK () )",
+            "formatString": "#,##0",
+            "displayFolder": "04 Customer Intelligence"
+          },
+          {
+            "name": "Customer Lifetime Orders",
+            "expression": "CALCULATE ( [Total Orders], ALLEXCEPT ( 'Fact_Sales', 'Dim_Customer'[CustomerID] ) )",
+            "formatString": "#,##0",
+            "displayFolder": "04 Customer Intelligence"
+          },
+          {
+            "name": "Customer Lifetime Revenue",
+            "expression": "CALCULATE ( [Net Revenue], ALLEXCEPT ( 'Fact_Sales', 'Dim_Customer'[CustomerID] ) )",
+            "formatString": "$#,##0",
+            "displayFolder": "04 Customer Intelligence"
+          },
+          {
+            "name": "RFM Composite Score",
+            "expression": "VAR _Days = [Customer Recency Days] VAR _R = SWITCH(TRUE(), ISBLANK(_Days), BLANK(), _Days <= 30, 5, _Days <= 60, 4, _Days <= 90, 3, _Days <= 180, 2, 1) VAR _Orders = [Customer Lifetime Orders] VAR _F = SWITCH(TRUE(), ISBLANK(_Orders), BLANK(), _Orders >= 30, 5, _Orders >= 18, 4, _Orders >= 10, 3, _Orders >= 4, 2, 1) VAR _LTV = [Customer Lifetime Revenue] VAR _M = SWITCH(TRUE(), ISBLANK(_LTV), BLANK(), _LTV >= 100000, 5, _LTV >= 50000, 4, _LTV >= 20000, 3, _LTV >= 5000, 2, 1) RETURN IF(NOT ISBLANK(_R) && NOT ISBLANK(_F) && NOT ISBLANK(_M), _R * 100 + _F * 10 + _M, BLANK())",
+            "formatString": "#,##0",
+            "displayFolder": "04 Customer Intelligence"
+          },
+          {
+            "name": "RFM Customer Segment",
+            "expression": "VAR _Days = [Customer Recency Days] VAR _R = SWITCH(TRUE(), ISBLANK(_Days), BLANK(), _Days <= 30, 5, _Days <= 60, 4, _Days <= 90, 3, _Days <= 180, 2, 1) VAR _Orders = [Customer Lifetime Orders] VAR _F = SWITCH(TRUE(), ISBLANK(_Orders), BLANK(), _Orders >= 30, 5, _Orders >= 18, 4, _Orders >= 10, 3, _Orders >= 4, 2, 1) VAR _LTV = [Customer Lifetime Revenue] VAR _M = SWITCH(TRUE(), ISBLANK(_LTV), BLANK(), _LTV >= 100000, 5, _LTV >= 50000, 4, _LTV >= 20000, 3, _LTV >= 5000, 2, 1) RETURN SWITCH(TRUE(), ISBLANK(_R), BLANK(), _R >= 4 && _F >= 4 && _M >= 4, \"Champions\", _R >= 3 && _F >= 3, \"Loyal Enterprise\", _R >= 4 && _F <= 2, \"Recent / Expanding\", _R <= 2 && _F >= 3 && _M >= 3, \"At-Risk High-Value\", _R <= 2 && _F <= 2, \"Hibernating / Dormant\", \"Needs Attention\")",
+            "displayFolder": "04 Customer Intelligence"
+          },
+          {
+            "name": "New Customers Count",
+            "expression": "VAR _MinDate = MIN ( 'Dim_Date'[Date] ) VAR _MaxDate = MAX ( 'Dim_Date'[Date] ) VAR _AllCustomers = VALUES ( 'Dim_Customer'[CustomerID] ) VAR _NewCustomers = FILTER ( _AllCustomers, VAR _FirstOrder = [Customer First Purchase Date] RETURN _FirstOrder >= _MinDate && _FirstOrder <= _MaxDate ) RETURN COUNTROWS ( _NewCustomers )",
+            "formatString": "#,##0",
+            "displayFolder": "04 Customer Intelligence"
+          },
+          {
+            "name": "Selected Reporting Currency Code",
+            "expression": "SELECTEDVALUE ( 'Param_ReportingCurrency'[CurrencyCode], \"USD\" )",
+            "displayFolder": "05 Multi-Currency"
+          },
+          {
+            "name": "Converted Net Revenue",
+            "expression": "VAR _Target = [Selected Reporting Currency Code] RETURN IF ( _Target = \"USD\", [Net Revenue], SUMX ( VALUES ( 'Dim_Date'[Date] ), VAR _Dt = 'Dim_Date'[Date] VAR _Rate = CALCULATE ( MAX ( 'Dim_ExchangeRate'[LocalPerUSD] ), 'Dim_ExchangeRate'[Date] = _Dt, 'Dim_ExchangeRate'[CurrencyCode] = _Target ) RETURN [Net Revenue] * COALESCE ( _Rate, 1.0 ) ) )",
+            "formatString": "$#,##0",
+            "displayFolder": "05 Multi-Currency"
+          },
+          {
+            "name": "Scenario Price Change %",
+            "expression": "SELECTEDVALUE ( 'Param_WhatIf_Price'[PriceAdjustmentPercent], 0.0 )",
+            "formatString": "0.0%",
+            "displayFolder": "06 What-If Modeling"
+          },
+          {
+            "name": "Scenario Cost Inflation %",
+            "expression": "SELECTEDVALUE ( 'Param_WhatIf_Cost'[CostAdjustmentPercent], 0.0 )",
+            "formatString": "0.0%",
+            "displayFolder": "06 What-If Modeling"
+          },
+          {
+            "name": "Simulated Net Revenue",
+            "expression": "[Net Revenue] * ( 1 + [Scenario Price Change %] )",
+            "formatString": "$#,##0",
+            "displayFolder": "06 What-If Modeling"
+          },
+          {
+            "name": "Simulated Total COGS",
+            "expression": "[Total COGS] * ( 1 + [Scenario Cost Inflation %] )",
+            "formatString": "$#,##0",
+            "displayFolder": "06 What-If Modeling"
+          },
+          {
+            "name": "Simulated Gross Margin",
+            "expression": "[Simulated Net Revenue] - [Simulated Total COGS]",
+            "formatString": "$#,##0",
+            "displayFolder": "06 What-If Modeling"
+          },
+          {
+            "name": "Simulated Gross Margin %",
+            "expression": "DIVIDE ( [Simulated Gross Margin], [Simulated Net Revenue], BLANK () )",
+            "formatString": "0.0%",
+            "displayFolder": "06 What-If Modeling"
+          },
+          {
+            "name": "Budget Revenue",
+            "expression": "SUM ( 'Fact_Budget'[TargetRevenueUSD] )",
+            "formatString": "$#,##0",
+            "displayFolder": "07 Budget & Targets"
+          },
+          {
+            "name": "Revenue Target Attainment %",
+            "expression": "DIVIDE ( [Net Revenue], [Budget Revenue], BLANK () )",
+            "formatString": "0.0%",
+            "displayFolder": "07 Budget & Targets"
+          },
+          {
+            "name": "Target Attainment Status",
+            "expression": "VAR _Att = [Revenue Target Attainment %] RETURN SWITCH ( TRUE (), ISBLANK ( _Att ), BLANK (), _Att >= 1.05, \"🟢 Exceeded (>105%)\", _Att >= 0.98, \"🟡 On Track (98-104%)\", \"🔴 Under (<98%)\" )",
+            "displayFolder": "07 Budget & Targets"
+          }
+        ]
+      },
+      {
+        "name": "Dim_Customer",
+        "columns": [
+          { "name": "CustomerID", "dataType": "string", "sourceColumn": "CustomerID" },
+          { "name": "CustomerName", "dataType": "string", "sourceColumn": "CustomerName" },
+          { "name": "CustomerSegment", "dataType": "string", "sourceColumn": "CustomerSegment" },
+          { "name": "Country", "dataType": "string", "sourceColumn": "Country" },
+          { "name": "Region", "dataType": "string", "sourceColumn": "Region" },
+          { "name": "CreditRating", "dataType": "string", "sourceColumn": "CreditRating" },
+          { "name": "AccountManagerEmail", "dataType": "string", "sourceColumn": "AccountManagerEmail" },
+          { "name": "CustomerJoinDate", "dataType": "dateTime", "sourceColumn": "CustomerJoinDate" },
+          { "name": "IsStrategicAccount", "dataType": "int64", "sourceColumn": "IsStrategicAccount" }
+        ],
+        "partitions": [
+          {
+            "name": "Dim_Customer_Partition",
+            "source": { "type": "m", "expression": [ "let Source = Csv.Document(File.Contents(#\"DataFolderPath\" & \"Dim_Customer.csv\"), [Delimiter=\",\", Columns=9, Encoding=65001, QuoteStyle=QuoteStyle.None]), Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]) in Headers" ] }
+          }
+        ]
+      },
+      {
+        "name": "Dim_Product",
+        "columns": [
+          { "name": "ProductID", "dataType": "string", "sourceColumn": "ProductID" },
+          { "name": "ProductName", "dataType": "string", "sourceColumn": "ProductName" },
+          { "name": "Category", "dataType": "string", "sourceColumn": "Category" },
+          { "name": "SubCategory", "dataType": "string", "sourceColumn": "SubCategory" },
+          { "name": "StandardCost", "dataType": "decimal", "sourceColumn": "StandardCost" },
+          { "name": "ListPrice", "dataType": "decimal", "sourceColumn": "ListPrice" },
+          { "name": "StandardMarginPercent", "dataType": "double", "sourceColumn": "StandardMarginPercent" },
+          { "name": "IsActive", "dataType": "int64", "sourceColumn": "IsActive" }
+        ],
+        "partitions": [
+          {
+            "name": "Dim_Product_Partition",
+            "source": { "type": "m", "expression": [ "let Source = Csv.Document(File.Contents(#\"DataFolderPath\" & \"Dim_Product.csv\"), [Delimiter=\",\", Columns=8, Encoding=65001, QuoteStyle=QuoteStyle.None]), Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]) in Headers" ] }
+          }
+        ]
+      },
+      {
+        "name": "Dim_Date",
+        "dataCategory": "Time",
+        "columns": [
+          { "name": "Date", "dataType": "dateTime", "isKey": true, "sourceColumn": "Date" },
+          { "name": "DateKey", "dataType": "int64", "sourceColumn": "DateKey" },
+          { "name": "Year", "dataType": "int64", "sourceColumn": "Year" },
+          { "name": "YearMonth", "dataType": "int64", "sourceColumn": "YearMonth" },
+          { "name": "MonthName", "dataType": "string", "sourceColumn": "MonthName" },
+          { "name": "MonthShort", "dataType": "string", "sourceColumn": "MonthShort", "sortByColumn": "MonthNumber" },
+          { "name": "MonthNumber", "dataType": "int64", "sourceColumn": "MonthNumber" },
+          { "name": "Quarter", "dataType": "string", "sourceColumn": "Quarter" },
+          { "name": "YearQuarter", "dataType": "string", "sourceColumn": "YearQuarter" },
+          { "name": "QuarterNumber", "dataType": "int64", "sourceColumn": "QuarterNumber" },
+          { "name": "DayOfMonth", "dataType": "int64", "sourceColumn": "DayOfMonth" },
+          { "name": "DayOfWeekNumber", "dataType": "int64", "sourceColumn": "DayOfWeekNumber" },
+          { "name": "DayOfWeekName", "dataType": "string", "sourceColumn": "DayOfWeekName" },
+          { "name": "DayOfWeekShort", "dataType": "string", "sourceColumn": "DayOfWeekShort", "sortByColumn": "DayOfWeekNumber" },
+          { "name": "IsWeekend", "dataType": "int64", "sourceColumn": "IsWeekend" },
+          { "name": "IsWorkday", "dataType": "int64", "sourceColumn": "IsWorkday" },
+          { "name": "FiscalYear", "dataType": "string", "sourceColumn": "FiscalYear" },
+          { "name": "FiscalQuarter", "dataType": "string", "sourceColumn": "FiscalQuarter" },
+          { "name": "FiscalYearQuarter", "dataType": "string", "sourceColumn": "FiscalYearQuarter" },
+          { "name": "FiscalPeriod", "dataType": "int64", "sourceColumn": "FiscalPeriod" },
+          { "name": "MonthOffset", "dataType": "int64", "sourceColumn": "MonthOffset" },
+          { "name": "DayOffset", "dataType": "int64", "sourceColumn": "DayOffset" }
+        ],
+        "partitions": [
+          {
+            "name": "Dim_Date_Partition",
+            "source": { "type": "m", "expression": [ "let Source = Csv.Document(File.Contents(#\"DataFolderPath\" & \"Dim_Date.csv\"), [Delimiter=\",\", Columns=22, Encoding=65001, QuoteStyle=QuoteStyle.None]), Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]) in Headers" ] }
+          }
+        ]
+      },
+      {
+        "name": "Dim_Store_Region",
+        "columns": [
+          { "name": "ChannelID", "dataType": "string", "sourceColumn": "ChannelID" },
+          { "name": "ChannelName", "dataType": "string", "sourceColumn": "ChannelName" },
+          { "name": "RegionCode", "dataType": "string", "sourceColumn": "RegionCode" },
+          { "name": "RegionName", "dataType": "string", "sourceColumn": "RegionName" },
+          { "name": "Country", "dataType": "string", "sourceColumn": "Country" },
+          { "name": "RegionalVP", "dataType": "string", "sourceColumn": "RegionalVP" },
+          { "name": "SalesDirector", "dataType": "string", "sourceColumn": "SalesDirector" },
+          { "name": "HierarchyPath", "dataType": "string", "sourceColumn": "HierarchyPath" },
+          { "name": "ChannelType", "dataType": "string", "sourceColumn": "ChannelType" },
+          { "name": "CommissionTier", "dataType": "string", "sourceColumn": "CommissionTier" }
+        ],
+        "partitions": [
+          {
+            "name": "Dim_Store_Region_Partition",
+            "source": { "type": "m", "expression": [ "let Source = Csv.Document(File.Contents(#\"DataFolderPath\" & \"Dim_Store_Region.csv\"), [Delimiter=\",\", Columns=10, Encoding=65001, QuoteStyle=QuoteStyle.None]), Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]) in Headers" ] }
+          }
+        ]
+      },
+      {
+        "name": "Dim_ExchangeRate",
+        "columns": [
+          { "name": "Date", "dataType": "dateTime", "sourceColumn": "Date" },
+          { "name": "CurrencyCode", "dataType": "string", "sourceColumn": "CurrencyCode" },
+          { "name": "LocalPerUSD", "dataType": "double", "sourceColumn": "LocalPerUSD" },
+          { "name": "USDPerLocal", "dataType": "double", "sourceColumn": "USDPerLocal" }
+        ],
+        "partitions": [
+          {
+            "name": "Dim_ExchangeRate_Partition",
+            "source": { "type": "m", "expression": [ "let Source = Csv.Document(File.Contents(#\"DataFolderPath\" & \"Dim_ExchangeRate.csv\"), [Delimiter=\",\", Columns=4, Encoding=65001, QuoteStyle=QuoteStyle.None]), Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]) in Headers" ] }
+          }
+        ]
+      },
+      {
+        "name": "Fact_Sales",
+        "columns": [
+          { "name": "SalesLineID", "dataType": "int64", "sourceColumn": "SalesLineID" },
+          { "name": "SalesOrderNumber", "dataType": "string", "sourceColumn": "SalesOrderNumber" },
+          { "name": "OrderLineNumber", "dataType": "int64", "sourceColumn": "OrderLineNumber" },
+          { "name": "OrderDate", "dataType": "dateTime", "sourceColumn": "OrderDate" },
+          { "name": "ShipDate", "dataType": "dateTime", "sourceColumn": "ShipDate" },
+          { "name": "CustomerID", "dataType": "string", "sourceColumn": "CustomerID" },
+          { "name": "ProductID", "dataType": "string", "sourceColumn": "ProductID" },
+          { "name": "ChannelID", "dataType": "string", "sourceColumn": "ChannelID" },
+          { "name": "TransactionCurrency", "dataType": "string", "sourceColumn": "TransactionCurrency" },
+          { "name": "Quantity", "dataType": "int64", "sourceColumn": "Quantity" },
+          { "name": "LocalGrossSales", "dataType": "decimal", "sourceColumn": "LocalGrossSales" },
+          { "name": "LocalDiscount", "dataType": "decimal", "sourceColumn": "LocalDiscount" },
+          { "name": "LocalNetSales", "dataType": "decimal", "sourceColumn": "LocalNetSales" },
+          { "name": "GrossSalesUSD", "dataType": "decimal", "sourceColumn": "GrossSalesUSD" },
+          { "name": "DiscountAmountUSD", "dataType": "decimal", "sourceColumn": "DiscountAmountUSD" },
+          { "name": "NetSalesUSD", "dataType": "decimal", "sourceColumn": "NetSalesUSD" },
+          { "name": "TotalCostUSD", "dataType": "decimal", "sourceColumn": "TotalCostUSD" },
+          { "name": "MarginUSD", "dataType": "decimal", "sourceColumn": "MarginUSD" },
+          { "name": "OrderStatus", "dataType": "string", "sourceColumn": "OrderStatus" }
+        ],
+        "partitions": [
+          {
+            "name": "Fact_Sales_Partition",
+            "source": { "type": "m", "expression": [ "let Source = Csv.Document(File.Contents(#\"DataFolderPath\" & \"Fact_Sales.csv\"), [Delimiter=\",\", Columns=18, Encoding=65001, QuoteStyle=QuoteStyle.None]), Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]) in Headers" ] }
+          }
+        ]
+      },
+      {
+        "name": "Fact_Budget",
+        "columns": [
+          { "name": "BudgetID", "dataType": "int64", "sourceColumn": "BudgetID" },
+          { "name": "BudgetMonthDate", "dataType": "dateTime", "sourceColumn": "BudgetMonthDate" },
+          { "name": "YearMonth", "dataType": "int64", "sourceColumn": "YearMonth" },
+          { "name": "Category", "dataType": "string", "sourceColumn": "Category" },
+          { "name": "RegionCode", "dataType": "string", "sourceColumn": "RegionCode" },
+          { "name": "TargetRevenueUSD", "dataType": "decimal", "sourceColumn": "TargetRevenueUSD" },
+          { "name": "TargetMarginUSD", "dataType": "decimal", "sourceColumn": "TargetMarginUSD" }
+        ],
+        "partitions": [
+          {
+            "name": "Fact_Budget_Partition",
+            "source": { "type": "m", "expression": [ "let Source = Csv.Document(File.Contents(#\"DataFolderPath\" & \"Fact_Budget.csv\"), [Delimiter=\",\", Columns=7, Encoding=65001, QuoteStyle=QuoteStyle.None]), Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]) in Headers" ] }
+          }
+        ]
+      },
+      {
+        "name": "Param_ReportingCurrency",
+        "columns": [
+          { "name": "CurrencyCode", "dataType": "string", "sourceColumn": "CurrencyCode" },
+          { "name": "CurrencyName", "dataType": "string", "sourceColumn": "CurrencyName" },
+          { "name": "CurrencySymbol", "dataType": "string", "sourceColumn": "CurrencySymbol" },
+          { "name": "IsDefault", "dataType": "int64", "sourceColumn": "IsDefault" }
+        ],
+        "partitions": [
+          {
+            "name": "Param_ReportingCurrency_Partition",
+            "source": { "type": "m", "expression": [ "let Source = Csv.Document(File.Contents(#\"DataFolderPath\" & \"Param_ReportingCurrency.csv\"), [Delimiter=\",\", Columns=4, Encoding=65001, QuoteStyle=QuoteStyle.None]), Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]) in Headers" ] }
+          }
+        ]
+      },
+      {
+        "name": "Param_WhatIf_Price",
+        "columns": [
+          { "name": "PriceAdjustmentPercent", "dataType": "double", "sourceColumn": "PriceAdjustmentPercent" },
+          { "name": "PriceAdjustmentLabel", "dataType": "string", "sourceColumn": "PriceAdjustmentLabel" }
+        ],
+        "partitions": [
+          {
+            "name": "Param_WhatIf_Price_Partition",
+            "source": { "type": "m", "expression": [ "let Source = Csv.Document(File.Contents(#\"DataFolderPath\" & \"Param_WhatIf_Price.csv\"), [Delimiter=\",\", Columns=2, Encoding=65001, QuoteStyle=QuoteStyle.None]), Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]) in Headers" ] }
+          }
+        ]
+      },
+      {
+        "name": "Param_WhatIf_Cost",
+        "columns": [
+          { "name": "CostAdjustmentPercent", "dataType": "double", "sourceColumn": "CostAdjustmentPercent" },
+          { "name": "CostAdjustmentLabel", "dataType": "string", "sourceColumn": "CostAdjustmentLabel" }
+        ],
+        "partitions": [
+          {
+            "name": "Param_WhatIf_Cost_Partition",
+            "source": { "type": "m", "expression": [ "let Source = Csv.Document(File.Contents(#\"DataFolderPath\" & \"Param_WhatIf_Cost.csv\"), [Delimiter=\",\", Columns=2, Encoding=65001, QuoteStyle=QuoteStyle.None]), Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]) in Headers" ] }
+          }
+        ]
+      },
+      {
+        "name": "Param_TopN",
+        "columns": [
+          { "name": "TopNValue", "dataType": "int64", "sourceColumn": "TopNValue" },
+          { "name": "TopNLabel", "dataType": "string", "sourceColumn": "TopNLabel" }
+        ],
+        "partitions": [
+          {
+            "name": "Param_TopN_Partition",
+            "source": { "type": "m", "expression": [ "let Source = Csv.Document(File.Contents(#\"DataFolderPath\" & \"Param_TopN.csv\"), [Delimiter=\",\", Columns=2, Encoding=65001, QuoteStyle=QuoteStyle.None]), Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]) in Headers" ] }
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "Fact_Sales_Dim_Customer",
+        "fromTable": "Fact_Sales",
+        "fromColumn": "CustomerID",
+        "toTable": "Dim_Customer",
+        "toColumn": "CustomerID"
+      },
+      {
+        "name": "Fact_Sales_Dim_Product",
+        "fromTable": "Fact_Sales",
+        "fromColumn": "ProductID",
+        "toTable": "Dim_Product",
+        "toColumn": "ProductID"
+      },
+      {
+        "name": "Fact_Sales_Dim_Date",
+        "fromTable": "Fact_Sales",
+        "fromColumn": "OrderDate",
+        "toTable": "Dim_Date",
+        "toColumn": "Date"
+      },
+      {
+        "name": "Fact_Sales_Dim_Store_Region",
+        "fromTable": "Fact_Sales",
+        "fromColumn": "ChannelID",
+        "toTable": "Dim_Store_Region",
+        "toColumn": "ChannelID"
+      }
+    ],
+    "roles": [
+      {
+        "name": "Account_Manager_Direct",
+        "modelPermission": "read",
+        "tablePermissions": [
+          {
+            "name": "Dim_Customer",
+            "filterExpression": "'Dim_Customer'[AccountManagerEmail] = USERPRINCIPALNAME()"
+          }
+        ]
+      },
+      {
+        "name": "Regional_Sales_Hierarchy",
+        "modelPermission": "read",
+        "tablePermissions": [
+          {
+            "name": "Dim_Store_Region",
+            "filterExpression": "PATHCONTAINS('Dim_Store_Region'[HierarchyPath], USERPRINCIPALNAME())"
+          }
+        ]
+      }
+    ]
+  }
+}

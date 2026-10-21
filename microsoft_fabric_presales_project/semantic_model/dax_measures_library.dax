@@ -1,0 +1,447 @@
+/* =====================================================================================
+   Microsoft Fabric Direct Lake & Power BI Semantic Model
+   DAX MEASURES LIBRARY: Enterprise Pre-Sales Analytics
+   Organized by Display Folders with Full Explanations & Error Handling
+===================================================================================== */
+
+// =====================================================================================
+// FOLDER: 01 - Pipeline & Revenue
+// =====================================================================================
+
+Total Pipeline ACV = 
+/* Calculates the total Annual Contract Value (ACV) across all open and closed opportunities */
+SUM(gold_fact_opportunity_snapshot[annual_contract_value_usd])
+
+Open Pipeline ACV = 
+/* Calculates the current in-flight pipeline ACV */
+CALCULATE(
+    [Total Pipeline ACV],
+    gold_dim_opportunity[deal_status] = "Open"
+)
+
+Closed Won ACV = 
+/* Total revenue booked from Closed Won deals */
+CALCULATE(
+    [Total Pipeline ACV],
+    gold_fact_opportunity_snapshot[is_won] = TRUE
+)
+
+Closed Lost ACV = 
+/* Total revenue lost from Closed Lost deals */
+CALCULATE(
+    [Total Pipeline ACV],
+    gold_fact_opportunity_snapshot[is_lost] = TRUE
+)
+
+Pre-Sales Influenced Won ACV = 
+/* Won ACV where Solutions Engineering was actively engaged */
+CALCULATE(
+    [Closed Won ACV],
+    gold_fact_opportunity_snapshot[is_presales_engaged] = TRUE
+)
+
+POC Influenced Won ACV = 
+/* Won ACV where a formal Proof of Concept / Value was conducted */
+CALCULATE(
+    [Closed Won ACV],
+    gold_fact_opportunity_snapshot[poc_conducted] = TRUE
+)
+
+Unassisted Won ACV = 
+/* Won ACV generated without Pre-Sales assistance (Self-Serve / Transactional) */
+CALCULATE(
+    [Closed Won ACV],
+    gold_fact_opportunity_snapshot[is_presales_engaged] = FALSE
+)
+
+Pre-Sales Revenue Contribution Pct = 
+/* Percentage of total company won revenue that had Pre-Sales involvement */
+DIVIDE(
+    [Pre-Sales Influenced Won ACV],
+    [Closed Won ACV],
+    0
+)
+
+Total Pipeline Deals Count = 
+/* Count of distinct opportunities */
+DISTINCTCOUNT(gold_fact_opportunity_snapshot[opportunity_sk])
+
+Closed Won Deals Count = 
+CALCULATE(
+    [Total Pipeline Deals Count],
+    gold_fact_opportunity_snapshot[is_won] = TRUE
+)
+
+Closed Lost Deals Count = 
+CALCULATE(
+    [Total Pipeline Deals Count],
+    gold_fact_opportunity_snapshot[is_lost] = TRUE
+)
+
+Closed Deals Count = 
+CALCULATE(
+    [Total Pipeline Deals Count],
+    gold_fact_opportunity_snapshot[is_closed] = TRUE
+)
+
+
+// =====================================================================================
+// FOLDER: 02 - Win Rates & Pre-Sales Lift
+// =====================================================================================
+
+Overall Win Rate Pct = 
+/* Blended win rate across all closed opportunities */
+VAR _Won = [Closed Won Deals Count]
+VAR _Closed = [Closed Deals Count]
+RETURN
+    DIVIDE(_Won, _Closed, 0)
+
+Pre-Sales Assisted Win Rate Pct = 
+/* Win rate for deals where Solutions Engineering was engaged */
+VAR _WonSE = 
+    CALCULATE(
+        [Closed Won Deals Count],
+        gold_fact_opportunity_snapshot[is_presales_engaged] = TRUE
+    )
+VAR _ClosedSE = 
+    CALCULATE(
+        [Closed Deals Count],
+        gold_fact_opportunity_snapshot[is_presales_engaged] = TRUE
+    )
+RETURN
+    DIVIDE(_WonSE, _ClosedSE, 0)
+
+Unassisted Win Rate Pct = 
+/* Baseline win rate for deals closed without Pre-Sales involvement */
+VAR _WonUnassisted = 
+    CALCULATE(
+        [Closed Won Deals Count],
+        gold_fact_opportunity_snapshot[is_presales_engaged] = FALSE
+    )
+VAR _ClosedUnassisted = 
+    CALCULATE(
+        [Closed Deals Count],
+        gold_fact_opportunity_snapshot[is_presales_engaged] = FALSE
+    )
+RETURN
+    DIVIDE(_WonUnassisted, _ClosedUnassisted, 0)
+
+Pre-Sales Win Rate Lift = 
+/* Absolute percentage point lift achieved by engaging Pre-Sales */
+VAR _SEWinRate = [Pre-Sales Assisted Win Rate Pct]
+VAR _BaseWinRate = [Unassisted Win Rate Pct]
+RETURN
+    _SEWinRate - _BaseWinRate
+
+POC Win Rate Pct = 
+/* Win rate for deals that completed a Proof of Concept */
+VAR _WonPOC = 
+    CALCULATE(
+        [Closed Won Deals Count],
+        gold_fact_opportunity_snapshot[poc_conducted] = TRUE
+    )
+VAR _ClosedPOC = 
+    CALCULATE(
+        [Closed Deals Count],
+        gold_fact_opportunity_snapshot[poc_conducted] = TRUE
+    )
+RETURN
+    DIVIDE(_WonPOC, _ClosedPOC, 0)
+
+Win Rate by Dollar ACV Pct = 
+/* Dollar-weighted win rate (Won ACV / Total Closed ACV) */
+VAR _WonACV = [Closed Won ACV]
+VAR _TotalClosedACV = [Closed Won ACV] + [Closed Lost ACV]
+RETURN
+    DIVIDE(_WonACV, _TotalClosedACV, 0)
+
+
+// =====================================================================================
+// FOLDER: 03 - POC / POV Analytics
+// =====================================================================================
+
+Total POCs Count = 
+/* Total number of Proof of Concept projects */
+COUNTROWS(gold_fact_poc)
+
+Active POCs In Progress = 
+/* Active POCs currently running in the field */
+CALCULATE(
+    [Total POCs Count],
+    gold_fact_poc[poc_status] = "In Progress"
+)
+
+Completed POCs Count = 
+CALCULATE(
+    [Total POCs Count],
+    gold_fact_poc[poc_status] = "Completed"
+)
+
+Technical Won POCs Count = 
+/* POCs where technical criteria and evaluation were formally won by SE */
+CALCULATE(
+    [Total POCs Count],
+    gold_fact_poc[is_technical_win] = TRUE
+)
+
+Technical Win Rate Pct = 
+/* Technical victory rate in the lab / customer evaluation */
+DIVIDE(
+    [Technical Won POCs Count],
+    [Completed POCs Count],
+    0
+)
+
+Commercial Conversion from Technical Win Pct = 
+/* Measures deals won commercially after achieving a technical win in POC */
+VAR _TechWonDeals = 
+    CALCULATETABLE(
+        VALUES(gold_fact_poc[opportunity_sk]),
+        gold_fact_poc[is_technical_win] = TRUE
+    )
+VAR _CommercialWins = 
+    CALCULATE(
+        [Closed Won Deals Count],
+        TREATAS(_TechWonDeals, gold_fact_opportunity_snapshot[opportunity_sk])
+    )
+VAR _TechWinsCount = [Technical Won POCs Count]
+RETURN
+    DIVIDE(_CommercialWins, _TechWinsCount, 0)
+
+Avg POC Duration Days = 
+/* Average calendar days spent running a POC */
+AVERAGE(gold_fact_poc[duration_calendar_days])
+
+Total POC SE Hours Spent = 
+/* Total Solutions Engineer hours dedicated to building and executing POCs */
+SUM(gold_fact_poc[total_se_hours_spent])
+
+Avg SE Hours Per POC = 
+AVERAGE(gold_fact_poc[total_se_hours_spent])
+
+Total Cloud Lab Infra Cost = 
+/* Azure/Fabric lab consumption costs incurred during POC evaluations */
+SUM(gold_fact_poc[cloud_lab_infra_cost_usd])
+
+Total POC Investment USD = 
+/* Combined cost of SE labor + cloud infrastructure */
+VAR _SECost = 
+    SUMX(
+        gold_fact_poc,
+        gold_fact_poc[total_se_hours_spent] * RELATED(gold_dim_solution_engineer[hourly_cost_rate_usd])
+    )
+VAR _LabCost = [Total Cloud Lab Infra Cost]
+RETURN
+    _SECost + _LabCost
+
+POC Cost per Won Dollar ACV = 
+/* Measures efficiency of POC investments */
+DIVIDE(
+    [Total POC Investment USD],
+    [POC Influenced Won ACV],
+    0
+)
+
+
+// =====================================================================================
+// FOLDER: 04 - SE Workload & Capacity
+// =====================================================================================
+
+Total Pre-Sales Activities Count = 
+/* Total number of technical customer engagements (demos, workshops, calls) */
+COUNTROWS(gold_fact_presales_activity)
+
+Total SE Effort Hours = 
+/* Combined delivery + prep hours logged by Solutions Engineers */
+SUM(gold_fact_presales_activity[total_effort_hours])
+
+Customer Facing Hours = 
+SUM(gold_fact_presales_activity[duration_hours])
+
+Prep Hours = 
+SUM(gold_fact_presales_activity[prep_hours])
+
+Prep to Delivery Ratio = 
+/* Average hours of prep required for each 1 hour of customer-facing delivery */
+DIVIDE(
+    [Prep Hours],
+    [Customer Facing Hours],
+    0
+)
+
+Total SE Capacity Available Hours = 
+/* Calculates theoretical capacity (Weeks in filter * target weekly hours) */
+VAR _WeeksInContext = 
+    DIVIDE(
+        DISTINCTCOUNT(gold_dim_date[date_key]),
+        7,
+        1
+    )
+VAR _ActiveSEs = 
+    CALCULATE(
+        DISTINCTCOUNT(gold_dim_solution_engineer[se_sk]),
+        gold_dim_solution_engineer[se_id] <> "UNASSIGNED"
+    )
+RETURN
+    _ActiveSEs * _WeeksInContext * 40
+
+SE Utilization Pct = 
+/* Measures actual logged pre-sales effort against total available capacity */
+DIVIDE(
+    [Total SE Effort Hours],
+    [Total SE Capacity Available Hours],
+    0
+)
+
+ACV Influenced Per SE Hour = 
+/* Revenue productivity metric: Dollars of won ACV generated per SE hour */
+DIVIDE(
+    [Pre-Sales Influenced Won ACV],
+    [Total SE Effort Hours],
+    0
+)
+
+Avg SE Hours Per Won Deal = 
+/* Average SE effort required to close a won opportunity */
+DIVIDE(
+    CALCULATE(
+        [Total SE Effort Hours],
+        gold_fact_opportunity_snapshot[is_won] = TRUE
+    ),
+    [Closed Won Deals Count],
+    0
+)
+
+
+// =====================================================================================
+// FOLDER: 05 - RFP Analytics
+// =====================================================================================
+
+Total RFPs Submitted = 
+COUNTROWS(gold_fact_rfp)
+
+Avg RFP Turnaround Days = 
+AVERAGE(gold_fact_rfp[turnaround_days])
+
+Avg RFP Compliance Score Pct = 
+AVERAGE(gold_fact_rfp[compliance_score_pct])
+
+Total RFP SE Effort Hours = 
+SUM(gold_fact_rfp[se_effort_hours])
+
+RFP Win Rate Pct = 
+VAR _WonRFPs = 
+    CALCULATE(
+        COUNTROWS(gold_fact_rfp),
+        gold_fact_rfp[rfp_status] = "Won"
+    )
+VAR _TotalRFPs = [Total RFPs Submitted]
+RETURN
+    DIVIDE(_WonRFPs, _TotalRFPs, 0)
+
+
+// =====================================================================================
+// FOLDER: 06 - Technical Loss & Risk
+// =====================================================================================
+
+Technical Loss Deals Count = 
+/* Deals lost specifically due to technical product gaps, latency, or compliance */
+CALCULATE(
+    [Closed Lost Deals Count],
+    gold_dim_opportunity[is_technical_loss] = TRUE
+)
+
+Technical Loss ACV = 
+/* ARR/ACV lost due to product and architectural limitations */
+CALCULATE(
+    [Closed Lost ACV],
+    gold_dim_opportunity[is_technical_loss] = TRUE
+)
+
+Technical Loss Rate Pct = 
+/* Percentage of all losses attributable to technical blockers */
+DIVIDE(
+    [Technical Loss ACV],
+    [Closed Lost ACV],
+    0
+)
+
+Cumulative Technical Loss Pct = 
+/* Cumulative running percentage of Technical Loss ACV for the Pareto Combo Chart Line */
+VAR _CurrentReason = SELECTEDVALUE(gold_dim_opportunity[win_loss_reason])
+VAR _CurrentLostACV = [Technical Loss ACV]
+VAR _TotalTechnicalLoss = 
+    CALCULATE(
+        [Technical Loss ACV],
+        ALLSELECTED(gold_dim_opportunity[win_loss_reason]),
+        gold_dim_opportunity[is_technical_loss] = TRUE
+    )
+VAR _Cumulative = 
+    CALCULATE(
+        [Technical Loss ACV],
+        FILTER(
+            ALLSELECTED(gold_dim_opportunity[win_loss_reason]),
+            VAR _RowACV = [Technical Loss ACV]
+            RETURN
+                _RowACV > _CurrentLostACV 
+                || (_RowACV = _CurrentLostACV && gold_dim_opportunity[win_loss_reason] <= _CurrentReason)
+        ),
+        gold_dim_opportunity[is_technical_loss] = TRUE
+    )
+RETURN
+    IF(
+        NOT ISBLANK(_CurrentLostACV),
+        DIVIDE(_Cumulative, _TotalTechnicalLoss, 0)
+    )
+
+
+
+// =====================================================================================
+// FOLDER: 07 - Time Intelligence & Velocity
+// =====================================================================================
+
+Avg Sales Cycle Days = 
+/* Average calendar days from deal creation to close */
+CALCULATE(
+    AVERAGE(gold_fact_opportunity_snapshot[sales_cycle_days]),
+    gold_fact_opportunity_snapshot[is_closed] = TRUE
+)
+
+Avg Sales Cycle Days Won Deals = 
+CALCULATE(
+    AVERAGE(gold_fact_opportunity_snapshot[sales_cycle_days]),
+    gold_fact_opportunity_snapshot[is_won] = TRUE
+)
+
+Won ACV YTD = 
+/* Year-to-date won revenue using standard calendar */
+CALCULATE(
+    [Closed Won ACV],
+    DATESYTD(gold_dim_date[full_date])
+)
+
+Won ACV Prior Year = 
+/* Won revenue for the exact same period last year */
+CALCULATE(
+    [Closed Won ACV],
+    SAMEPERIODLASTYEAR(gold_dim_date[full_date])
+)
+
+Won ACV YoY Growth Pct = 
+/* Year-over-year revenue growth percentage */
+VAR _Current = [Closed Won ACV]
+VAR _Prior = [Won ACV Prior Year]
+RETURN
+    DIVIDE(_Current - _Prior, _Prior, 0)
+
+Trailing 90 Days Won ACV = 
+/* Rolling 90 days booked revenue */
+CALCULATE(
+    [Closed Won ACV],
+    DATESINPERIOD(
+        gold_dim_date[full_date],
+        MAX(gold_dim_date[full_date]),
+        -90,
+        DAY
+    )
+)

@@ -1,0 +1,112 @@
+{
+  "config": "{\"version\":\"5.53\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY24SU02\",\"version\":\"5.53\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true}",
+  "layoutOptimization": 0,
+  "structureVersion": "1.0",
+  "sections": [
+    {
+      "name": "ReportSection_ExecutiveOverview",
+      "displayName": "Executive Revenue & Time Intelligence",
+      "filters": "[]",
+      "height": 720,
+      "width": 1280,
+      "visualContainers": [
+        {
+          "x": 20,
+          "y": 20,
+          "z": 0,
+          "width": 1240,
+          "height": 60,
+          "config": "{\"name\":\"TitleBanner\",\"layouts\":[{\"id\":0,\"position\":{\"x\":20,\"y\":20,\"z\":0,\"width\":1240,\"height\":60}}],\"singleVisual\":{\"visualType\":\"textbox\"}}"
+        },
+        {
+          "x": 20,
+          "y": 90,
+          "z": 1,
+          "width": 230,
+          "height": 110,
+          "config": "{\"name\":\"Card_NetRev\",\"layouts\":[{\"id\":0,\"position\":{\"x\":20,\"y\":90,\"z\":1,\"width\":230,\"height\":110}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"_Measures.Net Revenue\"}]}}}"
+        },
+        {
+          "x": 270,
+          "y": 90,
+          "z": 2,
+          "width": 230,
+          "height": 110,
+          "config": "{\"name\":\"Card_Margin\",\"layouts\":[{\"id\":0,\"position\":{\"x\":270,\"y\":90,\"z\":2,\"width\":230,\"height\":110}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"_Measures.Gross Margin\"}]}}}"
+        },
+        {
+          "x": 520,
+          "y": 90,
+          "z": 3,
+          "width": 230,
+          "height": 110,
+          "config": "{\"name\":\"Card_MarginPct\",\"layouts\":[{\"id\":0,\"position\":{\"x\":520,\"y\":90,\"z\":3,\"width\":230,\"height\":110}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"_Measures.Gross Margin %\"}]}}}"
+        },
+        {
+          "x": 770,
+          "y": 90,
+          "z": 4,
+          "width": 230,
+          "height": 110,
+          "config": "{\"name\":\"Card_YoY\",\"layouts\":[{\"id\":0,\"position\":{\"x\":770,\"y\":90,\"z\":4,\"width\":230,\"height\":110}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"_Measures.Net Revenue YoY %\"}]}}}"
+        },
+        {
+          "x": 1020,
+          "y": 90,
+          "z": 5,
+          "width": 240,
+          "height": 110,
+          "config": "{\"name\":\"Card_Customers\",\"layouts\":[{\"id\":0,\"position\":{\"x\":1020,\"y\":90,\"z\":5,\"width\":240,\"height\":110}}],\"singleVisual\":{\"visualType\":\"card\",\"projections\":{\"Values\":[{\"queryRef\":\"_Measures.Distinct Customer Count\"}]}}}"
+        },
+        {
+          "x": 20,
+          "y": 215,
+          "z": 6,
+          "width": 800,
+          "height": 485,
+          "config": "{\"name\":\"LineChart_Trend\",\"layouts\":[{\"id\":0,\"position\":{\"x\":20,\"y\":215,\"z\":6,\"width\":800,\"height\":485}}],\"singleVisual\":{\"visualType\":\"lineChart\"}}"
+        },
+        {
+          "x": 835,
+          "y": 215,
+          "z": 7,
+          "width": 425,
+          "height": 485,
+          "config": "{\"name\":\"BarChart_Region\",\"layouts\":[{\"id\":0,\"position\":{\"x\":835,\"y\":215,\"z\":7,\"width\":425,\"height\":485}}],\"singleVisual\":{\"visualType\":\"barChart\"}}"
+        }
+      ]
+    },
+    {
+      "name": "ReportSection_ParetoConcentration",
+      "displayName": "Customer Pareto 80/20 & Concentration",
+      "filters": "[]",
+      "height": 720,
+      "width": 1280,
+      "visualContainers": []
+    },
+    {
+      "name": "ReportSection_CustomerRFM",
+      "displayName": "Customer RFM & Churn Cohorts",
+      "filters": "[]",
+      "height": 720,
+      "width": 1280,
+      "visualContainers": []
+    },
+    {
+      "name": "ReportSection_WhatIfScenario",
+      "displayName": "Multi-Currency & What-If Modeling",
+      "filters": "[]",
+      "height": 720,
+      "width": 1280,
+      "visualContainers": []
+    },
+    {
+      "name": "ReportSection_BasketAffinity",
+      "displayName": "Market Basket & Cross-Sell Affinity",
+      "filters": "[]",
+      "height": 720,
+      "width": 1280,
+      "visualContainers": []
+    }
+  ]
+}

@@ -1,0 +1,1258 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alex Rivera | Data Analyst & Power BI Developer</title>
+  <!-- Google Fonts: Inter & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Chart.js for interactive analytics widgets -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            mono: ['JetBrains Mono', 'monospace'],
+          },
+          colors: {
+            brand: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              500: '#3b82f6',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+            },
+            powerbi: {
+              amber: '#f59e0b',
+              light: '#fef3c7',
+              dark: '#b45309'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fafafa;
+      color: #0f172a;
+    }
+    .custom-scrollbar::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 3px;
+    }
+    .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+</head>
+<body class="bg-slate-50/60 text-slate-800 antialiased selection:bg-blue-100 selection:text-blue-900">
+
+  <!-- Navigation Bar -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/80 transition-all">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+      <a href="#hero" class="flex items-center gap-2 group">
+        <div class="w-8 h-8 rounded-lg bg-slate-900 text-white flex items-center justify-center font-bold text-sm tracking-tighter group-hover:bg-blue-600 transition-colors">
+          AR
+        </div>
+        <div>
+          <span class="font-semibold text-slate-900 tracking-tight text-sm sm:text-base">Alex Rivera</span>
+          <span class="hidden sm:inline-block text-xs text-slate-400 font-mono ml-1.5">| Data & BI</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-600">
+        <a href="#about" class="hover:text-slate-900 transition-colors">About</a>
+        <a href="#skills" class="hover:text-slate-900 transition-colors">Skills</a>
+        <a href="#dashboard-demo" class="hover:text-slate-900 transition-colors flex items-center gap-1.5 text-blue-600">
+          <span class="w-2 h-2 rounded-full bg-blue-500 animate-pulse"></span>
+          Interactive BI
+        </a>
+        <a href="#projects" class="hover:text-slate-900 transition-colors">Projects</a>
+        <a href="#experience" class="hover:text-slate-900 transition-colors">Experience</a>
+        <a href="#certifications" class="hover:text-slate-900 transition-colors">Certs</a>
+        <a href="#contact" class="hover:text-slate-900 transition-colors">Contact</a>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="flex items-center gap-3">
+        <a href="#contact" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-white shadow-sm transition-all hover:shadow hover:-translate-y-0.5">
+          <i data-lucide="mail" class="w-3.5 h-3.5"></i>
+          Get in Touch
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 space-y-24 py-12">
+
+    <!-- HERO SECTION -->
+    <section id="hero" class="pt-6 sm:pt-12">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full border border-slate-200 bg-white text-xs font-medium text-slate-600 shadow-2xs">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+            Available for Senior Analyst & BI Engineering Roles
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-slate-950 leading-[1.12]">
+            Transforming Complex Data into <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 via-indigo-600 to-slate-900">Decisive Business Impact.</span>
+          </h1>
+
+          <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl font-normal">
+            Hi, I’m <strong>Alex Rivera</strong>. I specialize in building executive-ready <strong>Power BI dashboards</strong>, scalable <strong>Python data pipelines</strong>, and advanced statistical modeling that drive measurable ROI.
+          </p>
+
+          <!-- Fast action buttons -->
+          <div class="flex flex-wrap items-center gap-3 pt-2">
+            <a href="#projects" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-semibold bg-blue-600 hover:bg-blue-700 text-white shadow-sm transition-all hover:shadow hover:-translate-y-0.5">
+              <i data-lucide="bar-chart-3" class="w-4 h-4"></i>
+              View Featured Projects
+            </a>
+            <a href="#dashboard-demo" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg text-sm font-medium bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 shadow-2xs transition-all">
+              <i data-lucide="play-circle" class="w-4 h-4 text-blue-600"></i>
+              Try Live Dashboard
+            </a>
+            <a href="#" onclick="alert('Resume download simulated: Alex_Rivera_Data_Analyst_Resume.pdf'); return false;" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">
+              <i data-lucide="download" class="w-4 h-4"></i>
+              Resume CV
+            </a>
+          </div>
+
+          <!-- Quick trust badges -->
+          <div class="pt-4 border-t border-slate-200/80 flex flex-wrap items-center gap-6 text-xs text-slate-500 font-medium">
+            <div class="flex items-center gap-1.5">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+              <span>Microsoft Fabric & OneLake</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+              <span>PL-300 Certified</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+              <span>Python & Pandas Expert</span>
+            </div>
+            <div class="flex items-center gap-1.5">
+              <i data-lucide="check-circle-2" class="w-4 h-4 text-emerald-600"></i>
+              <span>Advanced DAX & Star Schema</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Hero Stats Cards Panel -->
+        <div class="lg:col-span-5">
+          <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-7 shadow-sm space-y-6 relative overflow-hidden">
+            <div class="absolute -right-12 -top-12 w-48 h-48 bg-blue-50 rounded-full blur-2xl pointer-events-none"></div>
+
+            <div class="flex items-center justify-between pb-4 border-b border-slate-100">
+              <div class="flex items-center gap-2">
+                <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping"></span>
+                <span class="text-xs font-semibold uppercase tracking-wider text-slate-400">Key Career Metrics</span>
+              </div>
+              <span class="text-xs font-mono text-slate-400">Q3 2026 Audit</span>
+            </div>
+
+            <div class="grid grid-cols-2 gap-4">
+              <!-- Stat 1 -->
+              <div class="p-4 rounded-xl bg-slate-50/70 border border-slate-100 space-y-1">
+                <div class="text-2xl sm:text-3xl font-bold font-mono text-slate-900">50+</div>
+                <div class="text-xs font-medium text-slate-500">Fabric & Power BI Solutions</div>
+              </div>
+
+              <!-- Stat 2 -->
+              <div class="p-4 rounded-xl bg-slate-50/70 border border-slate-100 space-y-1">
+                <div class="text-2xl sm:text-3xl font-bold font-mono text-slate-900">37M+</div>
+                <div class="text-xs font-medium text-slate-500">Rows Cleaned & Modeled</div>
+              </div>
+
+              <!-- Stat 3 -->
+              <div class="p-4 rounded-xl bg-slate-50/70 border border-slate-100 space-y-1">
+                <div class="text-2xl sm:text-3xl font-bold font-mono text-emerald-600">$5.8M</div>
+                <div class="text-xs font-medium text-slate-500">Identified Cost / Revenue Optimizations</div>
+              </div>
+
+              <!-- Stat 4 -->
+              <div class="p-4 rounded-xl bg-slate-50/70 border border-slate-100 space-y-1">
+                <div class="text-2xl sm:text-3xl font-bold font-mono text-blue-600">99.9%</div>
+                <div class="text-xs font-medium text-slate-500">Pipeline SLA & Data Accuracy</div>
+              </div>
+            </div>
+
+            <!-- Mini Sparkline / Snapshot -->
+            <div class="pt-2">
+              <div class="flex justify-between items-center text-xs text-slate-500 mb-2">
+                <span class="font-medium">Monthly Decision Velocity</span>
+                <span class="text-emerald-600 font-semibold">+34% vs baseline</span>
+              </div>
+              <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden">
+                <div class="bg-gradient-to-r from-blue-500 to-indigo-600 h-2 rounded-full" style="width: 82%"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- LIVE INTERACTIVE DASHBOARD DEMO SECTION -->
+    <section id="dashboard-demo" class="space-y-6">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 pb-2 border-b border-slate-200">
+        <div>
+          <div class="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-600 uppercase tracking-wider mb-1">
+            <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+            Interactive Component
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Executive BI Simulator</h2>
+          <p class="text-sm text-slate-500 mt-1">Test the interactive filtering and instant KPI recalculations below.</p>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="flex flex-wrap items-center gap-2">
+          <label class="text-xs font-medium text-slate-500">Region:</label>
+          <select id="regionFilter" onchange="updateDashboardData()" class="text-xs font-medium bg-white border border-slate-200 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-700">
+            <option value="all">Global (All Regions)</option>
+            <option value="north_america">North America</option>
+            <option value="europe">Europe (EMEA)</option>
+            <option value="apac">Asia-Pacific (APAC)</option>
+          </select>
+
+          <label class="text-xs font-medium text-slate-500 ml-2">Timeframe:</label>
+          <select id="timeframeFilter" onchange="updateDashboardData()" class="text-xs font-medium bg-white border border-slate-200 rounded-lg px-3 py-1.5 focus:outline-none focus:ring-2 focus:ring-blue-500/20 text-slate-700">
+            <option value="ytd">Year-to-Date 2026</option>
+            <option value="q3">Q3 2026</option>
+            <option value="trailing12">Trailing 12 Months</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Dashboard Container -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm space-y-6">
+        <!-- Live KPI ribbon -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+          <div class="p-4 rounded-xl bg-slate-50/80 border border-slate-100">
+            <div class="text-xs font-medium text-slate-400 uppercase tracking-wide">Gross Revenue</div>
+            <div id="kpiRevenue" class="text-2xl font-bold font-mono text-slate-900 mt-1">$4,850,200</div>
+            <div id="kpiRevenueTrend" class="text-xs font-medium text-emerald-600 mt-1 flex items-center gap-1">
+              <i data-lucide="trending-up" class="w-3 h-3"></i> +14.2% YoY
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50/80 border border-slate-100">
+            <div class="text-xs font-medium text-slate-400 uppercase tracking-wide">Gross Margin</div>
+            <div id="kpiMargin" class="text-2xl font-bold font-mono text-slate-900 mt-1">42.8%</div>
+            <div id="kpiMarginTrend" class="text-xs font-medium text-emerald-600 mt-1 flex items-center gap-1">
+              <i data-lucide="trending-up" class="w-3 h-3"></i> +1.9 pts
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50/80 border border-slate-100">
+            <div class="text-xs font-medium text-slate-400 uppercase tracking-wide">Active Accounts</div>
+            <div id="kpiAccounts" class="text-2xl font-bold font-mono text-slate-900 mt-1">1,420</div>
+            <div id="kpiAccountsTrend" class="text-xs font-medium text-emerald-600 mt-1 flex items-center gap-1">
+              <i data-lucide="arrow-up-right" class="w-3 h-3"></i> +8.4%
+            </div>
+          </div>
+
+          <div class="p-4 rounded-xl bg-slate-50/80 border border-slate-100">
+            <div class="text-xs font-medium text-slate-400 uppercase tracking-wide">Customer Churn Rate</div>
+            <div id="kpiChurn" class="text-2xl font-bold font-mono text-slate-900 mt-1">1.84%</div>
+            <div id="kpiChurnTrend" class="text-xs font-medium text-emerald-600 mt-1 flex items-center gap-1">
+              <i data-lucide="trending-down" class="w-3 h-3"></i> -0.42 pts (Best in class)
+            </div>
+          </div>
+        </div>
+
+        <!-- Charts Grid -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 pt-2">
+          <!-- Main Monthly Trend Line Chart -->
+          <div class="lg:col-span-8 p-4 rounded-xl border border-slate-100 bg-slate-50/40">
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <h4 class="text-sm font-semibold text-slate-900">Revenue & Target Realization</h4>
+                <p class="text-xs text-slate-500">Monthly actuals vs budgeted forecast targets</p>
+              </div>
+              <span class="text-xs font-mono text-slate-400 bg-white px-2 py-1 rounded border border-slate-200">USD Thousands</span>
+            </div>
+            <div class="h-64">
+              <canvas id="revenueTrendChart"></canvas>
+            </div>
+          </div>
+
+          <!-- Category Breakdown Bar Chart -->
+          <div class="lg:col-span-4 p-4 rounded-xl border border-slate-100 bg-slate-50/40">
+            <div class="flex items-center justify-between mb-4">
+              <div>
+                <h4 class="text-sm font-semibold text-slate-900">Segment Contribution</h4>
+                <p class="text-xs text-slate-500">Product line breakdown</p>
+              </div>
+            </div>
+            <div class="h-64 flex items-center justify-center">
+              <canvas id="categoryDonutChart"></canvas>
+            </div>
+          </div>
+        </div>
+
+        <!-- DAX & Formula logic footnote -->
+        <div class="p-3 bg-slate-50 rounded-lg border border-slate-200/80 flex items-center justify-between text-xs text-slate-600">
+          <div class="flex items-center gap-2">
+            <span class="font-mono text-blue-600 font-semibold">[DAX Logic]</span>
+            <span class="font-mono text-slate-700">Gross Margin % = DIVIDE([Total Revenue] - [COGS], [Total Revenue], 0)</span>
+          </div>
+          <span class="text-slate-400 text-[11px] hidden sm:inline">Calculated via Star Schema Data Model</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE SKILLS & TECH STACK SECTION -->
+    <section id="skills" class="space-y-8">
+      <div>
+        <div class="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-1">Technical Matrix</div>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Core Competencies & Stack</h2>
+        <p class="text-sm text-slate-500 mt-1">Tested tools and methodologies applied across enterprise analytical workflows.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <!-- Microsoft Fabric & OneLake -->
+        <div class="bg-white rounded-xl border border-slate-200 p-6 space-y-4 hover:border-slate-300 transition-all shadow-2xs">
+          <div class="w-10 h-10 rounded-lg bg-indigo-50 text-indigo-700 flex items-center justify-center font-bold">
+            <i data-lucide="layers" class="w-5 h-5"></i>
+          </div>
+          <h3 class="font-semibold text-slate-900 text-base">Microsoft Fabric & Lakehouse</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Enterprise OneLake architecture, Medallion Lakehouse design (Bronze/Silver/Gold), and Direct Lake serving.
+          </p>
+          <ul class="space-y-2 text-xs text-slate-600">
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+              <strong>Architecture:</strong> Medallion Delta Parquet, OneLake
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+              <strong>Serving:</strong> Direct Lake Semantic Models, V-Order
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+              <strong>Ingestion:</strong> Data Factory Pipelines & SAP CDC (ODP)
+            </li>
+          </ul>
+        </div>
+
+        <!-- Power BI & Data Modeling -->
+        <div class="bg-white rounded-xl border border-slate-200 p-6 space-y-4 hover:border-slate-300 transition-all shadow-2xs">
+          <div class="w-10 h-10 rounded-lg bg-amber-50 text-amber-700 flex items-center justify-center font-bold">
+            <i data-lucide="layout-dashboard" class="w-5 h-5"></i>
+          </div>
+          <h3 class="font-semibold text-slate-900 text-base">Power BI & Visualization</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Architecting scalable enterprise reports using Star Schema data modeling, custom theme tokens, and dynamic UX.
+          </p>
+          <ul class="space-y-2 text-xs text-slate-600">
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+              <strong>DAX:</strong> CALCULATE, Time Intelligence, Iterators (SUMX)
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+              <strong>Power Query:</strong> Advanced M-code, automated transformation
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-amber-500"></span>
+              <strong>Governance:</strong> Row-Level Security (RLS), Workspace pipelines
+            </li>
+          </ul>
+        </div>
+
+        <!-- Python Data Analytics -->
+        <div class="bg-white rounded-xl border border-slate-200 p-6 space-y-4 hover:border-slate-300 transition-all shadow-2xs">
+          <div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-700 flex items-center justify-center font-bold">
+            <i data-lucide="code-2" class="w-5 h-5"></i>
+          </div>
+          <h3 class="font-semibold text-slate-900 text-base">Python & PySpark Analytics</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            Data wrangling, automated ETL scripting, statistical exploration, and PySpark Lakehouse merges.
+          </p>
+          <ul class="space-y-2 text-xs text-slate-600">
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+              <strong>PySpark & Delta:</strong> Lakehouse merge, SCD Type 2, windowing
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+              <strong>Pandas & NumPy:</strong> Vectorized ETL, aggregation, reshaping
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+              <strong>Scikit-Learn:</strong> K-Means, RFM segmentation, clustering
+            </li>
+          </ul>
+        </div>
+
+        <!-- SQL & Warehousing -->
+        <div class="bg-white rounded-xl border border-slate-200 p-6 space-y-4 hover:border-slate-300 transition-all shadow-2xs">
+          <div class="w-10 h-10 rounded-lg bg-slate-100 text-slate-800 flex items-center justify-center font-bold">
+            <i data-lucide="database" class="w-5 h-5"></i>
+          </div>
+          <h3 class="font-semibold text-slate-900 text-base">SQL & Enterprise ERP Data</h3>
+          <p class="text-xs text-slate-600 leading-relaxed">
+            High-performance analytical querying, SAP business partner schemas, CTEs, and relational optimization.
+          </p>
+          <ul class="space-y-2 text-xs text-slate-600">
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
+              <strong>ERP Master Data:</strong> SAP S/4HANA (BUT000), ECC (KNA1, KNVP)
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
+              <strong>Advanced:</strong> Window functions, CTEs, Index tuning
+            </li>
+            <li class="flex items-center gap-2">
+              <span class="w-1.5 h-1.5 rounded-full bg-slate-500"></span>
+              <strong>Warehousing:</strong> Snowflake, BigQuery, Delta Parquet
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- FEATURED PROJECTS SECTION -->
+    <section id="projects" class="space-y-8">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4">
+        <div>
+          <div class="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-1">Case Studies</div>
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Featured Analytics Projects</h2>
+          <p class="text-sm text-slate-500 mt-1">Real-world business solutions delivering verified impact.</p>
+        </div>
+
+        <!-- Filter category tags -->
+        <div class="flex items-center gap-1.5 p-1 bg-slate-100 rounded-lg text-xs font-medium">
+          <button onclick="filterProjects('all')" class="proj-filter-btn px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-xs" data-filter="all">All</button>
+          <button onclick="filterProjects('fabric')" class="proj-filter-btn px-3 py-1.5 rounded-md text-slate-600 hover:text-slate-900" data-filter="fabric">Microsoft Fabric</button>
+          <button onclick="filterProjects('powerbi')" class="proj-filter-btn px-3 py-1.5 rounded-md text-slate-600 hover:text-slate-900" data-filter="powerbi">Power BI</button>
+          <button onclick="filterProjects('python')" class="proj-filter-btn px-3 py-1.5 rounded-md text-slate-600 hover:text-slate-900" data-filter="python">Python & ML</button>
+          <button onclick="filterProjects('sql')" class="proj-filter-btn px-3 py-1.5 rounded-md text-slate-600 hover:text-slate-900" data-filter="sql">SQL & ETL</button>
+        </div>
+      </div>
+
+      <!-- Project Cards Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <!-- Project Flagship: Enterprise SAP Partner 360 & Analytics in Microsoft Fabric -->
+        <article class="project-card bg-white rounded-2xl border-2 border-indigo-200/80 overflow-hidden shadow-sm hover:shadow-lg transition-all flex flex-col md:col-span-2 relative" data-category="fabric powerbi sql">
+          <!-- Featured Ribbon Badge -->
+          <div class="bg-gradient-to-r from-indigo-600 via-blue-600 to-indigo-700 text-white px-4 py-1.5 text-xs font-semibold flex items-center justify-between">
+            <div class="flex items-center gap-1.5">
+              <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+              <span>Flagship End-to-End Enterprise Solution</span>
+            </div>
+            <span class="font-mono text-[11px] opacity-90">Fabric Lakehouse + Direct Lake</span>
+          </div>
+
+          <div class="p-6 sm:p-7 border-b border-slate-100 space-y-3">
+            <div class="flex flex-wrap items-center justify-between gap-2">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-indigo-50 text-indigo-800 border border-indigo-200/60">
+                <i data-lucide="layers" class="w-3.5 h-3.5"></i> Microsoft Fabric & Delta Lake
+              </span>
+              <span class="text-xs font-mono text-slate-400">SAP S/4HANA & ECC Integration</span>
+            </div>
+            <h3 class="text-xl sm:text-2xl font-bold text-slate-900">Enterprise SAP Partner 360 & Analytics in Microsoft Fabric</h3>
+            <p class="text-xs sm:text-sm text-slate-600 leading-relaxed max-w-4xl">
+              Architected a production-grade Medallion Lakehouse (Bronze &rarr; Silver &rarr; Gold) ingesting 15M+ SAP Business Partner records (<code class="bg-slate-100 px-1 py-0.5 rounded text-slate-800 font-mono text-[11px]">BUT000</code>, <code class="bg-slate-100 px-1 py-0.5 rounded text-slate-800 font-mono text-[11px]">KNVP</code>, <code class="bg-slate-100 px-1 py-0.5 rounded text-slate-800 font-mono text-[11px]">ADRC</code>, <code class="bg-slate-100 px-1 py-0.5 rounded text-slate-800 font-mono text-[11px]">BSID</code>). Implemented PySpark SCD Type 2 dimension merge and sub-second Direct Lake Power BI semantic models for partner credit exposure and sales concentration.
+            </p>
+          </div>
+
+          <!-- Business Impact Ribbon -->
+          <div class="bg-slate-50 p-5 sm:p-6 border-b border-slate-100 space-y-4">
+            <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Production Results & Architecture Metrics</div>
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+              <div class="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                <div class="text-lg font-bold font-mono text-slate-900">15M+</div>
+                <div class="text-[10px] text-slate-500">SAP Records Modeled</div>
+              </div>
+              <div class="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                <div class="text-lg font-bold font-mono text-blue-600">&lt; 1 sec</div>
+                <div class="text-[10px] text-slate-500">Direct Lake Query Latency</div>
+              </div>
+              <div class="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                <div class="text-lg font-bold font-mono text-emerald-600">Hourly</div>
+                <div class="text-[10px] text-slate-500">Automated CDC Sync (ODP)</div>
+              </div>
+              <div class="bg-white p-3 rounded-lg border border-slate-200 text-center">
+                <div class="text-lg font-bold font-mono text-indigo-600">$5.8M</div>
+                <div class="text-[10px] text-slate-500">Partner Margin Exposure Tracked</div>
+              </div>
+            </div>
+
+            <!-- Expandable Architecture Snippets -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-3 pt-1">
+              <!-- Snippet 1: PySpark Delta Lake Merge -->
+              <details class="group bg-white rounded-lg border border-slate-200 overflow-hidden text-xs">
+                <summary class="p-2.5 cursor-pointer font-mono font-medium text-slate-700 flex items-center justify-between hover:bg-slate-50">
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="terminal" class="w-3.5 h-3.5 text-indigo-600"></i>
+                    <span>PySpark: Bronze &rarr; Silver SCD2 Merge</span>
+                  </span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform"></i>
+                </summary>
+                <pre class="p-3 bg-slate-900 text-slate-200 text-[11px] font-mono overflow-x-auto leading-relaxed"><code>from pyspark.sql import functions as F
+from delta.tables import DeltaTable
+
+# Ingest Bronze CDC & join Address Master
+bronze_bp = spark.read.table("bronze_sap_but000").filter(F.col("_change_type") != "D")
+bronze_adrc = spark.read.table("bronze_sap_adrc")
+
+enriched_bp = bronze_bp.join(bronze_adrc, on="ADDRNUMBER", how="left").select(
+    F.col("PARTNER").alias("partner_id"),
+    F.concat_ws(" ", F.col("NAME_FIRST"), F.col("NAME_LAST")).alias("partner_name"),
+    F.col("CITY1").alias("city"),
+    F.col("COUNTRY").alias("country_code"),
+    F.col("_commit_timestamp").alias("last_modified_timestamp")
+)
+
+# Delta Lake Merge into Silver Dim table
+silver_table = DeltaTable.forName(spark, "silver_dim_sap_partner")
+silver_table.alias("target").merge(
+    enriched_bp.alias("source"), "target.partner_id = source.partner_id"
+).whenMatchedUpdateAll().whenNotMatchedInsertAll().execute()</code></pre>
+              </details>
+
+              <!-- Snippet 2: Power BI Direct Lake DAX -->
+              <details class="group bg-white rounded-lg border border-slate-200 overflow-hidden text-xs">
+                <summary class="p-2.5 cursor-pointer font-mono font-medium text-slate-700 flex items-center justify-between hover:bg-slate-50">
+                  <span class="flex items-center gap-1.5">
+                    <i data-lucide="bar-chart-2" class="w-3.5 h-3.5 text-blue-600"></i>
+                    <span>DAX: Direct Lake Partner Concentration Ratio</span>
+                  </span>
+                  <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform"></i>
+                </summary>
+                <pre class="p-3 bg-slate-900 text-slate-200 text-[11px] font-mono overflow-x-auto leading-relaxed"><code>-- Top 20% Partner Revenue Concentration (Direct Lake)
+Top20_Partner_Revenue_Share = 
+VAR TotalRev = [Total Partner Revenue]
+VAR Top20Rev = 
+    CALCULATE(
+        [Total Partner Revenue],
+        TOPN(
+            DIVIDE(DISTINCTCOUNT('gold_dim_partner'[partner_id]), 5, 1),
+            ALLSELECTED('gold_dim_partner'[partner_id]),
+            [Total Partner Revenue],
+            DESC
+        )
+    )
+RETURN 
+    DIVIDE(Top20Rev, TotalRev, 0)</code></pre>
+              </details>
+            </div>
+          </div>
+
+          <div class="p-6 pt-4 mt-auto flex flex-wrap items-center justify-between gap-3 text-xs">
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 font-mono text-[11px] font-medium border border-indigo-100">Microsoft Fabric</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-mono text-[11px]">OneLake Delta</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-mono text-[11px]">SAP CDC (ODP)</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-mono text-[11px]">Direct Lake Mode</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-mono text-[11px]">PySpark</span>
+            </div>
+            <a href="#contact" class="font-semibold text-indigo-600 hover:text-indigo-800 flex items-center gap-1">
+              Architecture Spec & Case Study <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 1: Executive Sales Intelligence (Power BI) -->
+        <article class="project-card bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-2xs hover:shadow-md transition-all flex flex-col" data-category="powerbi sql">
+          <div class="p-6 border-b border-slate-100 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-amber-50 text-amber-800 border border-amber-200/60">
+                <i data-lucide="layout" class="w-3 h-3"></i> Power BI & DAX
+              </span>
+              <span class="text-xs font-mono text-slate-400">Enterprise BI</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900">Executive B2B Sales & Margins Command Center</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Consolidated 3 legacy ERP silos into an interactive single-pane-of-glass dashboard for C-suite decision-makers across 14 global territories.
+            </p>
+          </div>
+
+          <!-- Mock Visual Showcase -->
+          <div class="bg-slate-50 p-5 border-b border-slate-100 space-y-3">
+            <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Key Business Impact</div>
+            <div class="grid grid-cols-3 gap-3">
+              <div class="bg-white p-2.5 rounded-lg border border-slate-200 text-center">
+                <div class="text-base font-bold font-mono text-slate-900">+18.5%</div>
+                <div class="text-[10px] text-slate-500">Margin Recovery</div>
+              </div>
+              <div class="bg-white p-2.5 rounded-lg border border-slate-200 text-center">
+                <div class="text-base font-bold font-mono text-slate-900">-40 hrs</div>
+                <div class="text-[10px] text-slate-500">Monthly Reporting</div>
+              </div>
+              <div class="bg-white p-2.5 rounded-lg border border-slate-200 text-center">
+                <div class="text-base font-bold font-mono text-slate-900">99.9%</div>
+                <div class="text-[10px] text-slate-500">Automated Refresh</div>
+              </div>
+            </div>
+
+            <!-- Expandable DAX Code View -->
+            <details class="group bg-white rounded-lg border border-slate-200 overflow-hidden text-xs">
+              <summary class="p-2.5 cursor-pointer font-mono font-medium text-slate-700 flex items-center justify-between hover:bg-slate-50">
+                <span>View Sample DAX Measure (Dynamic SPLY)</span>
+                <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform"></i>
+              </summary>
+              <pre class="p-3 bg-slate-900 text-slate-200 text-[11px] font-mono overflow-x-auto leading-relaxed"><code>Sales_YoY_Growth = 
+VAR CurrentSales = [Total Revenue]
+VAR PriorYearSales = 
+    CALCULATE(
+        [Total Revenue], 
+        SAMEPERIODLASTYEAR('DimDate'[Date])
+    )
+RETURN 
+    DIVIDE(CurrentSales - PriorYearSales, PriorYearSales, 0)</code></pre>
+            </details>
+          </div>
+
+          <div class="p-6 pt-4 mt-auto flex items-center justify-between text-xs">
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-mono text-[11px]">Power BI</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-mono text-[11px]">Star Schema</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-mono text-[11px]">T-SQL</span>
+            </div>
+            <a href="#contact" class="font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1">
+              Case Study <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 2: Customer RFM Segmentation & Cohorts (Python) -->
+        <article class="project-card bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-2xs hover:shadow-md transition-all flex flex-col" data-category="python">
+          <div class="p-6 border-b border-slate-100 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-blue-50 text-blue-800 border border-blue-200/60">
+                <i data-lucide="terminal" class="w-3 h-3"></i> Python & Unsupervised ML
+              </span>
+              <span class="text-xs font-mono text-slate-400">Data Science</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900">E-Commerce RFM Segmentation & Churn Predictor</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Analyzed 1.2M transactions to cluster 180,000 customers into 5 strategic cohorts using K-Means and Recency-Frequency-Monetary scoring.
+            </p>
+          </div>
+
+          <div class="bg-slate-50 p-5 border-b border-slate-100 space-y-3">
+            <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Key Business Impact</div>
+            <div class="grid grid-cols-3 gap-3">
+              <div class="bg-white p-2.5 rounded-lg border border-slate-200 text-center">
+                <div class="text-base font-bold font-mono text-slate-900">24%</div>
+                <div class="text-[10px] text-slate-500">Email CTR Lift</div>
+              </div>
+              <div class="bg-white p-2.5 rounded-lg border border-slate-200 text-center">
+                <div class="text-base font-bold font-mono text-slate-900">$320k</div>
+                <div class="text-[10px] text-slate-500">Retention Rev</div>
+              </div>
+              <div class="bg-white p-2.5 rounded-lg border border-slate-200 text-center">
+                <div class="text-base font-bold font-mono text-slate-900">0.86</div>
+                <div class="text-[10px] text-slate-500">ROC-AUC Score</div>
+              </div>
+            </div>
+
+            <!-- Expandable Python Code View -->
+            <details class="group bg-white rounded-lg border border-slate-200 overflow-hidden text-xs">
+              <summary class="p-2.5 cursor-pointer font-mono font-medium text-slate-700 flex items-center justify-between hover:bg-slate-50">
+                <span>View Python RFM Clustering Logic</span>
+                <i data-lucide="chevron-down" class="w-4 h-4 text-slate-400 group-open:rotate-180 transition-transform"></i>
+              </summary>
+              <pre class="p-3 bg-slate-900 text-slate-200 text-[11px] font-mono overflow-x-auto leading-relaxed"><code>import pandas as pd
+from sklearn.cluster import KMeans
+
+# Calculate Recency, Frequency, Monetary
+rfm = df.groupby('customer_id').agg({
+    'invoice_date': lambda x: (snapshot_date - x.max()).days,
+    'order_id': 'count',
+    'total_amount': 'sum'
+}).rename(columns={'invoice_date': 'R', 'order_id': 'F', 'total_amount': 'M'})
+
+# Fit K-Means on log-transformed scaled data
+kmeans = KMeans(n_clusters=5, random_state=42)
+rfm['Cluster'] = kmeans.fit_predict(scaler.fit_transform(np.log1p(rfm)))</code></pre>
+            </details>
+          </div>
+
+          <div class="p-6 pt-4 mt-auto flex items-center justify-between text-xs">
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-mono text-[11px]">Python</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-mono text-[11px]">Pandas</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-mono text-[11px]">Scikit-Learn</span>
+            </div>
+            <a href="#contact" class="font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1">
+              Case Study <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 3: Supply Chain & Inventory Risk Dashboard -->
+        <article class="project-card bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-2xs hover:shadow-md transition-all flex flex-col" data-category="powerbi python">
+          <div class="p-6 border-b border-slate-100 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200/60">
+                <i data-lucide="truck" class="w-3 h-3"></i> Power BI + Python ETL
+              </span>
+              <span class="text-xs font-mono text-slate-400">Operations BI</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900">Supply Chain & Inventory Stockout Prevention</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Automated inventory reorder thresholds using Python anomaly detection and published live alerts to a Power BI operations dashboard.
+            </p>
+          </div>
+
+          <div class="bg-slate-50 p-5 border-b border-slate-100 space-y-3">
+            <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Key Business Impact</div>
+            <div class="grid grid-cols-3 gap-3">
+              <div class="bg-white p-2.5 rounded-lg border border-slate-200 text-center">
+                <div class="text-base font-bold font-mono text-slate-900">-32%</div>
+                <div class="text-[10px] text-slate-500">Stockouts</div>
+              </div>
+              <div class="bg-white p-2.5 rounded-lg border border-slate-200 text-center">
+                <div class="text-base font-bold font-mono text-slate-900">14 Days</div>
+                <div class="text-[10px] text-slate-500">Lead Warning</div>
+              </div>
+              <div class="bg-white p-2.5 rounded-lg border border-slate-200 text-center">
+                <div class="text-base font-bold font-mono text-slate-900">$850k</div>
+                <div class="text-[10px] text-slate-500">Working Capital</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-6 pt-4 mt-auto flex items-center justify-between text-xs">
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-mono text-[11px]">Power BI</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-mono text-[11px]">Python ETL</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-mono text-[11px]">Logistics</span>
+            </div>
+            <a href="#contact" class="font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1">
+              Case Study <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </article>
+
+        <!-- Project 4: Automated SQL Data Quality & Warehouse Pipeline -->
+        <article class="project-card bg-white rounded-2xl border border-slate-200 overflow-hidden shadow-2xs hover:shadow-md transition-all flex flex-col" data-category="sql python">
+          <div class="p-6 border-b border-slate-100 space-y-3">
+            <div class="flex items-center justify-between">
+              <span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold bg-purple-50 text-purple-800 border border-purple-200/60">
+                <i data-lucide="check-check" class="w-3 h-3"></i> SQL & Data Quality
+              </span>
+              <span class="text-xs font-mono text-slate-400">Data Engineering</span>
+            </div>
+            <h3 class="text-xl font-bold text-slate-900">Automated SQL Data Quality & Reconciliation Suite</h3>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Designed automated schema tests, null-checks, and foreign key audits running daily in PostgreSQL with Slack/Email anomaly alerts.
+            </p>
+          </div>
+
+          <div class="bg-slate-50 p-5 border-b border-slate-100 space-y-3">
+            <div class="text-[11px] font-semibold uppercase tracking-wider text-slate-400">Key Business Impact</div>
+            <div class="grid grid-cols-3 gap-3">
+              <div class="bg-white p-2.5 rounded-lg border border-slate-200 text-center">
+                <div class="text-base font-bold font-mono text-slate-900">100%</div>
+                <div class="text-[10px] text-slate-500">Audit Coverage</div>
+              </div>
+              <div class="bg-white p-2.5 rounded-lg border border-slate-200 text-center">
+                <div class="text-base font-bold font-mono text-slate-900">&lt; 3 mins</div>
+                <div class="text-[10px] text-slate-500">Anomaly Detection</div>
+              </div>
+              <div class="bg-white p-2.5 rounded-lg border border-slate-200 text-center">
+                <div class="text-base font-bold font-mono text-slate-900">Zero</div>
+                <div class="text-[10px] text-slate-500">Silent Failures</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="p-6 pt-4 mt-auto flex items-center justify-between text-xs">
+            <div class="flex flex-wrap gap-1.5">
+              <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-mono text-[11px]">PostgreSQL</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-mono text-[11px]">Python</span>
+              <span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 font-mono text-[11px]">CI/CD</span>
+            </div>
+            <a href="#contact" class="font-semibold text-blue-600 hover:text-blue-700 flex items-center gap-1">
+              Case Study <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- PROFESSIONAL EXPERIENCE & TIMELINE -->
+    <section id="experience" class="space-y-8">
+      <div>
+        <div class="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-1">Career Journey</div>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Professional Experience</h2>
+        <p class="text-sm text-slate-500 mt-1">Track record of delivering analytical infrastructure and high-adoption BI products.</p>
+      </div>
+
+      <div class="relative border-l-2 border-slate-200 ml-3 sm:ml-4 space-y-8">
+        
+        <!-- Role 1 -->
+        <div class="relative pl-6 sm:pl-8">
+          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-blue-600 border-4 border-white shadow-2xs"></div>
+          <div class="bg-white rounded-xl border border-slate-200 p-6 space-y-3">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+              <div>
+                <h3 class="text-base font-bold text-slate-900">Lead BI Developer & Senior Data Analyst</h3>
+                <div class="text-xs font-medium text-blue-600">Apex Global Technologies • Full-time</div>
+              </div>
+              <span class="text-xs font-mono text-slate-500 bg-slate-100 px-2.5 py-1 rounded w-fit">2023 — Present</span>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Spearheaded company-wide migration from decentralized spreadsheet reporting to an integrated Power BI enterprise tenant. Built 25+ automated data models with Python orchestration.
+            </p>
+            <div class="flex flex-wrap gap-2 pt-1 text-[11px] text-slate-500 font-mono">
+              <span>• Managed 800+ Active Users</span>
+              <span>• Cut report turnaround time by 75%</span>
+              <span>• Mentored 4 junior analysts</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Role 2 -->
+        <div class="relative pl-6 sm:pl-8">
+          <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-slate-300 border-4 border-white shadow-2xs"></div>
+          <div class="bg-white rounded-xl border border-slate-200 p-6 space-y-3">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-1">
+              <div>
+                <h3 class="text-base font-bold text-slate-900">Data Analyst & Python Specialist</h3>
+                <div class="text-xs font-medium text-slate-700">Vanguard Analytics Consulting • Full-time</div>
+              </div>
+              <span class="text-xs font-mono text-slate-500 bg-slate-100 px-2.5 py-1 rounded w-fit">2021 — 2023</span>
+            </div>
+            <p class="text-xs text-slate-600 leading-relaxed">
+              Developed custom Python ETL scripts to ingest fragmented client APIs into relational data warehouses. Designed interactive dashboards for retail and fintech clients.
+            </p>
+            <div class="flex flex-wrap gap-2 pt-1 text-[11px] text-slate-500 font-mono">
+              <span>• Delivered 18 client dashboard implementations</span>
+              <span>• Built automated data quality validator</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS & CREDENTIALS -->
+    <section id="certifications" class="space-y-6">
+      <div>
+        <div class="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-1">Accreditations</div>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Verified Certifications</h2>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <!-- Cert 1 -->
+        <div class="bg-white p-5 rounded-xl border border-slate-200 flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-indigo-50 text-indigo-600 flex items-center justify-center shrink-0">
+            <i data-lucide="layers" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h4 class="text-xs font-bold text-slate-900">Microsoft Certified: DP-600</h4>
+            <p class="text-[11px] text-slate-500 mt-0.5">Fabric Analytics Engineer Associate</p>
+            <span class="inline-block mt-2 text-[10px] font-mono text-emerald-600 font-medium">Verified Active</span>
+          </div>
+        </div>
+
+        <!-- Cert 2 -->
+        <div class="bg-white p-5 rounded-xl border border-slate-200 flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-amber-50 text-amber-600 flex items-center justify-center shrink-0">
+            <i data-lucide="award" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h4 class="text-xs font-bold text-slate-900">Microsoft Certified: PL-300</h4>
+            <p class="text-[11px] text-slate-500 mt-0.5">Power BI Data Analyst Associate</p>
+            <span class="inline-block mt-2 text-[10px] font-mono text-emerald-600 font-medium">Verified Active</span>
+          </div>
+        </div>
+
+        <!-- Cert 3 -->
+        <div class="bg-white p-5 rounded-xl border border-slate-200 flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-blue-50 text-blue-600 flex items-center justify-center shrink-0">
+            <i data-lucide="terminal" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h4 class="text-xs font-bold text-slate-900">PCAP™ – Certified Associate</h4>
+            <p class="text-[11px] text-slate-500 mt-0.5">Python Programming Institute</p>
+            <span class="inline-block mt-2 text-[10px] font-mono text-emerald-600 font-medium">Credential #PY-89104</span>
+          </div>
+        </div>
+
+        <!-- Cert 4 -->
+        <div class="bg-white p-5 rounded-xl border border-slate-200 flex items-start gap-4">
+          <div class="w-10 h-10 rounded-lg bg-slate-100 text-slate-700 flex items-center justify-center shrink-0">
+            <i data-lucide="database" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h4 class="text-xs font-bold text-slate-900">Advanced Relational SQL & ERP</h4>
+            <p class="text-[11px] text-slate-500 mt-0.5">Query Optimization & Schemas</p>
+            <span class="inline-block mt-2 text-[10px] font-mono text-emerald-600 font-medium">Completed with Honors</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION -->
+    <section id="contact" class="bg-white rounded-2xl border border-slate-200 p-8 sm:p-10 shadow-sm space-y-6">
+      <div class="max-w-2xl">
+        <div class="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-1">Let's Connect</div>
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Ready to unlock your data's potential?</h2>
+        <p class="text-sm text-slate-600 mt-2">
+          Whether you need an enterprise Power BI architecture, a Python automation pipeline, or a dedicated senior analyst, send me a message and I'll respond within 24 hours.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pt-4">
+        <!-- Direct contact details -->
+        <div class="md:col-span-5 space-y-4">
+          <div class="flex items-center gap-3 text-xs text-slate-700">
+            <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-600 shrink-0">
+              <i data-lucide="mail" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <div class="text-slate-400 font-mono text-[10px]">EMAIL</div>
+              <a href="mailto:alex.rivera.analyst@example.com" class="font-medium hover:text-blue-600 transition-colors">alex.rivera.analyst@example.com</a>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 text-xs text-slate-700">
+            <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-600 shrink-0">
+              <i data-lucide="linkedin" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <div class="text-slate-400 font-mono text-[10px]">LINKEDIN</div>
+              <a href="https://linkedin.com" target="_blank" rel="noopener" class="font-medium hover:text-blue-600 transition-colors">linkedin.com/in/alex-rivera-data</a>
+            </div>
+          </div>
+
+          <div class="flex items-center gap-3 text-xs text-slate-700">
+            <div class="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-600 shrink-0">
+              <i data-lucide="github" class="w-4 h-4"></i>
+            </div>
+            <div>
+              <div class="text-slate-400 font-mono text-[10px]">GITHUB REPOSITORIES</div>
+              <a href="https://github.com" target="_blank" rel="noopener" class="font-medium hover:text-blue-600 transition-colors">github.com/alexrivera-analytics</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact form -->
+        <div class="md:col-span-7">
+          <form id="contactForm" onsubmit="handleFormSubmit(event)" class="space-y-4">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-xs font-medium text-slate-700 mb-1">Your Name</label>
+                <input type="text" required placeholder="Jane Doe" class="w-full text-xs px-3.5 py-2.5 rounded-lg border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 text-slate-800" />
+              </div>
+              <div>
+                <label class="block text-xs font-medium text-slate-700 mb-1">Email Address</label>
+                <input type="email" required placeholder="jane@company.com" class="w-full text-xs px-3.5 py-2.5 rounded-lg border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 text-slate-800" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-slate-700 mb-1">Project Scope / Needs</label>
+              <select class="w-full text-xs px-3.5 py-2.5 rounded-lg border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 text-slate-800">
+                <option>New Power BI Dashboard Architecture</option>
+                <option>Python Data Pipeline / ETL Automation</option>
+                <option>Full-time / Contract Hiring Inquiry</option>
+                <option>Ad-hoc Data Advisory / Code Review</option>
+              </select>
+            </div>
+
+            <div>
+              <label class="block text-xs font-medium text-slate-700 mb-1">Message</label>
+              <textarea rows="3" required placeholder="Tell me about your dataset, objectives, and timeframe..." class="w-full text-xs px-3.5 py-2.5 rounded-lg border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 text-slate-800"></textarea>
+            </div>
+
+            <button type="submit" class="inline-flex items-center gap-2 px-6 py-2.5 rounded-lg text-xs font-semibold bg-slate-900 hover:bg-slate-800 text-white shadow-sm transition-all hover:shadow">
+              <i data-lucide="send" class="w-3.5 h-3.5"></i>
+              Send Message
+            </button>
+            <span id="formFeedback" class="ml-3 text-xs text-emerald-600 font-medium hidden">Thank you! Your message has been sent.</span>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-slate-200/80 bg-white py-8 text-xs text-slate-500">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div>
+        © 2026 Alex Rivera. Built with Python, Power BI, and Clean Modern Web Standards.
+      </div>
+      <div class="flex items-center gap-4">
+        <a href="#hero" class="hover:text-slate-900 transition-colors">Back to top ↑</a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- SCRIPT: Chart.js & Interactive Simulator Logic -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // Chart instances
+    let trendChartInstance = null;
+    let categoryChartInstance = null;
+
+    // Dataset variations by region
+    const dashboardData = {
+      all: {
+        revenue: '$4,850,200',
+        revenueTrend: '+14.2% YoY',
+        margin: '42.8%',
+        marginTrend: '+1.9 pts',
+        accounts: '1,420',
+        accountsTrend: '+8.4%',
+        churn: '1.84%',
+        churnTrend: '-0.42 pts',
+        monthlyActuals: [380, 410, 430, 460, 475, 490, 510, 530, 545, 560, 575, 595],
+        monthlyTargets: [370, 395, 420, 440, 460, 480, 500, 515, 530, 550, 565, 580],
+        categoryLabels: ['SaaS Analytics', 'BI Consulting', 'ETL Pipelines', 'Support & Training'],
+        categoryValues: [44, 26, 20, 10]
+      },
+      north_america: {
+        revenue: '$2,740,000',
+        revenueTrend: '+18.1% YoY',
+        margin: '45.2%',
+        marginTrend: '+2.4 pts',
+        accounts: '780',
+        accountsTrend: '+11.2%',
+        churn: '1.52%',
+        churnTrend: '-0.50 pts',
+        monthlyActuals: [210, 225, 240, 260, 270, 280, 295, 305, 315, 325, 335, 350],
+        monthlyTargets: [200, 215, 230, 245, 260, 270, 285, 295, 305, 315, 325, 335],
+        categoryLabels: ['SaaS Analytics', 'BI Consulting', 'ETL Pipelines', 'Support & Training'],
+        categoryValues: [52, 22, 18, 8]
+      },
+      europe: {
+        revenue: '$1,420,000',
+        revenueTrend: '+10.4% YoY',
+        margin: '40.6%',
+        marginTrend: '+1.1 pts',
+        accounts: '430',
+        accountsTrend: '+5.7%',
+        churn: '2.10%',
+        churnTrend: '-0.25 pts',
+        monthlyActuals: [115, 122, 128, 134, 139, 142, 148, 154, 158, 162, 168, 172],
+        monthlyTargets: [110, 118, 125, 130, 135, 140, 145, 150, 155, 160, 165, 170],
+        categoryLabels: ['SaaS Analytics', 'BI Consulting', 'ETL Pipelines', 'Support & Training'],
+        categoryValues: [38, 32, 20, 10]
+      },
+      apac: {
+        revenue: '$690,200',
+        revenueTrend: '+12.8% YoY',
+        margin: '38.5%',
+        marginTrend: '+1.8 pts',
+        accounts: '210',
+        accountsTrend: '+6.1%',
+        churn: '1.95%',
+        churnTrend: '-0.30 pts',
+        monthlyActuals: [55, 63, 62, 66, 66, 68, 67, 71, 72, 73, 72, 73],
+        monthlyTargets: [60, 62, 65, 65, 65, 70, 70, 70, 70, 75, 75, 75],
+        categoryLabels: ['SaaS Analytics', 'BI Consulting', 'ETL Pipelines', 'Support & Training'],
+        categoryValues: [34, 28, 24, 14]
+      }
+    };
+
+    function initCharts() {
+      const data = dashboardData.all;
+
+      // 1. Line Chart
+      const ctxLine = document.getElementById('revenueTrendChart').getContext('2d');
+      trendChartInstance = new Chart(ctxLine, {
+        type: 'line',
+        data: {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+          datasets: [
+            {
+              label: 'Actual Revenue ($k)',
+              data: data.monthlyActuals,
+              borderColor: '#2563eb',
+              backgroundColor: 'rgba(37, 99, 235, 0.06)',
+              fill: true,
+              tension: 0.35,
+              borderWidth: 2.5,
+              pointRadius: 3,
+              pointBackgroundColor: '#2563eb',
+            },
+            {
+              label: 'Budget Target ($k)',
+              data: data.monthlyTargets,
+              borderColor: '#94a3b8',
+              borderDash: [5, 5],
+              fill: false,
+              tension: 0.35,
+              borderWidth: 2,
+              pointRadius: 0
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'top',
+              labels: {
+                boxWidth: 12,
+                font: { size: 11, family: 'Inter' },
+                color: '#475569'
+              }
+            },
+            tooltip: {
+              backgroundColor: '#0f172a',
+              titleFont: { size: 12, family: 'Inter' },
+              bodyFont: { size: 11, family: 'Inter' },
+              padding: 10,
+              displayColors: true
+            }
+          },
+          scales: {
+            x: {
+              grid: { display: false },
+              ticks: { font: { size: 11 }, color: '#64748b' }
+            },
+            y: {
+              grid: { color: '#f1f5f9' },
+              ticks: { font: { size: 11 }, color: '#64748b' }
+            }
+          }
+        }
+      });
+
+      // 2. Donut Chart
+      const ctxDonut = document.getElementById('categoryDonutChart').getContext('2d');
+      categoryChartInstance = new Chart(ctxDonut, {
+        type: 'doughnut',
+        data: {
+          labels: data.categoryLabels,
+          datasets: [{
+            data: data.categoryValues,
+            backgroundColor: [
+              '#2563eb', // Blue
+              '#f59e0b', // Power BI Amber
+              '#6366f1', // Indigo
+              '#94a3b8'  // Slate
+            ],
+            borderWidth: 2,
+            borderColor: '#ffffff'
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: {
+                boxWidth: 10,
+                font: { size: 10, family: 'Inter' },
+                color: '#475569',
+                padding: 12
+              }
+            }
+          },
+          cutout: '68%'
+        }
+      });
+    }
+
+    function updateDashboardData() {
+      const region = document.getElementById('regionFilter').value;
+      const data = dashboardData[region] || dashboardData.all;
+
+      // Update KPIs
+      document.getElementById('kpiRevenue').textContent = data.revenue;
+      document.getElementById('kpiRevenueTrend').innerHTML = `<i data-lucide="trending-up" class="w-3 h-3"></i> ${data.revenueTrend}`;
+      
+      document.getElementById('kpiMargin').textContent = data.margin;
+      document.getElementById('kpiMarginTrend').innerHTML = `<i data-lucide="trending-up" class="w-3 h-3"></i> ${data.marginTrend}`;
+      
+      document.getElementById('kpiAccounts').textContent = data.accounts;
+      document.getElementById('kpiAccountsTrend').innerHTML = `<i data-lucide="arrow-up-right" class="w-3 h-3"></i> ${data.accountsTrend}`;
+      
+      document.getElementById('kpiChurn').textContent = data.churn;
+      document.getElementById('kpiChurnTrend').innerHTML = `<i data-lucide="trending-down" class="w-3 h-3"></i> ${data.churnTrend}`;
+
+      // Refresh icons
+      lucide.createIcons();
+
+      // Update Chart datasets
+      if (trendChartInstance) {
+        trendChartInstance.data.datasets[0].data = data.monthlyActuals;
+        trendChartInstance.data.datasets[1].data = data.monthlyTargets;
+        trendChartInstance.update();
+      }
+
+      if (categoryChartInstance) {
+        categoryChartInstance.data.datasets[0].data = data.categoryValues;
+        categoryChartInstance.update();
+      }
+    }
+
+    // Project category filter
+    function filterProjects(category) {
+      // Toggle button styles
+      document.querySelectorAll('.proj-filter-btn').forEach(btn => {
+        if (btn.getAttribute('data-filter') === category) {
+          btn.className = "proj-filter-btn px-3 py-1.5 rounded-md bg-white text-slate-900 shadow-xs font-semibold";
+        } else {
+          btn.className = "proj-filter-btn px-3 py-1.5 rounded-md text-slate-600 hover:text-slate-900 font-medium";
+        }
+      });
+
+      // Filter cards
+      document.querySelectorAll('.project-card').forEach(card => {
+        const cardCats = card.getAttribute('data-category').split(' ');
+        if (category === 'all' || cardCats.includes(category)) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // Contact Form handling
+    function handleFormSubmit(e) {
+      e.preventDefault();
+      const feedback = document.getElementById('formFeedback');
+      feedback.classList.remove('hidden');
+      e.target.reset();
+      setTimeout(() => {
+        feedback.classList.add('hidden');
+      }, 5000);
+    }
+
+    // On Load
+    window.addEventListener('DOMContentLoaded', () => {
+      initCharts();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,251 @@
+CustomerID,CustomerName,CustomerSegment,Country,Region,CreditRating,AccountManagerEmail,CustomerJoinDate,IsStrategicAccount
+CUST-0001,Apex Global Solutions,Enterprise,USA,North America,AAA,sarah.jenkins@company.com,2023-10-17,1
+CUST-0002,Quantum Logistics GmbH,Enterprise,Germany,EMEA,AAA,hans.becker@company.com,2022-04-25,1
+CUST-0003,Nexus Healthcare Corp,Enterprise,USA,North America,AA,sarah.jenkins@company.com,2022-01-26,1
+CUST-0004,Vortex Retail UK,Mid-Market,UK,EMEA,AA,elizabeth.ward@company.com,2022-10-09,0
+CUST-0005,Kobe Robotics KK,Enterprise,Japan,APAC,AAA,kenji.sato@company.com,2022-09-08,1
+CUST-0006,BlueWave Cloud SA,Mid-Market,France,EMEA,A,pierre.dubois@company.com,2022-08-17,0
+CUST-0007,Maple Leaf Media,SMB,Canada,North America,A,sarah.jenkins@company.com,2022-05-23,0
+CUST-0008,Sydney FinTech Ltd,Mid-Market,Australia,APAC,AA,kenji.sato@company.com,2022-04-15,0
+CUST-0009,Nordic Renewable Oy,Enterprise,Germany,EMEA,AAA,hans.becker@company.com,2023-11-24,1
+CUST-0010,Atlas Heavy Ind. Inc,Enterprise,USA,North America,BBB,sarah.jenkins@company.com,2023-07-13,1
+CUST-0011,Titan CyberSec Ltd,Mid-Market,UK,EMEA,AA,elizabeth.ward@company.com,2022-03-31,0
+CUST-0012,Sakura AI Labs,SMB,Japan,APAC,A,kenji.sato@company.com,2023-08-28,0
+CUST-0013,Pacific Cargo Pty,Mid-Market,Australia,APAC,BBB,kenji.sato@company.com,2023-03-09,0
+CUST-0014,Berlin Dynamics GmbH,Mid-Market,Germany,EMEA,AA,hans.becker@company.com,2022-02-02,0
+CUST-0015,Lyon BioPharma SAS,Enterprise,France,EMEA,AAA,pierre.dubois@company.com,2022-01-31,1
+CUST-0016,Toronto Digital Corp,SMB,Canada,North America,A,sarah.jenkins@company.com,2022-04-06,0
+CUST-0017,Silicon Valley Auto,Enterprise,USA,North America,AAA,sarah.jenkins@company.com,2022-08-12,1
+CUST-0018,Tokyo Sensor Systems,Mid-Market,Japan,APAC,AA,kenji.sato@company.com,2022-08-27,0
+CUST-0019,Manchester Textiles,SMB,UK,EMEA,BBB,elizabeth.ward@company.com,2023-06-02,0
+CUST-0020,Munich Precision Tech,Enterprise,Germany,EMEA,AAA,hans.becker@company.com,2023-09-09,1
+CUST-0021,Alpha Solutions Corp,SMB,Australia,APAC,AA,kenji.sato@company.com,2022-08-14,0
+CUST-0022,Vertex Global LLC,SMB,USA,North America,A,sarah.jenkins@company.com,2022-06-13,0
+CUST-0023,Prime Partners LLC,Enterprise,Canada,North America,AA,sarah.jenkins@company.com,2022-04-05,1
+CUST-0024,Core Dynamics LLC,SMB,France,EMEA,AA,pierre.dubois@company.com,2022-02-14,0
+CUST-0025,Vertex Solutions Inc,Strategic Partner,Japan,APAC,AAA,kenji.sato@company.com,2022-10-28,1
+CUST-0026,Synapse Digital LLC,Mid-Market,Australia,APAC,AAA,kenji.sato@company.com,2023-11-09,0
+CUST-0027,Sigma Health LLC,Strategic Partner,Canada,North America,AA,sarah.jenkins@company.com,2022-04-14,1
+CUST-0028,Core Ventures AG,Mid-Market,UK,EMEA,AAA,elizabeth.ward@company.com,2022-12-30,0
+CUST-0029,Omega Analytics LLC,SMB,Australia,APAC,A,kenji.sato@company.com,2023-09-16,0
+CUST-0030,Zeta Solutions Ltd,Enterprise,Japan,APAC,AA,kenji.sato@company.com,2024-08-05,1
+CUST-0031,Pinnacle Logistics Ltd,Mid-Market,Canada,North America,A,sarah.jenkins@company.com,2022-08-23,0
+CUST-0032,Beta Health LLC,Mid-Market,USA,North America,AA,sarah.jenkins@company.com,2024-08-23,0
+CUST-0033,Aero Digital Ltd,Mid-Market,Australia,APAC,AA,kenji.sato@company.com,2024-06-24,0
+CUST-0034,Vertex Technologies LLC,Enterprise,Australia,APAC,AA,kenji.sato@company.com,2022-09-27,1
+CUST-0035,Aero Holdings GmbH,Mid-Market,Germany,EMEA,BBB,hans.becker@company.com,2022-05-22,0
+CUST-0036,Beacon Networks Inc,SMB,Canada,North America,AAA,sarah.jenkins@company.com,2023-10-05,0
+CUST-0037,Zeta Health Ltd,Mid-Market,USA,North America,AA,sarah.jenkins@company.com,2023-09-03,0
+CUST-0038,Vertex Solutions LLC,Strategic Partner,Canada,North America,BBB,sarah.jenkins@company.com,2023-11-28,1
+CUST-0039,Delta Analytics GmbH,SMB,Canada,North America,A,sarah.jenkins@company.com,2022-04-25,0
+CUST-0040,Terra Holdings Corp,Mid-Market,Australia,APAC,A,kenji.sato@company.com,2022-09-27,0
+CUST-0041,Beacon Health Corp,Mid-Market,USA,North America,A,sarah.jenkins@company.com,2022-11-02,0
+CUST-0042,Beacon Global Corp,Enterprise,Canada,North America,AAA,sarah.jenkins@company.com,2024-09-03,1
+CUST-0043,Beacon Digital Inc,Mid-Market,Japan,APAC,AAA,kenji.sato@company.com,2024-08-09,0
+CUST-0044,Stellar Digital LLC,Enterprise,Germany,EMEA,A,hans.becker@company.com,2024-08-27,1
+CUST-0045,Gamma Dynamics Ltd,Mid-Market,USA,North America,BBB,sarah.jenkins@company.com,2023-06-30,0
+CUST-0046,Epsilon Technologies Ltd,Mid-Market,France,EMEA,AAA,pierre.dubois@company.com,2023-06-25,0
+CUST-0047,Synapse Holdings Corp,SMB,Canada,North America,A,sarah.jenkins@company.com,2022-07-25,0
+CUST-0048,Terra Holdings Ltd,Mid-Market,Japan,APAC,A,kenji.sato@company.com,2023-04-08,0
+CUST-0049,Delta Logistics Corp,Enterprise,USA,North America,AA,sarah.jenkins@company.com,2022-08-24,1
+CUST-0050,Aero Logistics Inc,Enterprise,Australia,APAC,AAA,kenji.sato@company.com,2022-03-11,1
+CUST-0051,Beta Engineering LLC,Enterprise,Germany,EMEA,AA,hans.becker@company.com,2023-05-13,1
+CUST-0052,Omega Solutions Corp,SMB,France,EMEA,AA,pierre.dubois@company.com,2022-09-06,0
+CUST-0053,Summit Health AG,Enterprise,USA,North America,A,sarah.jenkins@company.com,2022-12-29,1
+CUST-0054,Prime Holdings AG,SMB,USA,North America,A,sarah.jenkins@company.com,2023-10-24,0
+CUST-0055,Delta Systems AG,SMB,Canada,North America,A,sarah.jenkins@company.com,2022-09-12,0
+CUST-0056,Omega Logistics GmbH,Mid-Market,Japan,APAC,AAA,kenji.sato@company.com,2023-04-19,0
+CUST-0057,Sigma Engineering Inc,Mid-Market,Canada,North America,A,sarah.jenkins@company.com,2022-04-11,0
+CUST-0058,Beta Analytics GmbH,SMB,USA,North America,BBB,sarah.jenkins@company.com,2024-05-19,0
+CUST-0059,Sigma Technologies AG,Mid-Market,Germany,EMEA,A,hans.becker@company.com,2024-07-13,0
+CUST-0060,Beta Technologies AG,Enterprise,Japan,APAC,AA,kenji.sato@company.com,2024-03-13,1
+CUST-0061,Vertex Ventures AG,SMB,Australia,APAC,BBB,kenji.sato@company.com,2023-07-24,0
+CUST-0062,Summit Technologies Corp,Mid-Market,USA,North America,AA,sarah.jenkins@company.com,2023-07-10,0
+CUST-0063,Beta Capital LLC,Enterprise,France,EMEA,AA,pierre.dubois@company.com,2024-07-30,1
+CUST-0064,Beacon Technologies Inc,Strategic Partner,USA,North America,A,sarah.jenkins@company.com,2022-03-12,1
+CUST-0065,Synapse Dynamics Ltd,SMB,Japan,APAC,AAA,kenji.sato@company.com,2024-06-30,0
+CUST-0066,Aero Logistics GmbH,Mid-Market,France,EMEA,AAA,pierre.dubois@company.com,2023-11-05,0
+CUST-0067,Aero Global GmbH,Mid-Market,UK,EMEA,AA,elizabeth.ward@company.com,2024-01-04,0
+CUST-0068,Nova Logistics LLC,Mid-Market,Australia,APAC,A,kenji.sato@company.com,2023-04-14,0
+CUST-0069,Nova Digital Inc,Enterprise,France,EMEA,BBB,pierre.dubois@company.com,2022-04-13,1
+CUST-0070,Gamma Solutions Corp,Mid-Market,Germany,EMEA,BBB,hans.becker@company.com,2024-06-21,0
+CUST-0071,Gamma Digital Corp,Mid-Market,Germany,EMEA,AA,hans.becker@company.com,2023-07-11,0
+CUST-0072,Terra Global Ltd,Mid-Market,Australia,APAC,A,kenji.sato@company.com,2022-11-03,0
+CUST-0073,Delta Digital Corp,Mid-Market,USA,North America,A,sarah.jenkins@company.com,2022-06-09,0
+CUST-0074,Hyper Ventures GmbH,Enterprise,UK,EMEA,AA,elizabeth.ward@company.com,2023-10-12,1
+CUST-0075,Hyper Solutions AG,Mid-Market,Canada,North America,AAA,sarah.jenkins@company.com,2023-10-12,0
+CUST-0076,Prime Engineering LLC,Enterprise,UK,EMEA,A,elizabeth.ward@company.com,2023-10-15,1
+CUST-0077,Hyper Technologies Ltd,Mid-Market,Australia,APAC,AA,kenji.sato@company.com,2022-01-10,0
+CUST-0078,Delta Dynamics Ltd,SMB,France,EMEA,AAA,pierre.dubois@company.com,2023-01-14,0
+CUST-0079,Aero Solutions Corp,Mid-Market,USA,North America,AA,sarah.jenkins@company.com,2024-07-09,0
+CUST-0080,Beta Digital LLC,Enterprise,Germany,EMEA,A,hans.becker@company.com,2022-12-29,1
+CUST-0081,Pinnacle Digital AG,Strategic Partner,Australia,APAC,AAA,kenji.sato@company.com,2024-08-10,1
+CUST-0082,Sigma Engineering Corp,Strategic Partner,Canada,North America,AAA,sarah.jenkins@company.com,2023-02-27,1
+CUST-0083,Alpha Technologies Ltd,SMB,Canada,North America,BBB,sarah.jenkins@company.com,2024-04-01,0
+CUST-0084,Sigma Ventures Corp,SMB,USA,North America,AA,sarah.jenkins@company.com,2022-02-09,0
+CUST-0085,Summit Logistics Corp,SMB,Japan,APAC,AA,kenji.sato@company.com,2024-04-20,0
+CUST-0086,Sigma Logistics Inc,SMB,Japan,APAC,AA,kenji.sato@company.com,2024-06-04,0
+CUST-0087,Gamma Health LLC,Mid-Market,France,EMEA,AA,pierre.dubois@company.com,2024-05-13,0
+CUST-0088,Pinnacle Partners Inc,Enterprise,UK,EMEA,AAA,elizabeth.ward@company.com,2024-09-12,1
+CUST-0089,Hyper Systems Inc,Mid-Market,UK,EMEA,A,elizabeth.ward@company.com,2022-11-18,0
+CUST-0090,Prime Global GmbH,Enterprise,France,EMEA,AAA,pierre.dubois@company.com,2022-02-15,1
+CUST-0091,Prime Systems GmbH,SMB,France,EMEA,A,pierre.dubois@company.com,2024-08-20,0
+CUST-0092,Omega Partners AG,Enterprise,Australia,APAC,BBB,kenji.sato@company.com,2023-10-01,1
+CUST-0093,Nova Analytics Inc,SMB,UK,EMEA,AA,elizabeth.ward@company.com,2023-11-14,0
+CUST-0094,Prime Partners AG,SMB,France,EMEA,AAA,pierre.dubois@company.com,2023-03-07,0
+CUST-0095,Core Analytics Ltd,SMB,France,EMEA,AA,pierre.dubois@company.com,2023-02-20,0
+CUST-0096,Pinnacle Engineering Inc,Mid-Market,Germany,EMEA,AA,hans.becker@company.com,2023-08-17,0
+CUST-0097,Synapse Analytics LLC,Mid-Market,Japan,APAC,A,kenji.sato@company.com,2023-06-08,0
+CUST-0098,Summit Health Ltd,Enterprise,USA,North America,AA,sarah.jenkins@company.com,2023-11-11,1
+CUST-0099,Synapse Partners Inc,SMB,Canada,North America,AA,sarah.jenkins@company.com,2022-11-14,0
+CUST-0100,Sigma Health Corp,Enterprise,USA,North America,AA,sarah.jenkins@company.com,2023-05-02,1
+CUST-0101,Synapse Engineering Inc,Mid-Market,Australia,APAC,AA,kenji.sato@company.com,2024-01-06,0
+CUST-0102,Core Networks AG,Enterprise,Australia,APAC,A,kenji.sato@company.com,2024-07-03,1
+CUST-0103,Delta Health AG,Enterprise,Canada,North America,BBB,sarah.jenkins@company.com,2023-06-15,1
+CUST-0104,Vertex Systems GmbH,Enterprise,Canada,North America,AAA,sarah.jenkins@company.com,2022-05-17,1
+CUST-0105,Vertex Analytics GmbH,Strategic Partner,France,EMEA,AA,pierre.dubois@company.com,2024-02-13,1
+CUST-0106,Vertex Global Ltd,SMB,Japan,APAC,A,kenji.sato@company.com,2023-07-16,0
+CUST-0107,Vertex Digital Corp,SMB,Japan,APAC,AA,kenji.sato@company.com,2024-02-09,0
+CUST-0108,Sigma Engineering Ltd,Mid-Market,Canada,North America,AA,sarah.jenkins@company.com,2023-10-04,0
+CUST-0109,Sigma Ventures AG,Enterprise,UK,EMEA,AA,elizabeth.ward@company.com,2022-12-10,1
+CUST-0110,Nova Digital GmbH,Enterprise,Germany,EMEA,AA,hans.becker@company.com,2023-12-12,1
+CUST-0111,Epsilon Capital Corp,Enterprise,Japan,APAC,AA,kenji.sato@company.com,2023-04-23,1
+CUST-0112,Prime Systems Corp,SMB,Japan,APAC,BBB,kenji.sato@company.com,2023-08-22,0
+CUST-0113,Alpha Engineering GmbH,Mid-Market,USA,North America,BBB,sarah.jenkins@company.com,2022-11-02,0
+CUST-0114,Core Engineering AG,Mid-Market,Australia,APAC,AA,kenji.sato@company.com,2023-09-10,0
+CUST-0115,Sigma Networks Corp,Mid-Market,Japan,APAC,AAA,kenji.sato@company.com,2022-12-11,0
+CUST-0116,Core Capital Corp,SMB,Germany,EMEA,BBB,hans.becker@company.com,2023-07-01,0
+CUST-0117,Alpha Digital AG,Mid-Market,Australia,APAC,AAA,kenji.sato@company.com,2023-10-21,0
+CUST-0118,Prime Technologies AG,Enterprise,UK,EMEA,AA,elizabeth.ward@company.com,2022-08-05,1
+CUST-0119,Vertex Partners LLC,SMB,Japan,APAC,AA,kenji.sato@company.com,2024-09-01,0
+CUST-0120,Prime Ventures Inc,Mid-Market,Australia,APAC,AA,kenji.sato@company.com,2024-09-01,0
+CUST-0121,Stellar Logistics Ltd,Enterprise,Australia,APAC,AAA,kenji.sato@company.com,2022-02-01,1
+CUST-0122,Sigma Logistics Inc,Mid-Market,Germany,EMEA,AAA,hans.becker@company.com,2023-11-17,0
+CUST-0123,Delta Global Corp,Mid-Market,UK,EMEA,A,elizabeth.ward@company.com,2022-06-21,0
+CUST-0124,Synapse Global Ltd,SMB,Canada,North America,A,sarah.jenkins@company.com,2024-09-14,0
+CUST-0125,Terra Dynamics GmbH,Enterprise,UK,EMEA,AA,elizabeth.ward@company.com,2024-07-18,1
+CUST-0126,Core Holdings Ltd,Enterprise,France,EMEA,A,pierre.dubois@company.com,2023-10-05,1
+CUST-0127,Sigma Dynamics Ltd,SMB,Canada,North America,A,sarah.jenkins@company.com,2024-04-04,0
+CUST-0128,Delta Health GmbH,SMB,UK,EMEA,AA,elizabeth.ward@company.com,2023-11-09,0
+CUST-0129,Stellar Dynamics GmbH,Mid-Market,USA,North America,A,sarah.jenkins@company.com,2024-04-22,0
+CUST-0130,Summit Dynamics AG,Strategic Partner,Australia,APAC,A,kenji.sato@company.com,2023-04-16,1
+CUST-0131,Epsilon Holdings Corp,SMB,Australia,APAC,AA,kenji.sato@company.com,2024-04-07,0
+CUST-0132,Pinnacle Health AG,Mid-Market,Canada,North America,A,sarah.jenkins@company.com,2022-10-02,0
+CUST-0133,Nova Engineering Corp,SMB,USA,North America,AA,sarah.jenkins@company.com,2023-04-07,0
+CUST-0134,Sigma Health AG,Mid-Market,Australia,APAC,AA,kenji.sato@company.com,2022-01-30,0
+CUST-0135,Summit Engineering LLC,Enterprise,Germany,EMEA,AA,hans.becker@company.com,2022-09-22,1
+CUST-0136,Nova Ventures GmbH,SMB,UK,EMEA,AA,elizabeth.ward@company.com,2023-06-14,0
+CUST-0137,Omega Dynamics Corp,SMB,Japan,APAC,AA,kenji.sato@company.com,2022-09-04,0
+CUST-0138,Summit Analytics Ltd,Mid-Market,Canada,North America,AAA,sarah.jenkins@company.com,2022-10-29,0
+CUST-0139,Sigma Holdings Ltd,Enterprise,Australia,APAC,AA,kenji.sato@company.com,2023-04-30,1
+CUST-0140,Pinnacle Solutions LLC,Mid-Market,Australia,APAC,AA,kenji.sato@company.com,2022-12-27,0
+CUST-0141,Vertex Ventures LLC,Mid-Market,USA,North America,A,sarah.jenkins@company.com,2022-11-20,0
+CUST-0142,Delta Capital GmbH,Strategic Partner,Australia,APAC,AAA,kenji.sato@company.com,2022-08-10,1
+CUST-0143,Summit Ventures Ltd,Mid-Market,Canada,North America,AA,sarah.jenkins@company.com,2022-10-17,0
+CUST-0144,Delta Engineering Corp,Mid-Market,UK,EMEA,AAA,elizabeth.ward@company.com,2022-01-15,0
+CUST-0145,Pinnacle Technologies LLC,Enterprise,USA,North America,AA,sarah.jenkins@company.com,2023-12-16,1
+CUST-0146,Epsilon Analytics AG,Enterprise,USA,North America,AA,sarah.jenkins@company.com,2023-04-26,1
+CUST-0147,Summit Networks LLC,Enterprise,USA,North America,AA,sarah.jenkins@company.com,2024-06-01,1
+CUST-0148,Summit Dynamics Inc,Mid-Market,USA,North America,AA,sarah.jenkins@company.com,2023-12-04,0
+CUST-0149,Beta Technologies Corp,SMB,UK,EMEA,AAA,elizabeth.ward@company.com,2022-09-12,0
+CUST-0150,Delta Solutions AG,Mid-Market,Canada,North America,A,sarah.jenkins@company.com,2024-03-05,0
+CUST-0151,Beacon Holdings AG,SMB,UK,EMEA,A,elizabeth.ward@company.com,2023-03-16,0
+CUST-0152,Terra Global GmbH,Enterprise,Australia,APAC,AAA,kenji.sato@company.com,2024-02-21,1
+CUST-0153,Omega Analytics Corp,Mid-Market,USA,North America,AAA,sarah.jenkins@company.com,2022-06-27,0
+CUST-0154,Pinnacle Dynamics Corp,Enterprise,Japan,APAC,A,kenji.sato@company.com,2023-04-27,1
+CUST-0155,Terra Systems Corp,Mid-Market,UK,EMEA,A,elizabeth.ward@company.com,2023-04-10,0
+CUST-0156,Gamma Analytics Corp,SMB,Canada,North America,A,sarah.jenkins@company.com,2023-08-27,0
+CUST-0157,Omega Holdings Inc,Mid-Market,Australia,APAC,AAA,kenji.sato@company.com,2022-09-30,0
+CUST-0158,Epsilon Dynamics Inc,Enterprise,UK,EMEA,AA,elizabeth.ward@company.com,2024-04-24,1
+CUST-0159,Aero Digital LLC,Mid-Market,Japan,APAC,A,kenji.sato@company.com,2023-12-18,0
+CUST-0160,Core Ventures GmbH,Mid-Market,Japan,APAC,AAA,kenji.sato@company.com,2022-02-10,0
+CUST-0161,Prime Capital LLC,Mid-Market,USA,North America,AAA,sarah.jenkins@company.com,2024-09-11,0
+CUST-0162,Aero Global Inc,Strategic Partner,Australia,APAC,A,kenji.sato@company.com,2023-08-14,1
+CUST-0163,Beta Health Corp,Mid-Market,Australia,APAC,AA,kenji.sato@company.com,2022-10-12,0
+CUST-0164,Zeta Global AG,Mid-Market,Japan,APAC,BBB,kenji.sato@company.com,2023-04-27,0
+CUST-0165,Stellar Holdings LLC,Mid-Market,USA,North America,A,sarah.jenkins@company.com,2022-12-04,0
+CUST-0166,Prime Capital AG,Mid-Market,Japan,APAC,A,kenji.sato@company.com,2023-07-18,0
+CUST-0167,Beta Networks Inc,Mid-Market,UK,EMEA,AAA,elizabeth.ward@company.com,2024-03-02,0
+CUST-0168,Core Engineering GmbH,SMB,USA,North America,A,sarah.jenkins@company.com,2023-07-10,0
+CUST-0169,Vertex Holdings Inc,Enterprise,UK,EMEA,A,elizabeth.ward@company.com,2023-05-26,1
+CUST-0170,Vertex Health Inc,Enterprise,France,EMEA,AAA,pierre.dubois@company.com,2022-10-22,1
+CUST-0171,Vertex Digital Ltd,Mid-Market,USA,North America,BBB,sarah.jenkins@company.com,2023-09-16,0
+CUST-0172,Sigma Capital Corp,Mid-Market,USA,North America,AA,sarah.jenkins@company.com,2022-04-06,0
+CUST-0173,Sigma Engineering Inc,Mid-Market,USA,North America,A,sarah.jenkins@company.com,2022-06-07,0
+CUST-0174,Summit Digital Ltd,Mid-Market,Australia,APAC,AA,kenji.sato@company.com,2024-05-04,0
+CUST-0175,Summit Networks Corp,Mid-Market,Germany,EMEA,AA,hans.becker@company.com,2024-08-01,0
+CUST-0176,Synapse Solutions Ltd,SMB,Canada,North America,AAA,sarah.jenkins@company.com,2024-03-02,0
+CUST-0177,Prime Partners GmbH,Mid-Market,USA,North America,AA,sarah.jenkins@company.com,2022-11-02,0
+CUST-0178,Aero Global Ltd,Mid-Market,Germany,EMEA,AA,hans.becker@company.com,2023-05-11,0
+CUST-0179,Stellar Partners GmbH,SMB,Japan,APAC,AA,kenji.sato@company.com,2022-11-26,0
+CUST-0180,Omega Capital Corp,Mid-Market,Germany,EMEA,A,hans.becker@company.com,2023-02-25,0
+CUST-0181,Beta Partners Ltd,Mid-Market,Canada,North America,AA,sarah.jenkins@company.com,2023-11-11,0
+CUST-0182,Epsilon Networks Inc,Enterprise,France,EMEA,AA,pierre.dubois@company.com,2022-04-13,1
+CUST-0183,Vertex Dynamics GmbH,SMB,USA,North America,A,sarah.jenkins@company.com,2023-02-24,0
+CUST-0184,Epsilon Dynamics AG,SMB,UK,EMEA,AA,elizabeth.ward@company.com,2023-12-11,0
+CUST-0185,Core Analytics Inc,SMB,Canada,North America,A,sarah.jenkins@company.com,2023-07-01,0
+CUST-0186,Core Partners Ltd,SMB,Canada,North America,AA,sarah.jenkins@company.com,2023-07-09,0
+CUST-0187,Beta Global Inc,Enterprise,Australia,APAC,BBB,kenji.sato@company.com,2022-08-21,1
+CUST-0188,Gamma Holdings Inc,SMB,Australia,APAC,A,kenji.sato@company.com,2023-03-31,0
+CUST-0189,Zeta Capital LLC,SMB,USA,North America,AA,sarah.jenkins@company.com,2022-02-27,0
+CUST-0190,Terra Partners LLC,Mid-Market,Germany,EMEA,AA,hans.becker@company.com,2023-08-03,0
+CUST-0191,Zeta Technologies Corp,Enterprise,Canada,North America,AA,sarah.jenkins@company.com,2023-12-01,1
+CUST-0192,Sigma Networks GmbH,Enterprise,Japan,APAC,A,kenji.sato@company.com,2023-04-16,1
+CUST-0193,Hyper Analytics Inc,SMB,Japan,APAC,BBB,kenji.sato@company.com,2023-11-25,0
+CUST-0194,Pinnacle Technologies Inc,Mid-Market,UK,EMEA,BBB,elizabeth.ward@company.com,2022-11-03,0
+CUST-0195,Prime Capital LLC,Mid-Market,UK,EMEA,AAA,elizabeth.ward@company.com,2023-01-29,0
+CUST-0196,Summit Dynamics Corp,Mid-Market,UK,EMEA,AA,elizabeth.ward@company.com,2023-12-18,0
+CUST-0197,Terra Systems Ltd,Mid-Market,USA,North America,AA,sarah.jenkins@company.com,2023-12-04,0
+CUST-0198,Beta Digital GmbH,SMB,Canada,North America,BBB,sarah.jenkins@company.com,2022-10-21,0
+CUST-0199,Sigma Global LLC,Enterprise,Germany,EMEA,A,hans.becker@company.com,2023-11-26,1
+CUST-0200,Epsilon Analytics Inc,SMB,Australia,APAC,AAA,kenji.sato@company.com,2024-03-18,0
+CUST-0201,Vertex Systems GmbH,Mid-Market,Germany,EMEA,AAA,hans.becker@company.com,2022-10-30,0
+CUST-0202,Nova Capital AG,Enterprise,Germany,EMEA,A,hans.becker@company.com,2024-06-16,1
+CUST-0203,Stellar Solutions GmbH,SMB,Canada,North America,AAA,sarah.jenkins@company.com,2024-07-24,0
+CUST-0204,Summit Health LLC,SMB,UK,EMEA,A,elizabeth.ward@company.com,2023-04-25,0
+CUST-0205,Gamma Technologies Corp,SMB,Australia,APAC,A,kenji.sato@company.com,2023-02-11,0
+CUST-0206,Pinnacle Partners Inc,SMB,USA,North America,AA,sarah.jenkins@company.com,2022-05-07,0
+CUST-0207,Vertex Partners Ltd,SMB,UK,EMEA,AA,elizabeth.ward@company.com,2024-04-22,0
+CUST-0208,Stellar Dynamics Ltd,Enterprise,USA,North America,A,sarah.jenkins@company.com,2024-08-23,1
+CUST-0209,Pinnacle Partners GmbH,Enterprise,USA,North America,A,sarah.jenkins@company.com,2023-04-21,1
+CUST-0210,Terra Analytics AG,Enterprise,USA,North America,BBB,sarah.jenkins@company.com,2022-11-08,1
+CUST-0211,Summit Dynamics Inc,Enterprise,France,EMEA,AAA,pierre.dubois@company.com,2023-04-10,1
+CUST-0212,Stellar Analytics Ltd,SMB,France,EMEA,AA,pierre.dubois@company.com,2024-01-31,0
+CUST-0213,Epsilon Digital AG,SMB,Canada,North America,AA,sarah.jenkins@company.com,2023-02-22,0
+CUST-0214,Hyper Systems Ltd,Mid-Market,Japan,APAC,AA,kenji.sato@company.com,2022-08-30,0
+CUST-0215,Stellar Dynamics Ltd,Mid-Market,Australia,APAC,AA,kenji.sato@company.com,2023-02-12,0
+CUST-0216,Hyper Logistics Inc,SMB,Canada,North America,AA,sarah.jenkins@company.com,2023-11-10,0
+CUST-0217,Omega Analytics Ltd,Mid-Market,USA,North America,AAA,sarah.jenkins@company.com,2022-12-08,0
+CUST-0218,Sigma Technologies GmbH,Enterprise,Canada,North America,A,sarah.jenkins@company.com,2022-08-01,1
+CUST-0219,Aero Logistics Corp,Mid-Market,Germany,EMEA,A,hans.becker@company.com,2023-09-03,0
+CUST-0220,Alpha Ventures Corp,Strategic Partner,France,EMEA,AA,pierre.dubois@company.com,2022-06-28,1
+CUST-0221,Delta Analytics Inc,Enterprise,UK,EMEA,A,elizabeth.ward@company.com,2022-09-01,1
+CUST-0222,Aero Partners Inc,Enterprise,USA,North America,AAA,sarah.jenkins@company.com,2023-03-08,1
+CUST-0223,Beacon Dynamics Ltd,Enterprise,Japan,APAC,A,kenji.sato@company.com,2023-06-10,1
+CUST-0224,Aero Dynamics AG,Mid-Market,France,EMEA,AAA,pierre.dubois@company.com,2024-03-13,0
+CUST-0225,Beacon Ventures AG,Mid-Market,USA,North America,AAA,sarah.jenkins@company.com,2023-05-06,0
+CUST-0226,Core Holdings Ltd,Enterprise,Australia,APAC,BBB,kenji.sato@company.com,2022-03-17,1
+CUST-0227,Gamma Partners GmbH,Enterprise,Germany,EMEA,AA,hans.becker@company.com,2023-10-11,1
+CUST-0228,Aero Solutions Ltd,Mid-Market,France,EMEA,AA,pierre.dubois@company.com,2023-04-10,0
+CUST-0229,Beacon Global AG,Enterprise,Australia,APAC,AAA,kenji.sato@company.com,2023-11-02,1
+CUST-0230,Pinnacle Capital Corp,Mid-Market,Germany,EMEA,AA,hans.becker@company.com,2024-04-27,0
+CUST-0231,Vertex Holdings AG,SMB,UK,EMEA,AA,elizabeth.ward@company.com,2023-11-13,0
+CUST-0232,Hyper Partners Corp,SMB,Japan,APAC,AAA,kenji.sato@company.com,2024-05-01,0
+CUST-0233,Gamma Dynamics AG,Enterprise,Australia,APAC,AA,kenji.sato@company.com,2022-05-14,1
+CUST-0234,Pinnacle Systems GmbH,Strategic Partner,France,EMEA,AA,pierre.dubois@company.com,2022-05-06,1
+CUST-0235,Prime Partners Ltd,SMB,Japan,APAC,A,kenji.sato@company.com,2024-01-09,0
+CUST-0236,Beta Ventures GmbH,Mid-Market,USA,North America,AA,sarah.jenkins@company.com,2022-08-06,0
+CUST-0237,Epsilon Analytics AG,Enterprise,USA,North America,AA,sarah.jenkins@company.com,2023-07-24,1
+CUST-0238,Stellar Dynamics LLC,Mid-Market,Canada,North America,AA,sarah.jenkins@company.com,2023-07-29,0
+CUST-0239,Synapse Global Ltd,Mid-Market,USA,North America,A,sarah.jenkins@company.com,2023-11-05,0
+CUST-0240,Hyper Systems Corp,Mid-Market,Canada,North America,AA,sarah.jenkins@company.com,2022-12-14,0
+CUST-0241,Stellar Systems Corp,SMB,France,EMEA,A,pierre.dubois@company.com,2022-03-13,0
+CUST-0242,Epsilon Capital Ltd,Strategic Partner,USA,North America,A,sarah.jenkins@company.com,2022-08-09,1
+CUST-0243,Core Holdings AG,Mid-Market,UK,EMEA,AA,elizabeth.ward@company.com,2022-11-29,0
+CUST-0244,Aero Global Inc,SMB,Germany,EMEA,AAA,hans.becker@company.com,2023-09-25,0
+CUST-0245,Beta Analytics Inc,Mid-Market,Australia,APAC,AA,kenji.sato@company.com,2023-09-14,0
+CUST-0246,Vertex Holdings LLC,Enterprise,France,EMEA,AAA,pierre.dubois@company.com,2023-03-17,1
+CUST-0247,Delta Ventures Ltd,SMB,Japan,APAC,AA,kenji.sato@company.com,2022-11-12,0
+CUST-0248,Beta Logistics AG,Strategic Partner,USA,North America,AAA,sarah.jenkins@company.com,2022-11-05,1
+CUST-0249,Omega Health Corp,SMB,UK,EMEA,AA,elizabeth.ward@company.com,2022-01-08,0
+CUST-0250,Summit Capital AG,Enterprise,Japan,APAC,AA,kenji.sato@company.com,2022-08-24,1

@@ -1,0 +1,221 @@
+account_sk,account_id,account_name,industry,account_tier,annual_revenue_usd,annual_revenue_bracket,employee_count,country_name,country_code,region,account_created_date
+1,ACC-1001,Nexus Holdings,Healthcare & Life Sciences,Enterprise,470106707.0,Enterprise Tier 2 ($250M-$1B),7543,Germany,DEU,EMEA,2024-01-15
+2,ACC-1002,Novus Technologies,Financial Services,Enterprise,749635468.0,Enterprise Tier 2 ($250M-$1B),6139,United Kingdom,GBR,EMEA,2023-11-05
+3,ACC-1003,Apex Communications,Healthcare & Life Sciences,Strategic,5233616459.0,Enterprise Tier 1 (>$1B),109458,Canada,CAN,North America,2023-03-23
+4,ACC-1004,Horizon Financial Group,Energy & Utilities,Enterprise,449170184.0,Enterprise Tier 2 ($250M-$1B),5112,United States,USA,North America,2023-02-19
+5,ACC-1005,Vertex Enterprises,Energy & Utilities,Enterprise,1236607411.0,Enterprise Tier 1 (>$1B),6392,Canada,CAN,North America,2023-03-05
+6,ACC-1006,Solstice Technologies,Energy & Utilities,Strategic,23800709676.0,Enterprise Tier 1 (>$1B),19116,Switzerland,CHE,EMEA,2023-01-24
+7,ACC-1007,Pinnacle Solutions,Energy & Utilities,Enterprise,466898920.0,Enterprise Tier 2 ($250M-$1B),5113,United States,USA,North America,2023-05-23
+8,ACC-1008,Orion BioPharma,Retail & eCommerce,Strategic,12968315044.0,Enterprise Tier 1 (>$1B),101988,Australia,AUS,APAC,2023-12-16
+9,ACC-1009,Hyperion Cloud Systems,Telecommunications,Enterprise,1242696249.0,Enterprise Tier 1 (>$1B),5108,Switzerland,CHE,EMEA,2023-05-19
+10,ACC-1010,Novus Health,Healthcare & Life Sciences,Mid-Market,124678783.0,Mid-Market (<$250M),1121,United Kingdom,GBR,EMEA,2023-05-18
+11,ACC-1011,Hyperion Health,Healthcare & Life Sciences,Mid-Market,146201629.0,Mid-Market (<$250M),1616,Japan,JPN,APAC,2023-08-23
+12,ACC-1012,Starlight Capital Partners,Telecommunications,Mid-Market,196640927.0,Mid-Market (<$250M),1117,Canada,CAN,North America,2023-07-05
+13,ACC-1013,Pinnacle Global Logistics,Energy & Utilities,Enterprise,485469722.0,Enterprise Tier 2 ($250M-$1B),3252,United Kingdom,GBR,EMEA,2023-11-18
+14,ACC-1014,Crestview Solutions,Financial Services,Strategic,20690128130.0,Enterprise Tier 1 (>$1B),42953,Switzerland,CHE,EMEA,2023-10-11
+15,ACC-1015,Apex BioPharma,Energy & Utilities,Enterprise,980521271.0,Enterprise Tier 2 ($250M-$1B),2913,Switzerland,CHE,EMEA,2023-05-31
+16,ACC-1016,Horizon Global Logistics,Technology & SaaS,Mid-Market,176279761.0,Mid-Market (<$250M),517,France,FRA,EMEA,2023-11-17
+17,ACC-1017,Synergy Enterprises,Healthcare & Life Sciences,Enterprise,596923914.0,Enterprise Tier 2 ($250M-$1B),6418,Switzerland,CHE,EMEA,2024-02-03
+18,ACC-1018,Spectra Holdings,Financial Services,Enterprise,1029495258.0,Enterprise Tier 1 (>$1B),9198,Netherlands,NLD,EMEA,2023-06-07
+19,ACC-1019,Pinnacle Holdings,Financial Services,Mid-Market,58579092.0,Mid-Market (<$250M),1857,United States,USA,North America,2023-09-30
+20,ACC-1020,Starlight Global Logistics,Healthcare & Life Sciences,Enterprise,1158681807.0,Enterprise Tier 1 (>$1B),9900,Switzerland,CHE,EMEA,2023-04-19
+21,ACC-1021,Novus Solutions,Telecommunications,Enterprise,1051914424.0,Enterprise Tier 1 (>$1B),5588,Germany,DEU,EMEA,2023-09-22
+22,ACC-1022,Orion Technologies,Retail & eCommerce,Enterprise,1439537409.0,Enterprise Tier 1 (>$1B),3885,United States,USA,North America,2023-10-29
+23,ACC-1023,Pinnacle Holdings,Healthcare & Life Sciences,Enterprise,317458813.0,Enterprise Tier 2 ($250M-$1B),9042,United States,USA,North America,2023-06-19
+24,ACC-1024,Hyperion Communications,Healthcare & Life Sciences,Strategic,22469675619.0,Enterprise Tier 1 (>$1B),85525,Canada,CAN,North America,2023-08-31
+25,ACC-1025,Pinnacle Solutions,Healthcare & Life Sciences,Enterprise,1175675369.0,Enterprise Tier 1 (>$1B),4902,Netherlands,NLD,EMEA,2023-08-05
+26,ACC-1026,Horizon Energy Corp,Telecommunications,Mid-Market,213457556.0,Mid-Market (<$250M),501,Singapore,SGP,APAC,2023-02-01
+27,ACC-1027,Solstice Retail Network,Healthcare & Life Sciences,Enterprise,1401664882.0,Enterprise Tier 1 (>$1B),5675,United States,USA,North America,2023-03-13
+28,ACC-1028,Horizon Global Logistics,Energy & Utilities,Mid-Market,158952003.0,Mid-Market (<$250M),1954,United States,USA,North America,2023-10-09
+29,ACC-1029,Nexus Holdings,Energy & Utilities,Enterprise,450280283.0,Enterprise Tier 2 ($250M-$1B),9588,Switzerland,CHE,EMEA,2024-01-21
+30,ACC-1030,Pinnacle Global Logistics,Healthcare & Life Sciences,Mid-Market,55739821.0,Mid-Market (<$250M),637,Canada,CAN,North America,2023-07-14
+31,ACC-1031,Apex Manufacturing,Retail & eCommerce,Strategic,17470441930.0,Enterprise Tier 1 (>$1B),30289,Canada,CAN,North America,2023-04-08
+32,ACC-1032,Synergy Health,Telecommunications,Strategic,13302465179.0,Enterprise Tier 1 (>$1B),17492,Chile,CHL,LATAM,2023-01-26
+33,ACC-1033,Valence Energy Corp,Healthcare & Life Sciences,Enterprise,1340553393.0,Enterprise Tier 1 (>$1B),2656,Switzerland,CHE,EMEA,2023-04-06
+34,ACC-1034,Hyperion Cloud Systems,Manufacturing & Supply Chain,Enterprise,1473368636.0,Enterprise Tier 1 (>$1B),4016,United States,USA,North America,2023-10-24
+35,ACC-1035,Echo Holdings,Telecommunications,Mid-Market,180333417.0,Mid-Market (<$250M),947,Netherlands,NLD,EMEA,2023-05-14
+36,ACC-1036,Vanguard BioPharma,Retail & eCommerce,Strategic,15673379522.0,Enterprise Tier 1 (>$1B),51441,Germany,DEU,EMEA,2024-01-20
+37,ACC-1037,Hyperion Holdings,Financial Services,Enterprise,707745397.0,Enterprise Tier 2 ($250M-$1B),6144,Switzerland,CHE,EMEA,2023-05-16
+38,ACC-1038,Starlight Financial Group,Retail & eCommerce,Enterprise,1190994192.0,Enterprise Tier 1 (>$1B),8830,Australia,AUS,APAC,2023-10-06
+39,ACC-1039,Synergy Cloud Systems,Technology & SaaS,Enterprise,1440999339.0,Enterprise Tier 1 (>$1B),4452,Chile,CHL,LATAM,2023-12-06
+40,ACC-1040,Nexus Global Logistics,Telecommunications,Mid-Market,113107917.0,Mid-Market (<$250M),877,United States,USA,North America,2023-11-06
+41,ACC-1041,Vanguard Retail Network,Technology & SaaS,Strategic,5133987776.0,Enterprise Tier 1 (>$1B),22097,Canada,CAN,North America,2023-11-21
+42,ACC-1042,Horizon Enterprises,Retail & eCommerce,Mid-Market,211023819.0,Mid-Market (<$250M),836,United States,USA,North America,2023-03-24
+43,ACC-1043,Orion Communications,Financial Services,Enterprise,570091645.0,Enterprise Tier 2 ($250M-$1B),6469,Switzerland,CHE,EMEA,2023-01-19
+44,ACC-1044,Vertex Cloud Systems,Healthcare & Life Sciences,Enterprise,1033083157.0,Enterprise Tier 1 (>$1B),9364,Netherlands,NLD,EMEA,2023-01-21
+45,ACC-1045,Vertex Health,Retail & eCommerce,Mid-Market,149086099.0,Mid-Market (<$250M),1571,United Kingdom,GBR,EMEA,2024-01-19
+46,ACC-1046,Starlight Health,Manufacturing & Supply Chain,Enterprise,963362851.0,Enterprise Tier 2 ($250M-$1B),8409,Australia,AUS,APAC,2023-07-30
+47,ACC-1047,Pinnacle Capital Partners,Manufacturing & Supply Chain,Mid-Market,166349890.0,Mid-Market (<$250M),755,United States,USA,North America,2023-04-13
+48,ACC-1048,Orion Financial Group,Healthcare & Life Sciences,Enterprise,664743067.0,Enterprise Tier 2 ($250M-$1B),5264,United States,USA,North America,2023-06-18
+49,ACC-1049,Aegis Enterprises,Retail & eCommerce,Mid-Market,147287849.0,Mid-Market (<$250M),1691,Canada,CAN,North America,2023-10-02
+50,ACC-1050,Beacon Holdings,Healthcare & Life Sciences,Mid-Market,111260584.0,Mid-Market (<$250M),378,Canada,CAN,North America,2023-02-25
+51,ACC-1051,Echo Manufacturing,Manufacturing & Supply Chain,Mid-Market,177284082.0,Mid-Market (<$250M),536,Canada,CAN,North America,2023-07-17
+52,ACC-1052,Valence Health,Financial Services,Strategic,22143806976.0,Enterprise Tier 1 (>$1B),100027,Canada,CAN,North America,2024-01-04
+53,ACC-1053,Vanguard Financial Group,Technology & SaaS,Enterprise,517630827.0,Enterprise Tier 2 ($250M-$1B),7896,Canada,CAN,North America,2023-06-03
+54,ACC-1054,Spectra Capital Partners,Manufacturing & Supply Chain,Mid-Market,188823967.0,Mid-Market (<$250M),560,France,FRA,EMEA,2023-04-09
+55,ACC-1055,Horizon BioPharma,Telecommunications,Mid-Market,205226026.0,Mid-Market (<$250M),1465,Chile,CHL,LATAM,2023-06-04
+56,ACC-1056,Solstice Communications,Retail & eCommerce,Enterprise,1495507827.0,Enterprise Tier 1 (>$1B),6969,Japan,JPN,APAC,2023-12-02
+57,ACC-1057,Beacon Energy Corp,Technology & SaaS,Strategic,23703655461.0,Enterprise Tier 1 (>$1B),21114,United States,USA,North America,2023-05-26
+58,ACC-1058,Spectra BioPharma,Financial Services,Mid-Market,241632108.0,Mid-Market (<$250M),781,France,FRA,EMEA,2023-12-11
+59,ACC-1059,Synergy Health,Financial Services,Enterprise,1270347521.0,Enterprise Tier 1 (>$1B),7007,Australia,AUS,APAC,2024-01-29
+60,ACC-1060,Hyperion Energy Corp,Telecommunications,Mid-Market,172708361.0,Mid-Market (<$250M),1118,United States,USA,North America,2023-05-05
+61,ACC-1061,Starlight BioPharma,Energy & Utilities,Strategic,16609513491.0,Enterprise Tier 1 (>$1B),16582,United Kingdom,GBR,EMEA,2023-10-13
+62,ACC-1062,Pinnacle Enterprises,Energy & Utilities,Strategic,21080435032.0,Enterprise Tier 1 (>$1B),51588,United States,USA,North America,2024-01-22
+63,ACC-1063,Orion Cloud Systems,Energy & Utilities,Mid-Market,159699022.0,Mid-Market (<$250M),625,India,IND,APAC,2024-01-16
+64,ACC-1064,Titan Energy Corp,Energy & Utilities,Mid-Market,245571545.0,Mid-Market (<$250M),1892,United States,USA,North America,2023-09-24
+65,ACC-1065,Titan BioPharma,Financial Services,Mid-Market,102946391.0,Mid-Market (<$250M),856,Canada,CAN,North America,2023-06-21
+66,ACC-1066,Beacon Communications,Healthcare & Life Sciences,Strategic,23631130082.0,Enterprise Tier 1 (>$1B),38043,United States,USA,North America,2023-02-02
+67,ACC-1067,Horizon Manufacturing,Manufacturing & Supply Chain,Enterprise,1152251343.0,Enterprise Tier 1 (>$1B),5190,Canada,CAN,North America,2024-01-30
+68,ACC-1068,Valence Retail Network,Manufacturing & Supply Chain,Enterprise,1005396286.0,Enterprise Tier 1 (>$1B),4446,Canada,CAN,North America,2024-01-21
+69,ACC-1069,Solstice Enterprises,Technology & SaaS,Mid-Market,186601274.0,Mid-Market (<$250M),1938,India,IND,APAC,2023-11-05
+70,ACC-1070,Pinnacle Energy Corp,Manufacturing & Supply Chain,Enterprise,971832695.0,Enterprise Tier 2 ($250M-$1B),7479,Canada,CAN,North America,2023-12-14
+71,ACC-1071,Solstice Retail Network,Healthcare & Life Sciences,Mid-Market,183377721.0,Mid-Market (<$250M),355,Canada,CAN,North America,2023-07-21
+72,ACC-1072,Valence Cloud Systems,Telecommunications,Strategic,18108000099.0,Enterprise Tier 1 (>$1B),33819,United Kingdom,GBR,EMEA,2023-01-26
+73,ACC-1073,Aegis Manufacturing,Retail & eCommerce,Enterprise,1064167346.0,Enterprise Tier 1 (>$1B),4279,Canada,CAN,North America,2024-01-21
+74,ACC-1074,Horizon Capital Partners,Financial Services,Mid-Market,53981622.0,Mid-Market (<$250M),1016,India,IND,APAC,2023-04-25
+75,ACC-1075,Hyperion Solutions,Energy & Utilities,Enterprise,781036848.0,Enterprise Tier 2 ($250M-$1B),3633,Brazil,BRA,LATAM,2023-01-11
+76,ACC-1076,Echo Global Logistics,Telecommunications,Enterprise,718075293.0,Enterprise Tier 2 ($250M-$1B),5809,Canada,CAN,North America,2023-12-25
+77,ACC-1077,Aegis Solutions,Energy & Utilities,Mid-Market,123493874.0,Mid-Market (<$250M),521,United States,USA,North America,2023-10-24
+78,ACC-1078,Apex Capital Partners,Manufacturing & Supply Chain,Mid-Market,93238744.0,Mid-Market (<$250M),455,Netherlands,NLD,EMEA,2023-10-31
+79,ACC-1079,Pinnacle Technologies,Energy & Utilities,Mid-Market,72495470.0,Mid-Market (<$250M),1930,France,FRA,EMEA,2023-10-17
+80,ACC-1080,Quantum Financial Group,Financial Services,Strategic,2965576748.0,Enterprise Tier 1 (>$1B),65057,France,FRA,EMEA,2023-09-08
+81,ACC-1081,Nexus Manufacturing,Energy & Utilities,Strategic,15041993870.0,Enterprise Tier 1 (>$1B),33086,Chile,CHL,LATAM,2024-01-11
+82,ACC-1082,Spectra BioPharma,Manufacturing & Supply Chain,Strategic,21819602851.0,Enterprise Tier 1 (>$1B),45179,Canada,CAN,North America,2023-06-15
+83,ACC-1083,Pinnacle Enterprises,Manufacturing & Supply Chain,Enterprise,1247953834.0,Enterprise Tier 1 (>$1B),6668,Mexico,MEX,LATAM,2023-11-09
+84,ACC-1084,Solstice Financial Group,Healthcare & Life Sciences,Strategic,11199549755.0,Enterprise Tier 1 (>$1B),46655,Canada,CAN,North America,2023-11-02
+85,ACC-1085,Aegis Communications,Financial Services,Enterprise,1122797745.0,Enterprise Tier 1 (>$1B),6002,United States,USA,North America,2023-10-12
+86,ACC-1086,Pinnacle Retail Network,Manufacturing & Supply Chain,Mid-Market,64978818.0,Mid-Market (<$250M),902,Netherlands,NLD,EMEA,2023-04-24
+87,ACC-1087,Solstice Retail Network,Manufacturing & Supply Chain,Mid-Market,132276672.0,Mid-Market (<$250M),1171,Canada,CAN,North America,2024-01-17
+88,ACC-1088,Novus Financial Group,Retail & eCommerce,Enterprise,745076677.0,Enterprise Tier 2 ($250M-$1B),2988,Canada,CAN,North America,2024-01-05
+89,ACC-1089,Vanguard Financial Group,Healthcare & Life Sciences,Enterprise,1289808545.0,Enterprise Tier 1 (>$1B),4265,United States,USA,North America,2024-01-06
+90,ACC-1090,Valence Solutions,Financial Services,Mid-Market,119523054.0,Mid-Market (<$250M),765,France,FRA,EMEA,2023-07-04
+91,ACC-1091,Crestview Capital Partners,Retail & eCommerce,Enterprise,367093731.0,Enterprise Tier 2 ($250M-$1B),6533,United States,USA,North America,2023-05-30
+92,ACC-1092,Starlight BioPharma,Financial Services,Mid-Market,194099191.0,Mid-Market (<$250M),882,India,IND,APAC,2023-08-29
+93,ACC-1093,Titan Energy Corp,Retail & eCommerce,Mid-Market,168239453.0,Mid-Market (<$250M),533,United States,USA,North America,2023-02-03
+94,ACC-1094,Solstice Energy Corp,Healthcare & Life Sciences,Enterprise,1458688816.0,Enterprise Tier 1 (>$1B),9775,United States,USA,North America,2023-06-05
+95,ACC-1095,Hyperion Health,Technology & SaaS,Mid-Market,206005412.0,Mid-Market (<$250M),762,Canada,CAN,North America,2024-02-02
+96,ACC-1096,Spectra Manufacturing,Retail & eCommerce,Mid-Market,155113132.0,Mid-Market (<$250M),925,Netherlands,NLD,EMEA,2023-10-19
+97,ACC-1097,Echo Holdings,Energy & Utilities,Enterprise,703173162.0,Enterprise Tier 2 ($250M-$1B),4167,United Kingdom,GBR,EMEA,2023-12-05
+98,ACC-1098,Hyperion Global Logistics,Healthcare & Life Sciences,Enterprise,1217449333.0,Enterprise Tier 1 (>$1B),7647,United States,USA,North America,2023-11-01
+99,ACC-1099,Titan Capital Partners,Telecommunications,Enterprise,1225024849.0,Enterprise Tier 1 (>$1B),2583,Canada,CAN,North America,2023-12-18
+100,ACC-1100,Pinnacle Capital Partners,Manufacturing & Supply Chain,Enterprise,732774611.0,Enterprise Tier 2 ($250M-$1B),7305,Australia,AUS,APAC,2023-03-18
+101,ACC-1101,Aegis Enterprises,Healthcare & Life Sciences,Mid-Market,199730916.0,Mid-Market (<$250M),1833,United States,USA,North America,2023-10-19
+102,ACC-1102,Synergy Energy Corp,Telecommunications,Strategic,19849157669.0,Enterprise Tier 1 (>$1B),80776,Canada,CAN,North America,2023-09-10
+103,ACC-1103,Orion Technologies,Telecommunications,Enterprise,787660983.0,Enterprise Tier 2 ($250M-$1B),2211,Netherlands,NLD,EMEA,2023-02-16
+104,ACC-1104,Pinnacle BioPharma,Energy & Utilities,Mid-Market,112346314.0,Mid-Market (<$250M),1480,Singapore,SGP,APAC,2023-01-21
+105,ACC-1105,Crestview Energy Corp,Retail & eCommerce,Enterprise,1186055873.0,Enterprise Tier 1 (>$1B),7200,Netherlands,NLD,EMEA,2023-09-09
+106,ACC-1106,Hyperion Energy Corp,Retail & eCommerce,Mid-Market,83171093.0,Mid-Market (<$250M),975,Canada,CAN,North America,2023-07-30
+107,ACC-1107,Titan Capital Partners,Energy & Utilities,Mid-Market,49850811.0,Mid-Market (<$250M),1231,Netherlands,NLD,EMEA,2023-02-15
+108,ACC-1108,Beacon Capital Partners,Energy & Utilities,Strategic,5743939720.0,Enterprise Tier 1 (>$1B),96200,Canada,CAN,North America,2023-10-05
+109,ACC-1109,Orion Manufacturing,Technology & SaaS,Mid-Market,207881881.0,Mid-Market (<$250M),1205,Canada,CAN,North America,2024-01-25
+110,ACC-1110,Quantum Health,Retail & eCommerce,Strategic,17383862932.0,Enterprise Tier 1 (>$1B),25915,United States,USA,North America,2023-01-15
+111,ACC-1111,Echo Solutions,Retail & eCommerce,Mid-Market,188243859.0,Mid-Market (<$250M),1135,United States,USA,North America,2023-02-17
+112,ACC-1112,Pinnacle Enterprises,Financial Services,Mid-Market,81331308.0,Mid-Market (<$250M),1320,India,IND,APAC,2024-01-02
+113,ACC-1113,Synergy Communications,Energy & Utilities,Strategic,7823135819.0,Enterprise Tier 1 (>$1B),69871,Netherlands,NLD,EMEA,2023-10-10
+114,ACC-1114,Starlight Manufacturing,Energy & Utilities,Enterprise,1141082067.0,Enterprise Tier 1 (>$1B),4784,United States,USA,North America,2023-09-17
+115,ACC-1115,Aegis Enterprises,Energy & Utilities,Mid-Market,217151497.0,Mid-Market (<$250M),1302,Canada,CAN,North America,2023-03-18
+116,ACC-1116,Orion Communications,Technology & SaaS,Mid-Market,141256553.0,Mid-Market (<$250M),1232,France,FRA,EMEA,2023-06-14
+117,ACC-1117,Vanguard Retail Network,Healthcare & Life Sciences,Mid-Market,150266601.0,Mid-Market (<$250M),389,Canada,CAN,North America,2023-06-12
+118,ACC-1118,Titan Retail Network,Manufacturing & Supply Chain,Mid-Market,215025017.0,Mid-Market (<$250M),611,India,IND,APAC,2023-09-11
+119,ACC-1119,Quantum Global Logistics,Retail & eCommerce,Mid-Market,158193798.0,Mid-Market (<$250M),504,Switzerland,CHE,EMEA,2023-09-27
+120,ACC-1120,Orion Holdings,Energy & Utilities,Mid-Market,81436024.0,Mid-Market (<$250M),453,Netherlands,NLD,EMEA,2023-08-29
+121,ACC-1121,Aegis Financial Group,Telecommunications,Enterprise,955589222.0,Enterprise Tier 2 ($250M-$1B),8982,Netherlands,NLD,EMEA,2023-12-12
+122,ACC-1122,Novus Manufacturing,Telecommunications,Mid-Market,170982404.0,Mid-Market (<$250M),1408,Chile,CHL,LATAM,2023-01-19
+123,ACC-1123,Echo Technologies,Healthcare & Life Sciences,Mid-Market,156493328.0,Mid-Market (<$250M),501,Canada,CAN,North America,2024-01-25
+124,ACC-1124,Nexus Energy Corp,Financial Services,Enterprise,370515121.0,Enterprise Tier 2 ($250M-$1B),4403,Canada,CAN,North America,2023-07-03
+125,ACC-1125,Vertex Manufacturing,Technology & SaaS,Mid-Market,88333653.0,Mid-Market (<$250M),648,Canada,CAN,North America,2023-03-31
+126,ACC-1126,Hyperion Cloud Systems,Manufacturing & Supply Chain,Mid-Market,78417871.0,Mid-Market (<$250M),775,Australia,AUS,APAC,2023-08-25
+127,ACC-1127,Aegis Energy Corp,Energy & Utilities,Strategic,24210205065.0,Enterprise Tier 1 (>$1B),81643,United States,USA,North America,2023-03-22
+128,ACC-1128,Hyperion Energy Corp,Retail & eCommerce,Mid-Market,153899563.0,Mid-Market (<$250M),1713,Chile,CHL,LATAM,2023-05-09
+129,ACC-1129,Orion Enterprises,Energy & Utilities,Strategic,15403692624.0,Enterprise Tier 1 (>$1B),84963,Canada,CAN,North America,2023-07-03
+130,ACC-1130,Valence Capital Partners,Financial Services,Mid-Market,216692221.0,Mid-Market (<$250M),1110,Mexico,MEX,LATAM,2023-05-21
+131,ACC-1131,Apex Cloud Systems,Technology & SaaS,Mid-Market,116824657.0,Mid-Market (<$250M),1888,Singapore,SGP,APAC,2023-04-28
+132,ACC-1132,Echo Solutions,Technology & SaaS,Enterprise,543731171.0,Enterprise Tier 2 ($250M-$1B),7146,United States,USA,North America,2023-02-19
+133,ACC-1133,Quantum Capital Partners,Technology & SaaS,Strategic,2064409423.0,Enterprise Tier 1 (>$1B),48680,Singapore,SGP,APAC,2023-06-17
+134,ACC-1134,Horizon Global Logistics,Technology & SaaS,Strategic,10796647514.0,Enterprise Tier 1 (>$1B),118093,Canada,CAN,North America,2023-09-04
+135,ACC-1135,Synergy Retail Network,Manufacturing & Supply Chain,Mid-Market,77784173.0,Mid-Market (<$250M),1844,Singapore,SGP,APAC,2023-04-26
+136,ACC-1136,Solstice Enterprises,Financial Services,Mid-Market,43736261.0,Mid-Market (<$250M),841,Japan,JPN,APAC,2023-10-02
+137,ACC-1137,Nexus Energy Corp,Technology & SaaS,Strategic,3095467139.0,Enterprise Tier 1 (>$1B),98452,Canada,CAN,North America,2023-04-30
+138,ACC-1138,Titan Holdings,Retail & eCommerce,Mid-Market,99422804.0,Mid-Market (<$250M),1626,Switzerland,CHE,EMEA,2023-02-02
+139,ACC-1139,Orion Retail Network,Financial Services,Enterprise,329912437.0,Enterprise Tier 2 ($250M-$1B),4493,Canada,CAN,North America,2023-09-10
+140,ACC-1140,Nexus Technologies,Manufacturing & Supply Chain,Strategic,22742796952.0,Enterprise Tier 1 (>$1B),64935,United States,USA,North America,2023-10-28
+141,ACC-1141,Starlight Manufacturing,Technology & SaaS,Strategic,14176688439.0,Enterprise Tier 1 (>$1B),14288,Netherlands,NLD,EMEA,2023-12-20
+142,ACC-1142,Vertex Health,Energy & Utilities,Strategic,20257560814.0,Enterprise Tier 1 (>$1B),94518,United States,USA,North America,2023-07-03
+143,ACC-1143,Quantum Manufacturing,Energy & Utilities,Mid-Market,64608396.0,Mid-Market (<$250M),1657,United States,USA,North America,2023-04-19
+144,ACC-1144,Echo Holdings,Healthcare & Life Sciences,Mid-Market,191552746.0,Mid-Market (<$250M),720,Canada,CAN,North America,2023-02-05
+145,ACC-1145,Novus Health,Retail & eCommerce,Mid-Market,199982602.0,Mid-Market (<$250M),305,Germany,DEU,EMEA,2023-05-22
+146,ACC-1146,Starlight Global Logistics,Financial Services,Mid-Market,46920307.0,Mid-Market (<$250M),569,Germany,DEU,EMEA,2023-01-08
+147,ACC-1147,Vertex Solutions,Financial Services,Enterprise,362526041.0,Enterprise Tier 2 ($250M-$1B),3038,Japan,JPN,APAC,2024-01-15
+148,ACC-1148,Horizon Communications,Manufacturing & Supply Chain,Strategic,20234814736.0,Enterprise Tier 1 (>$1B),87812,United States,USA,North America,2023-02-25
+149,ACC-1149,Orion Communications,Telecommunications,Mid-Market,216872947.0,Mid-Market (<$250M),1367,United States,USA,North America,2023-06-04
+150,ACC-1150,Orion BioPharma,Manufacturing & Supply Chain,Mid-Market,154426953.0,Mid-Market (<$250M),1705,Brazil,BRA,LATAM,2023-02-25
+151,ACC-1151,Titan Retail Network,Financial Services,Enterprise,568544479.0,Enterprise Tier 2 ($250M-$1B),2538,Singapore,SGP,APAC,2023-03-06
+152,ACC-1152,Aegis Cloud Systems,Telecommunications,Enterprise,1389362131.0,Enterprise Tier 1 (>$1B),4415,Switzerland,CHE,EMEA,2023-08-21
+153,ACC-1153,Spectra Cloud Systems,Energy & Utilities,Mid-Market,246416861.0,Mid-Market (<$250M),1429,United States,USA,North America,2024-01-05
+154,ACC-1154,Vanguard Manufacturing,Manufacturing & Supply Chain,Enterprise,1223881476.0,Enterprise Tier 1 (>$1B),5266,Germany,DEU,EMEA,2023-08-01
+155,ACC-1155,Nexus Financial Group,Retail & eCommerce,Mid-Market,224367116.0,Mid-Market (<$250M),1271,Canada,CAN,North America,2023-02-04
+156,ACC-1156,Hyperion Enterprises,Financial Services,Mid-Market,140031628.0,Mid-Market (<$250M),1962,Canada,CAN,North America,2023-03-08
+157,ACC-1157,Novus Holdings,Technology & SaaS,Enterprise,512489680.0,Enterprise Tier 2 ($250M-$1B),5365,Switzerland,CHE,EMEA,2023-07-01
+158,ACC-1158,Horizon Enterprises,Retail & eCommerce,Mid-Market,134394305.0,Mid-Market (<$250M),512,Singapore,SGP,APAC,2023-10-23
+159,ACC-1159,Spectra Health,Healthcare & Life Sciences,Mid-Market,133983008.0,Mid-Market (<$250M),1439,Canada,CAN,North America,2023-07-08
+160,ACC-1160,Nexus Solutions,Energy & Utilities,Strategic,21350152587.0,Enterprise Tier 1 (>$1B),98470,United States,USA,North America,2023-11-26
+161,ACC-1161,Novus Holdings,Financial Services,Enterprise,913539552.0,Enterprise Tier 2 ($250M-$1B),9549,France,FRA,EMEA,2023-06-23
+162,ACC-1162,Vertex Holdings,Technology & SaaS,Mid-Market,58679195.0,Mid-Market (<$250M),590,United States,USA,North America,2024-01-15
+163,ACC-1163,Apex Technologies,Manufacturing & Supply Chain,Strategic,7259104406.0,Enterprise Tier 1 (>$1B),58503,Germany,DEU,EMEA,2023-06-09
+164,ACC-1164,Beacon Solutions,Financial Services,Mid-Market,81763163.0,Mid-Market (<$250M),622,Chile,CHL,LATAM,2024-01-22
+165,ACC-1165,Echo Holdings,Manufacturing & Supply Chain,Mid-Market,170368821.0,Mid-Market (<$250M),1543,France,FRA,EMEA,2023-08-15
+166,ACC-1166,Horizon Capital Partners,Retail & eCommerce,Strategic,24191370812.0,Enterprise Tier 1 (>$1B),98930,United States,USA,North America,2023-10-31
+167,ACC-1167,Titan Communications,Healthcare & Life Sciences,Strategic,4074081104.0,Enterprise Tier 1 (>$1B),11007,United Kingdom,GBR,EMEA,2023-04-15
+168,ACC-1168,Synergy Health,Retail & eCommerce,Enterprise,266599847.0,Enterprise Tier 2 ($250M-$1B),6074,Japan,JPN,APAC,2024-01-18
+169,ACC-1169,Horizon Global Logistics,Technology & SaaS,Mid-Market,219327815.0,Mid-Market (<$250M),1951,United States,USA,North America,2023-07-01
+170,ACC-1170,Hyperion Manufacturing,Manufacturing & Supply Chain,Enterprise,417208675.0,Enterprise Tier 2 ($250M-$1B),9062,Singapore,SGP,APAC,2023-06-10
+171,ACC-1171,Valence Manufacturing,Retail & eCommerce,Enterprise,294789109.0,Enterprise Tier 2 ($250M-$1B),9915,Netherlands,NLD,EMEA,2023-06-16
+172,ACC-1172,Crestview Solutions,Energy & Utilities,Mid-Market,137134092.0,Mid-Market (<$250M),480,Mexico,MEX,LATAM,2023-08-12
+173,ACC-1173,Nexus Health,Technology & SaaS,Enterprise,916309541.0,Enterprise Tier 2 ($250M-$1B),8109,Canada,CAN,North America,2023-06-23
+174,ACC-1174,Pinnacle Financial Group,Technology & SaaS,Mid-Market,182433147.0,Mid-Market (<$250M),1344,Singapore,SGP,APAC,2023-04-10
+175,ACC-1175,Vertex Financial Group,Healthcare & Life Sciences,Enterprise,799687573.0,Enterprise Tier 2 ($250M-$1B),3616,Germany,DEU,EMEA,2023-03-30
+176,ACC-1176,Echo Global Logistics,Healthcare & Life Sciences,Mid-Market,208563715.0,Mid-Market (<$250M),1311,Singapore,SGP,APAC,2023-08-26
+177,ACC-1177,Valence Solutions,Telecommunications,Mid-Market,207643788.0,Mid-Market (<$250M),961,Switzerland,CHE,EMEA,2023-11-18
+178,ACC-1178,Beacon Global Logistics,Manufacturing & Supply Chain,Mid-Market,113732150.0,Mid-Market (<$250M),1511,Canada,CAN,North America,2023-01-29
+179,ACC-1179,Vertex Communications,Manufacturing & Supply Chain,Enterprise,1041857962.0,Enterprise Tier 1 (>$1B),8813,Canada,CAN,North America,2023-05-27
+180,ACC-1180,Hyperion BioPharma,Technology & SaaS,Mid-Market,143208729.0,Mid-Market (<$250M),1247,Singapore,SGP,APAC,2023-10-25
+181,ACC-1181,Novus Solutions,Manufacturing & Supply Chain,Mid-Market,193452923.0,Mid-Market (<$250M),1634,United Kingdom,GBR,EMEA,2023-04-07
+182,ACC-1182,Beacon Cloud Systems,Financial Services,Strategic,13686442205.0,Enterprise Tier 1 (>$1B),103626,Germany,DEU,EMEA,2023-02-13
+183,ACC-1183,Spectra BioPharma,Telecommunications,Strategic,20567171409.0,Enterprise Tier 1 (>$1B),78517,United States,USA,North America,2023-11-09
+184,ACC-1184,Crestview Financial Group,Manufacturing & Supply Chain,Strategic,24428112307.0,Enterprise Tier 1 (>$1B),88366,Canada,CAN,North America,2023-01-27
+185,ACC-1185,Beacon Technologies,Retail & eCommerce,Enterprise,572924263.0,Enterprise Tier 2 ($250M-$1B),4730,Canada,CAN,North America,2023-02-11
+186,ACC-1186,Valence BioPharma,Retail & eCommerce,Mid-Market,227496786.0,Mid-Market (<$250M),1656,Canada,CAN,North America,2023-07-20
+187,ACC-1187,Starlight Cloud Systems,Retail & eCommerce,Mid-Market,212736406.0,Mid-Market (<$250M),1921,United Kingdom,GBR,EMEA,2023-06-18
+188,ACC-1188,Starlight BioPharma,Financial Services,Mid-Market,153657281.0,Mid-Market (<$250M),1341,Switzerland,CHE,EMEA,2023-07-05
+189,ACC-1189,Apex Financial Group,Retail & eCommerce,Mid-Market,170532356.0,Mid-Market (<$250M),693,United States,USA,North America,2023-04-26
+190,ACC-1190,Starlight Global Logistics,Technology & SaaS,Mid-Market,238278238.0,Mid-Market (<$250M),1378,United States,USA,North America,2023-01-20
+191,ACC-1191,Beacon Solutions,Manufacturing & Supply Chain,Enterprise,638363746.0,Enterprise Tier 2 ($250M-$1B),8810,Switzerland,CHE,EMEA,2023-12-21
+192,ACC-1192,Echo Solutions,Financial Services,Strategic,20587688106.0,Enterprise Tier 1 (>$1B),47346,India,IND,APAC,2024-01-21
+193,ACC-1193,Orion Health,Energy & Utilities,Mid-Market,92080821.0,Mid-Market (<$250M),1053,France,FRA,EMEA,2023-12-14
+194,ACC-1194,Valence Energy Corp,Energy & Utilities,Strategic,16650324436.0,Enterprise Tier 1 (>$1B),31241,France,FRA,EMEA,2023-04-13
+195,ACC-1195,Echo Global Logistics,Telecommunications,Strategic,20274213029.0,Enterprise Tier 1 (>$1B),23446,Singapore,SGP,APAC,2023-12-31
+196,ACC-1196,Spectra Enterprises,Energy & Utilities,Enterprise,1214905668.0,Enterprise Tier 1 (>$1B),9416,United States,USA,North America,2023-09-20
+197,ACC-1197,Starlight Enterprises,Energy & Utilities,Strategic,14499449491.0,Enterprise Tier 1 (>$1B),16980,United States,USA,North America,2023-07-22
+198,ACC-1198,Spectra Financial Group,Retail & eCommerce,Enterprise,934370545.0,Enterprise Tier 2 ($250M-$1B),9625,United States,USA,North America,2023-02-20
+199,ACC-1199,Beacon Solutions,Retail & eCommerce,Mid-Market,166823654.0,Mid-Market (<$250M),1725,United States,USA,North America,2023-03-13
+200,ACC-1200,Titan Energy Corp,Financial Services,Enterprise,571090940.0,Enterprise Tier 2 ($250M-$1B),6495,United Kingdom,GBR,EMEA,2024-01-08
+201,ACC-1201,Echo Communications,Healthcare & Life Sciences,Enterprise,352541155.0,Enterprise Tier 2 ($250M-$1B),3953,Canada,CAN,North America,2023-08-03
+202,ACC-1202,Echo Energy Corp,Technology & SaaS,Strategic,21394094986.0,Enterprise Tier 1 (>$1B),85372,Canada,CAN,North America,2023-05-04
+203,ACC-1203,Starlight Capital Partners,Healthcare & Life Sciences,Mid-Market,90281694.0,Mid-Market (<$250M),1660,Canada,CAN,North America,2023-12-09
+204,ACC-1204,Hyperion Communications,Technology & SaaS,Strategic,20860091604.0,Enterprise Tier 1 (>$1B),12665,Brazil,BRA,LATAM,2023-07-19
+205,ACC-1205,Titan Holdings,Retail & eCommerce,Mid-Market,135856656.0,Mid-Market (<$250M),1914,France,FRA,EMEA,2023-02-04
+206,ACC-1206,Vertex Health,Energy & Utilities,Mid-Market,243119452.0,Mid-Market (<$250M),980,United Kingdom,GBR,EMEA,2023-03-10
+207,ACC-1207,Quantum Financial Group,Energy & Utilities,Mid-Market,164721258.0,Mid-Market (<$250M),1724,Germany,DEU,EMEA,2023-09-03
+208,ACC-1208,Crestview Solutions,Financial Services,Enterprise,344073259.0,Enterprise Tier 2 ($250M-$1B),8480,Canada,CAN,North America,2023-04-13
+209,ACC-1209,Quantum Financial Group,Manufacturing & Supply Chain,Mid-Market,185768692.0,Mid-Market (<$250M),1269,Chile,CHL,LATAM,2023-05-10
+210,ACC-1210,Quantum Solutions,Retail & eCommerce,Mid-Market,52832296.0,Mid-Market (<$250M),1642,France,FRA,EMEA,2023-06-19
+211,ACC-1211,Aegis Technologies,Manufacturing & Supply Chain,Mid-Market,143789165.0,Mid-Market (<$250M),994,India,IND,APAC,2023-04-06
+212,ACC-1212,Titan Retail Network,Retail & eCommerce,Mid-Market,235174406.0,Mid-Market (<$250M),1169,Switzerland,CHE,EMEA,2023-02-10
+213,ACC-1213,Horizon Cloud Systems,Technology & SaaS,Enterprise,470327338.0,Enterprise Tier 2 ($250M-$1B),2655,Brazil,BRA,LATAM,2023-06-17
+214,ACC-1214,Synergy Capital Partners,Healthcare & Life Sciences,Mid-Market,134367675.0,Mid-Market (<$250M),1215,Canada,CAN,North America,2023-01-22
+215,ACC-1215,Vertex Cloud Systems,Telecommunications,Mid-Market,55396939.0,Mid-Market (<$250M),453,Mexico,MEX,LATAM,2023-12-10
+216,ACC-1216,Solstice Financial Group,Financial Services,Enterprise,1190968976.0,Enterprise Tier 1 (>$1B),2285,Germany,DEU,EMEA,2023-03-06
+217,ACC-1217,Hyperion Health,Retail & eCommerce,Strategic,3936297208.0,Enterprise Tier 1 (>$1B),89310,Japan,JPN,APAC,2023-03-20
+218,ACC-1218,Orion Financial Group,Technology & SaaS,Enterprise,1038019014.0,Enterprise Tier 1 (>$1B),5260,United States,USA,North America,2023-06-10
+219,ACC-1219,Aegis Health,Telecommunications,Enterprise,1361849504.0,Enterprise Tier 1 (>$1B),5170,Brazil,BRA,LATAM,2023-10-15
+220,ACC-1220,Nexus Capital Partners,Healthcare & Life Sciences,Mid-Market,116658958.0,Mid-Market (<$250M),1721,India,IND,APAC,2023-09-09

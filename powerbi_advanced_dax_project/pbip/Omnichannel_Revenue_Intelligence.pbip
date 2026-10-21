@@ -1,0 +1,13 @@
+{
+  "version": "1.0",
+  "artifacts": [
+    {
+      "report": {
+        "path": "Omnichannel_Revenue_Intelligence.Report"
+      }
+    }
+  ],
+  "settings": {
+    "enableAutoAuth": true
+  }
+}

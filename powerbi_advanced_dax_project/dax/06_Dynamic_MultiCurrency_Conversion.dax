@@ -1,0 +1,161 @@
+// ===============================================================================
+// ADVANCED DAX LIBRARY: 06_Dynamic_MultiCurrency_Conversion.dax
+// Multi-Currency Dynamic Consolidation & Foreign Exchange (FX) Variance Decomposition
+// Table: '_Measures_Currency'
+// Disconnected Slicer Table: 'Param_ReportingCurrency'
+// Author: Alex Rivera | DP-600 & PL-300 Certified Analytics Engineer
+// ===============================================================================
+
+// -------------------------------------------------------------------------------
+// 1. Currency Slicer Harvesting & Exchange Rate Lookups
+// -------------------------------------------------------------------------------
+
+/// <summary>
+/// Currently selected reporting currency code from the disconnected slicer.
+/// Defaults to "USD" if nothing is explicitly selected.
+/// </summary>
+Selected Reporting Currency Code = 
+SELECTEDVALUE ( 
+    'Param_ReportingCurrency'[CurrencyCode], 
+    "USD" 
+)
+
+
+/// <summary>
+/// Prefix currency symbol corresponding to the selected reporting currency ($, €, £, ¥, etc.).
+/// </summary>
+Selected Reporting Currency Symbol = 
+SELECTEDVALUE ( 
+    'Param_ReportingCurrency'[CurrencySymbol], 
+    "$" 
+)
+
+
+// -------------------------------------------------------------------------------
+// 2. Dynamic Conversion DAX Measures
+// -------------------------------------------------------------------------------
+
+/// <summary>
+/// Dynamic Converted Net Revenue:
+/// Dynamically converts canonical USD net sales into the user's selected reporting currency.
+/// If reporting currency is USD -> returns [Net Revenue] directly (blazing fast VertiPaq sum).
+/// If reporting currency is non-USD -> looks up the daily FX rate (LocalPerUSD) and multiplies.
+/// Uses SUMX with context transition on Dim_Date to maintain accurate daily conversion.
+/// </summary>
+Converted Net Revenue = 
+VAR _TargetCurrency = [Selected Reporting Currency Code]
+RETURN
+    IF ( 
+        _TargetCurrency = "USD", 
+        [Net Revenue], 
+        SUMX ( 
+            VALUES ( 'Dim_Date'[Date] ), 
+            VAR _CurrentDate = 'Dim_Date'[Date]
+            VAR _ExchangeRate = 
+                CALCULATE ( 
+                    MAX ( 'Dim_ExchangeRate'[LocalPerUSD] ), 
+                    'Dim_ExchangeRate'[Date] = _CurrentDate, 
+                    'Dim_ExchangeRate'[CurrencyCode] = _TargetCurrency 
+                )
+            VAR _DailyUSDRevenue = [Net Revenue]
+            RETURN
+                _DailyUSDRevenue * COALESCE ( _ExchangeRate, 1.0 ) 
+        ) 
+    )
+
+
+/// <summary>
+/// Dynamic Converted Gross Margin in selected reporting currency.
+/// </summary>
+Converted Gross Margin = 
+VAR _TargetCurrency = [Selected Reporting Currency Code]
+RETURN
+    IF ( 
+        _TargetCurrency = "USD", 
+        [Gross Margin], 
+        SUMX ( 
+            VALUES ( 'Dim_Date'[Date] ), 
+            VAR _CurrentDate = 'Dim_Date'[Date]
+            VAR _ExchangeRate = 
+                CALCULATE ( 
+                    MAX ( 'Dim_ExchangeRate'[LocalPerUSD] ), 
+                    'Dim_ExchangeRate'[Date] = _CurrentDate, 
+                    'Dim_ExchangeRate'[CurrencyCode] = _TargetCurrency 
+                )
+            VAR _DailyUSDMargin = [Gross Margin]
+            RETURN
+                _DailyUSDMargin * COALESCE ( _ExchangeRate, 1.0 ) 
+        ) 
+    )
+
+
+/// <summary>
+/// Dynamic Converted Net Revenue Prior Year (PY) in selected reporting currency.
+/// </summary>
+Converted Net Revenue PY = 
+CALCULATE ( 
+    [Converted Net Revenue], 
+    SAMEPERIODLASTYEAR ( 'Dim_Date'[Date] ) 
+)
+
+
+/// <summary>
+/// Converted Net Revenue YoY Growth in selected reporting currency.
+/// </summary>
+Converted Net Revenue YoY Growth = 
+VAR _Current = [Converted Net Revenue]
+VAR _Prior = [Converted Net Revenue PY]
+RETURN
+    IF ( 
+        NOT ISBLANK ( _Current ) && NOT ISBLANK ( _Prior ), 
+        _Current - _Prior, 
+        BLANK () 
+    )
+
+
+// -------------------------------------------------------------------------------
+// 3. FX Impact Decomposition (Constant Currency vs FX Fluctuations)
+// -------------------------------------------------------------------------------
+
+/// <summary>
+/// Constant Currency Revenue (PY FX Rate):
+/// Evaluates Current Year volume at Prior Year's exchange rates.
+/// Isolates organic operational growth from currency volatility.
+/// </summary>
+Constant Currency Net Revenue = 
+VAR _TargetCurrency = [Selected Reporting Currency Code]
+RETURN
+    IF ( 
+        _TargetCurrency = "USD", 
+        [Net Revenue], 
+        SUMX ( 
+            VALUES ( 'Dim_Date'[Date] ), 
+            VAR _CurrentDate = 'Dim_Date'[Date]
+            VAR _PriorYearDate = EDATE ( _CurrentDate, -12 )
+            VAR _PYExchangeRate = 
+                CALCULATE ( 
+                    MAX ( 'Dim_ExchangeRate'[LocalPerUSD] ), 
+                    'Dim_ExchangeRate'[Date] = _PriorYearDate, 
+                    'Dim_ExchangeRate'[CurrencyCode] = _TargetCurrency 
+                )
+            VAR _DailyUSDRevenue = [Net Revenue]
+            RETURN
+                _DailyUSDRevenue * COALESCE ( _PYExchangeRate, 1.0 ) 
+        ) 
+    )
+
+
+/// <summary>
+/// Foreign Exchange (FX) Impact Variance:
+/// Quantifies how much revenue gained or lost purely due to currency fluctuations.
+/// Formula: Actual Converted Revenue - Constant Currency Revenue
+/// </summary>
+FX Translation Impact $ = 
+[Converted Net Revenue] - [Constant Currency Net Revenue]
+
+
+/// <summary>
+/// Organic Revenue Growth (excluding FX movements).
+/// </summary>
+Organic Volume Growth $ = 
+[Constant Currency Net Revenue] - [Converted Net Revenue PY]

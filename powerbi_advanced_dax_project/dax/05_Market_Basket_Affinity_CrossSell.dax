@@ -1,0 +1,158 @@
+// ===============================================================================
+// ADVANCED DAX LIBRARY: 05_Market_Basket_Affinity_CrossSell.dax
+// Market Basket Affinity, Joint Co-Occurrence & Cross-Sell Lift Analysis
+// Table: '_Measures_Basket_Affinity'
+// Requires Disconnected Dimension: 'Dim_Product_Focus' (duplicate of Dim_Product)
+// Author: Alex Rivera | DP-600 & PL-300 Certified Analytics Engineer
+// ===============================================================================
+
+// -------------------------------------------------------------------------------
+// 1. Focus Product & Basket Co-Occurrence Measures
+// -------------------------------------------------------------------------------
+
+/// <summary>
+/// Selected Focus / Base Product Name from the disconnected slicer.
+/// Defaults to a friendly prompt if no product is selected.
+/// </summary>
+Selected Focus Product Name = 
+SELECTEDVALUE ( 
+    'Dim_Product_Focus'[ProductName], 
+    "Select a Focus Product" 
+)
+
+
+/// <summary>
+/// Total Orders containing the Focus Product selected in the disconnected slicer.
+/// Uses CALCULATETABLE and TREATAS to project the focus product selection onto Fact_Sales.
+/// </summary>
+Orders with Focus Product = 
+VAR _SelectedFocusID = SELECTEDVALUE ( 'Dim_Product_Focus'[ProductID] )
+RETURN
+    IF ( 
+        ISBLANK ( _SelectedFocusID ), 
+        BLANK (), 
+        CALCULATE ( 
+            DISTINCTCOUNT ( 'Fact_Sales'[SalesOrderNumber] ), 
+            TREATAS ( { _SelectedFocusID }, 'Fact_Sales'[ProductID] ), 
+            ALL ( 'Dim_Product' ) 
+        ) 
+    )
+
+
+/// <summary>
+/// Total Orders containing the Comparison Product (the product listed on the visual row).
+/// </summary>
+Orders with Comparison Product = 
+DISTINCTCOUNTNOBLANK ( 'Fact_Sales'[SalesOrderNumber] )
+
+
+/// <summary>
+/// Joint Co-Occurrence Count:
+/// Count of distinct orders that contained BOTH the Focus Product AND the Comparison Product!
+/// Evaluates using INTERSECT across order number tables.
+/// </summary>
+Joint Orders Both Products = 
+VAR _SelectedFocusID = SELECTEDVALUE ( 'Dim_Product_Focus'[ProductID] )
+VAR _CurrentProductID = SELECTEDVALUE ( 'Dim_Product'[ProductID] )
+VAR _OrdersWithFocusProduct = 
+    CALCULATETABLE ( 
+        VALUES ( 'Fact_Sales'[SalesOrderNumber] ), 
+        TREATAS ( { _SelectedFocusID }, 'Fact_Sales'[ProductID] ), 
+        ALL ( 'Dim_Product' ) 
+    )
+VAR _OrdersWithComparisonProduct = 
+    CALCULATETABLE ( 
+        VALUES ( 'Fact_Sales'[SalesOrderNumber] ) 
+    )
+VAR _SharedOrders = 
+    INTERSECT ( _OrdersWithFocusProduct, _OrdersWithComparisonProduct )
+RETURN
+    IF ( 
+        ISBLANK ( _SelectedFocusID ) || _CurrentProductID = _SelectedFocusID, 
+        BLANK (), 
+        COUNTROWS ( _SharedOrders ) 
+    )
+
+
+// -------------------------------------------------------------------------------
+// 2. Data Mining Association Metrics: Support, Confidence & Lift
+// -------------------------------------------------------------------------------
+
+/// <summary>
+/// Total Orders across the entire dataset (constant universe denominator).
+/// </summary>
+Total Universe Orders = 
+CALCULATE ( 
+    [Total Orders], 
+    ALL ( 'Fact_Sales' ) 
+)
+
+
+/// <summary>
+/// Basket Support %:
+/// Percentage of all transactions that contain both products jointly.
+/// Formula: Orders(A & B) / Total Universe Orders
+/// </summary>
+Basket Support % = 
+VAR _JointOrders = [Joint Orders Both Products]
+VAR _TotalOrders = [Total Universe Orders]
+RETURN
+    DIVIDE ( 
+        _JointOrders, 
+        _TotalOrders, 
+        BLANK () 
+    )
+
+
+/// <summary>
+/// Basket Confidence %:
+/// Probability that a customer buys the Comparison Product GIVEN they already bought the Focus Product.
+/// Formula: Orders(A & B) / Orders(A)
+/// High confidence indicates a direct cross-sell attachment opportunity.
+/// </summary>
+Basket Confidence % = 
+VAR _JointOrders = [Joint Orders Both Products]
+VAR _FocusOrders = [Orders with Focus Product]
+RETURN
+    DIVIDE ( 
+        _JointOrders, 
+        _FocusOrders, 
+        BLANK () 
+    )
+
+
+/// <summary>
+/// Basket Lift Ratio:
+/// Measures the strength of an association rule over unconditional co-occurrence by chance.
+/// Formula: Confidence(A -> B) / Support(B)
+/// - Lift > 1.0: Positive affinity (products are bought together significantly more often than random chance).
+/// - Lift = 1.0: Independent (no statistical affinity).
+/// - Lift < 1.0: Negative association (substitutes / cannibalizing items).
+/// </summary>
+Basket Lift Ratio = 
+VAR _Confidence = [Basket Confidence %]
+VAR _ComparisonOrders = [Orders with Comparison Product]
+VAR _TotalOrders = [Total Universe Orders]
+VAR _ComparisonSupport = DIVIDE ( _ComparisonOrders, _TotalOrders, BLANK () )
+RETURN
+    DIVIDE ( 
+        _Confidence, 
+        _ComparisonSupport, 
+        BLANK () 
+    )
+
+
+/// <summary>
+/// Qualitative Affinity Badge for Executive Tables.
+/// </summary>
+Basket Affinity Category = 
+VAR _Lift = [Basket Lift Ratio]
+RETURN
+    SWITCH ( 
+        TRUE (), 
+        ISBLANK ( _Lift ), BLANK (), 
+        _Lift >= 2.5, "Strong Cross-Sell Bundle 🔥", 
+        _Lift >= 1.5, "Moderate Association 🟢", 
+        _Lift >= 1.0, "Neutral Baseline ⚪", 
+        "Low Affinity / Substitute 🔴" 
+    )

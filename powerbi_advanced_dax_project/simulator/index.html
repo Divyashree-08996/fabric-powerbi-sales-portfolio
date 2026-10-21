@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Power BI Advanced DAX Project — Omnichannel Revenue Intelligence</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Segoe+UI:wght@400;600;700;800&family=Cascadia+Code:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Chart.js CDN for sub-second reactive visual rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+</head>
+<body>
+
+  <!-- Power BI Service / Desktop Header Shell -->
+  <header class="pbi-header">
+    <div class="header-brand">
+      <div class="pbi-logo">📊</div>
+      <div class="header-title">Power BI Enterprise Semantic Model — Omnichannel Revenue Intelligence & Advanced DAX</div>
+      <div class="header-badges">
+        <span class="badge badge-yellow">PBIP Native</span>
+        <span class="badge badge-blue">Direct Lake & In-Memory</span>
+        <span class="badge badge-green">35,502 Fact Rows</span>
+      </div>
+    </div>
+    <div class="header-actions">
+      <a href="../dax/" class="btn-header" title="Inspect DAX Files">📁 DAX Library</a>
+      <a href="../data/" class="btn-header" title="Inspect CSV Data">📂 Data CSVs</a>
+      <a href="../README.md" class="btn-header" title="Documentation Runbook">📖 Blueprint Docs</a>
+    </div>
+  </header>
+
+  <!-- Sub-Ribbon / Toolbar -->
+  <div class="pbi-toolbar">
+    <div class="toolbar-tabs">
+      <button class="tab-btn active">Home</button>
+      <button class="tab-btn">Modeling</button>
+      <button class="tab-btn">DAX Studio</button>
+      <button class="tab-btn">Performance Analyzer</button>
+    </div>
+    <div class="toolbar-stats">
+      <div class="stat-item">Compatibility: <strong>1567 (V3)</strong></div>
+      <div class="stat-item">Engine: <strong>VertiPaq In-Memory</strong></div>
+      <div class="stat-item">Calculation Groups: <strong>Enabled</strong></div>
+    </div>
+  </div>
+
+  <!-- Slicer Control Strip -->
+  <div class="slicer-strip" style="margin: 0; border-radius: 0; border-left: none; border-right: none;">
+    <div class="slicer-group">
+      <span class="slicer-label">📅 Calendar Year:</span>
+      <select id="slicer-year" class="slicer-select">
+        <option value="all">All Available Years (2023 - 2025)</option>
+        <option value="2025" selected>FY 2025 (Current Period)</option>
+        <option value="2024">FY 2024 (Prior Period)</option>
+        <option value="2023">FY 2023 (Baseline)</option>
+      </select>
+    </div>
+
+    <div class="slicer-group">
+      <span class="slicer-label">🌍 Sales Territory:</span>
+      <select id="slicer-region" class="slicer-select">
+        <option value="all" selected>Global All Territories</option>
+        <option value="NA">North America (NA)</option>
+        <option value="EMEA">Europe, Middle East, Africa (EMEA)</option>
+        <option value="APAC">Asia Pacific (APAC)</option>
+      </select>
+    </div>
+
+    <div class="slicer-group">
+      <span class="slicer-label">💱 Reporting Currency (Disconnected):</span>
+      <select id="slicer-currency" class="slicer-select">
+        <option value="USD" selected>USD ($) — Base Canonical</option>
+        <option value="EUR">EUR (€) — Rate 0.92</option>
+        <option value="GBP">GBP (£) — Rate 0.79</option>
+        <option value="JPY">JPY (¥) — Rate 152.0</option>
+        <option value="CAD">CAD (C$) — Rate 1.36</option>
+      </select>
+    </div>
+
+    <div class="slicer-group">
+      <span class="slicer-label">🎯 Top N Slicer:</span>
+      <select id="slicer-topn" class="slicer-select">
+        <option value="5">Top 5 Accounts</option>
+        <option value="10" selected>Top 10 Accounts</option>
+        <option value="15">Top 15 Accounts</option>
+        <option value="20">Top 20 Accounts</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Main Body Workspace -->
+  <div class="pbi-workspace">
+
+    <!-- Left Navigation Pane -->
+    <nav class="pbi-nav-pane">
+      <div class="nav-pane-header">Report Canvas Pages</div>
+      <ul class="nav-pages-list">
+        <li class="nav-page-item active" data-page="executive">
+          <span class="page-icon">📊</span>
+          <span>1. Executive Overview & Time Intel</span>
+        </li>
+        <li class="nav-page-item" data-page="pareto">
+          <span class="page-icon">🎯</span>
+          <span>2. Pareto 80/20 Concentration</span>
+        </li>
+        <li class="nav-page-item" data-page="rfm">
+          <span class="page-icon">👥</span>
+          <span>3. Customer RFM & Churn Cohorts</span>
+        </li>
+        <li class="nav-page-item" data-page="whatif">
+          <span class="page-icon">💱</span>
+          <span>4. Multi-Currency & What-If</span>
+        </li>
+        <li class="nav-page-item" data-page="basket">
+          <span class="page-icon">🛒</span>
+          <span>5. Market Basket Affinity</span>
+        </li>
+        <li class="nav-page-item" data-page="schema">
+          <span class="page-icon">🧠</span>
+          <span>6. Star Schema Model Graph</span>
+        </li>
+        <li class="nav-page-item" data-page="daxstudio">
+          <span class="page-icon">🔬</span>
+          <span>7. Advanced DAX Code Studio</span>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Canvas Container -->
+    <main class="pbi-canvas-container">
+
+      <!-- =================================================================== -->
+      <!-- PAGE 1: EXECUTIVE REVENUE & TIME INTELLIGENCE -->
+      <!-- =================================================================== -->
+      <section id="page-executive" class="report-page-view active">
+        <!-- Top KPI Grid -->
+        <div class="kpi-grid">
+          <div class="kpi-card blue">
+            <div class="kpi-header">Net Revenue (DAX)</div>
+            <div class="kpi-value" id="kpi-net-rev">$26.8M</div>
+            <div class="kpi-subtext">
+              <span class="trend-pill trend-up" id="kpi-yoy-pct">+21.3%</span>
+              <span>vs Prior Year (PY)</span>
+            </div>
+          </div>
+
+          <div class="kpi-card green">
+            <div class="kpi-header">Gross Margin</div>
+            <div class="kpi-value" id="kpi-gross-margin">$12.9M</div>
+            <div class="kpi-subtext">
+              <span class="trend-pill trend-up" id="kpi-margin-pct">48.1%</span>
+              <span>Margin Rate</span>
+            </div>
+          </div>
+
+          <div class="kpi-card purple">
+            <div class="kpi-header">Total Orders (Distinct)</div>
+            <div class="kpi-value" id="kpi-orders">12,980</div>
+            <div class="kpi-subtext">
+              <span class="trend-pill trend-up">+19.7%</span>
+              <span>Transaction Growth</span>
+            </div>
+          </div>
+
+          <div class="kpi-card orange">
+            <div class="kpi-header">Average Order Value (AOV)</div>
+            <div class="kpi-value" id="kpi-aov">$2,064</div>
+            <div class="kpi-subtext">
+              <span class="trend-pill trend-up">+$28.4</span>
+              <span>Basket Expansion</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visuals Row -->
+        <div class="visual-row">
+          <div class="visual-card visual-col-8">
+            <div class="visual-header">
+              <div class="visual-title">
+                <span>Monthly Revenue Trajectory & 3-Month Moving Average</span>
+                <span class="dax-badge-pill" title="Inspect DAX">WINDOW(-2, 0)</span>
+              </div>
+              <span style="font-size:11px;color:#605e5c;">Dual Axis • Modern DAX Windowing</span>
+            </div>
+            <div class="visual-body">
+              <canvas id="chart-trend"></canvas>
+            </div>
+          </div>
+
+          <div class="visual-card visual-col-4">
+            <div class="visual-header">
+              <div class="visual-title">
+                <span>Territory Attainment & Hierarchy</span>
+                <span class="dax-badge-pill">PATHCONTAINS RLS</span>
+              </div>
+              <span style="font-size:11px;color:#605e5c;">Live Target Tracking</span>
+            </div>
+            <div class="visual-body" style="overflow-y:auto;max-height:280px;">
+              <table class="pbi-table">
+                <thead>
+                  <tr>
+                    <th>Region & Director</th>
+                    <th class="num">Revenue</th>
+                    <th class="num">Margin</th>
+                    <th class="num">Margin %</th>
+                    <th class="num">Share</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="table-region-body">
+                  <!-- Injected via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- PAGE 2: PARETO 80/20 CONCENTRATION -->
+      <!-- =================================================================== -->
+      <section id="page-pareto" class="report-page-view">
+        <div class="kpi-grid">
+          <div class="kpi-card green">
+            <div class="kpi-header">Top N Revenue Share %</div>
+            <div class="kpi-value" id="kpi-topn-share">68.4%</div>
+            <div class="kpi-subtext">Captured by Selected Top N Accounts</div>
+          </div>
+          <div class="kpi-card blue">
+            <div class="kpi-header">Tier A Core Accounts</div>
+            <div class="kpi-value">18 Accounts</div>
+            <div class="kpi-subtext">Deliver first 80% of Cumulative Gross Margin</div>
+          </div>
+          <div class="kpi-card orange">
+            <div class="kpi-header">Pareto Formula Engine Efficiency</div>
+            <div class="kpi-value">12 ms</div>
+            <div class="kpi-subtext">Storage Engine Vectorized Execution</div>
+          </div>
+        </div>
+
+        <div class="visual-row">
+          <div class="visual-card visual-col-7">
+            <div class="visual-header">
+              <div class="visual-title">
+                <span>Pareto 80/20 Cumulative Distribution Curve</span>
+                <span class="dax-badge-pill">SUMX(FILTER(ALLSELECTED...))</span>
+              </div>
+              <span style="font-size:11px;color:#605e5c;">Revenue vs Cumulative %</span>
+            </div>
+            <div class="visual-body">
+              <canvas id="chart-pareto"></canvas>
+            </div>
+          </div>
+
+          <div class="visual-card visual-col-5">
+            <div class="visual-header">
+              <div class="visual-title">
+                <span>Ranked Accounts & Dynamic Classification</span>
+                <span class="dax-badge-pill">RANKX Dense</span>
+              </div>
+              <span style="font-size:11px;color:#605e5c;">Dynamic Slicer Bound</span>
+            </div>
+            <div class="visual-body" style="overflow-y:auto;max-height:300px;">
+              <table class="pbi-table">
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>Account Name</th>
+                    <th class="num">Revenue</th>
+                    <th class="num">Cum. %</th>
+                    <th>Pareto Tier</th>
+                  </tr>
+                </thead>
+                <tbody id="table-pareto-body">
+                  <!-- Injected via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- PAGE 3: CUSTOMER RFM & RETENTION COHORTS -->
+      <!-- =================================================================== -->
+      <section id="page-rfm" class="report-page-view">
+        <div class="kpi-grid">
+          <div class="kpi-card green">
+            <div class="kpi-header">Customer Retention Rate %</div>
+            <div class="kpi-value">94.4%</div>
+            <div class="kpi-subtext"><span class="trend-pill trend-up">+1.8%</span> Benchmark: Enterprise SaaS</div>
+          </div>
+          <div class="kpi-card blue">
+            <div class="kpi-header">New Accounts Acquired (FY)</div>
+            <div class="kpi-value">38 Accounts</div>
+            <div class="kpi-subtext">First Purchase in Active Date Context</div>
+          </div>
+          <div class="kpi-card orange">
+            <div class="kpi-header">At-Risk Churn Exposure</div>
+            <div class="kpi-value">$3.10M</div>
+            <div class="kpi-subtext">28 Accounts inactive > 90 days</div>
+          </div>
+        </div>
+
+        <div class="visual-row">
+          <div class="visual-card visual-col-12">
+            <div class="visual-header">
+              <div class="visual-title">
+                <span>Dynamic RFM Behavioral Quintile Matrix (Recency, Frequency, Monetary)</span>
+                <span class="dax-badge-pill">SWITCH & ALLEXCEPT DAX</span>
+              </div>
+              <span style="font-size:11px;color:#605e5c;">Automated Prescriptive Action Strategy</span>
+            </div>
+            <div class="visual-body">
+              <table class="pbi-table">
+                <thead>
+                  <tr>
+                    <th>Behavioral RFM Segment</th>
+                    <th class="num">Accounts Count</th>
+                    <th class="num">Lifetime Revenue (LTV)</th>
+                    <th class="num">RFM Score Vector</th>
+                    <th>Prescriptive Strategic Playbook</th>
+                  </tr>
+                </thead>
+                <tbody id="table-rfm-body">
+                  <!-- Injected via JS -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- PAGE 4: MULTI-CURRENCY & WHAT-IF SENSITIVITY -->
+      <!-- =================================================================== -->
+      <section id="page-whatif" class="report-page-view">
+        <!-- Interactive Sliders Container -->
+        <div class="slicer-strip" style="background:#ffffff;border:1px solid #c8c6c4;margin-bottom:8px;">
+          <div class="slicer-slider-wrap">
+            <span class="slicer-label">📈 Price Adjustment Scenario:</span>
+            <input type="range" id="slider-price" class="slicer-slider" min="-20" max="30" step="5" value="0">
+            <span id="val-price" class="slider-val">+0%</span>
+          </div>
+
+          <div class="slicer-slider-wrap" style="margin-left: 24px;">
+            <span class="slicer-label">📉 Supplier Cost Inflation:</span>
+            <input type="range" id="slider-cost" class="slicer-slider" min="-10" max="25" step="5" value="0">
+            <span id="val-cost" class="slider-val">+0%</span>
+          </div>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi-card blue">
+            <div class="kpi-header">Simulated Net Revenue</div>
+            <div class="kpi-value" id="wi-sim-rev">$26.8M</div>
+            <div class="kpi-subtext">Post-Price Elasticity Projection</div>
+          </div>
+          <div class="kpi-card green">
+            <div class="kpi-header">Simulated Gross Margin</div>
+            <div class="kpi-value" id="wi-sim-margin">$12.9M</div>
+            <div class="kpi-subtext"><span id="wi-sim-pct">48.1%</span> Projected Margin</div>
+          </div>
+          <div class="kpi-card purple">
+            <div class="kpi-header">Margin Variance ($)</div>
+            <div class="kpi-value" id="wi-sim-delta">+$0</div>
+            <div class="kpi-subtext">Net Bottom-Line Impact</div>
+          </div>
+          <div class="kpi-card orange">
+            <div class="kpi-header">Margin Rate Shift (bps)</div>
+            <div class="kpi-value" id="wi-sim-bps">0 bps</div>
+            <div class="kpi-subtext">100 bps = 1.0% Margin Expansion</div>
+          </div>
+        </div>
+
+        <div class="visual-row">
+          <div class="visual-card visual-col-7">
+            <div class="visual-header">
+              <div class="visual-title">
+                <span>Gross Margin Sensitivity & Financial Waterfall</span>
+                <span class="dax-badge-pill">What-If DAX Measures</span>
+              </div>
+              <span style="font-size:11px;color:#605e5c;">Live Scenario Recalculation</span>
+            </div>
+            <div class="visual-body">
+              <canvas id="chart-sensitivity"></canvas>
+            </div>
+          </div>
+
+          <div class="visual-card visual-col-5">
+            <div class="visual-header">
+              <div class="visual-title">
+                <span>Executive Scenario Narrative</span>
+                <span class="dax-badge-pill">Dynamic DAX String</span>
+              </div>
+            </div>
+            <div class="visual-body" style="padding:10px 0;">
+              <div id="wi-narrative" style="background:#f3f2f1;padding:16px;border-radius:6px;font-size:13px;line-height:1.7;color:#201f1e;border-left:4px solid var(--pbi-accent);">
+                Current Baseline Scenario (No adjustments applied).
+              </div>
+              <div style="margin-top:16px;font-size:12px;color:#605e5c;line-height:1.6;">
+                <strong>Enterprise Note:</strong> This What-If sensitivity model leverages disconnected parameters without relationships to fact tables. It executes dynamically in the DAX Formula Engine, enabling instant executive scenario evaluation without reloading data partitions.
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- PAGE 5: MARKET BASKET AFFINITY -->
+      <!-- =================================================================== -->
+      <section id="page-basket" class="report-page-view">
+        <div class="visual-card visual-col-12">
+          <div class="visual-header">
+            <div class="visual-title">
+              <span>Market Basket Co-Occurrence & Cross-Sell Association Rules</span>
+              <span class="dax-badge-pill">INTERSECT & TREATAS DAX</span>
+            </div>
+            <span style="font-size:11px;color:#605e5c;">Focus Base Product: Enterprise Cloud Suite ERP</span>
+          </div>
+          <div class="visual-body">
+            <table class="pbi-table">
+              <thead>
+                <tr>
+                  <th>Focus Base Product</th>
+                  <th>Attached Cross-Sell Product</th>
+                  <th class="num">Support %</th>
+                  <th class="num">Confidence %</th>
+                  <th class="num">Lift Ratio</th>
+                  <th>Bundle Affinity Status</th>
+                </tr>
+              </thead>
+              <tbody id="table-basket-body">
+                <!-- Injected via JS -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- PAGE 6: STAR SCHEMA RELATIONSHIP DIAGRAM -->
+      <!-- =================================================================== -->
+      <section id="page-schema" class="report-page-view">
+        <div class="visual-card visual-col-12" style="min-height:580px;">
+          <div class="visual-header">
+            <div class="visual-title">
+              <span>Kimball Dimensional Star Schema Model (1:* Single Directional Relationships)</span>
+              <span class="dax-badge-pill">Compatibility 1567</span>
+            </div>
+            <span style="font-size:11px;color:#605e5c;">Optimized for In-Memory VertiPaq Compression</span>
+          </div>
+          <div class="schema-canvas">
+            
+            <!-- Dim_Customer -->
+            <div class="schema-node dim" style="top:30px;left:40px;">
+              <div class="node-title">Dim_Customer</div>
+              <ul class="node-cols">
+                <li class="node-col-key">🔑 CustomerID (PK)</li>
+                <li>CustomerName</li>
+                <li>CustomerSegment</li>
+                <li>Country</li>
+                <li>Region</li>
+                <li>CreditRating</li>
+                <li>AccountManagerEmail</li>
+              </ul>
+            </div>
+
+            <!-- Dim_Product -->
+            <div class="schema-node dim" style="top:30px;left:300px;">
+              <div class="node-title">Dim_Product</div>
+              <ul class="node-cols">
+                <li class="node-col-key">🔑 ProductID (PK)</li>
+                <li>ProductName</li>
+                <li>Category</li>
+                <li>SubCategory</li>
+                <li>StandardCost</li>
+                <li>ListPrice</li>
+              </ul>
+            </div>
+
+            <!-- Dim_Date -->
+            <div class="schema-node dim" style="top:30px;left:560px;">
+              <div class="node-title">Dim_Date (Calendar)</div>
+              <ul class="node-cols">
+                <li class="node-col-key">🔑 Date (PK)</li>
+                <li>DateKey</li>
+                <li>Year / YearMonth</li>
+                <li>Quarter / MonthName</li>
+                <li>FiscalYear / FiscalQuarter</li>
+                <li>MonthOffset / DayOffset</li>
+              </ul>
+            </div>
+
+            <!-- Dim_Store_Region -->
+            <div class="schema-node dim" style="top:30px;left:820px;">
+              <div class="node-title">Dim_Store_Region</div>
+              <ul class="node-cols">
+                <li class="node-col-key">🔑 ChannelID (PK)</li>
+                <li>ChannelName</li>
+                <li>RegionCode / RegionName</li>
+                <li>RegionalVP</li>
+                <li>SalesDirector</li>
+                <li>HierarchyPath (RLS)</li>
+              </ul>
+            </div>
+
+            <!-- Central Fact_Sales -->
+            <div class="schema-node fact" style="top:250px;left:400px;width:280px;">
+              <div class="node-title">Fact_Sales (35,502 Rows)</div>
+              <ul class="node-cols">
+                <li>SalesLineID (Identity)</li>
+                <li>SalesOrderNumber</li>
+                <li class="node-col-key">🔗 CustomerID (FK to Dim_Customer)</li>
+                <li class="node-col-key">🔗 ProductID (FK to Dim_Product)</li>
+                <li class="node-col-key">🔗 OrderDate (FK to Dim_Date)</li>
+                <li class="node-col-key">🔗 ChannelID (FK to Dim_Store_Region)</li>
+                <li>Quantity</li>
+                <li>GrossSalesUSD / NetSalesUSD</li>
+                <li>DiscountAmountUSD / TotalCostUSD</li>
+                <li>MarginUSD</li>
+              </ul>
+            </div>
+
+            <!-- Fact_Budget -->
+            <div class="schema-node fact" style="top:250px;left:740px;">
+              <div class="node-title">Fact_Budget (Targets)</div>
+              <ul class="node-cols">
+                <li>BudgetID</li>
+                <li class="node-col-key">🔗 YearMonth (TREATAS)</li>
+                <li class="node-col-key">🔗 Category (TREATAS)</li>
+                <li class="node-col-key">🔗 RegionCode (TREATAS)</li>
+                <li>TargetRevenueUSD</li>
+                <li>TargetMarginUSD</li>
+              </ul>
+            </div>
+
+            <!-- Disconnected Parameters -->
+            <div class="schema-node param" style="top:250px;left:40px;">
+              <div class="node-title">Param_WhatIf_Price</div>
+              <ul class="node-cols">
+                <li>PriceAdjustmentPercent</li>
+                <li>PriceAdjustmentLabel</li>
+              </ul>
+            </div>
+
+            <div class="schema-node param" style="top:380px;left:40px;">
+              <div class="node-title">Param_ReportingCurrency</div>
+              <ul class="node-cols">
+                <li>CurrencyCode</li>
+                <li>CurrencySymbol</li>
+                <li>CurrencyName</li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- PAGE 7: DAX CODE STUDIO & ENGINE BENCHMARK -->
+      <!-- =================================================================== -->
+      <section id="page-daxstudio" class="report-page-view">
+        <div class="dax-studio-grid">
+          <!-- Left Measure Selector -->
+          <div class="dax-tree-pane">
+            <div class="dax-category-title">Time Intelligence & Windows</div>
+            <button class="dax-measure-btn active" data-key="window_offset">
+              <span>Net Revenue Prior Month (OFFSET)</span>
+              <span class="dax-badge-pill">SE</span>
+            </button>
+            <button class="dax-measure-btn" data-key="window_rolling3m">
+              <span>Net Revenue Rolling 3M (WINDOW)</span>
+              <span class="dax-badge-pill">SE</span>
+            </button>
+
+            <div class="dax-category-title">Pareto & Concentration</div>
+            <button class="dax-measure-btn" data-key="pareto_cumulative">
+              <span>Cumulative Revenue Pareto %</span>
+              <span class="dax-badge-pill">SE</span>
+            </button>
+
+            <div class="dax-category-title">Customer RFM & Churn</div>
+            <button class="dax-measure-btn" data-key="rfm_segment">
+              <span>Dynamic RFM Customer Segment</span>
+              <span class="dax-badge-pill">SE</span>
+            </button>
+
+            <div class="dax-category-title">Market Basket Affinity</div>
+            <button class="dax-measure-btn" data-key="basket_lift">
+              <span>Basket Lift Ratio (TREATAS)</span>
+              <span class="dax-badge-pill">FE/SE</span>
+            </button>
+
+            <div class="dax-category-title">Multi-Currency & What-If</div>
+            <button class="dax-measure-btn" data-key="dynamic_currency">
+              <span>Converted Net Revenue</span>
+              <span class="dax-badge-pill">SE</span>
+            </button>
+            <button class="dax-measure-btn" data-key="whatif_margin">
+              <span>Simulated Gross Margin Delta $</span>
+              <span class="dax-badge-pill">FE</span>
+            </button>
+
+            <div class="dax-category-title">Budget Allocation</div>
+            <button class="dax-measure-btn" data-key="treatas_budget">
+              <span>Target Revenue (Grain-Safe)</span>
+              <span class="dax-badge-pill">TREATAS</span>
+            </button>
+          </div>
+
+          <!-- Right DAX Code & Performance Inspector -->
+          <div class="dax-editor-pane">
+            <div class="dax-editor-header">
+              <div class="editor-title-wrap">
+                <span class="dax-fn-name" id="dax-active-name">Net Revenue Prior Month (OFFSET)</span>
+                <span class="badge badge-yellow" id="dax-active-cat">Time Intelligence & Window Functions</span>
+              </div>
+              <button class="btn-header" id="btn-copy-dax" style="background:#333;color:#fff;">📋 Copy DAX</button>
+            </div>
+
+            <div class="dax-code-body" id="dax-code-content">
+Net Revenue Prior Month (OFFSET) = 
+CALCULATE ( 
+    [Net Revenue], 
+    OFFSET ( 
+        -1, 
+        ALLSELECTED ( 'Dim_Date'[YearMonth], 'Dim_Date'[MonthShort] ), 
+        ORDERBY ( 'Dim_Date'[YearMonth], ASC ) 
+    ) 
+)
+            </div>
+
+            <div class="dax-meta-footer">
+              <div><strong>Business Logic:</strong> <span id="dax-logic-text">Evaluates the exact preceding period on any arbitrary visual axis without requiring contiguous day-level date keys.</span></div>
+              <div><strong>Engine Execution:</strong> <span id="dax-engine-text">Storage Engine (SE) Cache. Avoids FILTER(ALL()) table scans, reducing memory bandwidth by up to 85% compared to PARALLELPERIOD.</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,225 @@
+rfp_id,opportunity_id,assigned_se_id,rfp_title,request_date,due_date,submission_date,turnaround_days,questions_count,compliance_score_pct,rfp_status,se_effort_hours
+RFP-00001,OPP-2024-1002,SE-001,RFP Submission - Orion Financial Group - Zero-Trust ,2026-01-06,2026-01-25,2026-01-24,19,244,84.7,Won,43.1
+RFP-00002,OPP-2024-1005,SE-010,RFP Submission - Orion Enterprises - Fabric Unified ,2025-07-05,2025-07-18,2025-07-15,13,281,90.8,Won,62.4
+RFP-00003,OPP-2024-1011,SE-011,RFP Submission - Solstice Communications - Omnichann,2024-03-20,2024-03-30,2024-03-29,10,107,79.0,Won,24.6
+RFP-00004,OPP-2024-1012,SE-001,RFP Submission - Spectra Enterprises - FinOps Cloud ,2024-03-08,2024-03-23,2024-03-21,15,146,91.0,Won,18.3
+RFP-00005,OPP-2024-1014,SE-020,RFP Submission - Vertex Health - Industrial IoT & Ed,2025-04-29,2025-05-10,2025-05-08,11,284,79.1,Lost,54.9
+RFP-00006,OPP-2024-1015,SE-014,RFP Submission - Valence Capital Partners - Industri,2025-08-12,2025-09-03,2025-09-01,22,148,81.1,Lost,25.3
+RFP-00007,OPP-2024-1016,SE-020,RFP Submission - Valence Retail Network - Real-Time ,2024-03-04,2024-03-18,2024-03-16,14,171,92.5,Won,33.8
+RFP-00008,OPP-2024-1020,SE-019,RFP Submission - Synergy Energy Corp - Omnichannel C,2024-11-20,2024-12-08,2024-12-07,18,169,87.3,Lost,37.6
+RFP-00009,OPP-2024-1024,SE-010,RFP Submission - Apex Communications - Enterprise AP,2025-10-08,2025-10-26,2025-10-24,18,278,93.7,Lost,65.0
+RFP-00010,OPP-2024-1033,SE-017,RFP Submission - Novus Solutions - Zero-Trust Securi,2026-06-16,2026-06-27,2026-06-26,11,188,97.2,Lost,26.5
+RFP-00011,OPP-2024-1034,SE-005,RFP Submission - Nexus Energy Corp - FinOps Cloud Co,2024-10-05,2024-10-24,2024-10-24,19,281,87.0,Lost,63.5
+RFP-00012,OPP-2024-1036,SE-002,RFP Submission - Hyperion Energy Corp - Omnichannel ,2025-09-22,2025-10-11,2025-10-09,19,232,80.6,Lost,32.8
+RFP-00013,OPP-2024-1050,SE-016,RFP Submission - Spectra BioPharma - FinOps Cloud Co,2024-11-28,2024-12-09,2024-12-06,11,260,88.7,Won,58.1
+RFP-00014,OPP-2024-1051,SE-016,RFP Submission - Orion Enterprises - Omnichannel Cus,2024-05-09,2024-05-22,2024-05-20,13,180,83.0,Won,39.2
+RFP-00015,OPP-2024-1056,SE-010,RFP Submission - Beacon Technologies - Industrial Io,2025-10-17,2025-11-09,2025-11-08,23,259,94.4,Won,50.6
+RFP-00016,OPP-2024-1058,SE-017,RFP Submission - Echo Holdings - Enterprise API & Ap,2025-01-30,2025-02-06,2025-02-03,7,270,94.2,Won,34.8
+RFP-00017,OPP-2024-1059,SE-014,RFP Submission - Horizon Cloud Systems - Autonomous ,2025-12-20,2026-01-04,2026-01-01,15,240,98.6,Won,57.7
+RFP-00018,OPP-2024-1060,SE-020,RFP Submission - Nexus Technologies - Fabric Unified,2026-01-13,2026-01-22,2026-01-20,9,227,88.4,Won,30.5
+RFP-00019,OPP-2024-1061,SE-018,RFP Submission - Pinnacle Financial Group - FinOps C,2026-04-23,2026-05-17,2026-05-16,24,78,90.0,Lost,11.6
+RFP-00020,OPP-2024-1063,SE-017,RFP Submission - Quantum Financial Group - Omnichann,2026-04-08,2026-04-21,2026-04-20,13,284,87.8,Won,64.7
+RFP-00021,OPP-2024-1064,SE-004,RFP Submission - Horizon Capital Partners - Autonomo,2026-04-13,2026-05-05,2026-05-04,22,185,98.0,Won,40.0
+RFP-00022,OPP-2024-1067,SE-001,RFP Submission - Crestview Capital Partners - Indust,2024-07-19,2024-08-06,2024-08-06,18,314,81.6,Won,59.9
+RFP-00023,OPP-2024-1073,SE-012,RFP Submission - Orion Communications - Zero-Trust S,2026-04-28,2026-05-08,2026-05-06,10,222,82.2,Won,43.8
+RFP-00024,OPP-2024-1075,SE-013,RFP Submission - Horizon Communications - Enterprise,2025-03-23,2025-03-31,2025-03-30,8,165,82.8,Disqualified,37.2
+RFP-00025,OPP-2024-1080,SE-020,RFP Submission - Echo Technologies - Autonomous AI C,2025-09-23,2025-10-11,2025-10-08,18,60,82.6,Won,8.7
+RFP-00026,OPP-2024-1087,SE-009,RFP Submission - Titan Communications - Autonomous A,2025-12-28,2026-01-18,2026-01-16,21,51,82.0,Won,11.4
+RFP-00027,OPP-2024-1091,SE-017,RFP Submission - Solstice Energy Corp - FinOps Cloud,2024-08-01,2024-08-25,2024-08-22,24,297,91.9,Disqualified,55.6
+RFP-00028,OPP-2024-1092,SE-012,RFP Submission - Titan Retail Network - Autonomous A,2025-02-12,2025-03-01,2025-03-01,17,218,90.4,Won,28.9
+RFP-00029,OPP-2024-1093,SE-017,RFP Submission - Quantum Financial Group - Omnichann,2025-08-08,2025-08-29,2025-08-28,21,172,86.6,Lost,34.5
+RFP-00030,OPP-2024-1094,SE-006,RFP Submission - Synergy Cloud Systems - Fabric Unif,2024-02-20,2024-03-11,2024-03-09,20,98,89.7,Disqualified,13.4
+RFP-00031,OPP-2024-1095,SE-001,RFP Submission - Vanguard Financial Group - Real-Tim,2025-06-06,2025-06-20,2025-06-18,14,210,97.4,Lost,43.8
+RFP-00032,OPP-2024-1097,SE-004,RFP Submission - Spectra BioPharma - Industrial IoT ,2024-09-21,2024-10-10,2024-10-08,19,144,97.7,Won,28.6
+RFP-00033,OPP-2024-1100,SE-006,RFP Submission - Synergy Health - Fabric Unified Lak,2026-05-23,2026-06-11,2026-06-08,19,176,98.6,In Review,31.2
+RFP-00034,OPP-2024-1114,SE-014,RFP Submission - Pinnacle Holdings - Omnichannel Cus,2026-07-22,2026-08-02,2026-07-30,11,193,98.2,Lost,35.8
+RFP-00035,OPP-2024-1118,SE-011,RFP Submission - Pinnacle Capital Partners - Zero-Tr,2026-07-19,2026-08-10,2026-08-10,22,82,98.5,Won,12.8
+RFP-00036,OPP-2024-1119,SE-020,RFP Submission - Orion Technologies - Omnichannel Cu,2025-03-12,2025-04-01,2025-03-30,20,227,92.5,Disqualified,44.9
+RFP-00037,OPP-2024-1121,SE-017,RFP Submission - Orion Communications - Real-Time Ev,2024-05-26,2024-06-16,2024-06-16,21,183,87.6,Lost,28.9
+RFP-00038,OPP-2024-1123,SE-013,RFP Submission - Horizon Global Logistics - Autonomo,2026-06-19,2026-07-12,2026-07-09,23,236,86.7,In Review,46.1
+RFP-00039,OPP-2024-1127,SE-003,RFP Submission - Synergy Retail Network - Fabric Uni,2024-07-27,2024-08-10,2024-08-09,14,285,98.2,Disqualified,69.9
+RFP-00040,OPP-2024-1128,SE-012,RFP Submission - Vertex Financial Group - Fabric Uni,2025-02-06,2025-02-25,2025-02-22,19,139,99.0,Lost,19.5
+RFP-00041,OPP-2024-1129,SE-005,RFP Submission - Orion BioPharma - FinOps Cloud Cost,2024-07-05,2024-07-26,2024-07-24,21,103,86.1,Lost,14.3
+RFP-00042,OPP-2024-1131,SE-011,RFP Submission - Solstice Communications - Industria,2025-12-04,2025-12-11,2025-12-11,7,215,97.5,Won,48.5
+RFP-00043,OPP-2024-1132,SE-016,RFP Submission - Solstice Retail Network - Omnichann,2024-10-24,2024-11-01,2024-10-31,8,60,82.7,Lost,14.3
+RFP-00044,OPP-2024-1134,SE-010,RFP Submission - Valence BioPharma - Real-Time Event,2025-07-31,2025-08-19,2025-08-17,19,141,81.1,Won,26.4
+RFP-00045,OPP-2024-1145,SE-007,RFP Submission - Titan Energy Corp - Enterprise API ,2024-08-05,2024-08-12,2024-08-09,7,184,97.9,Won,24.5
+RFP-00046,OPP-2024-1146,SE-019,RFP Submission - Synergy Capital Partners - Industri,2024-04-19,2024-05-03,2024-04-30,14,61,99.1,Won,13.5
+RFP-00047,OPP-2024-1148,SE-015,RFP Submission - Starlight BioPharma - Industrial Io,2024-10-26,2024-11-11,2024-11-09,16,145,86.5,Won,25.7
+RFP-00048,OPP-2024-1152,SE-010,RFP Submission - Apex Communications - Zero-Trust Se,2026-06-14,2026-07-05,2026-07-02,21,140,96.6,Won,33.3
+RFP-00049,OPP-2024-1158,SE-007,RFP Submission - Novus Technologies - Fabric Unified,2025-04-09,2025-05-02,2025-04-29,23,264,81.0,Won,36.8
+RFP-00050,OPP-2024-1161,SE-019,RFP Submission - Nexus Health - Zero-Trust Security ,2025-11-14,2025-11-26,2025-11-23,12,304,86.0,Lost,45.7
+RFP-00051,OPP-2024-1162,SE-011,RFP Submission - Hyperion Health - FinOps Cloud Cost,2025-07-18,2025-08-10,2025-08-07,23,133,87.2,Won,28.2
+RFP-00052,OPP-2024-1164,SE-010,RFP Submission - Hyperion Global Logistics - FinOps ,2026-04-17,2026-04-29,2026-04-28,12,149,93.3,Lost,29.0
+RFP-00053,OPP-2024-1168,SE-020,RFP Submission - Hyperion Communications - Omnichann,2026-07-13,2026-07-20,2026-07-20,7,281,93.0,In Review,38.2
+RFP-00054,OPP-2024-1170,SE-013,RFP Submission - Orion Retail Network - Enterprise A,2026-08-01,2026-08-17,2026-08-15,16,306,83.9,Won,67.8
+RFP-00055,OPP-2024-1174,SE-009,RFP Submission - Hyperion Solutions - Enterprise API,2024-04-11,2024-05-02,2024-04-29,21,244,78.6,Won,39.3
+RFP-00056,OPP-2024-1181,SE-016,RFP Submission - Orion Financial Group - Fabric Unif,2025-09-08,2025-09-27,2025-09-24,19,275,94.1,Won,47.3
+RFP-00057,OPP-2024-1182,SE-012,RFP Submission - Echo Holdings - Industrial IoT & Ed,2025-07-01,2025-07-21,2025-07-18,20,250,96.3,Won,45.6
+RFP-00058,OPP-2024-1185,SE-020,RFP Submission - Solstice Energy Corp - Autonomous A,2024-10-10,2024-10-27,2024-10-26,17,268,84.9,Disqualified,62.8
+RFP-00059,OPP-2024-1186,SE-012,RFP Submission - Synergy Communications - Zero-Trust,2024-04-09,2024-04-17,2024-04-15,8,320,89.3,Won,60.4
+RFP-00060,OPP-2024-1191,SE-019,RFP Submission - Hyperion Communications - Industria,2024-05-31,2024-06-11,2024-06-10,11,47,87.4,Lost,9.8
+RFP-00061,OPP-2024-1198,SE-012,RFP Submission - Synergy Communications - Fabric Uni,2026-06-15,2026-07-05,2026-07-03,20,62,79.8,In Review,13.9
+RFP-00062,OPP-2024-1199,SE-013,RFP Submission - Nexus Health - Fabric Unified Lakeh,2024-09-24,2024-10-14,2024-10-13,20,64,83.6,Won,14.3
+RFP-00063,OPP-2024-1200,SE-008,RFP Submission - Spectra Holdings - Autonomous AI Co,2024-11-04,2024-11-12,2024-11-11,8,90,89.8,Won,13.0
+RFP-00064,OPP-2024-1203,SE-004,RFP Submission - Beacon Energy Corp - Real-Time Even,2025-03-08,2025-03-17,2025-03-17,9,102,95.1,Lost,19.0
+RFP-00065,OPP-2024-1205,SE-001,RFP Submission - Vanguard Financial Group - Real-Tim,2026-05-31,2026-06-17,2026-06-15,17,312,88.8,In Review,52.5
+RFP-00066,OPP-2024-1207,SE-013,RFP Submission - Beacon Energy Corp - Zero-Trust Sec,2025-07-20,2025-08-08,2025-08-08,19,220,80.0,Lost,31.9
+RFP-00067,OPP-2024-1209,SE-017,RFP Submission - Solstice Energy Corp - Zero-Trust S,2025-03-26,2025-04-12,2025-04-12,17,276,98.3,Won,64.7
+RFP-00068,OPP-2024-1210,SE-006,RFP Submission - Quantum Financial Group - Autonomou,2024-10-29,2024-11-19,2024-11-19,21,168,85.3,Won,41.3
+RFP-00069,OPP-2024-1223,SE-008,RFP Submission - Spectra Manufacturing - Industrial ,2026-04-14,2026-05-08,2026-05-07,24,212,98.1,Won,36.1
+RFP-00070,OPP-2024-1224,SE-006,RFP Submission - Horizon Cloud Systems - Fabric Unif,2026-03-10,2026-03-20,2026-03-17,10,111,84.0,Won,19.4
+RFP-00071,OPP-2024-1233,SE-020,RFP Submission - Beacon Energy Corp - Autonomous AI ,2026-08-24,2026-09-16,2026-09-14,23,104,88.5,Lost,20.5
+RFP-00072,OPP-2024-1238,SE-008,RFP Submission - Novus Technologies - Enterprise API,2024-08-17,2024-08-28,2024-08-25,11,84,91.1,Disqualified,10.7
+RFP-00073,OPP-2024-1247,SE-016,RFP Submission - Novus Financial Group - Autonomous ,2025-04-19,2025-04-29,2025-04-27,10,83,90.3,Won,16.8
+RFP-00074,OPP-2024-1250,SE-004,RFP Submission - Spectra Cloud Systems - Autonomous ,2024-08-10,2024-08-25,2024-08-22,15,138,81.6,Won,18.2
+RFP-00075,OPP-2024-1251,SE-020,RFP Submission - Crestview Capital Partners - Enterp,2025-06-20,2025-07-03,2025-07-02,13,153,98.9,Won,25.4
+RFP-00076,OPP-2024-1253,SE-020,RFP Submission - Aegis Communications - Industrial I,2024-05-28,2024-06-16,2024-06-15,19,210,83.5,Disqualified,39.9
+RFP-00077,OPP-2024-1254,SE-001,RFP Submission - Spectra Financial Group - Zero-Trus,2025-08-12,2025-09-03,2025-09-01,22,205,98.0,Won,40.5
+RFP-00078,OPP-2024-1259,SE-012,RFP Submission - Orion Communications - Industrial I,2026-07-06,2026-07-29,2026-07-27,23,142,94.1,In Review,23.4
+RFP-00079,OPP-2024-1264,SE-001,RFP Submission - Valence Health - Fabric Unified Lak,2026-03-11,2026-03-23,2026-03-23,12,283,79.0,Won,43.7
+RFP-00080,OPP-2024-1265,SE-002,RFP Submission - Vanguard Manufacturing - Fabric Uni,2026-07-08,2026-07-17,2026-07-17,9,51,88.2,Won,6.8
+RFP-00081,OPP-2024-1268,SE-019,RFP Submission - Aegis Communications - FinOps Cloud,2024-08-19,2024-08-30,2024-08-27,11,288,91.5,Won,42.8
+RFP-00082,OPP-2024-1270,SE-001,RFP Submission - Apex Financial Group - Real-Time Ev,2025-03-24,2025-04-12,2025-04-12,19,269,81.1,Won,44.8
+RFP-00083,OPP-2024-1273,SE-004,RFP Submission - Quantum Manufacturing - Fabric Unif,2025-08-27,2025-09-12,2025-09-09,16,94,82.2,Won,16.0
+RFP-00084,OPP-2024-1282,SE-013,RFP Submission - Solstice Energy Corp - FinOps Cloud,2025-12-28,2026-01-08,2026-01-08,11,222,79.7,Won,45.2
+RFP-00085,OPP-2024-1283,SE-010,RFP Submission - Aegis Manufacturing - Omnichannel C,2025-08-29,2025-09-12,2025-09-11,14,70,87.5,Disqualified,12.7
+RFP-00086,OPP-2024-1297,SE-015,RFP Submission - Titan Holdings - Fabric Unified Lak,2024-04-09,2024-04-19,2024-04-18,10,271,85.7,Lost,41.1
+RFP-00087,OPP-2024-1298,SE-013,RFP Submission - Horizon Communications - Omnichanne,2025-11-12,2025-11-21,2025-11-19,9,137,80.2,Lost,29.6
+RFP-00088,OPP-2024-1301,SE-001,RFP Submission - Horizon Global Logistics - Omnichan,2025-12-29,2026-01-15,2026-01-15,17,68,78.6,Won,10.6
+RFP-00089,OPP-2024-1302,SE-013,RFP Submission - Titan BioPharma - Real-Time Event S,2024-02-12,2024-02-25,2024-02-22,13,181,84.5,Lost,26.7
+RFP-00090,OPP-2024-1306,SE-015,RFP Submission - Horizon Enterprises - Autonomous AI,2026-01-16,2026-01-28,2026-01-28,12,73,88.1,Won,10.2
+RFP-00091,OPP-2024-1309,SE-001,RFP Submission - Nexus Energy Corp - Omnichannel Cus,2026-06-06,2026-06-20,2026-06-18,14,125,88.1,Won,15.8
+RFP-00092,OPP-2024-1314,SE-001,RFP Submission - Solstice Financial Group - Autonomo,2025-09-06,2025-09-16,2025-09-16,10,156,82.4,Won,33.9
+RFP-00093,OPP-2024-1315,SE-016,RFP Submission - Vertex Health - Zero-Trust Security,2024-09-16,2024-09-24,2024-09-24,8,75,92.3,Won,11.1
+RFP-00094,OPP-2024-1323,SE-012,RFP Submission - Echo Global Logistics - Omnichannel,2026-07-23,2026-08-12,2026-08-12,20,290,81.9,Disqualified,59.6
+RFP-00095,OPP-2024-1325,SE-018,RFP Submission - Vertex Solutions - Fabric Unified L,2024-03-04,2024-03-24,2024-03-23,20,157,82.3,Lost,24.7
+RFP-00096,OPP-2024-1333,SE-013,RFP Submission - Horizon Global Logistics - Fabric U,2025-03-25,2025-04-07,2025-04-05,13,106,88.1,Won,19.5
+RFP-00097,OPP-2024-1334,SE-019,RFP Submission - Horizon Global Logistics - Omnichan,2025-08-27,2025-09-19,2025-09-17,23,100,94.8,Won,23.0
+RFP-00098,OPP-2024-1337,SE-002,RFP Submission - Valence Manufacturing - Omnichannel,2024-06-28,2024-07-16,2024-07-13,18,212,94.8,Disqualified,25.8
+RFP-00099,OPP-2024-1343,SE-006,RFP Submission - Synergy Retail Network - Omnichanne,2025-09-24,2025-10-13,2025-10-11,19,309,83.8,Lost,42.7
+RFP-00100,OPP-2024-1344,SE-013,RFP Submission - Orion Financial Group - FinOps Clou,2025-08-04,2025-08-21,2025-08-21,17,180,85.5,Lost,32.8
+RFP-00101,OPP-2024-1345,SE-007,RFP Submission - Aegis Solutions - Industrial IoT & ,2025-11-24,2025-12-05,2025-12-04,11,293,86.7,Lost,36.9
+RFP-00102,OPP-2024-1346,SE-001,RFP Submission - Orion Communications - Industrial I,2025-04-14,2025-04-30,2025-04-29,16,74,82.3,Won,17.0
+RFP-00103,OPP-2024-1347,SE-011,RFP Submission - Starlight Financial Group - Omnicha,2026-06-30,2026-07-14,2026-07-11,14,124,82.2,Won,23.9
+RFP-00104,OPP-2024-1348,SE-020,RFP Submission - Spectra Enterprises - Autonomous AI,2026-03-10,2026-03-23,2026-03-21,13,121,84.9,Lost,29.9
+RFP-00105,OPP-2024-1352,SE-012,RFP Submission - Starlight Global Logistics - Fabric,2026-03-05,2026-03-24,2026-03-23,19,178,79.0,Won,40.0
+RFP-00106,OPP-2024-1356,SE-006,RFP Submission - Nexus Manufacturing - Autonomous AI,2024-05-03,2024-05-27,2024-05-24,24,320,97.8,Won,65.8
+RFP-00107,OPP-2024-1363,SE-009,RFP Submission - Orion Communications - Industrial I,2024-06-05,2024-06-24,2024-06-21,19,245,86.3,Won,39.2
+RFP-00108,OPP-2024-1367,SE-008,RFP Submission - Quantum Financial Group - Industria,2026-01-05,2026-01-21,2026-01-20,16,310,87.0,Lost,43.6
+RFP-00109,OPP-2024-1368,SE-007,RFP Submission - Apex Technologies - Autonomous AI C,2024-08-17,2024-09-09,2024-09-07,23,216,90.5,Won,35.3
+RFP-00110,OPP-2024-1370,SE-019,RFP Submission - Vertex Enterprises - Zero-Trust Sec,2025-06-20,2025-07-02,2025-06-29,12,239,90.2,Lost,55.1
+RFP-00111,OPP-2024-1372,SE-013,RFP Submission - Beacon Communications - Real-Time E,2024-09-25,2024-10-07,2024-10-04,12,170,91.6,Won,27.1
+RFP-00112,OPP-2024-1379,SE-017,RFP Submission - Apex Capital Partners - Autonomous ,2024-11-18,2024-12-09,2024-12-08,21,143,94.7,Won,29.8
+RFP-00113,OPP-2024-1380,SE-012,RFP Submission - Solstice Financial Group - Omnichan,2025-03-26,2025-04-15,2025-04-12,20,248,80.7,Disqualified,41.2
+RFP-00114,OPP-2024-1381,SE-013,RFP Submission - Beacon Global Logistics - Fabric Un,2025-11-09,2025-11-18,2025-11-18,9,238,96.5,Won,40.8
+RFP-00115,OPP-2024-1390,SE-007,RFP Submission - Novus Holdings - Enterprise API & A,2024-12-04,2024-12-19,2024-12-19,15,170,92.6,Won,38.0
+RFP-00116,OPP-2024-1393,SE-017,RFP Submission - Titan Capital Partners - Autonomous,2026-03-23,2026-04-12,2026-04-10,20,258,95.1,Lost,38.7
+RFP-00117,OPP-2024-1394,SE-018,RFP Submission - Nexus Global Logistics - Fabric Uni,2025-05-13,2025-05-27,2025-05-26,14,96,89.8,Lost,18.3
+RFP-00118,OPP-2024-1396,SE-020,RFP Submission - Pinnacle Enterprises - FinOps Cloud,2024-02-16,2024-03-07,2024-03-07,20,114,91.9,Lost,25.4
+RFP-00119,OPP-2024-1403,SE-004,RFP Submission - Spectra Health - Omnichannel Custom,2025-12-05,2025-12-17,2025-12-17,12,84,86.5,Won,11.1
+RFP-00120,OPP-2024-1405,SE-020,RFP Submission - Nexus Global Logistics - Industrial,2025-05-07,2025-05-18,2025-05-17,11,95,86.0,Won,14.1
+RFP-00121,OPP-2024-1407,SE-013,RFP Submission - Spectra BioPharma - Fabric Unified ,2024-02-11,2024-02-24,2024-02-24,13,194,94.4,Lost,38.3
+RFP-00122,OPP-2024-1409,SE-020,RFP Submission - Echo Global Logistics - FinOps Clou,2026-05-20,2026-05-30,2026-05-27,10,292,82.4,Won,66.7
+RFP-00123,OPP-2024-1410,SE-012,RFP Submission - Hyperion Cloud Systems - Zero-Trust,2024-07-08,2024-07-15,2024-07-14,7,95,92.2,Won,17.0
+RFP-00124,OPP-2024-1412,SE-001,RFP Submission - Starlight Enterprises - Fabric Unif,2024-10-28,2024-11-04,2024-11-04,7,47,92.8,Lost,9.6
+RFP-00125,OPP-2024-1420,SE-020,RFP Submission - Horizon Global Logistics - Omnichan,2024-07-01,2024-07-24,2024-07-23,23,176,99.0,Won,39.1
+RFP-00126,OPP-2024-1423,SE-001,RFP Submission - Spectra BioPharma - FinOps Cloud Co,2024-04-05,2024-04-22,2024-04-20,17,297,84.8,Won,59.5
+RFP-00127,OPP-2024-1424,SE-014,RFP Submission - Orion BioPharma - Industrial IoT & ,2025-04-08,2025-04-16,2025-04-13,8,50,81.3,Won,6.9
+RFP-00128,OPP-2024-1435,SE-017,RFP Submission - Crestview Energy Corp - Real-Time E,2024-10-30,2024-11-09,2024-11-08,10,149,82.0,Won,25.2
+RFP-00129,OPP-2024-1437,SE-020,RFP Submission - Vanguard Manufacturing - Enterprise,2025-02-09,2025-02-21,2025-02-19,12,83,89.8,Lost,11.5
+RFP-00130,OPP-2024-1438,SE-015,RFP Submission - Pinnacle Holdings - FinOps Cloud Co,2024-05-27,2024-06-08,2024-06-06,12,120,92.1,Lost,15.1
+RFP-00131,OPP-2024-1439,SE-004,RFP Submission - Orion Health - Industrial IoT & Edg,2024-10-01,2024-10-22,2024-10-20,21,193,81.9,Won,47.1
+RFP-00132,OPP-2024-1442,SE-005,RFP Submission - Echo Global Logistics - Enterprise ,2026-08-11,2026-08-21,2026-08-21,10,250,87.7,In Review,33.6
+RFP-00133,OPP-2024-1450,SE-016,RFP Submission - Echo Holdings - Fabric Unified Lake,2026-06-09,2026-06-22,2026-06-19,13,176,94.1,Lost,31.0
+RFP-00134,OPP-2024-1451,SE-002,RFP Submission - Titan Communications - Fabric Unifi,2025-06-28,2025-07-06,2025-07-04,8,87,88.5,Won,19.6
+RFP-00135,OPP-2024-1453,SE-007,RFP Submission - Aegis Financial Group - Enterprise ,2024-12-27,2025-01-12,2025-01-12,16,229,94.9,Lost,29.8
+RFP-00136,OPP-2024-1455,SE-001,RFP Submission - Beacon Capital Partners - Omnichann,2024-05-07,2024-05-14,2024-05-11,7,210,95.0,Won,25.3
+RFP-00137,OPP-2024-1465,SE-019,RFP Submission - Apex Manufacturing - Autonomous AI ,2024-02-19,2024-03-14,2024-03-13,24,57,92.0,Lost,9.7
+RFP-00138,OPP-2024-1467,SE-015,RFP Submission - Synergy Health - Real-Time Event St,2026-03-04,2026-03-18,2026-03-16,14,212,93.4,Won,25.7
+RFP-00139,OPP-2024-1469,SE-001,RFP Submission - Beacon Capital Partners - FinOps Cl,2026-02-24,2026-03-17,2026-03-14,21,169,97.7,Won,23.3
+RFP-00140,OPP-2024-1470,SE-013,RFP Submission - Hyperion Global Logistics - Real-Ti,2024-03-16,2024-03-26,2024-03-25,10,111,78.7,Won,14.9
+RFP-00141,OPP-2024-1472,SE-001,RFP Submission - Aegis Enterprises - Zero-Trust Secu,2024-06-04,2024-06-17,2024-06-14,13,318,79.1,Lost,74.8
+RFP-00142,OPP-2024-1474,SE-002,RFP Submission - Starlight Global Logistics - Indust,2025-05-10,2025-05-27,2025-05-27,17,78,92.5,Disqualified,15.8
+RFP-00143,OPP-2024-1477,SE-002,RFP Submission - Starlight Global Logistics - Autono,2026-03-07,2026-03-28,2026-03-28,21,246,84.1,Won,40.8
+RFP-00144,OPP-2024-1483,SE-001,RFP Submission - Echo Holdings - Real-Time Event Str,2024-08-12,2024-08-24,2024-08-22,12,73,87.8,Won,15.0
+RFP-00145,OPP-2024-1484,SE-005,RFP Submission - Titan Retail Network - Real-Time Ev,2025-12-04,2025-12-20,2025-12-20,16,171,89.7,Lost,35.1
+RFP-00146,OPP-2024-1485,SE-004,RFP Submission - Titan BioPharma - Autonomous AI Cop,2024-12-11,2024-12-26,2024-12-24,15,253,88.8,Lost,53.2
+RFP-00147,OPP-2024-1487,SE-007,RFP Submission - Valence Energy Corp - Real-Time Eve,2024-04-11,2024-04-22,2024-04-20,11,249,93.8,Lost,33.0
+RFP-00148,OPP-2024-1489,SE-009,RFP Submission - Valence Manufacturing - Real-Time E,2026-01-05,2026-01-21,2026-01-19,16,83,97.8,Won,15.2
+RFP-00149,OPP-2024-1492,SE-011,RFP Submission - Echo Global Logistics - Zero-Trust ,2024-02-04,2024-02-17,2024-02-17,13,173,93.1,Won,28.6
+RFP-00150,OPP-2024-1493,SE-004,RFP Submission - Aegis Manufacturing - FinOps Cloud ,2025-10-06,2025-10-29,2025-10-28,23,270,88.0,Disqualified,37.2
+RFP-00151,OPP-2024-1495,SE-013,RFP Submission - Beacon Communications - Omnichannel,2026-01-17,2026-01-29,2026-01-27,12,313,90.2,Lost,56.9
+RFP-00152,OPP-2024-1502,SE-011,RFP Submission - Valence Manufacturing - Fabric Unif,2024-08-29,2024-09-05,2024-09-04,7,175,79.1,Lost,39.6
+RFP-00153,OPP-2024-1509,SE-016,RFP Submission - Nexus Energy Corp - Industrial IoT ,2026-04-13,2026-04-28,2026-04-27,15,277,83.6,Lost,53.3
+RFP-00154,OPP-2024-1512,SE-007,RFP Submission - Titan Holdings - Industrial IoT & E,2024-06-14,2024-06-23,2024-06-20,9,277,86.9,Lost,61.7
+RFP-00155,OPP-2024-1513,SE-017,RFP Submission - Quantum Financial Group - Autonomou,2026-06-04,2026-06-18,2026-06-16,14,46,97.9,Won,9.3
+RFP-00156,OPP-2024-1514,SE-005,RFP Submission - Hyperion BioPharma - Fabric Unified,2026-06-19,2026-07-02,2026-07-01,13,183,94.6,Won,24.7
+RFP-00157,OPP-2024-1516,SE-005,RFP Submission - Titan Retail Network - Zero-Trust S,2024-06-05,2024-06-20,2024-06-18,15,135,98.6,Lost,23.5
+RFP-00158,OPP-2024-1521,SE-020,RFP Submission - Quantum Manufacturing - Industrial ,2025-07-09,2025-07-17,2025-07-15,8,186,84.0,Won,31.1
+RFP-00159,OPP-2024-1526,SE-010,RFP Submission - Spectra BioPharma - Omnichannel Cus,2025-11-23,2025-12-04,2025-12-04,11,84,80.7,Won,13.8
+RFP-00160,OPP-2024-1528,SE-016,RFP Submission - Solstice Retail Network - Autonomou,2025-07-21,2025-08-07,2025-08-04,17,192,82.0,Lost,43.3
+RFP-00161,OPP-2024-1536,SE-015,RFP Submission - Nexus Capital Partners - Autonomous,2024-12-01,2024-12-11,2024-12-11,10,253,84.2,Lost,46.5
+RFP-00162,OPP-2024-1539,SE-007,RFP Submission - Synergy Communications - Industrial,2024-06-20,2024-07-13,2024-07-10,23,133,83.7,Won,28.6
+RFP-00163,OPP-2024-1540,SE-009,RFP Submission - Hyperion Cloud Systems - Zero-Trust,2024-08-21,2024-09-13,2024-09-10,23,236,94.3,Lost,45.8
+RFP-00164,OPP-2024-1541,SE-001,RFP Submission - Orion Enterprises - FinOps Cloud Co,2024-05-02,2024-05-10,2024-05-07,8,206,95.3,Won,31.7
+RFP-00165,OPP-2024-1545,SE-010,RFP Submission - Hyperion Energy Corp - Real-Time Ev,2025-03-30,2025-04-21,2025-04-20,22,165,79.5,Disqualified,40.3
+RFP-00166,OPP-2024-1550,SE-017,RFP Submission - Spectra Holdings - Industrial IoT &,2025-07-16,2025-07-25,2025-07-24,9,173,86.9,Won,27.5
+RFP-00167,OPP-2024-1557,SE-001,RFP Submission - Horizon Capital Partners - Enterpri,2024-11-24,2024-12-03,2024-12-01,9,257,78.8,Won,44.9
+RFP-00168,OPP-2024-1559,SE-007,RFP Submission - Vanguard Manufacturing - Fabric Uni,2026-03-31,2026-04-19,2026-04-16,19,169,94.0,Lost,40.3
+RFP-00169,OPP-2024-1561,SE-003,RFP Submission - Pinnacle Solutions - Real-Time Even,2025-02-24,2025-03-18,2025-03-18,22,242,85.5,Disqualified,42.4
+RFP-00170,OPP-2024-1562,SE-001,RFP Submission - Aegis Manufacturing - Omnichannel C,2025-10-04,2025-10-22,2025-10-22,18,97,80.7,Won,13.7
+RFP-00171,OPP-2024-1563,SE-014,RFP Submission - Synergy Cloud Systems - Enterprise ,2026-05-03,2026-05-12,2026-05-09,9,67,78.5,Lost,10.3
+RFP-00172,OPP-2024-1572,SE-004,RFP Submission - Pinnacle Energy Corp - Autonomous A,2025-02-04,2025-02-14,2025-02-13,10,75,90.0,Lost,17.7
+RFP-00173,OPP-2024-1575,SE-010,RFP Submission - Orion Technologies - Fabric Unified,2026-03-31,2026-04-21,2026-04-18,21,239,91.3,Won,54.0
+RFP-00174,OPP-2024-1579,SE-002,RFP Submission - Starlight Global Logistics - Indust,2026-05-04,2026-05-13,2026-05-11,9,88,84.3,Lost,13.6
+RFP-00175,OPP-2024-1580,SE-009,RFP Submission - Spectra Holdings - Enterprise API &,2025-02-01,2025-02-15,2025-02-12,14,131,83.6,Won,30.1
+RFP-00176,OPP-2024-1582,SE-012,RFP Submission - Nexus Manufacturing - Omnichannel C,2025-12-27,2026-01-14,2026-01-13,18,310,93.1,Won,71.2
+RFP-00177,OPP-2024-1594,SE-008,RFP Submission - Aegis Health - FinOps Cloud Cost Op,2024-08-26,2024-09-12,2024-09-10,17,300,88.4,Disqualified,54.3
+RFP-00178,OPP-2024-1597,SE-014,RFP Submission - Horizon Cloud Systems - Fabric Unif,2025-04-08,2025-04-28,2025-04-28,20,285,85.0,Won,57.4
+RFP-00179,OPP-2024-1598,SE-017,RFP Submission - Solstice Financial Group - Enterpri,2024-07-09,2024-07-22,2024-07-20,13,319,80.6,Lost,38.5
+RFP-00180,OPP-2024-1602,SE-014,RFP Submission - Echo Holdings - Omnichannel Custome,2026-07-29,2026-08-09,2026-08-07,11,254,91.3,In Review,62.3
+RFP-00181,OPP-2024-1604,SE-010,RFP Submission - Solstice Energy Corp - Autonomous A,2024-02-29,2024-03-20,2024-03-19,20,227,84.9,Won,41.1
+RFP-00182,OPP-2024-1606,SE-014,RFP Submission - Hyperion Communications - Real-Time,2025-06-08,2025-06-25,2025-06-25,17,132,80.3,Won,17.4
+RFP-00183,OPP-2024-1608,SE-011,RFP Submission - Starlight BioPharma - Real-Time Eve,2024-08-22,2024-09-10,2024-09-08,19,191,97.4,Won,36.0
+RFP-00184,OPP-2024-1610,SE-013,RFP Submission - Echo Manufacturing - Real-Time Even,2026-04-19,2026-05-07,2026-05-05,18,76,88.9,Won,18.8
+RFP-00185,OPP-2024-1615,SE-009,RFP Submission - Vanguard BioPharma - Industrial IoT,2024-05-27,2024-06-10,2024-06-07,14,277,94.3,Won,67.3
+RFP-00186,OPP-2024-1616,SE-012,RFP Submission - Valence Cloud Systems - Omnichannel,2025-06-02,2025-06-22,2025-06-20,20,210,88.0,Won,31.3
+RFP-00187,OPP-2024-1618,SE-012,RFP Submission - Synergy Health - Zero-Trust Securit,2024-05-02,2024-05-19,2024-05-19,17,132,82.0,Won,21.5
+RFP-00188,OPP-2024-1621,SE-019,RFP Submission - Echo Global Logistics - Real-Time E,2024-07-23,2024-07-31,2024-07-31,8,296,95.2,Won,65.3
+RFP-00189,OPP-2024-1626,SE-016,RFP Submission - Beacon Solutions - Autonomous AI Co,2024-11-25,2024-12-15,2024-12-13,20,127,82.8,Won,25.5
+RFP-00190,OPP-2024-1634,SE-013,RFP Submission - Aegis Solutions - Industrial IoT & ,2024-07-17,2024-08-07,2024-08-07,21,75,90.1,Lost,16.4
+RFP-00191,OPP-2024-1637,SE-002,RFP Submission - Titan Communications - Autonomous A,2025-09-23,2025-10-10,2025-10-07,17,208,83.1,Lost,43.7
+RFP-00192,OPP-2024-1639,SE-004,RFP Submission - Nexus Solutions - Real-Time Event S,2024-04-07,2024-04-29,2024-04-26,22,171,85.4,Won,34.2
+RFP-00193,OPP-2024-1641,SE-017,RFP Submission - Vertex Cloud Systems - Real-Time Ev,2025-05-29,2025-06-10,2025-06-10,12,183,79.7,Lost,30.4
+RFP-00194,OPP-2024-1643,SE-008,RFP Submission - Orion Holdings - Industrial IoT & E,2024-02-02,2024-02-11,2024-02-11,9,314,90.9,Won,59.1
+RFP-00195,OPP-2024-1645,SE-020,RFP Submission - Hyperion Cloud Systems - Omnichanne,2025-09-01,2025-09-20,2025-09-18,19,141,92.1,Won,29.6
+RFP-00196,OPP-2024-1646,SE-004,RFP Submission - Spectra Financial Group - Real-Time,2026-08-08,2026-08-17,2026-08-14,9,88,95.2,Won,19.8
+RFP-00197,OPP-2024-1647,SE-008,RFP Submission - Hyperion Enterprises - Fabric Unifi,2024-12-05,2024-12-28,2024-12-26,23,194,84.3,Lost,36.6
+RFP-00198,OPP-2024-1655,SE-020,RFP Submission - Echo Solutions - Industrial IoT & E,2026-04-05,2026-04-29,2026-04-29,24,126,92.7,Won,16.2
+RFP-00199,OPP-2024-1668,SE-017,RFP Submission - Synergy Enterprises - Industrial Io,2024-10-12,2024-10-28,2024-10-26,16,74,82.8,Lost,17.5
+RFP-00200,OPP-2024-1672,SE-004,RFP Submission - Hyperion Health - Fabric Unified La,2024-06-15,2024-06-23,2024-06-22,8,240,91.4,Lost,46.7
+RFP-00201,OPP-2024-1673,SE-002,RFP Submission - Horizon Cloud Systems - Fabric Unif,2026-02-09,2026-02-20,2026-02-19,11,172,82.4,Lost,41.8
+RFP-00202,OPP-2024-1674,SE-018,RFP Submission - Hyperion Health - Fabric Unified La,2025-05-10,2025-05-26,2025-05-24,16,217,94.0,Lost,26.8
+RFP-00203,OPP-2024-1675,SE-001,RFP Submission - Vanguard Retail Network - Omnichann,2024-05-08,2024-05-28,2024-05-27,20,261,78.8,Lost,46.2
+RFP-00204,OPP-2024-1682,SE-014,RFP Submission - Horizon Capital Partners - Omnichan,2024-12-11,2025-01-04,2025-01-03,24,175,92.2,Disqualified,31.3
+RFP-00205,OPP-2024-1685,SE-001,RFP Submission - Echo Global Logistics - Autonomous ,2026-01-21,2026-02-06,2026-02-06,16,268,90.2,Won,60.9
+RFP-00206,OPP-2024-1687,SE-006,RFP Submission - Hyperion Communications - Omnichann,2026-05-22,2026-06-03,2026-06-02,12,229,89.0,Lost,33.6
+RFP-00207,OPP-2024-1688,SE-001,RFP Submission - Valence Retail Network - Industrial,2025-06-01,2025-06-25,2025-06-24,24,319,84.0,Won,79.2
+RFP-00208,OPP-2024-1695,SE-004,RFP Submission - Crestview Financial Group - Real-Ti,2026-04-29,2026-05-17,2026-05-17,18,241,92.5,Lost,39.4
+RFP-00209,OPP-2024-1700,SE-010,RFP Submission - Horizon Communications - Fabric Uni,2026-03-19,2026-04-04,2026-04-01,16,173,94.4,Won,24.0
+RFP-00210,OPP-2024-1702,SE-012,RFP Submission - Novus Health - Omnichannel Customer,2025-08-22,2025-09-03,2025-09-01,12,124,98.8,Lost,29.0
+RFP-00211,OPP-2024-1703,SE-017,RFP Submission - Quantum Global Logistics - Industri,2025-08-18,2025-09-05,2025-09-03,18,175,88.7,Won,21.2
+RFP-00212,OPP-2024-1704,SE-012,RFP Submission - Orion Communications - Real-Time Ev,2026-07-07,2026-07-29,2026-07-26,22,222,94.3,In Review,30.2
+RFP-00213,OPP-2024-1706,SE-014,RFP Submission - Hyperion Solutions - Real-Time Even,2026-01-12,2026-01-26,2026-01-23,14,295,81.5,Lost,60.0
+RFP-00214,OPP-2024-1707,SE-017,RFP Submission - Titan Capital Partners - Zero-Trust,2025-05-22,2025-05-29,2025-05-29,7,203,92.3,Won,36.5
+RFP-00215,OPP-2024-1710,SE-014,RFP Submission - Quantum Financial Group - Industria,2024-07-02,2024-07-16,2024-07-16,14,256,80.5,Lost,52.8
+RFP-00216,OPP-2024-1715,SE-002,RFP Submission - Hyperion Cloud Systems - Enterprise,2025-05-23,2025-06-10,2025-06-07,18,210,96.0,Lost,38.5
+RFP-00217,OPP-2024-1716,SE-012,RFP Submission - Vertex Health - Industrial IoT & Ed,2026-07-10,2026-07-23,2026-07-22,13,249,88.6,Won,59.0
+RFP-00218,OPP-2024-1717,SE-020,RFP Submission - Apex Manufacturing - Fabric Unified,2025-10-26,2025-11-13,2025-11-13,18,261,97.3,Won,44.6
+RFP-00219,OPP-2024-1719,SE-019,RFP Submission - Orion Technologies - Zero-Trust Sec,2024-03-07,2024-03-28,2024-03-28,21,211,86.1,Won,36.7
+RFP-00220,OPP-2024-1729,SE-014,RFP Submission - Orion Financial Group - Real-Time E,2025-04-22,2025-04-29,2025-04-27,7,234,85.0,Lost,49.2
+RFP-00221,OPP-2024-1734,SE-005,RFP Submission - Quantum Financial Group - Autonomou,2025-12-21,2026-01-08,2026-01-08,18,306,81.6,Lost,52.4
+RFP-00222,OPP-2024-1736,SE-010,RFP Submission - Solstice Energy Corp - Autonomous A,2025-03-24,2025-04-13,2025-04-10,20,204,90.1,Won,44.6
+RFP-00223,OPP-2024-1746,SE-014,RFP Submission - Hyperion Manufacturing - Autonomous,2025-05-30,2025-06-07,2025-06-05,8,127,88.7,Lost,16.1
+RFP-00224,OPP-2024-1750,SE-015,RFP Submission - Horizon Capital Partners - Industri,2026-07-04,2026-07-13,2026-07-10,9,173,81.3,Won,20.9

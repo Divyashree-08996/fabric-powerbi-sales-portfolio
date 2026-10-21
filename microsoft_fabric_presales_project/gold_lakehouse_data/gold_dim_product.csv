@@ -1,0 +1,9 @@
+product_sk,product_id,product_name,product_category,deployment_model,base_annual_license_usd,standard_poc_duration_days
+1,PRD-101,Fabric Unified Lakehouse Engine,Data & Analytics,SaaS Multi-Tenant,120000.0,21
+2,PRD-102,Autonomous AI Copilot Studio,Artificial Intelligence,Hybrid Cloud,180000.0,14
+3,PRD-103,Zero-Trust Security & Identity Mesh,Cybersecurity,SaaS Multi-Tenant,95000.0,28
+4,PRD-104,Real-Time Event Streaming Hub,Data & Analytics,Dedicated Cloud,140000.0,18
+5,PRD-105,Enterprise API & App Integration Cloud,Integration & Middleware,Hybrid Cloud,75000.0,14
+6,PRD-106,Omnichannel Customer 360 Graph,Business Applications,SaaS Multi-Tenant,110000.0,21
+7,PRD-107,FinOps Cloud Cost Optimization Engine,Cloud Infrastructure,SaaS Multi-Tenant,60000.0,10
+8,PRD-108,Industrial IoT & Edge Telemetry Platform,IoT & Edge,Edge & Cloud Hybrid,220000.0,35

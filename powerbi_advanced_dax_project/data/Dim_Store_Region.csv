@@ -1,0 +1,8 @@
+ChannelID,ChannelName,RegionCode,RegionName,Country,RegionalVP,SalesDirector,HierarchyPath,ChannelType,CommissionTier
+CH-01,Direct Enterprise Sales,NA,North America,USA,David Vance,Sarah Jenkins,David Vance|Sarah Jenkins,Field Direct,Tier 1
+CH-02,Digital Cloud Marketplace,NA,North America,USA,David Vance,Alex Rivera,David Vance|Alex Rivera,Digital Self-Serve,Tier 3
+CH-03,EMEA Strategic Partners,EMEA,"Europe, Middle East, Africa",Germany,Klaus Richter,Hans Becker,Klaus Richter|Hans Becker,Partner Reseller,Tier 2
+CH-04,UK & Northern Europe Field,EMEA,"Europe, Middle East, Africa",UK,Klaus Richter,Elizabeth Ward,Klaus Richter|Elizabeth Ward,Field Direct,Tier 1
+CH-05,France & Southern Europe,EMEA,"Europe, Middle East, Africa",France,Klaus Richter,Pierre Dubois,Klaus Richter|Pierre Dubois,Field Direct,Tier 2
+CH-06,APAC Enterprise Alliance,APAC,Asia Pacific,Japan,Mei Lin,Kenji Sato,Mei Lin|Kenji Sato,Strategic Alliance,Tier 1
+CH-07,Australia & Oceania Hub,APAC,Asia Pacific,Australia,Mei Lin,Kenji Sato,Mei Lin|Kenji Sato,Partner Reseller,Tier 2

@@ -1,0 +1,319 @@
+poc_sk,poc_id,start_date_key,end_date_key,opportunity_sk,account_sk,lead_se_sk,product_sk,duration_calendar_days,poc_status,complexity_level,technical_criteria_total,technical_criteria_met,criteria_success_rate_pct,is_technical_win,total_se_hours_spent,cloud_lab_infra_cost_usd,technical_blocker_summary
+1,POC-00001,20260131,20260314,2,218,1,3,42,Completed,High Enterprise,10,10,100.0,True,134.7,3916.32,None - Criteria Cleared Successfully
+2,POC-00002,20250312,20250408,8,124,13,4,27,Completed,Medium,8,8,100.0,True,75.2,3884.78,None - Criteria Cleared Successfully
+3,POC-00003,20250725,20250830,9,103,7,3,36,Completed,High Enterprise,11,7,63.6,False,131.9,3076.79,Performance Bottleneck under High Concurrency
+4,POC-00004,20260122,20260214,10,41,13,6,23,Completed,Standard,6,6,100.0,True,54.1,2207.32,None - Criteria Cleared Successfully
+5,POC-00005,20240304,20240327,12,196,1,7,23,Completed,Medium,8,8,100.0,True,66.6,745.14,None - Criteria Cleared Successfully
+6,POC-00006,20250314,20250418,13,31,4,3,35,Completed,High Enterprise,12,12,100.0,True,118.1,3758.52,None - Criteria Cleared Successfully
+7,POC-00007,20260110,20260213,19,58,17,5,34,Completed,High Enterprise,12,12,100.0,True,119.8,1342.65,None - Criteria Cleared Successfully
+8,POC-00008,20241201,20250112,20,102,19,6,42,Completed,Standard,5,5,100.0,True,102.0,3091.48,None - Criteria Cleared Successfully
+9,POC-00009,20260226,20260408,21,36,17,2,41,Completed,Standard,6,6,100.0,True,98.8,2220.04,None - Criteria Cleared Successfully
+10,POC-00010,20250106,20250209,26,104,11,7,34,Completed,Standard,5,5,100.0,True,116.1,498.68,None - Criteria Cleared Successfully
+11,POC-00011,20240904,20241013,30,114,1,2,39,Completed,Medium,8,8,100.0,True,102.8,763.11,None - Criteria Cleared Successfully
+12,POC-00012,20240809,20240918,32,9,9,5,40,Completed,Medium,8,2,25.0,False,89.4,565.77,Test Data Sanitization Delayed by Legal
+13,POC-00013,20250926,20251031,35,53,19,2,35,Completed,Medium,8,8,100.0,True,110.5,4534.92,None - Criteria Cleared Successfully
+14,POC-00014,20250128,20250218,37,143,13,8,21,Completed,High Enterprise,12,12,100.0,True,120.1,1172.99,None - Criteria Cleared Successfully
+15,POC-00015,20250716,20250820,39,116,12,6,35,Abandoned,Medium,8,5,62.5,False,72.9,3264.23,Performance Bottleneck under High Concurrency
+16,POC-00016,20260806,20260906,40,54,9,6,31,In Progress,Medium,8,6,75.0,False,127.7,2351.59,Test Data Sanitization Delayed by Legal
+17,POC-00017,20240307,20240414,42,95,16,6,38,Completed,High Enterprise,11,11,100.0,True,128.6,2273.63,None - Criteria Cleared Successfully
+18,POC-00018,20260321,20260427,43,128,6,6,37,Completed,Medium,9,9,100.0,True,127.1,3929.51,None - Criteria Cleared Successfully
+19,POC-00019,20240316,20240416,45,130,14,8,31,Completed,Medium,8,8,100.0,True,81.9,3462.15,None - Criteria Cleared Successfully
+20,POC-00020,20240313,20240405,49,55,6,8,23,Completed,Medium,7,7,100.0,True,108.5,2151.17,None - Criteria Cleared Successfully
+21,POC-00021,20240512,20240610,51,129,16,6,29,Completed,Medium,9,9,100.0,True,75.9,3981.97,None - Criteria Cleared Successfully
+22,POC-00022,20240811,20240902,52,142,20,7,22,Completed,Standard,5,5,100.0,True,65.5,3234.69,None - Criteria Cleared Successfully
+23,POC-00023,20250130,20250309,53,40,10,7,38,Completed,Medium,7,7,100.0,True,109.8,3016.76,None - Criteria Cleared Successfully
+24,POC-00024,20250207,20250306,54,27,1,1,27,Completed,Medium,8,8,100.0,True,92.0,3842.79,None - Criteria Cleared Successfully
+25,POC-00025,20250227,20250329,55,63,5,3,30,Completed,Standard,6,6,100.0,True,99.8,2796.01,None - Criteria Cleared Successfully
+26,POC-00026,20251104,20251214,56,185,10,8,40,Completed,Medium,9,9,100.0,True,84.6,2870.83,None - Criteria Cleared Successfully
+27,POC-00027,20251223,20260118,59,213,14,2,26,Completed,High Enterprise,12,12,100.0,True,125.5,1711.5,None - Criteria Cleared Successfully
+28,POC-00028,20260118,20260213,60,140,20,1,26,Completed,Medium,8,8,100.0,True,129.8,2882.21,None - Criteria Cleared Successfully
+29,POC-00029,20250929,20251020,62,101,10,8,21,Abandoned,Standard,6,3,50.0,False,80.2,3258.5,SSO / SAML Identity Token Failure
+30,POC-00030,20260409,20260512,63,80,17,6,33,Completed,Medium,9,9,100.0,True,66.2,1029.05,None - Criteria Cleared Successfully
+31,POC-00031,20260507,20260615,64,166,4,2,39,Completed,Standard,5,5,100.0,True,106.8,4527.41,None - Criteria Cleared Successfully
+32,POC-00032,20240308,20240330,65,48,1,7,22,Abandoned,High Enterprise,11,7,63.6,False,144.2,2661.16,Customer Sponsor Reassigned During POC
+33,POC-00033,20240716,20240820,67,91,1,8,35,Completed,Medium,7,7,100.0,True,115.3,2915.6,None - Criteria Cleared Successfully
+34,POC-00034,20240428,20240519,76,84,1,1,21,Completed,Medium,7,7,100.0,True,75.1,2842.82,None - Criteria Cleared Successfully
+35,POC-00035,20241101,20241120,83,81,14,3,19,Completed,Standard,5,5,100.0,True,63.4,1274.66,None - Criteria Cleared Successfully
+36,POC-00036,20250705,20250810,84,76,1,1,36,Abandoned,Medium,9,1,11.1,False,115.4,1256.7,Customer Sponsor Reassigned During POC
+37,POC-00037,20260408,20260507,85,140,1,3,29,Abandoned,Medium,9,6,66.7,False,100.6,578.99,SSO / SAML Identity Token Failure
+38,POC-00038,20251116,20251225,86,180,18,7,39,Completed,High Enterprise,10,10,100.0,True,93.0,2063.44,None - Criteria Cleared Successfully
+39,POC-00039,20250219,20250326,92,212,12,2,35,Completed,High Enterprise,12,12,100.0,True,125.4,3250.18,None - Criteria Cleared Successfully
+40,POC-00040,20250826,20251005,93,80,17,6,40,Abandoned,High Enterprise,12,9,75.0,False,126.4,590.8,Performance Bottleneck under High Concurrency
+41,POC-00041,20250623,20250717,95,53,1,4,24,Completed,Standard,6,6,100.0,True,111.5,936.35,None - Criteria Cleared Successfully
+42,POC-00042,20240624,20240728,96,149,19,2,34,Abandoned,High Enterprise,12,7,58.3,False,96.9,3027.36,Customer Sponsor Reassigned During POC
+43,POC-00043,20240923,20241020,97,82,4,8,27,Completed,Medium,8,8,100.0,True,72.6,512.07,None - Criteria Cleared Successfully
+44,POC-00044,20260609,20260626,100,32,6,1,17,In Progress,Medium,9,5,55.6,False,127.3,3908.38,Customer VPN & Firewall Ingress Blocked
+45,POC-00045,20250424,20250509,101,17,2,4,15,Completed,Standard,5,2,40.0,False,116.1,2619.95,Customer VPN & Firewall Ingress Blocked
+46,POC-00046,20250822,20250913,104,201,10,6,22,Completed,High Enterprise,12,12,100.0,True,129.1,4201.29,None - Criteria Cleared Successfully
+47,POC-00047,20241213,20241228,106,46,11,4,15,Completed,Medium,8,8,100.0,True,83.8,3160.5,None - Criteria Cleared Successfully
+48,POC-00048,20240421,20240523,107,45,8,8,32,Completed,High Enterprise,10,10,100.0,True,116.9,3275.42,None - Criteria Cleared Successfully
+49,POC-00049,20240903,20240930,117,52,10,2,27,Completed,High Enterprise,10,10,100.0,True,113.9,1397.67,None - Criteria Cleared Successfully
+50,POC-00050,20240612,20240724,121,43,17,4,42,Completed,High Enterprise,10,1,10.0,False,88.4,1184.54,Customer Sponsor Reassigned During POC
+51,POC-00051,20260702,20260811,123,28,13,2,40,Scope Paused,Medium,7,6,85.7,False,121.5,4350.74,Customer Sponsor Reassigned During POC
+52,POC-00052,20260309,20260414,126,114,20,4,36,Completed,Medium,8,8,100.0,True,74.0,2530.36,None - Criteria Cleared Successfully
+53,POC-00053,20240802,20240909,127,135,3,1,38,Completed,Medium,9,2,22.2,False,103.9,356.96,Test Data Sanitization Delayed by Legal
+54,POC-00054,20250201,20250310,128,175,12,1,37,Completed,Standard,6,4,66.7,False,77.5,914.75,Customer VPN & Firewall Ingress Blocked
+55,POC-00055,20250720,20250819,134,186,10,4,30,Completed,Medium,9,9,100.0,True,90.0,4355.8,None - Criteria Cleared Successfully
+56,POC-00056,20240328,20240429,137,136,18,5,32,Completed,High Enterprise,11,6,54.5,False,133.8,2455.21,Custom Connector Driver Incompatibility
+57,POC-00057,20260215,20260312,140,174,15,1,25,Completed,High Enterprise,11,11,100.0,True,81.2,853.14,None - Criteria Cleared Successfully
+58,POC-00058,20240615,20240705,142,59,3,4,20,Completed,High Enterprise,10,10,100.0,True,133.2,2591.91,None - Criteria Cleared Successfully
+59,POC-00059,20240509,20240524,144,78,2,7,15,Completed,Medium,9,9,100.0,True,131.5,377.76,None - Criteria Cleared Successfully
+60,POC-00060,20240907,20241006,145,200,7,5,29,Completed,High Enterprise,10,10,100.0,True,78.6,528.66,None - Criteria Cleared Successfully
+61,POC-00061,20241019,20241102,148,92,15,8,14,Completed,Medium,7,7,100.0,True,119.3,4703.69,None - Criteria Cleared Successfully
+62,POC-00062,20260703,20260729,151,4,19,4,26,Completed,High Enterprise,12,12,100.0,True,99.1,3925.91,None - Criteria Cleared Successfully
+63,POC-00063,20260802,20260911,156,180,3,2,40,In Progress,High Enterprise,12,3,25.0,False,95.7,4062.96,Custom Connector Driver Incompatibility
+64,POC-00064,20260102,20260125,160,36,8,7,23,Completed,Medium,8,8,100.0,True,66.8,911.85,None - Criteria Cleared Successfully
+65,POC-00065,20240306,20240327,163,76,16,4,21,Completed,Standard,6,6,100.0,True,64.6,2241.18,None - Criteria Cleared Successfully
+66,POC-00066,20250818,20250913,165,163,9,6,26,Completed,Standard,5,5,100.0,True,59.8,1245.55,None - Criteria Cleared Successfully
+67,POC-00067,20241016,20241127,166,110,19,5,42,Completed,High Enterprise,11,11,100.0,True,142.3,1861.9,None - Criteria Cleared Successfully
+68,POC-00068,20260403,20260430,167,161,7,5,27,Completed,Medium,7,7,100.0,True,74.0,1800.09,None - Criteria Cleared Successfully
+69,POC-00069,20251229,20260116,175,163,2,3,18,Completed,High Enterprise,11,11,100.0,True,106.5,967.86,None - Criteria Cleared Successfully
+70,POC-00070,20260215,20260322,176,79,12,4,35,Completed,Medium,8,8,100.0,True,89.4,4317.83,None - Criteria Cleared Successfully
+71,POC-00071,20250623,20250711,182,35,12,8,18,Completed,High Enterprise,12,12,100.0,True,129.7,851.67,None - Criteria Cleared Successfully
+72,POC-00072,20240402,20240514,186,113,12,3,42,Completed,High Enterprise,10,10,100.0,True,133.2,4112.29,None - Criteria Cleared Successfully
+73,POC-00073,20250401,20250502,188,67,19,3,31,Completed,High Enterprise,12,12,100.0,True,81.9,2926.76,None - Criteria Cleared Successfully
+74,POC-00074,20240616,20240714,191,24,19,8,28,Completed,Standard,6,1,16.7,False,100.8,756.33,Customer VPN & Firewall Ingress Blocked
+75,POC-00075,20250131,20250228,192,206,2,8,28,Completed,Medium,8,2,25.0,False,117.0,1184.92,Custom Connector Driver Incompatibility
+76,POC-00076,20250919,20251027,194,40,10,7,38,Completed,Medium,8,8,100.0,True,62.2,4199.42,None - Criteria Cleared Successfully
+77,POC-00077,20241211,20250110,195,95,20,8,30,Completed,Medium,9,9,100.0,True,116.9,3468.84,None - Criteria Cleared Successfully
+78,POC-00078,20240920,20241031,199,173,13,1,41,Completed,High Enterprise,11,11,100.0,True,97.7,3988.76,None - Criteria Cleared Successfully
+79,POC-00079,20250409,20250511,203,57,4,4,32,Completed,Medium,9,9,100.0,True,78.7,4180.05,None - Criteria Cleared Successfully
+80,POC-00080,20260601,20260616,205,53,1,4,15,In Progress,Medium,7,4,57.1,False,104.3,2184.58,Custom Connector Driver Incompatibility
+81,POC-00081,20241107,20241211,210,209,6,2,34,Completed,High Enterprise,10,10,100.0,True,121.7,2902.24,None - Criteria Cleared Successfully
+82,POC-00082,20241006,20241112,211,202,1,8,37,Completed,Standard,5,5,100.0,True,68.8,4160.06,None - Criteria Cleared Successfully
+83,POC-00083,20260318,20260411,216,122,6,1,24,Completed,Medium,9,9,100.0,True,103.6,495.86,None - Criteria Cleared Successfully
+84,POC-00084,20240310,20240327,217,34,20,3,17,Completed,Standard,5,5,100.0,True,90.0,1197.11,None - Criteria Cleared Successfully
+85,POC-00085,20260523,20260630,219,3,19,1,38,Completed,High Enterprise,10,10,100.0,True,120.6,1348.0,None - Criteria Cleared Successfully
+86,POC-00086,20250226,20250318,220,204,14,1,20,Completed,Medium,8,8,100.0,True,61.5,2494.87,None - Criteria Cleared Successfully
+87,POC-00087,20240229,20240405,222,39,6,1,36,Completed,Medium,9,9,100.0,True,79.0,3467.48,None - Criteria Cleared Successfully
+88,POC-00088,20260407,20260421,223,96,8,8,14,Completed,Medium,9,9,100.0,True,73.9,3781.26,None - Criteria Cleared Successfully
+89,POC-00089,20240910,20241001,226,93,20,1,21,Completed,High Enterprise,12,8,66.7,False,124.3,776.72,Customer Sponsor Reassigned During POC
+90,POC-00090,20251015,20251029,227,149,19,8,14,Completed,Medium,9,9,100.0,True,96.4,845.37,None - Criteria Cleared Successfully
+91,POC-00091,20250608,20250702,228,203,20,2,24,Completed,Medium,7,7,100.0,True,95.1,3375.83,None - Criteria Cleared Successfully
+92,POC-00092,20250802,20250912,231,83,6,2,41,Completed,Medium,8,8,100.0,True,125.4,3142.76,None - Criteria Cleared Successfully
+93,POC-00093,20260727,20260812,232,12,19,3,16,In Progress,High Enterprise,12,10,83.3,False,116.0,2370.36,Custom Connector Driver Incompatibility
+94,POC-00094,20241110,20241205,234,204,6,1,25,Completed,Standard,5,5,100.0,True,72.3,770.05,None - Criteria Cleared Successfully
+95,POC-00095,20240707,20240812,239,10,8,8,36,Completed,Medium,8,1,12.5,False,109.0,3558.93,Customer VPN & Firewall Ingress Blocked
+96,POC-00096,20250827,20251004,244,125,1,7,38,Completed,High Enterprise,11,9,81.8,False,124.7,677.68,Test Data Sanitization Delayed by Legal
+97,POC-00097,20250502,20250613,247,88,16,2,42,Completed,High Enterprise,11,11,100.0,True,94.6,2573.08,None - Criteria Cleared Successfully
+98,POC-00098,20250918,20251025,248,172,6,1,37,Abandoned,Medium,9,1,11.1,False,114.8,3916.38,Custom Connector Driver Incompatibility
+99,POC-00099,20260623,20260803,249,170,15,5,41,Completed,High Enterprise,10,10,100.0,True,128.0,4707.07,None - Criteria Cleared Successfully
+100,POC-00100,20240826,20240927,250,153,4,2,32,Completed,Medium,8,8,100.0,True,126.2,1990.31,None - Criteria Cleared Successfully
+101,POC-00101,20240909,20241014,256,156,4,4,35,Completed,High Enterprise,12,12,100.0,True,138.7,4757.59,None - Criteria Cleared Successfully
+102,POC-00102,20250622,20250706,258,46,3,8,14,Completed,Medium,9,4,44.4,False,98.3,4269.28,Customer VPN & Firewall Ingress Blocked
+103,POC-00103,20260328,20260424,264,52,1,1,27,Completed,Medium,7,7,100.0,True,102.2,3559.51,None - Criteria Cleared Successfully
+104,POC-00104,20260803,20260820,265,154,2,1,17,Completed,Medium,7,7,100.0,True,85.2,3732.39,None - Criteria Cleared Successfully
+105,POC-00105,20260404,20260513,267,93,13,1,39,Completed,Standard,6,6,100.0,True,60.5,2290.69,None - Criteria Cleared Successfully
+106,POC-00106,20240817,20240923,268,85,19,7,37,Completed,Standard,6,6,100.0,True,53.8,3048.32,None - Criteria Cleared Successfully
+107,POC-00107,20250328,20250424,270,189,1,4,27,Completed,Standard,5,5,100.0,True,88.6,652.61,None - Criteria Cleared Successfully
+108,POC-00108,20250914,20251025,273,143,4,1,41,Completed,Standard,5,5,100.0,True,104.5,649.23,None - Criteria Cleared Successfully
+109,POC-00109,20260726,20260810,276,88,20,8,15,In Progress,Standard,5,2,40.0,False,95.8,3317.13,Custom Connector Driver Incompatibility
+110,POC-00110,20241129,20241224,277,183,13,2,25,Completed,High Enterprise,12,12,100.0,True,111.5,2534.72,None - Criteria Cleared Successfully
+111,POC-00111,20240907,20241016,278,164,6,4,39,Completed,Standard,5,5,100.0,True,53.4,3336.06,None - Criteria Cleared Successfully
+112,POC-00112,20250311,20250329,280,121,12,1,18,Completed,High Enterprise,11,11,100.0,True,110.0,4270.19,None - Criteria Cleared Successfully
+113,POC-00113,20250824,20250910,281,172,14,2,17,Abandoned,High Enterprise,10,7,70.0,False,100.4,4640.43,Custom Connector Driver Incompatibility
+114,POC-00114,20260128,20260217,282,94,13,7,20,Completed,High Enterprise,10,10,100.0,True,137.3,1960.98,None - Criteria Cleared Successfully
+115,POC-00115,20240831,20241002,286,127,1,1,32,Completed,Medium,7,7,100.0,True,67.0,1925.75,None - Criteria Cleared Successfully
+116,POC-00116,20250803,20250823,292,183,10,5,20,Completed,High Enterprise,10,10,100.0,True,98.1,4156.9,None - Criteria Cleared Successfully
+117,POC-00117,20250522,20250630,294,137,20,1,39,Completed,Medium,9,9,100.0,True,116.6,3831.84,None - Criteria Cleared Successfully
+118,POC-00118,20251017,20251111,296,72,7,5,25,Completed,Standard,5,5,100.0,True,50.9,1938.31,None - Criteria Cleared Successfully
+119,POC-00119,20251028,20251125,300,137,1,6,28,Abandoned,Medium,9,7,77.8,False,98.6,1965.82,Customer Sponsor Reassigned During POC
+120,POC-00120,20251228,20260128,301,134,1,6,31,Completed,Medium,7,7,100.0,True,107.7,2530.79,None - Criteria Cleared Successfully
+121,POC-00121,20251218,20260109,303,220,3,3,22,Completed,High Enterprise,12,12,100.0,True,145.1,1605.58,None - Criteria Cleared Successfully
+122,POC-00122,20260213,20260318,306,158,15,2,33,Completed,Medium,8,8,100.0,True,87.2,4732.83,None - Criteria Cleared Successfully
+123,POC-00123,20260615,20260719,309,137,1,6,34,Completed,Medium,9,9,100.0,True,80.6,1396.62,None - Criteria Cleared Successfully
+124,POC-00124,20260802,20260904,310,92,18,8,33,Completed,High Enterprise,12,12,100.0,True,131.6,1139.62,None - Criteria Cleared Successfully
+125,POC-00125,20240616,20240724,312,19,4,1,38,Completed,Standard,5,5,100.0,True,106.5,3071.77,None - Criteria Cleared Successfully
+126,POC-00126,20250829,20251004,314,84,1,2,36,Completed,High Enterprise,11,11,100.0,True,136.9,2244.75,None - Criteria Cleared Successfully
+127,POC-00127,20240927,20241015,315,142,16,3,18,Completed,High Enterprise,11,11,100.0,True,131.2,848.11,None - Criteria Cleared Successfully
+128,POC-00128,20251230,20260131,316,181,17,5,32,Completed,High Enterprise,11,11,100.0,True,141.9,2909.62,None - Criteria Cleared Successfully
+129,POC-00129,20250622,20250717,317,10,9,3,25,Completed,Medium,8,8,100.0,True,108.5,1297.35,None - Criteria Cleared Successfully
+130,POC-00130,20240303,20240324,319,46,18,3,21,Completed,High Enterprise,12,12,100.0,True,118.0,526.24,None - Criteria Cleared Successfully
+131,POC-00131,20250406,20250506,321,26,15,4,30,Completed,Medium,7,7,100.0,True,92.6,3634.29,None - Criteria Cleared Successfully
+132,POC-00132,20250527,20250621,322,100,5,6,25,Completed,Medium,8,8,100.0,True,77.5,4101.81,None - Criteria Cleared Successfully
+133,POC-00133,20250922,20251019,324,220,5,8,27,Completed,Medium,7,7,100.0,True,60.2,3012.09,None - Criteria Cleared Successfully
+134,POC-00134,20260803,20260910,328,1,17,2,38,In Progress,High Enterprise,12,6,50.0,False,87.7,1179.02,SSO / SAML Identity Token Failure
+135,POC-00135,20260813,20260908,329,86,12,1,26,Completed,Medium,8,8,100.0,True,81.3,1989.33,None - Criteria Cleared Successfully
+136,POC-00136,20250817,20250907,330,36,17,6,21,Completed,Medium,7,2,28.6,False,72.0,2310.21,Performance Bottleneck under High Concurrency
+137,POC-00137,20250131,20250302,331,14,12,2,30,Completed,High Enterprise,11,11,100.0,True,98.0,4500.52,None - Criteria Cleared Successfully
+138,POC-00138,20260731,20260901,332,208,1,2,32,Completed,Medium,9,9,100.0,True,113.5,3959.47,None - Criteria Cleared Successfully
+139,POC-00139,20250413,20250508,333,134,13,1,25,Completed,Standard,5,5,100.0,True,69.6,4646.19,None - Criteria Cleared Successfully
+140,POC-00140,20250929,20251105,334,134,19,6,37,Completed,High Enterprise,12,12,100.0,True,133.7,2853.32,None - Criteria Cleared Successfully
+141,POC-00141,20260122,20260214,336,47,10,3,23,Completed,Medium,8,8,100.0,True,66.2,908.65,None - Criteria Cleared Successfully
+142,POC-00142,20240624,20240714,339,188,7,8,20,Completed,Medium,9,9,100.0,True,110.4,1268.46,None - Criteria Cleared Successfully
+143,POC-00143,20240715,20240814,342,107,7,8,30,Completed,Standard,6,6,100.0,True,56.8,1820.39,None - Criteria Cleared Successfully
+144,POC-00144,20250826,20250910,344,48,13,7,15,Completed,Medium,7,4,57.1,False,99.8,2644.28,Customer VPN & Firewall Ingress Blocked
+145,POC-00145,20260714,20260809,347,38,11,6,26,Completed,High Enterprise,10,10,100.0,True,101.5,1917.91,None - Criteria Cleared Successfully
+146,POC-00146,20240629,20240718,349,211,5,3,19,Completed,Medium,9,9,100.0,True,79.3,2915.95,None - Criteria Cleared Successfully
+147,POC-00147,20250526,20250626,350,144,10,2,31,Completed,High Enterprise,11,11,100.0,True,136.8,3869.91,None - Criteria Cleared Successfully
+148,POC-00148,20260215,20260326,351,45,7,5,39,Completed,High Enterprise,10,6,60.0,False,110.1,1561.63,SSO / SAML Identity Token Failure
+149,POC-00149,20260317,20260408,352,20,12,1,22,Completed,Standard,6,6,100.0,True,56.2,3540.0,None - Criteria Cleared Successfully
+150,POC-00150,20251230,20260122,355,55,14,8,23,Completed,Medium,7,7,100.0,True,116.6,3818.87,None - Criteria Cleared Successfully
+151,POC-00151,20240605,20240627,356,81,6,2,22,Completed,Medium,8,8,100.0,True,85.4,4094.65,None - Criteria Cleared Successfully
+152,POC-00152,20250813,20250830,357,80,9,8,17,Completed,Standard,5,5,100.0,True,55.0,2684.34,None - Criteria Cleared Successfully
+153,POC-00153,20260526,20260625,359,104,18,2,30,Completed,High Enterprise,11,11,100.0,True,117.3,4524.39,None - Criteria Cleared Successfully
+154,POC-00154,20251217,20260106,361,46,18,7,20,Completed,Medium,7,7,100.0,True,109.9,4188.84,None - Criteria Cleared Successfully
+155,POC-00155,20250414,20250509,362,208,13,1,25,Completed,High Enterprise,12,12,100.0,True,147.0,1778.27,None - Criteria Cleared Successfully
+156,POC-00156,20250121,20250301,365,98,4,2,39,Completed,Standard,6,6,100.0,True,59.1,1796.03,None - Criteria Cleared Successfully
+157,POC-00157,20250531,20250615,366,6,2,6,15,Completed,Medium,8,8,100.0,True,82.0,1993.97,None - Criteria Cleared Successfully
+158,POC-00158,20251225,20260128,367,207,8,8,34,Abandoned,Standard,6,4,66.7,False,63.3,1183.83,Customer Sponsor Reassigned During POC
+159,POC-00159,20240911,20241005,368,163,7,2,24,Completed,Medium,9,9,100.0,True,94.6,1073.87,None - Criteria Cleared Successfully
+160,POC-00160,20260419,20260506,369,110,19,4,17,Completed,Medium,8,8,100.0,True,84.9,1465.44,None - Criteria Cleared Successfully
+161,POC-00161,20241011,20241113,371,94,10,8,33,Completed,Medium,7,7,100.0,True,66.6,1462.32,None - Criteria Cleared Successfully
+162,POC-00162,20251008,20251022,375,128,14,2,14,Completed,High Enterprise,12,12,100.0,True,137.6,720.95,None - Criteria Cleared Successfully
+163,POC-00163,20251127,20251218,378,142,20,7,21,Abandoned,Medium,9,2,22.2,False,92.3,626.16,SSO / SAML Identity Token Failure
+164,POC-00164,20241205,20250114,379,78,17,2,40,Completed,Medium,9,9,100.0,True,98.6,570.66,None - Criteria Cleared Successfully
+165,POC-00165,20250325,20250421,380,216,12,6,27,Completed,Standard,5,5,100.0,True,103.2,1461.77,None - Criteria Cleared Successfully
+166,POC-00166,20251105,20251120,381,178,13,1,15,Completed,High Enterprise,12,12,100.0,True,119.5,3793.37,None - Criteria Cleared Successfully
+167,POC-00167,20250427,20250523,382,217,11,7,26,Completed,Medium,8,8,100.0,True,84.6,681.79,None - Criteria Cleared Successfully
+168,POC-00168,20240815,20240921,385,31,13,4,37,Completed,Medium,7,7,100.0,True,56.5,1108.53,None - Criteria Cleared Successfully
+169,POC-00169,20240804,20240907,386,73,16,4,34,Completed,Standard,6,6,100.0,True,86.1,2127.15,None - Criteria Cleared Successfully
+170,POC-00170,20260404,20260504,393,107,17,2,30,Abandoned,Standard,5,3,60.0,False,65.2,4043.5,SSO / SAML Identity Token Failure
+171,POC-00171,20260707,20260729,395,188,2,3,22,In Progress,Standard,6,3,50.0,False,65.8,2094.69,Performance Bottleneck under High Concurrency
+172,POC-00172,20240205,20240223,396,62,20,7,18,Completed,High Enterprise,10,10,100.0,True,138.6,3007.91,None - Criteria Cleared Successfully
+173,POC-00173,20240406,20240430,400,146,9,1,24,Completed,High Enterprise,11,11,100.0,True,123.3,4262.74,None - Criteria Cleared Successfully
+174,POC-00174,20251211,20260108,403,159,4,6,28,Completed,Standard,6,6,100.0,True,98.7,3585.27,None - Criteria Cleared Successfully
+175,POC-00175,20250521,20250622,405,40,20,8,32,Completed,Standard,5,5,100.0,True,96.8,1140.67,None - Criteria Cleared Successfully
+176,POC-00176,20240222,20240325,407,183,13,1,32,Completed,Medium,7,7,100.0,True,68.4,3974.26,None - Criteria Cleared Successfully
+177,POC-00177,20260524,20260627,409,76,20,7,34,Completed,Standard,6,6,100.0,True,97.5,1062.14,None - Criteria Cleared Successfully
+178,POC-00178,20260314,20260413,415,69,18,6,30,Completed,Standard,6,6,100.0,True,72.3,1614.88,None - Criteria Cleared Successfully
+179,POC-00179,20260402,20260422,422,77,19,5,20,Completed,High Enterprise,10,10,100.0,True,118.5,2115.63,None - Criteria Cleared Successfully
+180,POC-00180,20240419,20240521,423,183,1,7,32,Completed,Standard,6,6,100.0,True,71.9,1099.42,None - Criteria Cleared Successfully
+181,POC-00181,20250412,20250430,424,150,14,8,18,Completed,Standard,5,5,100.0,True,110.9,4038.38,None - Criteria Cleared Successfully
+182,POC-00182,20250130,20250216,426,134,4,3,17,Completed,High Enterprise,12,12,100.0,True,100.1,541.17,None - Criteria Cleared Successfully
+183,POC-00183,20251012,20251114,430,165,9,2,33,Abandoned,Medium,9,6,66.7,False,108.8,2589.22,SSO / SAML Identity Token Failure
+184,POC-00184,20240304,20240330,432,112,3,3,26,Completed,High Enterprise,10,10,100.0,True,113.7,2769.73,None - Criteria Cleared Successfully
+185,POC-00185,20251014,20251111,433,174,3,3,28,Completed,Medium,7,7,100.0,True,122.3,3019.37,None - Criteria Cleared Successfully
+186,POC-00186,20241001,20241105,434,31,13,1,35,Completed,High Enterprise,11,11,100.0,True,106.5,3322.71,None - Criteria Cleared Successfully
+187,POC-00187,20250724,20250820,436,96,9,3,27,Completed,Medium,9,9,100.0,True,132.5,3437.63,None - Criteria Cleared Successfully
+188,POC-00188,20240717,20240810,440,2,12,1,24,Completed,Medium,8,8,100.0,True,116.7,3550.99,None - Criteria Cleared Successfully
+189,POC-00189,20260816,20260927,442,195,5,5,42,In Progress,Standard,6,2,33.3,False,88.2,4277.88,None - Criteria Cleared Successfully
+190,POC-00190,20250201,20250218,446,175,9,8,17,Completed,High Enterprise,10,10,100.0,True,98.2,4256.31,None - Criteria Cleared Successfully
+191,POC-00191,20250402,20250514,447,189,1,4,42,Completed,Medium,8,8,100.0,True,81.3,2766.99,None - Criteria Cleared Successfully
+192,POC-00192,20250204,20250313,449,22,20,1,37,Completed,Medium,7,7,100.0,True,66.8,3583.05,None - Criteria Cleared Successfully
+193,POC-00193,20260619,20260715,450,144,16,1,26,Abandoned,Medium,7,4,57.1,False,100.6,4795.87,Customer VPN & Firewall Ingress Blocked
+194,POC-00194,20250707,20250721,451,167,2,1,14,Completed,Medium,7,7,100.0,True,78.4,4520.96,None - Criteria Cleared Successfully
+195,POC-00195,20250116,20250204,453,121,7,5,19,Abandoned,Medium,8,5,62.5,False,117.0,3970.26,SSO / SAML Identity Token Failure
+196,POC-00196,20240531,20240626,455,108,1,6,26,Completed,Standard,5,5,100.0,True,69.3,949.04,None - Criteria Cleared Successfully
+197,POC-00197,20240816,20240919,457,12,20,1,34,Completed,High Enterprise,12,12,100.0,True,123.8,4399.18,None - Criteria Cleared Successfully
+198,POC-00198,20240922,20241028,462,164,14,1,36,Completed,High Enterprise,11,11,100.0,True,138.2,1695.61,None - Criteria Cleared Successfully
+199,POC-00199,20250515,20250613,463,35,8,2,29,Completed,Medium,7,7,100.0,True,61.8,2347.25,None - Criteria Cleared Successfully
+200,POC-00200,20240410,20240429,470,98,13,4,19,Completed,Medium,9,9,100.0,True,124.5,580.33,None - Criteria Cleared Successfully
+201,POC-00201,20240410,20240520,471,7,16,3,40,Completed,Medium,8,8,100.0,True,109.9,4276.99,None - Criteria Cleared Successfully
+202,POC-00202,20241019,20241129,475,157,17,3,41,Completed,Standard,6,6,100.0,True,53.3,3345.8,None - Criteria Cleared Successfully
+203,POC-00203,20260409,20260427,477,20,2,2,18,Completed,Medium,9,9,100.0,True,121.4,3929.25,None - Criteria Cleared Successfully
+204,POC-00204,20250304,20250329,478,191,17,7,25,Completed,Medium,9,9,100.0,True,78.3,1891.28,None - Criteria Cleared Successfully
+205,POC-00205,20240312,20240408,481,177,7,5,27,Completed,Medium,8,8,100.0,True,102.5,2510.01,None - Criteria Cleared Successfully
+206,POC-00206,20240910,20241018,483,144,1,4,38,Completed,Medium,8,8,100.0,True,101.7,1769.83,None - Criteria Cleared Successfully
+207,POC-00207,20251010,20251031,486,18,12,6,21,Completed,Standard,6,6,100.0,True,108.3,1103.2,None - Criteria Cleared Successfully
+208,POC-00208,20240722,20240817,490,53,1,3,26,Completed,Medium,8,6,75.0,False,99.4,2247.83,SSO / SAML Identity Token Failure
+209,POC-00209,20241103,20241202,491,46,15,4,29,Completed,Standard,5,5,100.0,True,66.7,3245.68,None - Criteria Cleared Successfully
+210,POC-00210,20260124,20260218,495,66,13,6,25,Completed,High Enterprise,12,12,100.0,True,133.1,1377.88,None - Criteria Cleared Successfully
+211,POC-00211,20251018,20251119,496,179,19,3,32,Completed,Medium,8,8,100.0,True,66.0,708.86,None - Criteria Cleared Successfully
+212,POC-00212,20260830,20261004,497,102,10,2,35,Scope Paused,Medium,7,2,28.6,False,78.8,1740.45,Customer VPN & Firewall Ingress Blocked
+213,POC-00213,20240522,20240628,499,209,14,8,37,Completed,Standard,5,2,40.0,False,116.3,4785.14,SSO / SAML Identity Token Failure
+214,POC-00214,20241027,20241125,504,7,19,2,29,Completed,High Enterprise,12,12,100.0,True,105.2,3568.3,None - Criteria Cleared Successfully
+215,POC-00215,20251112,20251214,505,209,14,6,32,Abandoned,Medium,9,6,66.7,False,120.3,2379.51,Test Data Sanitization Delayed by Legal
+216,POC-00216,20260504,20260609,509,137,16,8,36,Completed,High Enterprise,11,3,27.3,False,112.8,401.11,Test Data Sanitization Delayed by Legal
+217,POC-00217,20240407,20240509,511,148,20,1,32,Completed,High Enterprise,10,10,100.0,True,75.1,3826.08,None - Criteria Cleared Successfully
+218,POC-00218,20260626,20260727,514,180,5,1,31,Completed,Medium,9,9,100.0,True,117.3,1586.67,None - Criteria Cleared Successfully
+219,POC-00219,20240407,20240426,515,194,12,7,19,Abandoned,High Enterprise,10,6,60.0,False,83.7,4115.18,Customer VPN & Firewall Ingress Blocked
+220,POC-00220,20240504,20240609,517,110,16,3,36,Completed,Standard,5,5,100.0,True,99.5,3074.88,None - Criteria Cleared Successfully
+221,POC-00221,20250615,20250708,520,204,14,3,23,Completed,Standard,6,4,66.7,False,100.2,838.32,Customer Sponsor Reassigned During POC
+222,POC-00222,20250705,20250719,521,143,20,8,14,Completed,High Enterprise,11,11,100.0,True,109.4,1874.68,None - Criteria Cleared Successfully
+223,POC-00223,20251202,20260112,526,183,10,6,41,Completed,High Enterprise,11,11,100.0,True,90.6,3715.58,None - Criteria Cleared Successfully
+224,POC-00224,20241217,20250127,527,176,5,7,41,Abandoned,High Enterprise,10,1,10.0,False,104.4,2559.99,Customer VPN & Firewall Ingress Blocked
+225,POC-00225,20250214,20250304,530,169,10,3,18,Completed,Medium,8,8,100.0,True,79.3,2218.15,None - Criteria Cleared Successfully
+226,POC-00226,20260623,20260802,535,45,7,2,40,Completed,High Enterprise,12,12,100.0,True,139.8,4612.16,None - Criteria Cleared Successfully
+227,POC-00227,20250125,20250308,537,159,10,8,42,Completed,Medium,7,7,100.0,True,71.7,4023.64,None - Criteria Cleared Successfully
+228,POC-00228,20240613,20240701,539,113,7,8,18,Completed,Standard,6,6,100.0,True,82.9,4296.45,None - Criteria Cleared Successfully
+229,POC-00229,20241112,20241207,542,112,18,8,25,Completed,Medium,9,9,100.0,True,112.7,3650.67,None - Criteria Cleared Successfully
+230,POC-00230,20240314,20240425,544,31,4,3,42,Completed,Medium,7,7,100.0,True,123.3,884.02,None - Criteria Cleared Successfully
+231,POC-00231,20240125,20240222,546,13,12,3,28,Completed,High Enterprise,10,10,100.0,True,136.4,2232.85,None - Criteria Cleared Successfully
+232,POC-00232,20251231,20260211,547,78,17,2,42,Completed,Medium,8,8,100.0,True,65.9,1710.87,None - Criteria Cleared Successfully
+233,POC-00233,20250717,20250807,550,18,17,8,21,Completed,Standard,6,6,100.0,True,114.8,4783.59,None - Criteria Cleared Successfully
+234,POC-00234,20250502,20250521,551,127,10,2,19,Completed,Medium,8,8,100.0,True,64.8,2272.33,None - Criteria Cleared Successfully
+235,POC-00235,20260129,20260309,552,203,10,8,39,Completed,Medium,9,9,100.0,True,112.6,467.24,None - Criteria Cleared Successfully
+236,POC-00236,20240614,20240724,554,22,20,5,40,Completed,Standard,6,1,16.7,False,81.2,2784.78,Customer Sponsor Reassigned During POC
+237,POC-00237,20241220,20250125,557,166,1,5,36,Completed,Standard,6,6,100.0,True,99.4,4433.74,None - Criteria Cleared Successfully
+238,POC-00238,20260301,20260317,558,26,3,3,16,Completed,Medium,7,7,100.0,True,77.8,3493.58,None - Criteria Cleared Successfully
+239,POC-00239,20240921,20241022,560,85,20,8,31,Completed,Standard,6,6,100.0,True,83.3,949.49,None - Criteria Cleared Successfully
+240,POC-00240,20251022,20251118,562,73,1,6,27,Completed,Standard,6,6,100.0,True,81.7,2798.18,None - Criteria Cleared Successfully
+241,POC-00241,20250514,20250617,564,82,16,3,34,Completed,Medium,8,8,100.0,True,73.9,635.83,None - Criteria Cleared Successfully
+242,POC-00242,20250423,20250603,565,91,4,6,41,Completed,Standard,5,5,100.0,True,62.2,921.2,None - Criteria Cleared Successfully
+243,POC-00243,20260117,20260208,566,99,19,2,22,Completed,Medium,8,8,100.0,True,106.1,3306.1,None - Criteria Cleared Successfully
+244,POC-00244,20250917,20251007,569,14,8,2,20,Completed,Medium,8,8,100.0,True,82.5,927.21,None - Criteria Cleared Successfully
+245,POC-00245,20250710,20250806,570,121,17,3,27,Completed,High Enterprise,10,10,100.0,True,74.6,550.18,None - Criteria Cleared Successfully
+246,POC-00246,20250224,20250319,571,129,20,3,23,Completed,High Enterprise,11,1,9.1,False,118.5,841.84,Customer VPN & Firewall Ingress Blocked
+247,POC-00247,20251109,20251130,573,123,13,6,21,Completed,High Enterprise,10,10,100.0,True,95.6,4622.19,None - Criteria Cleared Successfully
+248,POC-00248,20241127,20241229,574,86,8,1,32,Completed,Medium,9,2,22.2,False,98.6,4692.18,Customer Sponsor Reassigned During POC
+249,POC-00249,20260412,20260517,575,22,10,1,35,Completed,Medium,7,7,100.0,True,104.0,3005.74,None - Criteria Cleared Successfully
+250,POC-00250,20250329,20250425,576,34,1,2,27,Completed,High Enterprise,12,3,25.0,False,105.4,3825.91,SSO / SAML Identity Token Failure
+251,POC-00251,20241208,20250113,578,202,20,3,36,Completed,High Enterprise,12,12,100.0,True,113.4,2468.74,None - Criteria Cleared Successfully
+252,POC-00252,20240509,20240603,584,120,9,8,25,Completed,Standard,6,6,100.0,True,67.2,2487.7,None - Criteria Cleared Successfully
+253,POC-00253,20240822,20240909,586,122,6,4,18,Completed,Medium,8,8,100.0,True,103.5,723.91,None - Criteria Cleared Successfully
+254,POC-00254,20240904,20241007,587,116,9,7,33,Completed,High Enterprise,12,12,100.0,True,124.0,3909.47,None - Criteria Cleared Successfully
+255,POC-00255,20240827,20240918,590,164,14,2,22,Completed,High Enterprise,12,12,100.0,True,94.7,1573.35,None - Criteria Cleared Successfully
+256,POC-00256,20241126,20241228,591,95,19,6,32,Completed,Medium,9,9,100.0,True,87.8,3639.72,None - Criteria Cleared Successfully
+257,POC-00257,20250423,20250523,592,30,10,3,30,Completed,Standard,6,6,100.0,True,97.2,3867.13,None - Criteria Cleared Successfully
+258,POC-00258,20250412,20250504,597,213,14,1,22,Completed,Standard,6,6,100.0,True,89.7,4349.79,None - Criteria Cleared Successfully
+259,POC-00259,20260529,20260627,601,24,1,2,29,Completed,High Enterprise,11,11,100.0,True,129.0,3589.22,None - Criteria Cleared Successfully
+260,POC-00260,20240216,20240308,604,94,10,2,21,Completed,Standard,6,6,100.0,True,76.3,2505.85,None - Criteria Cleared Successfully
+261,POC-00261,20250712,20250811,605,120,17,8,30,Completed,High Enterprise,10,10,100.0,True,113.4,4386.92,None - Criteria Cleared Successfully
+262,POC-00262,20250603,20250711,606,204,14,4,38,Completed,High Enterprise,10,10,100.0,True,86.7,2091.27,None - Criteria Cleared Successfully
+263,POC-00263,20240830,20240914,608,92,11,4,15,Completed,High Enterprise,10,10,100.0,True,133.0,4031.21,None - Criteria Cleared Successfully
+264,POC-00264,20260427,20260604,610,51,13,4,38,Completed,Medium,8,8,100.0,True,101.8,2343.86,None - Criteria Cleared Successfully
+265,POC-00265,20241224,20250115,612,186,16,5,22,Completed,Standard,5,5,100.0,True,113.5,1364.17,None - Criteria Cleared Successfully
+266,POC-00266,20240519,20240629,613,216,8,6,41,Completed,High Enterprise,11,11,100.0,True,137.2,387.53,None - Criteria Cleared Successfully
+267,POC-00267,20260624,20260731,614,138,8,1,37,Completed,High Enterprise,12,12,100.0,True,146.4,682.43,None - Criteria Cleared Successfully
+268,POC-00268,20240614,20240704,615,36,9,8,20,Completed,High Enterprise,12,12,100.0,True,118.1,1592.02,None - Criteria Cleared Successfully
+269,POC-00269,20250504,20250608,619,148,4,2,35,Completed,High Enterprise,10,10,100.0,True,95.1,3237.52,None - Criteria Cleared Successfully
+270,POC-00270,20240412,20240520,622,148,13,5,38,Completed,Medium,8,8,100.0,True,108.2,1538.06,None - Criteria Cleared Successfully
+271,POC-00271,20250106,20250203,623,53,4,3,28,Completed,High Enterprise,11,11,100.0,True,106.4,3458.52,None - Criteria Cleared Successfully
+272,POC-00272,20240803,20240906,624,175,9,2,34,Completed,Medium,7,7,100.0,True,124.7,3905.8,None - Criteria Cleared Successfully
+273,POC-00273,20241123,20241230,626,199,16,2,37,Completed,Standard,5,5,100.0,True,79.4,972.28,None - Criteria Cleared Successfully
+274,POC-00274,20250608,20250630,630,74,11,2,22,Completed,Standard,5,5,100.0,True,101.3,3102.55,None - Criteria Cleared Successfully
+275,POC-00275,20251018,20251125,633,26,18,5,38,Completed,Standard,6,6,100.0,True,121.1,3831.2,None - Criteria Cleared Successfully
+276,POC-00276,20260301,20260327,638,133,5,3,26,Abandoned,Standard,6,4,66.7,False,86.4,3433.18,Customer Sponsor Reassigned During POC
+277,POC-00277,20240409,20240426,639,160,4,4,17,Completed,Standard,5,5,100.0,True,114.2,4735.79,None - Criteria Cleared Successfully
+278,POC-00278,20250616,20250713,641,44,17,4,27,Completed,High Enterprise,12,12,100.0,True,84.7,2212.05,None - Criteria Cleared Successfully
+279,POC-00279,20240210,20240228,643,120,8,8,18,Completed,High Enterprise,11,11,100.0,True,83.3,1650.93,None - Criteria Cleared Successfully
+280,POC-00280,20251001,20251016,645,34,20,6,15,Completed,Medium,9,9,100.0,True,104.9,2194.2,None - Criteria Cleared Successfully
+281,POC-00281,20260502,20260519,648,52,19,3,17,Completed,Standard,5,5,100.0,True,116.1,2584.26,None - Criteria Cleared Successfully
+282,POC-00282,20250425,20250602,650,206,12,2,38,Completed,Standard,5,5,100.0,True,63.7,1048.78,None - Criteria Cleared Successfully
+283,POC-00283,20250315,20250422,656,142,4,8,38,Completed,Standard,5,5,100.0,True,96.0,3285.28,None - Criteria Cleared Successfully
+284,POC-00284,20260112,20260220,660,135,18,5,39,Completed,Standard,5,2,40.0,False,69.1,2024.13,Test Data Sanitization Delayed by Legal
+285,POC-00285,20250226,20250405,661,190,13,4,38,Completed,High Enterprise,12,12,100.0,True,125.0,1490.83,None - Criteria Cleared Successfully
+286,POC-00286,20260514,20260621,662,151,3,7,38,Completed,Medium,8,8,100.0,True,105.7,603.86,None - Criteria Cleared Successfully
+287,POC-00287,20260409,20260509,664,186,13,7,30,Completed,Standard,6,6,100.0,True,108.2,2318.28,None - Criteria Cleared Successfully
+288,POC-00288,20251015,20251106,666,147,18,7,22,Completed,High Enterprise,11,11,100.0,True,133.4,1065.76,None - Criteria Cleared Successfully
+289,POC-00289,20250508,20250522,667,114,16,8,14,Completed,Medium,9,9,100.0,True,125.4,889.39,None - Criteria Cleared Successfully
+290,POC-00290,20250524,20250608,674,217,18,1,15,Completed,Standard,6,6,100.0,True,87.8,3766.73,None - Criteria Cleared Successfully
+291,POC-00291,20240530,20240620,675,117,1,6,21,Completed,Medium,7,7,100.0,True,73.8,3972.62,None - Criteria Cleared Successfully
+292,POC-00292,20250412,20250518,677,31,4,2,36,Completed,High Enterprise,11,11,100.0,True,131.6,781.19,None - Criteria Cleared Successfully
+293,POC-00293,20251116,20251205,681,2,8,6,19,Completed,High Enterprise,12,12,100.0,True,104.7,709.0,None - Criteria Cleared Successfully
+294,POC-00294,20250817,20250901,684,8,5,1,15,Completed,Standard,5,5,100.0,True,64.7,1427.05,None - Criteria Cleared Successfully
+295,POC-00295,20250623,20250715,688,68,1,8,22,Completed,Medium,8,8,100.0,True,112.0,1037.78,None - Criteria Cleared Successfully
+296,POC-00296,20260503,20260611,690,75,6,8,39,Completed,High Enterprise,12,12,100.0,True,99.7,4677.65,None - Criteria Cleared Successfully
+297,POC-00297,20241227,20250116,691,30,13,3,20,Completed,High Enterprise,11,11,100.0,True,84.2,756.77,None - Criteria Cleared Successfully
+298,POC-00298,20250821,20250910,692,218,13,7,20,Completed,Standard,6,6,100.0,True,57.1,1847.68,None - Criteria Cleared Successfully
+299,POC-00299,20250331,20250504,698,50,10,5,34,Completed,Standard,6,6,100.0,True,59.9,4070.05,None - Criteria Cleared Successfully
+300,POC-00300,20240608,20240712,701,152,7,4,34,Completed,Medium,7,7,100.0,True,58.4,401.53,None - Criteria Cleared Successfully
+301,POC-00301,20250821,20250911,702,10,12,6,21,Completed,High Enterprise,11,4,36.4,False,99.7,922.25,Customer VPN & Firewall Ingress Blocked
+302,POC-00302,20250809,20250913,703,119,17,8,35,Completed,Medium,9,9,100.0,True,84.0,3227.94,None - Criteria Cleared Successfully
+303,POC-00303,20260211,20260322,706,75,14,4,39,Abandoned,High Enterprise,12,4,33.3,False,118.2,3330.5,Test Data Sanitization Delayed by Legal
+304,POC-00304,20250530,20250707,707,107,17,3,38,Completed,High Enterprise,11,11,100.0,True,82.9,4054.71,None - Criteria Cleared Successfully
+305,POC-00305,20260426,20260531,711,14,2,3,35,Completed,High Enterprise,10,10,100.0,True,116.8,3114.22,None - Criteria Cleared Successfully
+306,POC-00306,20260211,20260305,718,82,20,3,22,Completed,Medium,7,4,57.1,False,75.8,4030.29,Performance Bottleneck under High Concurrency
+307,POC-00307,20240320,20240409,719,22,19,3,20,Completed,High Enterprise,12,12,100.0,True,132.4,4785.58,None - Criteria Cleared Successfully
+308,POC-00308,20260318,20260418,721,79,8,4,31,Completed,Medium,7,7,100.0,True,84.6,916.27,None - Criteria Cleared Successfully
+309,POC-00309,20241031,20241115,724,67,4,4,15,Completed,Standard,6,6,100.0,True,70.9,3073.58,None - Criteria Cleared Successfully
+310,POC-00310,20250204,20250219,725,83,6,2,15,Completed,Medium,7,7,100.0,True,112.4,944.37,None - Criteria Cleared Successfully
+311,POC-00311,20250917,20251018,726,113,17,8,31,Completed,High Enterprise,10,10,100.0,True,111.5,4023.37,None - Criteria Cleared Successfully
+312,POC-00312,20250922,20251028,732,129,4,1,36,Completed,Medium,8,8,100.0,True,127.4,3628.8,None - Criteria Cleared Successfully
+313,POC-00313,20260404,20260516,735,125,20,7,42,Completed,Medium,7,7,100.0,True,92.1,484.66,None - Criteria Cleared Successfully
+314,POC-00314,20250325,20250503,736,94,10,2,39,Completed,High Enterprise,12,12,100.0,True,101.1,4234.22,None - Criteria Cleared Successfully
+315,POC-00315,20250829,20250930,742,178,20,1,32,Completed,High Enterprise,12,12,100.0,True,135.6,1955.17,None - Criteria Cleared Successfully
+316,POC-00316,20250313,20250331,748,97,7,2,18,Abandoned,High Enterprise,10,3,30.0,False,119.1,2540.92,Customer Sponsor Reassigned During POC
+317,POC-00317,20240601,20240623,749,82,16,6,22,Completed,Medium,9,9,100.0,True,120.0,1566.95,None - Criteria Cleared Successfully
+318,POC-00318,20260721,20260812,750,74,15,8,22,Completed,Medium,8,8,100.0,True,63.4,2250.76,None - Criteria Cleared Successfully

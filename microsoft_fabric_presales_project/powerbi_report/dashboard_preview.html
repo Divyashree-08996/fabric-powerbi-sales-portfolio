@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Pre-Sales Power BI Executive Dashboard Preview</title>
+  <script src="https://www.gstatic.com/antigravity/web/dev/tailwindcss.min.js"></script>
+  <style>
+    .kpi-card {
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+    .kpi-card:hover {
+      transform: translateY(-2px);
+    }
+    .tab-btn.active {
+      border-bottom: 3px solid #0078D4;
+      color: #0078D4;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body class="bg-transparent text-[var(--foreground)] antialiased p-4 font-sans select-none">
+  
+  <!-- Outer Dashboard Window Container -->
+  <div class="bg-[var(--card)] border border-[var(--border)] rounded-2xl shadow-xl overflow-hidden max-w-6xl mx-auto">
+    
+    <!-- Top Global Header Bar -->
+    <header class="bg-[var(--card)] border-b border-[var(--border)] px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+      <div class="flex items-center gap-3">
+        <div class="w-9 h-9 rounded-lg bg-[#0078D4] flex items-center justify-center text-white font-bold shadow-md">
+          <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/></svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="text-lg font-bold tracking-tight text-[var(--foreground)]">Enterprise Pre-Sales &amp; Solutions Engineering Analytics</h1>
+            <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-blue-100 text-blue-800 dark:bg-blue-950 dark:text-blue-300">Direct Lake Mode</span>
+          </div>
+          <p class="text-xs text-[var(--muted-foreground)]">Connected to Microsoft Fabric OneLake Lakehouse: <code class="font-mono">lh_presales_analytics</code></p>
+        </div>
+      </div>
+
+      <!-- Quick Slicers / Context Pill -->
+      <div class="flex items-center gap-2 text-xs">
+        <div class="border border-[var(--border)] bg-[var(--background)] px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+          <span class="text-[var(--muted-foreground)]">Fiscal Year:</span>
+          <span class="font-semibold text-[var(--foreground)]">FY2024 - FY2026 (All)</span>
+        </div>
+        <div class="border border-[var(--border)] bg-[var(--background)] px-3 py-1.5 rounded-lg flex items-center gap-1.5">
+          <span class="text-[var(--muted-foreground)]">Region:</span>
+          <span class="font-semibold text-[var(--foreground)]">Global (All Regions)</span>
+        </div>
+        <div class="border border-[var(--border)] bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-300 px-3 py-1.5 rounded-lg font-medium flex items-center gap-1">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+          Live In-Memory Cache
+        </div>
+      </div>
+    </header>
+
+    <!-- Navigation Tabs (4 Pages) -->
+    <nav class="flex border-b border-[var(--border)] bg-[var(--background)] px-6 text-xs text-[var(--muted-foreground)] overflow-x-auto">
+      <button onclick="switchTab('page1')" id="tab-page1" class="tab-btn active px-4 py-3 flex items-center gap-2 cursor-pointer transition">
+        <span>📊</span> 1. Pre-Sales Executive Command Center
+      </button>
+      <button onclick="switchTab('page2')" id="tab-page2" class="tab-btn px-4 py-3 flex items-center gap-2 cursor-pointer transition">
+        <span>🔬</span> 2. POC Control Tower &amp; Velocity
+      </button>
+      <button onclick="switchTab('page3')" id="tab-page3" class="tab-btn px-4 py-3 flex items-center gap-2 cursor-pointer transition">
+        <span>👥</span> 3. SE Workload &amp; Resource Allocation
+      </button>
+      <button onclick="switchTab('page4')" id="tab-page4" class="tab-btn px-4 py-3 flex items-center gap-2 cursor-pointer transition">
+        <span>🛡️</span> 4. Technical Win/Loss &amp; Product Gaps
+      </button>
+    </nav>
+
+    <!-- CONTENT AREA -->
+    <div class="p-6 bg-[var(--background)] min-h-[580px]">
+      
+      <!-- ========================================================================= -->
+      <!-- PAGE 1: PRE-SALES EXECUTIVE COMMAND CENTER                                -->
+      <!-- ========================================================================= -->
+      <div id="page1" class="tab-content space-y-5">
+        
+        <!-- KPI Ribbon (5 Cards) -->
+        <div class="grid grid-cols-2 md:grid-cols-5 gap-3">
+          
+          <div class="kpi-card bg-[var(--card)] border border-[var(--border)] p-4 rounded-xl border-l-4 border-l-[#0078D4] shadow-sm">
+            <span class="text-xs text-[var(--muted-foreground)] block">Pre-Sales Influenced ACV</span>
+            <div class="text-2xl font-black text-[#0078D4] tracking-tight mt-1">$98.5M</div>
+            <div class="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold mt-1">92.3% of Total Won ARR</div>
+          </div>
+
+          <div class="kpi-card bg-[var(--card)] border border-[var(--border)] p-4 rounded-xl border-l-4 border-l-emerald-600 shadow-sm">
+            <span class="text-xs text-[var(--muted-foreground)] block">Assisted Win Rate</span>
+            <div class="text-2xl font-black text-emerald-600 dark:text-emerald-400 tracking-tight mt-1">60.0%</div>
+            <div class="text-[11px] text-[var(--muted-foreground)] mt-1">456 Assisted Deals</div>
+          </div>
+
+          <div class="kpi-card bg-[var(--card)] border border-[var(--border)] p-4 rounded-xl border-l-4 border-l-purple-600 shadow-sm">
+            <span class="text-xs text-[var(--muted-foreground)] block">Pre-Sales Win Rate Lift</span>
+            <div class="text-2xl font-black text-purple-600 dark:text-purple-400 tracking-tight mt-1">+34.8%</div>
+            <div class="text-[11px] text-[var(--muted-foreground)] mt-1">vs 25.2% Unassisted</div>
+          </div>
+
+          <div class="kpi-card bg-[var(--card)] border border-[var(--border)] p-4 rounded-xl border-l-4 border-l-amber-500 shadow-sm">
+            <span class="text-xs text-[var(--muted-foreground)] block">POC Win Conversion</span>
+            <div class="text-2xl font-black text-amber-500 tracking-tight mt-1">74.2%</div>
+            <div class="text-[11px] text-[var(--muted-foreground)] mt-1">318 Total POC Projects</div>
+          </div>
+
+          <div class="kpi-card bg-[var(--card)] border border-[var(--border)] p-4 rounded-xl border-l-4 border-l-teal-600 shadow-sm">
+            <span class="text-xs text-[var(--muted-foreground)] block">ACV Influenced / SE Hour</span>
+            <div class="text-2xl font-black text-teal-600 dark:text-teal-400 tracking-tight mt-1">$4,260</div>
+            <div class="text-[11px] text-emerald-600 dark:text-emerald-400 font-semibold mt-1">+14.2% YoY Efficiency</div>
+          </div>
+
+        </div>
+
+        <!-- Upper Row: 2 Primary Charts -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+          
+          <!-- Visual 1: Monthly Won ACV by Pre-Sales Touch Level -->
+          <div class="lg:col-span-7 bg-[var(--card)] border border-[var(--border)] p-5 rounded-xl shadow-sm">
+            <div class="flex items-center justify-between mb-3">
+              <div>
+                <h3 class="font-bold text-sm text-[var(--foreground)]">Monthly Won ACV by Pre-Sales Touch Level</h3>
+                <p class="text-xs text-[var(--muted-foreground)]">Stacked Area Chart | X: Date (Year-Month) | Y: Won ACV ($)</p>
+              </div>
+              <div class="flex items-center gap-3 text-xs">
+                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-[#0078D4]"></span> High Touch (POC)</span>
+                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-purple-500"></span> Medium (SE Assist)</span>
+                <span class="flex items-center gap-1"><span class="w-2.5 h-2.5 rounded-full bg-slate-400"></span> Unassisted</span>
+              </div>
+            </div>
+
+            <!-- Stylized CSS Chart Representation -->
+            <div class="h-44 w-full flex items-end gap-2 pt-6 border-b border-[var(--border)] pb-2">
+              <div class="flex-1 flex flex-col items-center gap-1 h-full justify-end">
+                <div class="w-full bg-slate-300 dark:bg-slate-700 h-[10%] rounded-t-sm"></div>
+                <div class="w-full bg-purple-400 h-[25%]"></div>
+                <div class="w-full bg-[#0078D4] h-[40%] rounded-b-sm"></div>
+                <span class="text-[10px] text-[var(--muted-foreground)]">24-Q1</span>
+              </div>
+              <div class="flex-1 flex flex-col items-center gap-1 h-full justify-end">
+                <div class="w-full bg-slate-300 dark:bg-slate-700 h-[12%] rounded-t-sm"></div>
+                <div class="w-full bg-purple-400 h-[30%]"></div>
+                <div class="w-full bg-[#0078D4] h-[45%] rounded-b-sm"></div>
+                <span class="text-[10px] text-[var(--muted-foreground)]">24-Q2</span>
+              </div>
+              <div class="flex-1 flex flex-col items-center gap-1 h-full justify-end">
+                <div class="w-full bg-slate-300 dark:bg-slate-700 h-[9%] rounded-t-sm"></div>
+                <div class="w-full bg-purple-400 h-[35%]"></div>
+                <div class="w-full bg-[#0078D4] h-[50%] rounded-b-sm"></div>
+                <span class="text-[10px] text-[var(--muted-foreground)]">24-Q3</span>
+              </div>
+              <div class="flex-1 flex flex-col items-center gap-1 h-full justify-end">
+                <div class="w-full bg-slate-300 dark:bg-slate-700 h-[8%] rounded-t-sm"></div>
+                <div class="w-full bg-purple-400 h-[38%]"></div>
+                <div class="w-full bg-[#0078D4] h-[55%] rounded-b-sm"></div>
+                <span class="text-[10px] text-[var(--muted-foreground)]">24-Q4</span>
+              </div>
+              <div class="flex-1 flex flex-col items-center gap-1 h-full justify-end">
+                <div class="w-full bg-slate-300 dark:bg-slate-700 h-[7%] rounded-t-sm"></div>
+                <div class="w-full bg-purple-400 h-[36%]"></div>
+                <div class="w-full bg-[#0078D4] h-[60%] rounded-b-sm"></div>
+                <span class="text-[10px] text-[var(--muted-foreground)]">25-Q1</span>
+              </div>
+              <div class="flex-1 flex flex-col items-center gap-1 h-full justify-end">
+                <div class="w-full bg-slate-300 dark:bg-slate-700 h-[6%] rounded-t-sm"></div>
+                <div class="w-full bg-purple-400 h-[38%]"></div>
+                <div class="w-full bg-[#0078D4] h-[65%] rounded-b-sm"></div>
+                <span class="text-[10px] text-[var(--muted-foreground)]">25-Q2</span>
+              </div>
+              <div class="flex-1 flex flex-col items-center gap-1 h-full justify-end">
+                <div class="w-full bg-slate-300 dark:bg-slate-700 h-[5%] rounded-t-sm"></div>
+                <div class="w-full bg-purple-400 h-[40%]"></div>
+                <div class="w-full bg-[#0078D4] h-[72%] rounded-b-sm"></div>
+                <span class="text-[10px] text-[var(--muted-foreground)]">25-Q3</span>
+              </div>
+            </div>
+            <div class="text-[11px] text-[var(--muted-foreground)] mt-2 flex justify-between">
+              <span>* 84.7% of deal value closed in high-touch POC evaluations</span>
+              <span class="font-medium text-emerald-600">CAGR +31.4%</span>
+            </div>
+          </div>
+
+          <!-- Visual 2: Win Rate Comparison by Deal Size Tier -->
+          <div class="lg:col-span-5 bg-[var(--card)] border border-[var(--border)] p-5 rounded-xl shadow-sm">
+            <div class="mb-3">
+              <h3 class="font-bold text-sm text-[var(--foreground)]">Win Rate: Pre-Sales Assisted vs Unassisted</h3>
+              <p class="text-xs text-[var(--muted-foreground)]">Clustered Column Chart by Deal Size Tier</p>
+            </div>
+
+            <div class="space-y-3 pt-2">
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="font-medium">Jumbo Enterprise (&gt;$400k)</span>
+                  <span class="text-purple-600 font-bold">Lift: +39.0%</span>
+                </div>
+                <div class="flex gap-1 h-5 w-full bg-[var(--background)] rounded overflow-hidden">
+                  <div class="bg-[#0078D4] h-full flex items-center justify-end pr-2 text-[10px] font-bold text-white" style="width: 64.0%">64.0%</div>
+                  <div class="bg-slate-400 h-full flex items-center justify-end pr-1 text-[10px] font-bold text-white" style="width: 25.0%">25%</div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="font-medium">Major Deals ($200k-$400k)</span>
+                  <span class="text-purple-600 font-bold">Lift: +36.7%</span>
+                </div>
+                <div class="flex gap-1 h-5 w-full bg-[var(--background)] rounded overflow-hidden">
+                  <div class="bg-[#0078D4] h-full flex items-center justify-end pr-2 text-[10px] font-bold text-white" style="width: 64.0%">64.0%</div>
+                  <div class="bg-slate-400 h-full flex items-center justify-end pr-1 text-[10px] font-bold text-white" style="width: 27.3%">27%</div>
+                </div>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs mb-1">
+                  <span class="font-medium">Core Deals ($75k-$200k)</span>
+                  <span class="text-purple-600 font-bold">Lift: +30.5%</span>
+                </div>
+                <div class="flex gap-1 h-5 w-full bg-[var(--background)] rounded overflow-hidden">
+                  <div class="bg-[#0078D4] h-full flex items-center justify-end pr-2 text-[10px] font-bold text-white" style="width: 56.3%">56.3%</div>
+                  <div class="bg-slate-400 h-full flex items-center justify-end pr-1 text-[10px] font-bold text-white" style="width: 25.8%">26%</div>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-4 pt-3 border-t border-[var(--border)] flex items-center justify-between text-xs text-[var(--muted-foreground)]">
+              <span class="flex items-center gap-1.5"><span class="w-3 h-3 bg-[#0078D4] rounded-sm"></span> SE Engaged</span>
+              <span class="flex items-center gap-1.5"><span class="w-3 h-3 bg-slate-400 rounded-sm"></span> Unassisted</span>
+              <span class="font-semibold text-[var(--foreground)]">Avg Lift: +34.8%</span>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Lower Row: Product Split & Regional Performance Matrix -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+          
+          <div class="lg:col-span-4 bg-[var(--card)] border border-[var(--border)] p-5 rounded-xl shadow-sm">
+            <h3 class="font-bold text-sm text-[var(--foreground)] mb-1">Pre-Sales Revenue by Product Line</h3>
+            <p class="text-xs text-[var(--muted-foreground)] mb-4">Donut Chart | Values: Pre-Sales Influenced Won ACV</p>
+            
+            <div class="space-y-2 text-xs">
+              <div class="flex items-center justify-between">
+                <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-[#0078D4]"></span> Fabric Lakehouse Cloud</span>
+                <span class="font-bold">$38.4M (39%)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-purple-600"></span> AI Copilot Studio</span>
+                <span class="font-bold">$28.2M (29%)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-teal-600"></span> Event Streaming Hub</span>
+                <span class="font-bold">$18.1M (18%)</span>
+              </div>
+              <div class="flex items-center justify-between">
+                <span class="flex items-center gap-2"><span class="w-2.5 h-2.5 rounded-full bg-amber-500"></span> Zero-Trust Mesh &amp; Others</span>
+                <span class="font-bold">$13.8M (14%)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-8 bg-[var(--card)] border border-[var(--border)] p-5 rounded-xl shadow-sm overflow-x-auto">
+            <h3 class="font-bold text-sm text-[var(--foreground)] mb-1">Regional Pre-Sales Performance &amp; SE Efficiency Matrix</h3>
+            <p class="text-xs text-[var(--muted-foreground)] mb-3">Matrix Visual | Rows: Region | Values: Deals, Won ACV, Win %, Hours, ROI</p>
+            
+            <table class="w-full text-left text-xs border-collapse">
+              <thead>
+                <tr class="border-b border-[var(--border)] text-[var(--muted-foreground)] pb-2">
+                  <th class="py-2">Region</th>
+                  <th class="py-2">Closed Deals</th>
+                  <th class="py-2">Won ACV</th>
+                  <th class="py-2">SE Win Rate</th>
+                  <th class="py-2">Logged Hours</th>
+                  <th class="py-2 text-right">ACV / SE Hr</th>
+                </tr>
+              </thead>
+              <tbody class="divide-y divide-[var(--border)]">
+                <tr>
+                  <td class="py-2.5 font-semibold text-[#0078D4]">North America</td>
+                  <td class="py-2.5">324</td>
+                  <td class="py-2.5 font-bold">$49.2M</td>
+                  <td class="py-2.5 text-emerald-600 font-semibold">62.8%</td>
+                  <td class="py-2.5">10,840</td>
+                  <td class="py-2.5 text-right font-mono font-bold">$4,538</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 font-semibold text-[#0078D4]">EMEA</td>
+                  <td class="py-2.5">218</td>
+                  <td class="py-2.5 font-bold">$31.5M</td>
+                  <td class="py-2.5 text-emerald-600 font-semibold">59.2%</td>
+                  <td class="py-2.5">7,420</td>
+                  <td class="py-2.5 text-right font-mono font-bold">$4,245</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 font-semibold text-[#0078D4]">APAC</td>
+                  <td class="py-2.5">126</td>
+                  <td class="py-2.5 font-bold">$13.8M</td>
+                  <td class="py-2.5 text-emerald-600 font-semibold">57.4%</td>
+                  <td class="py-2.5">3,610</td>
+                  <td class="py-2.5 text-right font-mono font-bold">$3,822</td>
+                </tr>
+                <tr>
+                  <td class="py-2.5 font-semibold text-[#0078D4]">LATAM</td>
+                  <td class="py-2.5">45</td>
+                  <td class="py-2.5 font-bold">$4.0M</td>
+                  <td class="py-2.5 text-emerald-600 font-semibold">54.0%</td>
+                  <td class="py-2.5">1,180</td>
+                  <td class="py-2.5 text-right font-mono font-bold">$3,389</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- ========================================================================= -->
+      <!-- PAGE 2: POC CONTROL TOWER & VELOCITY                                      -->
+      <!-- ========================================================================= -->
+      <div id="page2" class="tab-content hidden space-y-5">
+        <div class="grid grid-cols-4 gap-3">
+          <div class="bg-[var(--card)] border border-[var(--border)] p-4 rounded-xl border-l-4 border-l-[#0078D4]">
+            <span class="text-xs text-[var(--muted-foreground)]">Active In-Progress POCs</span>
+            <div class="text-2xl font-black text-[#0078D4] mt-1">42 Projects</div>
+            <span class="text-[11px] text-amber-500 font-semibold">6 Overdue (&gt;35 days)</span>
+          </div>
+          <div class="bg-[var(--card)] border border-[var(--border)] p-4 rounded-xl border-l-4 border-l-emerald-600">
+            <span class="text-xs text-[var(--muted-foreground)]">Technical Win Rate</span>
+            <div class="text-2xl font-black text-emerald-600 mt-1">84.1%</div>
+            <span class="text-[11px] text-[var(--muted-foreground)]">Criteria cleared in lab</span>
+          </div>
+          <div class="bg-[var(--card)] border border-[var(--border)] p-4 rounded-xl border-l-4 border-l-purple-600">
+            <span class="text-xs text-[var(--muted-foreground)]">Tech to Commercial Win %</span>
+            <div class="text-2xl font-black text-purple-600 mt-1">88.2%</div>
+            <span class="text-[11px] text-[var(--muted-foreground)]">Converted to closed contract</span>
+          </div>
+          <div class="bg-[var(--card)] border border-[var(--border)] p-4 rounded-xl border-l-4 border-l-teal-600">
+            <span class="text-xs text-[var(--muted-foreground)]">Avg POC Calendar Duration</span>
+            <div class="text-2xl font-black text-teal-600 mt-1">26.8 Days</div>
+            <span class="text-[11px] text-[var(--muted-foreground)]">Target SLA: 21.0 Days</span>
+          </div>
+        </div>
+
+        <!-- Funnel and Scatter -->
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-5">
+          <div class="lg:col-span-6 bg-[var(--card)] border border-[var(--border)] p-5 rounded-xl">
+            <h3 class="font-bold text-sm text-[var(--foreground)] mb-1">POC Conversion Funnel: Lab to Contract</h3>
+            <p class="text-xs text-[var(--muted-foreground)] mb-4">Funnel Visual | Steps: Initiated $\rightarrow$ Criteria Passed $\rightarrow$ Tech Win $\rightarrow$ Booked</p>
+            <div class="space-y-2 text-xs">
+              <div class="bg-blue-100 dark:bg-blue-950 p-2.5 rounded flex justify-between font-semibold text-blue-900 dark:text-blue-200">
+                <span>1. POCs Initiated</span>
+                <span>318 Projects (100%)</span>
+              </div>
+              <div class="bg-indigo-100 dark:bg-indigo-950 p-2.5 rounded flex justify-between font-semibold text-indigo-900 dark:text-indigo-200 w-[90%]">
+                <span>2. Evaluation Completed</span>
+                <span>286 Projects (89.9%)</span>
+              </div>
+              <div class="bg-purple-100 dark:bg-purple-950 p-2.5 rounded flex justify-between font-semibold text-purple-900 dark:text-purple-200 w-[84%]">
+                <span>3. Formal Technical Win</span>
+                <span>267 Projects (84.0%)</span>
+              </div>
+              <div class="bg-emerald-100 dark:bg-emerald-950 p-2.5 rounded flex justify-between font-semibold text-emerald-900 dark:text-emerald-200 w-[74%]">
+                <span>4. Commercial Closed Won ARR</span>
+                <span>236 Deals ($76.4M ACV)</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 bg-[var(--card)] border border-[var(--border)] p-5 rounded-xl">
+            <h3 class="font-bold text-sm text-[var(--foreground)] mb-1">POC Velocity &amp; Scope Creep Quadrant</h3>
+            <p class="text-xs text-[var(--muted-foreground)] mb-3">Scatter Plot | X: Duration (Days) | Y: Criteria Success %</p>
+            <div class="h-44 border border-dashed border-[var(--border)] rounded flex items-center justify-center p-4 relative bg-[var(--background)]">
+              <div class="absolute top-2 left-2 text-[10px] font-bold text-emerald-600 bg-emerald-50 dark:bg-emerald-950 px-2 py-0.5 rounded">FAST TRACK WINS (&lt;30d, &gt;80%)</div>
+              <div class="absolute bottom-2 right-2 text-[10px] font-bold text-rose-600 bg-rose-50 dark:bg-rose-950 px-2 py-0.5 rounded">SCOPE CREEP DANGER (&gt;35d, &lt;70%)</div>
+              <span class="text-xs text-[var(--muted-foreground)] italic">318 POC projects distributed by technical complexity</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================================================= -->
+      <!-- PAGE 3: SE WORKLOAD & CAPACITY                                            -->
+      <!-- ========================================================================= -->
+      <div id="page3" class="tab-content hidden space-y-5">
+        <div class="grid grid-cols-4 gap-3">
+          <div class="bg-[var(--card)] border border-[var(--border)] p-4 rounded-xl border-l-4 border-l-[#0078D4]">
+            <span class="text-xs text-[var(--muted-foreground)]">Total SE Logged Hours</span>
+            <div class="text-2xl font-black text-[#0078D4] mt-1">23,050 Hrs</div>
+            <span class="text-[11px] text-[var(--muted-foreground)]">20 Active Engineers</span>
+          </div>
+          <div class="bg-[var(--card)] border border-[var(--border)] p-4 rounded-xl border-l-4 border-l-emerald-600">
+            <span class="text-xs text-[var(--muted-foreground)]">Average SE Utilization</span>
+            <div class="text-2xl font-black text-emerald-600 mt-1">73.8%</div>
+            <span class="text-[11px] text-emerald-600 font-semibold">Target: 75.0%</span>
+          </div>
+          <div class="bg-[var(--card)] border border-[var(--border)] p-4 rounded-xl border-l-4 border-l-purple-600">
+            <span class="text-xs text-[var(--muted-foreground)]">Customer Delivery vs Prep</span>
+            <div class="text-2xl font-black text-purple-600 mt-1">1.15 : 1</div>
+            <span class="text-[11px] text-[var(--muted-foreground)]">53% Delivery / 47% Prep</span>
+          </div>
+          <div class="bg-[var(--card)] border border-[var(--border)] p-4 rounded-xl border-l-4 border-l-amber-500">
+            <span class="text-xs text-[var(--muted-foreground)]">Avg SE Hours / Won Deal</span>
+            <div class="text-2xl font-black text-amber-500 mt-1">50.5 Hrs</div>
+            <span class="text-[11px] text-[var(--muted-foreground)]">Standard effort benchmark</span>
+          </div>
+        </div>
+
+        <div class="bg-[var(--card)] border border-[var(--border)] p-5 rounded-xl">
+          <h3 class="font-bold text-sm text-[var(--foreground)] mb-1">Pre-Sales Activity Mix (Customer-Facing vs Technical Validation)</h3>
+          <p class="text-xs text-[var(--muted-foreground)] mb-4">Stacked Bar Chart | Categorized by Activity Name</p>
+          <div class="space-y-2 text-xs">
+            <div>
+              <div class="flex justify-between mb-1"><span>Architecture Design Sessions (ADS)</span><span class="font-bold">6,840 Hrs (30%)</span></div>
+              <div class="h-3 w-full bg-[var(--background)] rounded overflow-hidden"><div class="h-full bg-[#0078D4] rounded" style="width: 30%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-1"><span>Custom Tailored Demos</span><span class="font-bold">5,720 Hrs (25%)</span></div>
+              <div class="h-3 w-full bg-[var(--background)] rounded overflow-hidden"><div class="h-full bg-purple-600 rounded" style="width: 25%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-1"><span>Hands-on Technical Workshops</span><span class="font-bold">4,580 Hrs (20%)</span></div>
+              <div class="h-3 w-full bg-[var(--background)] rounded overflow-hidden"><div class="h-full bg-teal-600 rounded" style="width: 20%"></div></div>
+            </div>
+            <div>
+              <div class="flex justify-between mb-1"><span>Standard Product Demos</span><span class="font-bold">3,450 Hrs (15%)</span></div>
+              <div class="h-3 w-full bg-[var(--background)] rounded overflow-hidden"><div class="h-full bg-amber-500 rounded" style="width: 15%"></div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========================================================================= -->
+      <!-- PAGE 4: TECHNICAL WIN/LOSS                                                -->
+      <!-- ========================================================================= -->
+      <div id="page4" class="tab-content hidden space-y-5">
+        <div class="grid grid-cols-4 gap-3">
+          <div class="bg-[var(--card)] border border-[var(--border)] p-4 rounded-xl border-l-4 border-l-rose-600">
+            <span class="text-xs text-[var(--muted-foreground)]">Technical Loss Pipeline ARR</span>
+            <div class="text-2xl font-black text-rose-600 mt-1">$28.4M</div>
+            <span class="text-[11px] text-rose-600 font-semibold">112 Lost Deals</span>
+          </div>
+          <div class="bg-[var(--card)] border border-[var(--border)] p-4 rounded-xl border-l-4 border-l-amber-500">
+            <span class="text-xs text-[var(--muted-foreground)]">Technical Loss Share</span>
+            <div class="text-2xl font-black text-amber-500 mt-1">36.4%</div>
+            <span class="text-[11px] text-[var(--muted-foreground)]">of all lost revenue</span>
+          </div>
+          <div class="bg-[var(--card)] border border-[var(--border)] p-4 rounded-xl border-l-4 border-l-[#0078D4]">
+            <span class="text-xs text-[var(--muted-foreground)]">Top Competitor Rival</span>
+            <div class="text-2xl font-black text-[#0078D4] mt-1">Snowflake Inc.</div>
+            <span class="text-[11px] text-[var(--muted-foreground)]">$12.6M Head-to-Head</span>
+          </div>
+          <div class="bg-[var(--card)] border border-[var(--border)] p-4 rounded-xl border-l-4 border-l-emerald-600">
+            <span class="text-xs text-[var(--muted-foreground)]">RFP Compliance Average</span>
+            <div class="text-2xl font-black text-emerald-600 mt-1">92.4%</div>
+            <span class="text-[11px] text-emerald-600 font-semibold">Turnaround: 14.2 Days</span>
+          </div>
+        </div>
+
+        <div class="bg-[var(--card)] border border-[var(--border)] p-5 rounded-xl">
+          <h3 class="font-bold text-sm text-[var(--foreground)] mb-1">Technical Loss Reason Pareto: Product Feedback Loop</h3>
+          <p class="text-xs text-[var(--muted-foreground)] mb-4">Line &amp; Clustered Column Combo Chart | Bars: Lost ARR ($) | Line: Cumulative %</p>
+          <div class="space-y-3 text-xs">
+            <div class="flex items-center justify-between border-b border-[var(--border)] pb-2">
+              <span class="font-medium">1. Technical Feature Gap (Cloud Connector Parity)</span>
+              <span class="font-mono font-bold text-rose-600">$9.8M (34.5% cumulative)</span>
+            </div>
+            <div class="flex items-center justify-between border-b border-[var(--border)] pb-2">
+              <span class="font-medium">2. Sub-second Latency SLA Non-Conformance</span>
+              <span class="font-mono font-bold text-rose-600">$6.4M (57.0% cumulative)</span>
+            </div>
+            <div class="flex items-center justify-between border-b border-[var(--border)] pb-2">
+              <span class="font-medium">3. Competitor Architectural Advantage (Snowflake/Databricks)</span>
+              <span class="font-mono font-bold text-rose-600">$5.1M (75.0% cumulative)</span>
+            </div>
+            <div class="flex items-center justify-between border-b border-[var(--border)] pb-2">
+              <span class="font-medium">4. Security Clearance &amp; Data Residency Constraints</span>
+              <span class="font-mono font-bold text-rose-600">$4.2M (89.8% cumulative)</span>
+            </div>
+            <div class="flex items-center justify-between">
+              <span class="font-medium">5. Integration Complexity with Legacy On-Premises ERP</span>
+              <span class="font-mono font-bold text-rose-600">$2.9M (100.0% cumulative)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Bottom Status Bar -->
+    <footer class="bg-[var(--card)] border-t border-[var(--border)] px-6 py-2.5 flex items-center justify-between text-xs text-[var(--muted-foreground)]">
+      <div class="flex items-center gap-2">
+        <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+        <span>Fabric Direct Lake: <strong>Zero Data Movement</strong> | Query Latency: <strong>42ms</strong></span>
+      </div>
+      <div>Theme: <strong>Microsoft Fluent PreSales Palette</strong> | 16:9 Canvas (1920 &times; 1080)</div>
+    </footer>
+
+  </div>
+
+  <script>
+    function switchTab(pageId) {
+      document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+      document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+      
+      const target = document.getElementById(pageId);
+      if (target) target.classList.remove('hidden');
+      
+      const activeBtn = document.getElementById('tab-' + pageId);
+      if (activeBtn) activeBtn.classList.add('active');
+    }
+  </script>
+</body>
+</html>

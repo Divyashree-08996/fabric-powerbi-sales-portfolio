@@ -1,0 +1,111 @@
+// ===============================================================================
+// ADVANCED DAX LIBRARY: 08_Budget_Allocation_Grain_Mismatch.dax
+// Multi-Grain Budget Allocation, TREATAS Integration & Target Attainment
+// Table: '_Measures_Budget_Planning'
+// Author: Alex Rivera | DP-600 & PL-300 Certified Analytics Engineer
+// ===============================================================================
+
+// -------------------------------------------------------------------------------
+// 1. Core Target Measures at Native Granularity (Month x Category x Region)
+// -------------------------------------------------------------------------------
+
+/// <summary>
+/// Budgeted Revenue Target (USD).
+/// Native grain is Monthly by Category and RegionCode.
+/// </summary>
+Budget Revenue = 
+SUM ( 'Fact_Budget'[TargetRevenueUSD] )
+
+
+/// <summary>
+/// Budgeted Gross Margin Target (USD).
+/// </summary>
+Budget Margin = 
+SUM ( 'Fact_Budget'[TargetMarginUSD] )
+
+
+// -------------------------------------------------------------------------------
+// 2. Handling Grain Mismatch (Sales at Product/Day grain vs Budget at Category/Month grain)
+// -------------------------------------------------------------------------------
+
+/// <summary>
+/// Revenue Target with TREATAS Grain Alignment:
+/// Dynamically passes Category and Region filters from the Sales Star Schema 
+/// into Fact_Budget using TREATAS.
+/// If user drills down into an individual Product, handles whether to suppress 
+/// the budget (display BLANK) or allocate proportionately.
+/// </summary>
+Target Revenue (Grain-Safe) = 
+VAR _SelectedCategories = VALUES ( 'Dim_Product'[Category] )
+VAR _SelectedRegions = VALUES ( 'Dim_Store_Region'[RegionCode] )
+VAR _SelectedYearMonths = VALUES ( 'Dim_Date'[YearMonth] )
+VAR _IsDrilledToProduct = ISINSCOPE ( 'Dim_Product'[ProductID] )
+VAR _BaseBudget = 
+    CALCULATE ( 
+        [Budget Revenue], 
+        TREATAS ( _SelectedCategories, 'Fact_Budget'[Category] ), 
+        TREATAS ( _SelectedRegions, 'Fact_Budget'[RegionCode] ), 
+        TREATAS ( _SelectedYearMonths, 'Fact_Budget'[YearMonth] ) 
+    )
+RETURN
+    IF ( 
+        _IsDrilledToProduct, 
+        // Allocate category monthly budget to individual product based on product's historical category share
+        VAR _ProductSales = [Net Revenue]
+        VAR _CategorySales = 
+            CALCULATE ( 
+                [Net Revenue], 
+                ALL ( 'Dim_Product' ), 
+                VALUES ( 'Dim_Product'[Category] ) 
+            )
+        VAR _ProductShareOfCategory = DIVIDE ( _ProductSales, _CategorySales, 0 )
+        RETURN
+            _BaseBudget * _ProductShareOfCategory, 
+        _BaseBudget 
+    )
+
+
+/// <summary>
+/// Revenue Target Variance in absolute dollars.
+/// Positive = Exceeding target (favorable).
+/// Negative = Shortfall (unfavorable).
+/// </summary>
+Revenue vs Target Variance $ = 
+VAR _Actual = [Net Revenue]
+VAR _Target = [Target Revenue (Grain-Safe)]
+RETURN
+    IF ( 
+        NOT ISBLANK ( _Actual ) && NOT ISBLANK ( _Target ), 
+        _Actual - _Target, 
+        BLANK () 
+    )
+
+
+/// <summary>
+/// Revenue Target Attainment Percentage.
+/// 100% = Met target exactly. > 100% = Outperformed target.
+/// </summary>
+Revenue Target Attainment % = 
+VAR _Actual = [Net Revenue]
+VAR _Target = [Target Revenue (Grain-Safe)]
+RETURN
+    DIVIDE ( 
+        _Actual, 
+        _Target, 
+        BLANK () 
+    )
+
+
+/// <summary>
+/// Target Attainment Status Badge & Icon for Matrix tables.
+/// </summary>
+Target Attainment Status = 
+VAR _Attainment = [Revenue Target Attainment %]
+RETURN
+    SWITCH ( 
+        TRUE (), 
+        ISBLANK ( _Attainment ), BLANK (), 
+        _Attainment >= 1.05, "🟢 Exceeded (>105%)", 
+        _Attainment >= 0.98, "🟡 On Track (98-104%)", 
+        "🔴 Underperforming (<98%)" 
+    )

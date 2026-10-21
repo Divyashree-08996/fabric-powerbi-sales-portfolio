@@ -1,0 +1,21 @@
+se_id,se_name,email,region,seniority_level,specialization,target_weekly_hours,target_utilization_pct,hourly_cost_rate_usd
+SE-001,Marcus Vance,marcus.vance@enterprise-cloud.io,North America,Lead Solution Architect,Data & Analytics,40,75.0,165
+SE-002,Elena Rostova,elena.rostova@enterprise-cloud.io,EMEA,Principal SE,Artificial Intelligence,40,75.0,150
+SE-003,Rajesh Kulkarni,rajesh.kulkarni@enterprise-cloud.io,APAC,Senior SE,Data & Analytics,40,75.0,125
+SE-004,Sarah Jenkins,sarah.jenkins@enterprise-cloud.io,North America,Senior SE,Cybersecurity,40,75.0,130
+SE-005,Hiroshi Tanaka,hiroshi.tanaka@enterprise-cloud.io,APAC,Principal SE,Integration & Middleware,40,75.0,145
+SE-006,Mateo Silva,mateo.silva@enterprise-cloud.io,LATAM,Senior SE,Business Applications,40,75.0,120
+SE-007,Amira El-Sayed,amira.el-sayed@enterprise-cloud.io,EMEA,Lead Solution Architect,Cybersecurity,40,75.0,160
+SE-008,David Kowalski,david.kowalski@enterprise-cloud.io,EMEA,Associate SE,Cloud Infrastructure,40,75.0,95
+SE-009,Chloe Dupont,chloe.dupont@enterprise-cloud.io,EMEA,Senior SE,Artificial Intelligence,40,75.0,135
+SE-010,Liam O'Connor,liam.o'connor@enterprise-cloud.io,North America,Principal SE,Data & Analytics,40,75.0,150
+SE-011,Priya Nair,priya.nair@enterprise-cloud.io,APAC,Associate SE,Artificial Intelligence,40,75.0,95
+SE-012,Lucas Meyer,lucas.meyer@enterprise-cloud.io,EMEA,Senior SE,IoT & Edge,40,75.0,135
+SE-013,Jessica Taylor,jessica.taylor@enterprise-cloud.io,North America,Associate SE,Business Applications,40,75.0,95
+SE-014,Carlos Mendoza,carlos.mendoza@enterprise-cloud.io,LATAM,Principal SE,Data & Analytics,40,75.0,145
+SE-015,Wei Zhang,wei.zhang@enterprise-cloud.io,APAC,Lead Solution Architect,Cloud Infrastructure,40,75.0,165
+SE-016,Sophia Alvarez,sophia.alvarez@enterprise-cloud.io,North America,Senior SE,Artificial Intelligence,40,75.0,130
+SE-017,Julian Brandt,julian.brandt@enterprise-cloud.io,EMEA,Associate SE,Integration & Middleware,40,75.0,95
+SE-018,Ananya Sharma,ananya.sharma@enterprise-cloud.io,APAC,Senior SE,Cybersecurity,40,75.0,130
+SE-019,Daniel Kim,daniel.kim@enterprise-cloud.io,North America,Principal SE,IoT & Edge,40,75.0,155
+SE-020,Grace Hopper,grace.hopper@enterprise-cloud.io,North America,Lead Solution Architect,Data & Analytics,40,75.0,170

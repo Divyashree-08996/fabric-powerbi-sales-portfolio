@@ -1,0 +1,126 @@
+// ===============================================================================
+// ADVANCED DAX LIBRARY: 07_What_If_Financial_Sensitivity.dax
+// Parameterized What-If Scenario Analysis, Elasticity & Gross Margin Simulation
+// Table: '_Measures_WhatIf_Scenarios'
+// Slicers: 'Param_WhatIf_Price'[PriceAdjustmentPercent], 'Param_WhatIf_Cost'[CostAdjustmentPercent]
+// Author: Alex Rivera | DP-600 & PL-300 Certified Analytics Engineer
+// ===============================================================================
+
+// -------------------------------------------------------------------------------
+// 1. Scenario Slider Harvesting
+// -------------------------------------------------------------------------------
+
+/// <summary>
+/// Selected Price Adjustment Percentage from What-If parameter slider.
+/// Defaults to 0% (baseline actuals).
+/// Range: -20% to +30%.
+/// </summary>
+Scenario Price Change % = 
+SELECTEDVALUE ( 
+    'Param_WhatIf_Price'[PriceAdjustmentPercent], 
+    0.0 
+)
+
+
+/// <summary>
+/// Selected Cost Inflation Percentage from What-If parameter slider.
+/// Defaults to 0% (baseline actuals).
+/// Range: -10% to +25%.
+/// </summary>
+Scenario Cost Inflation % = 
+SELECTEDVALUE ( 
+    'Param_WhatIf_Cost'[CostAdjustmentPercent], 
+    0.0 
+)
+
+
+// -------------------------------------------------------------------------------
+// 2. Simulated Financial Statement Projections
+// -------------------------------------------------------------------------------
+
+/// <summary>
+/// Simulated Net Revenue:
+/// Applies the simulated price change percentage across transactions.
+/// Formula: Actual Net Revenue * (1 + Price Change %)
+/// (Assumes inelastic demand baseline; can incorporate price elasticity coefficient).
+/// </summary>
+Simulated Net Revenue = 
+VAR _PriceChange = [Scenario Price Change %]
+VAR _ActualRev = [Net Revenue]
+RETURN
+    _ActualRev * ( 1 + _PriceChange )
+
+
+/// <summary>
+/// Simulated Cost of Goods Sold (COGS):
+/// Applies the simulated cost inflation factor to product standard costs.
+/// Formula: Actual COGS * (1 + Cost Inflation %)
+/// </summary>
+Simulated Total COGS = 
+VAR _CostInflation = [Scenario Cost Inflation %]
+VAR _ActualCost = [Total COGS]
+RETURN
+    _ActualCost * ( 1 + _CostInflation )
+
+
+/// <summary>
+/// Simulated Gross Margin in absolute dollars.
+/// Formula: Simulated Net Revenue - Simulated Total COGS
+/// </summary>
+Simulated Gross Margin = 
+[Simulated Net Revenue] - [Simulated Total COGS]
+
+
+/// <summary>
+/// Simulated Gross Margin Percentage.
+/// </summary>
+Simulated Gross Margin % = 
+DIVIDE ( 
+    [Simulated Gross Margin], 
+    [Simulated Net Revenue], 
+    BLANK () 
+)
+
+
+// -------------------------------------------------------------------------------
+// 3. Scenario Variance vs Baseline Actuals
+// -------------------------------------------------------------------------------
+
+/// <summary>
+/// Dollar variance between simulated gross margin and baseline actual gross margin.
+/// Measures the bottom-line delta of the pricing/cost scenario.
+/// </summary>
+Simulated vs Actual Margin Delta $ = 
+[Simulated Gross Margin] - [Gross Margin]
+
+
+/// <summary>
+/// Margin Expansion or Compression in Basis Points (1 bp = 0.01%).
+/// Benchmark: Executive standard for profitability change reporting.
+/// </summary>
+Simulated Margin Variance (bps) = 
+VAR _SimulatedRate = [Simulated Gross Margin %]
+VAR _ActualRate = [Gross Margin %]
+RETURN
+    ( _SimulatedRate - _ActualRate ) * 10000
+
+
+/// <summary>
+/// Dynamic Executive Narrative Summary:
+/// Formats a human-readable explanation of the scenario results.
+/// </summary>
+Scenario Narrative Headline = 
+VAR _Price = [Scenario Price Change %]
+VAR _Cost = [Scenario Cost Inflation %]
+VAR _Delta = [Simulated vs Actual Margin Delta $]
+VAR _Bps = [Simulated Margin Variance (bps)]
+RETURN
+    IF ( 
+        _Price = 0 && _Cost = 0, 
+        "Current Baseline Scenario (No adjustments applied).", 
+        "Scenario Impact: " & 
+        IF ( _Price >= 0, "+" & FORMAT ( _Price, "0.0%" ), FORMAT ( _Price, "0.0%" ) ) & " Price Shift, " & 
+        IF ( _Cost >= 0, "+" & FORMAT ( _Cost, "0.0%" ), FORMAT ( _Cost, "0.0%" ) ) & " Cost Shift yields " & 
+        IF ( _Delta >= 0, "+" & FORMAT ( _Delta, "$#,##0" ), FORMAT ( _Delta, "$#,##0" ) ) & 
+        " Margin Impact (" & FORMAT ( _Bps, "+#,##0;-#,##0;0" ) & " bps)." 
+    )

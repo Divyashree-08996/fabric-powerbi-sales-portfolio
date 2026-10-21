@@ -1,0 +1,174 @@
+// ===============================================================================
+// ADVANCED DAX & TMDL: 09_Calculation_Groups_TMDL.dax
+// Enterprise Calculation Groups with Dynamic Format String Expressions
+// Reduces Measure Sprawl from 60+ measures down to 5 core measures!
+// Author: Alex Rivera | DP-600 & PL-300 Certified Analytics Engineer
+// ===============================================================================
+
+/*
+---------------------------------------------------------------------------------
+CALCULATION GROUP 1: 'Time Intelligence'
+Precedence: 20
+Allows any base metric (Net Revenue, Margin, Units, Orders) to be viewed across:
+Current | PY | YoY Variance | YoY % | YTD | PYTD | YTD YoY % | Rolling 3M Avg
+---------------------------------------------------------------------------------
+*/
+
+// Calculation Item: "Current"
+// Expression:
+SELECTEDMEASURE ()
+
+// ------------------------------------------------------------------------------
+// Calculation Item: "Prior Year (PY)"
+// Expression:
+CALCULATE ( 
+    SELECTEDMEASURE (), 
+    SAMEPERIODLASTYEAR ( 'Dim_Date'[Date] ) 
+)
+
+// ------------------------------------------------------------------------------
+// Calculation Item: "YoY Variance"
+// Expression:
+VAR _Current = SELECTEDMEASURE ()
+VAR _PY = 
+    CALCULATE ( 
+        SELECTEDMEASURE (), 
+        SAMEPERIODLASTYEAR ( 'Dim_Date'[Date] ) 
+    )
+RETURN
+    IF ( 
+        NOT ISBLANK ( _Current ) && NOT ISBLANK ( _PY ), 
+        _Current - _PY, 
+        BLANK () 
+    )
+
+// Format String Expression:
+SELECTEDMEASUREFORMATSTRING ()
+
+// ------------------------------------------------------------------------------
+// Calculation Item: "YoY %"
+// Expression:
+VAR _Current = SELECTEDMEASURE ()
+VAR _PY = 
+    CALCULATE ( 
+        SELECTEDMEASURE (), 
+        SAMEPERIODLASTYEAR ( 'Dim_Date'[Date] ) 
+    )
+RETURN
+    DIVIDE ( 
+        _Current - _PY, 
+        _PY, 
+        BLANK () 
+    )
+
+// Format String Expression:
+// Overrides the base currency/integer format to display as percentage!
+"+0.0%;-0.0%;0.0%"
+
+// ------------------------------------------------------------------------------
+// Calculation Item: "YTD"
+// Expression:
+TOTALYTD ( 
+    SELECTEDMEASURE (), 
+    'Dim_Date'[Date] 
+)
+
+// Format String Expression:
+SELECTEDMEASUREFORMATSTRING ()
+
+// ------------------------------------------------------------------------------
+// Calculation Item: "PYTD"
+// Expression:
+CALCULATE ( 
+    TOTALYTD ( 
+        SELECTEDMEASURE (), 
+        'Dim_Date'[Date] 
+    ), 
+    SAMEPERIODLASTYEAR ( 'Dim_Date'[Date] ) 
+)
+
+// Format String Expression:
+SELECTEDMEASUREFORMATSTRING ()
+
+// ------------------------------------------------------------------------------
+// Calculation Item: "YTD YoY %"
+// Expression:
+VAR _CurrentYTD = 
+    TOTALYTD ( 
+        SELECTEDMEASURE (), 
+        'Dim_Date'[Date] 
+    )
+VAR _PYTD = 
+    CALCULATE ( 
+        TOTALYTD ( 
+            SELECTEDMEASURE (), 
+            'Dim_Date'[Date] 
+        ), 
+        SAMEPERIODLASTYEAR ( 'Dim_Date'[Date] ) 
+    )
+RETURN
+    DIVIDE ( 
+        _CurrentYTD - _PYTD, 
+        _PYTD, 
+        BLANK () 
+    )
+
+// Format String Expression:
+"+0.0%;-0.0%;0.0%"
+
+// ------------------------------------------------------------------------------
+// Calculation Item: "Rolling 3M Avg"
+// Expression (using modern WINDOW function):
+VAR _WindowRows = 
+    WINDOW ( 
+        -2, RELATIVE, 
+        0, RELATIVE, 
+        ALLSELECTED ( 'Dim_Date'[YearMonth] ), 
+        ORDERBY ( 'Dim_Date'[YearMonth], ASC ) 
+    )
+RETURN
+    CALCULATE ( 
+        AVERAGEX ( 
+            VALUES ( 'Dim_Date'[YearMonth] ), 
+            SELECTEDMEASURE () 
+        ), 
+        _WindowRows 
+    )
+
+// Format String Expression:
+SELECTEDMEASUREFORMATSTRING ()
+
+
+/*
+---------------------------------------------------------------------------------
+CALCULATION GROUP 2: 'Dynamic Metric Selector'
+Precedence: 10
+Allows a single matrix visual or chart axis to toggle between any core metric,
+automatically applying the correct format string (Currency vs Percentage vs Integer).
+---------------------------------------------------------------------------------
+*/
+
+// Calculation Item: "Net Revenue"
+// Expression:
+[Net Revenue]
+// Format String: "$#,##0"
+
+// Calculation Item: "Gross Margin"
+// Expression:
+[Gross Margin]
+// Format String: "$#,##0"
+
+// Calculation Item: "Gross Margin %"
+// Expression:
+[Gross Margin %]
+// Format String: "0.0%"
+
+// Calculation Item: "Total Orders"
+// Expression:
+[Total Orders]
+// Format String: "#,##0"
+
+// Calculation Item: "Units Sold"
+// Expression:
+[Total Units Sold]
+// Format String: "#,##0"

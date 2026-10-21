@@ -1,0 +1,9 @@
+activity_type_sk,activity_name,activity_category,is_customer_facing
+1,Technical Discovery Call,Discovery,True
+2,Architecture Design Session (ADS),Architecture,True
+3,RFP Clarification Call,Proposal Support,True
+4,Custom Tailored Demo,Demonstration,True
+5,Standard Product Demo,Demonstration,True
+6,Executive Briefing Center (EBC) Pitch,Executive Engagement,True
+7,Security & Compliance Deep Dive,Technical Validation,True
+8,Hands-on Technical Workshop,Technical Validation,True

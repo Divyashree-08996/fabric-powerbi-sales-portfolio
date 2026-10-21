@@ -1,0 +1,205 @@
+// ===============================================================================
+// ADVANCED DAX LIBRARY: 03_Pareto_80_20_and_Dynamic_TopN.dax
+// Pareto 80/20 Concentration, Cumulative Percentages, and Top N + Others Rollup
+// Table: '_Measures_Pareto_TopN'
+// Author: Alex Rivera | DP-600 & PL-300 Certified Analytics Engineer
+// ===============================================================================
+
+// -------------------------------------------------------------------------------
+// 1. Pareto 80/20 Cumulative Distribution Pattern
+// -------------------------------------------------------------------------------
+
+/// <summary>
+/// Total Net Revenue across all customers currently in filter context.
+/// Serves as the constant denominator for Pareto cumulative percentage.
+/// </summary>
+Total Revenue All Selected Customers = 
+CALCULATE ( 
+    [Net Revenue], 
+    ALLSELECTED ( 'Dim_Customer' ) 
+)
+
+
+/// <summary>
+/// Dense dynamic ranking of customers ordered by Net Revenue descending.
+/// Evaluates within the active visual filter context.
+/// </summary>
+Customer Rank by Revenue = 
+IF ( 
+    NOT ISBLANK ( [Net Revenue] ), 
+    RANKX ( 
+        ALLSELECTED ( 'Dim_Customer'[CustomerID] ), 
+        [Net Revenue], 
+        , 
+        DESC, 
+        Dense 
+    ) 
+)
+
+
+/// <summary>
+/// Cumulative Net Revenue across ranked customers.
+/// Iterates over all selected customers with higher or equal revenue than the current customer.
+/// Optimized using variables to avoid recalculating the current customer's revenue in the filter loop.
+/// </summary>
+Cumulative Revenue Pareto = 
+VAR _CurrentCustomerRev = [Net Revenue]
+VAR _AllSelectedCustomers = 
+    ADDCOLUMNS ( 
+        ALLSELECTED ( 'Dim_Customer'[CustomerID] ), 
+        "@CustomerRev", [Net Revenue] 
+    )
+VAR _CustomersWithHigherOrEqualRevenue = 
+    FILTER ( 
+        _AllSelectedCustomers, 
+        [@CustomerRev] >= _CurrentCustomerRev 
+    )
+RETURN
+    IF ( 
+        NOT ISBLANK ( _CurrentCustomerRev ), 
+        SUMX ( 
+            _CustomersWithHigherOrEqualRevenue, 
+            [@CustomerRev] 
+        ) 
+    )
+
+
+/// <summary>
+/// Running Cumulative Percentage of Total Revenue for Pareto Curve.
+/// Curves from 0% up to 100% as customer rank advances.
+/// </summary>
+Cumulative Revenue Pareto % = 
+VAR _Cumulative = [Cumulative Revenue Pareto]
+VAR _Total = [Total Revenue All Selected Customers]
+RETURN
+    DIVIDE ( 
+        _Cumulative, 
+        _Total, 
+        BLANK () 
+    )
+
+
+/// <summary>
+/// Dynamic Pareto Customer Tier Classification.
+/// Tier A: Core revenue drivers accounting for the first 80% of volume.
+/// Tier B: Growth accounts accounting for the next 15% (80% - 95%).
+/// Tier C: Long-tail transactional accounts (95% - 100%).
+/// </summary>
+Pareto Customer Segment = 
+VAR _CumPct = [Cumulative Revenue Pareto %]
+RETURN
+    SWITCH ( 
+        TRUE (), 
+        ISBLANK ( _CumPct ), BLANK (), 
+        _CumPct <= 0.80, "Tier A — Core 80% Driver", 
+        _CumPct <= 0.95, "Tier B — Growth 15%", 
+        "Tier C — Long Tail 5%" 
+    )
+
+
+/// <summary>
+/// Color formatting HEX string for Pareto segment conditional styling.
+/// </summary>
+Pareto Segment Color = 
+VAR _Seg = [Pareto Customer Segment]
+RETURN
+    SWITCH ( 
+        _Seg, 
+        "Tier A — Core 80% Driver", "#107C41",  // High-contrast emerald green
+        "Tier B — Growth 15%",       "#0078D4",  // Fluent corporate blue
+        "Tier C — Long Tail 5%",     "#D83B01",  // Cautionary coral
+        BLANK () 
+    )
+
+
+// -------------------------------------------------------------------------------
+// 2. Dynamic Top N with Parameterized Slicer & "Others" Consolidation
+// -------------------------------------------------------------------------------
+
+/// <summary>
+/// Selected Top N parameter threshold from disconnected slicer.
+/// Defaults to 10 if no slicer selection is made.
+/// </summary>
+Selected Top N Cutoff = 
+SELECTEDVALUE ( 'Param_TopN'[TopNValue], 10 )
+
+
+/// <summary>
+/// Dynamic Revenue for Top N Accounts:
+/// Only displays revenue for customers whose rank falls within the selected Top N cutoff.
+/// All lower-ranked accounts evaluate to BLANK(), automatically filtering visual axes.
+/// </summary>
+Revenue Top N Only = 
+VAR _Threshold = [Selected Top N Cutoff]
+VAR _Rank = [Customer Rank by Revenue]
+RETURN
+    IF ( 
+        _Rank <= _Threshold, 
+        [Net Revenue], 
+        BLANK () 
+    )
+
+
+/// <summary>
+/// Share of Total Revenue captured strictly by the Top N accounts.
+/// Illustrates account concentration vulnerability to executive leadership.
+/// </summary>
+Top N Revenue Share % = 
+VAR _Threshold = [Selected Top N Cutoff]
+VAR _TopNCustomers = 
+    TOPN ( 
+        _Threshold, 
+        ALLSELECTED ( 'Dim_Customer'[CustomerID] ), 
+        [Net Revenue], 
+        DESC 
+    )
+VAR _TopNRevenue = 
+    CALCULATE ( 
+        [Net Revenue], 
+        KEEPFILTERS ( _TopNCustomers ) 
+    )
+VAR _TotalRev = [Total Revenue All Selected Customers]
+RETURN
+    DIVIDE ( 
+        _TopNRevenue, 
+        _TotalRev, 
+        BLANK () 
+    )
+
+
+/// <summary>
+/// Advanced Pattern: Dynamic "Top N + Others" Aggregation Measure
+/// Used in conjunction with an extended Customer table containing an synthetic "Others" row.
+/// If current row is an individual customer in Top N -> displays their Net Revenue.
+/// If current row is "Others" -> calculates the aggregate sum of ALL customers outside Top N!
+/// </summary>
+Revenue Top N and Others = 
+VAR _Threshold = [Selected Top N Cutoff]
+VAR _CurrentCustomer = SELECTEDVALUE ( 'Dim_Customer'[CustomerName] )
+VAR _TopNCustomersTable = 
+    TOPN ( 
+        _Threshold, 
+        ALL ( 'Dim_Customer'[CustomerName] ), 
+        [Net Revenue], 
+        DESC 
+    )
+VAR _IsCustomerInTopN = 
+    _CurrentCustomer IN _TopNCustomersTable
+VAR _AllRevenue = 
+    CALCULATE ( 
+        [Net Revenue], 
+        ALL ( 'Dim_Customer' ) 
+    )
+VAR _TopNRevenue = 
+    CALCULATE ( 
+        [Net Revenue], 
+        KEEPFILTERS ( _TopNCustomersTable ) 
+    )
+VAR _OthersRevenue = _AllRevenue - _TopNRevenue
+RETURN
+    SWITCH ( 
+        TRUE (), 
+        _CurrentCustomer = "Others", _OthersRevenue, 
+        _IsCustomerInTopN, [Net Revenue], 
+        BLANK () 
+    )

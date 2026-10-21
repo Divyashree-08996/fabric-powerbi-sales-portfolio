@@ -1,0 +1,23 @@
+ProductID,ProductName,Category,SubCategory,StandardCost,ListPrice,StandardMarginPercent,IsActive
+PROD-101,Enterprise Cloud Suite ERP,Software Licenses,Enterprise ERP,450.0,1200.0,0.625,1
+PROD-102,Advanced Analytics AI Engine,Software Licenses,AI & ML,320.0,850.0,0.6235,1
+PROD-103,CyberShield Threat Sentinel,Software Licenses,Security,210.0,580.0,0.6379,1
+PROD-104,Identity Access Manager Pro,Software Licenses,Security,140.0,390.0,0.641,1
+PROD-105,Automated Compliance Auditor,Software Licenses,Governance,180.0,480.0,0.625,1
+PROD-106,Financial Consolidation Hub,Software Licenses,Finance & FP&A,380.0,950.0,0.6,1
+PROD-201,Elastic API Gateway Tier-1,Cloud Services,API Infrastructure,80.0,240.0,0.6667,1
+PROD-202,Real-Time Event Stream Kafka,Cloud Services,Streaming,190.0,520.0,0.6346,1
+PROD-203,OneLake Lakehouse Dedicated Compute,Cloud Services,Data Platform,650.0,1600.0,0.5938,1
+PROD-204,Vector DB Semantic Search Pod,Cloud Services,AI & ML,240.0,680.0,0.6471,1
+PROD-205,Encrypted Cold Storage 100TB,Cloud Services,Storage,50.0,150.0,0.6667,1
+PROD-206,Edge CDN Global Accelerator,Cloud Services,Networking,110.0,310.0,0.6452,1
+PROD-301,Smart Edge IoT Gateway Hub,Hardware,Edge Devices,280.0,620.0,0.5484,1
+PROD-302,Biometric Terminal Scanner X9,Hardware,Peripherals,190.0,450.0,0.5778,1
+PROD-303,High-Throughput Barcode Scanner Pro,Hardware,Peripherals,95.0,220.0,0.5682,1
+PROD-304,Rugged Warehouse Tablet RT-12,Hardware,Mobile Devices,410.0,890.0,0.5393,1
+PROD-305,Secure Cryptographic HSM Module,Hardware,Security Hardware,850.0,1950.0,0.5641,1
+PROD-401,Architecture Blueprint & Advisory,Professional Services,Advisory,1800.0,3600.0,0.5,1
+PROD-402,Fabric Direct Lake Migration Pack,Professional Services,Implementation,2800.0,5800.0,0.5172,1
+PROD-403,24/7 Premium Mission-Critical Support,Professional Services,Managed Care,900.0,2100.0,0.5714,1
+PROD-404,Custom ML Model Training Sprint,Professional Services,Implementation,3200.0,6500.0,0.5077,1
+PROD-405,Data Governance & Cataloging Audit,Professional Services,Advisory,1500.0,3200.0,0.5312,1

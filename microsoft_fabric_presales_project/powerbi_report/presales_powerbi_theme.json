@@ -1,0 +1,38 @@
+{
+  "name": "FabricPreSalesExecutiveTheme",
+  "dataColors": [
+    "#0078D4",
+    "#107C41",
+    "#5C2D91",
+    "#D83B01",
+    "#008272",
+    "#B4009E",
+    "#E3008C",
+    "#004E8C",
+    "#8764B8",
+    "#FFB900"
+  ],
+  "background": "#F8F9FA",
+  "foreground": "#201F1E",
+  "tableAccent": "#0078D4",
+  "visualStyles": {
+    "*": {
+      "*": {
+        "outspace": [{ "color": { "solid": { "color": "#F3F2F1" } } }],
+        "background": [{ "color": { "solid": { "color": "#FFFFFF" } }, "transparency": 0 }],
+        "border": [{ "show": true, "color": { "solid": { "color": "#EDEBE9" } }, "radius": 8 }]
+      }
+    },
+    "page": {
+      "*": {
+        "background": [{ "color": { "solid": { "color": "#F8F9FA" } }, "transparency": 0 }]
+      }
+    },
+    "card": {
+      "*": {
+        "labels": [{ "color": { "solid": { "color": "#0078D4" } }, "fontSize": 24, "fontFamily": "Segoe UI Semibold" }],
+        "categoryLabels": [{ "color": { "solid": { "color": "#605E5C" } }, "fontSize": 10, "fontFamily": "Segoe UI" }]
+      }
+    }
+  }
+}

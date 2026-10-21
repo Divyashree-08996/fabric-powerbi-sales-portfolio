@@ -1,0 +1,237 @@
+// ===============================================================================
+// ADVANCED DAX LIBRARY: 04_Customer_RFM_and_Churn_Analytics.dax
+// Dynamic RFM Behavioral Segmentation, Cohort Churn & Customer Retention Modeling
+// Table: '_Measures_Customer_Intelligence'
+// Author: Alex Rivera | DP-600 & PL-300 Certified Analytics Engineer
+// ===============================================================================
+
+// -------------------------------------------------------------------------------
+// 1. Customer Recency, Frequency & Monetary (RFM) Core Metrics
+// -------------------------------------------------------------------------------
+
+/// <summary>
+/// Most recent order date recorded for the customer across all history.
+/// Overrides Date filter context to capture true lifetime last purchase.
+/// </summary>
+Customer Last Purchase Date = 
+CALCULATE ( 
+    MAX ( 'Fact_Sales'[OrderDate] ), 
+    ALLEXCEPT ( 'Fact_Sales', 'Dim_Customer'[CustomerID] ) 
+)
+
+
+/// <summary>
+/// Earliest (first-ever) purchase date recorded for the customer.
+/// Pinpoints the acquisition cohort date.
+/// </summary>
+Customer First Purchase Date = 
+CALCULATE ( 
+    MIN ( 'Fact_Sales'[OrderDate] ), 
+    ALLEXCEPT ( 'Fact_Sales', 'Dim_Customer'[CustomerID] ) 
+)
+
+
+/// <summary>
+/// Recency in Days: Elapsed days between the customer's last purchase and the current reference date.
+/// Lower days = Higher recency (more active).
+/// </summary>
+Customer Recency Days = 
+VAR _LastDate = [Customer Last Purchase Date]
+VAR _ReferenceDate = MAX ( 'Dim_Date'[Date] )
+RETURN
+    IF ( 
+        NOT ISBLANK ( _LastDate ), 
+        DATEDIFF ( _LastDate, _ReferenceDate, DAY ), 
+        BLANK () 
+    )
+
+
+/// <summary>
+/// Customer Lifetime Orders (Frequency):
+/// Total number of unique orders placed across the customer's entire lifetime.
+/// </summary>
+Customer Lifetime Orders = 
+CALCULATE ( 
+    [Total Orders], 
+    ALLEXCEPT ( 'Fact_Sales', 'Dim_Customer'[CustomerID] ) 
+)
+
+
+/// <summary>
+/// Customer Lifetime Net Revenue (Monetary):
+/// Cumulative revenue contributed across all historical transactions.
+/// </summary>
+Customer Lifetime Revenue = 
+CALCULATE ( 
+    [Net Revenue], 
+    ALLEXCEPT ( 'Fact_Sales', 'Dim_Customer'[CustomerID] ) 
+)
+
+
+// -------------------------------------------------------------------------------
+// 2. Dynamic RFM Scoring (Scale 1 to 5)
+// -------------------------------------------------------------------------------
+
+/// <summary>
+/// Dynamic Recency Score (1 to 5):
+/// 5 = Purchased within last 30 days (Highly Active)
+/// 1 = Inactive for > 180 days (Severely At-Risk)
+/// </summary>
+RFM Recency Score = 
+VAR _Days = [Customer Recency Days]
+RETURN
+    SWITCH ( 
+        TRUE (), 
+        ISBLANK ( _Days ), BLANK (), 
+        _Days <= 30, 5, 
+        _Days <= 60, 4, 
+        _Days <= 90, 3, 
+        _Days <= 180, 2, 
+        1 
+    )
+
+
+/// <summary>
+/// Dynamic Frequency Score (1 to 5):
+/// Graded based on total lifetime transaction count.
+/// </summary>
+RFM Frequency Score = 
+VAR _Orders = [Customer Lifetime Orders]
+RETURN
+    SWITCH ( 
+        TRUE (), 
+        ISBLANK ( _Orders ), BLANK (), 
+        _Orders >= 30, 5, 
+        _Orders >= 18, 4, 
+        _Orders >= 10, 3, 
+        _Orders >= 4, 2, 
+        1 
+    )
+
+
+/// <summary>
+/// Dynamic Monetary Score (1 to 5):
+/// Graded based on total lifetime net revenue contribution.
+/// </summary>
+RFM Monetary Score = 
+VAR _LTV = [Customer Lifetime Revenue]
+RETURN
+    SWITCH ( 
+        TRUE (), 
+        ISBLANK ( _LTV ), BLANK (), 
+        _LTV >= 100000, 5, 
+        _LTV >= 50000, 4, 
+        _LTV >= 20000, 3, 
+        _LTV >= 5000, 2, 
+        1 
+    )
+
+
+/// <summary>
+/// Combined 3-digit RFM Score (e.g. 555, 452, 111).
+/// Concatenates individual component scores into a composite behavioral vector.
+/// </summary>
+RFM Composite Score = 
+VAR _R = [RFM Recency Score]
+VAR _F = [RFM Frequency Score]
+VAR _M = [RFM Monetary Score]
+RETURN
+    IF ( 
+        NOT ISBLANK ( _R ) && NOT ISBLANK ( _F ) && NOT ISBLANK ( _M ), 
+        _R * 100 + _F * 10 + _M, 
+        BLANK () 
+    )
+
+
+/// <summary>
+/// Dynamic RFM Behavioral Segment Classification.
+/// Synthesizes composite scores into intuitive marketing & sales personas.
+/// </summary>
+RFM Customer Segment = 
+VAR _R = [RFM Recency Score]
+VAR _F = [RFM Frequency Score]
+VAR _M = [RFM Monetary Score]
+RETURN
+    SWITCH ( 
+        TRUE (), 
+        ISBLANK ( _R ), BLANK (), 
+        _R >= 4 && _F >= 4 && _M >= 4, "Champions", 
+        _R >= 3 && _F >= 3,             "Loyal Enterprise", 
+        _R >= 4 && _F <= 2,             "Recent / Expanding", 
+        _R <= 2 && _F >= 3 && _M >= 3, "At-Risk High-Value", 
+        _R <= 2 && _F <= 2,             "Hibernating / Dormant", 
+        "Needs Attention" 
+    )
+
+
+// -------------------------------------------------------------------------------
+// 3. New vs Retained vs Churned Customer Movement
+// -------------------------------------------------------------------------------
+
+/// <summary>
+/// Count of New Customers acquired within the active Date filter context.
+/// A customer is new if their first-ever purchase date falls between MinDate and MaxDate.
+/// </summary>
+New Customers Count = 
+VAR _MinDate = MIN ( 'Dim_Date'[Date] )
+VAR _MaxDate = MAX ( 'Dim_Date'[Date] )
+VAR _AllCustomers = VALUES ( 'Dim_Customer'[CustomerID] )
+VAR _NewCustomers = 
+    FILTER ( 
+        _AllCustomers, 
+        VAR _FirstOrder = [Customer First Purchase Date] 
+        RETURN 
+            _FirstOrder >= _MinDate && _FirstOrder <= _MaxDate 
+    )
+RETURN
+    COUNTROWS ( _NewCustomers )
+
+
+/// <summary>
+/// Lost / Churned Customer Count:
+/// Customers who have made a purchase in the prior 12 months, but have had zero 
+/// orders in the last 180 days relative to the active reporting period.
+/// </summary>
+Lost Customers Count = 
+VAR _ReferenceDate = MAX ( 'Dim_Date'[Date] )
+VAR _ActivePriorPeriod = 
+    CALCULATETABLE ( 
+        VALUES ( 'Fact_Sales'[CustomerID] ), 
+        DATESINPERIOD ( 'Dim_Date'[Date], _ReferenceDate, -365, DAY ) 
+    )
+VAR _ActiveRecentPeriod = 
+    CALCULATETABLE ( 
+        VALUES ( 'Fact_Sales'[CustomerID] ), 
+        DATESINPERIOD ( 'Dim_Date'[Date], _ReferenceDate, -180, DAY ) 
+    )
+VAR _ChurnedCustomers = 
+    EXCEPT ( _ActivePriorPeriod, _ActiveRecentPeriod )
+RETURN
+    COUNTROWS ( _ChurnedCustomers )
+
+
+/// <summary>
+/// Annualized Customer Churn Rate %:
+/// Percentage of previously active customers lost over the evaluation window.
+/// </summary>
+Customer Churn Rate % = 
+VAR _Lost = [Lost Customers Count]
+VAR _ActivePrior = 
+    CALCULATE ( 
+        DISTINCTCOUNT ( 'Fact_Sales'[CustomerID] ), 
+        DATESINPERIOD ( 'Dim_Date'[Date], MAX ( 'Dim_Date'[Date] ), -365, DAY ) 
+    )
+RETURN
+    DIVIDE ( 
+        _Lost, 
+        _ActivePrior, 
+        0 
+    )
+
+
+/// <summary>
+/// Customer Retention Rate % (Complement of Churn Rate).
+/// Standard SaaS / recurring business health benchmark.
+/// </summary>
+Customer Retention Rate % = 
+1 - [Customer Churn Rate %]

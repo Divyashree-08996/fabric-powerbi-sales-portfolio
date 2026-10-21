@@ -1,0 +1,7 @@
+MetricID,MetricName,DisplayOrder,FormatType
+1,Net Revenue ($),1,Currency
+2,Gross Margin ($),2,Currency
+3,Gross Margin (%),3,Percent
+4,Order Count,4,Integer
+5,Units Sold,5,Integer
+6,Average Order Value ($),6,Currency

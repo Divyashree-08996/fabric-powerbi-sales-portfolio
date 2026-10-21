@@ -1,0 +1,156 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/pipeline/v1.0.0/pipeline.json",
+  "name": "Pipeline_PreSales_Lakehouse_E2E",
+  "properties": {
+    "description": "End-to-end orchestration pipeline for Pre-Sales Analytics Medallion Lakehouse in Microsoft Fabric. Ingests raw CRM/SE data, executes Silver cleansing, builds Gold Star Schema, and refreshes Direct Lake model.",
+    "activities": [
+      {
+        "name": "Check_Landing_Files_Exist",
+        "type": "GetMetadata",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.00:10:00",
+          "retry": 1,
+          "retryIntervalInSeconds": 30
+        },
+        "typeProperties": {
+          "dataset": {
+            "referenceName": "DS_OneLake_Landing_Bronze",
+            "type": "DatasetReference"
+          },
+          "fieldList": ["childItems", "exists"]
+        }
+      },
+      {
+        "name": "Run_Notebook_01_IngestBronze",
+        "type": "FabricNotebook",
+        "dependsOn": [
+          {
+            "activity": "Check_Landing_Files_Exist",
+            "dependencyConditions": ["Succeeded"]
+          }
+        ],
+        "policy": {
+          "timeout": "0.00:30:00",
+          "retry": 2,
+          "retryIntervalInSeconds": 60
+        },
+        "typeProperties": {
+          "notebookId": "nb-01-ingest-bronze-lakehouse",
+          "workspaceId": "ws-presales-analytics-fabric",
+          "parameters": {
+            "batch_mode": {
+              "value": "incremental",
+              "type": "string"
+            }
+          }
+        }
+      },
+      {
+        "name": "Run_Notebook_02_BronzeToSilver",
+        "type": "FabricNotebook",
+        "dependsOn": [
+          {
+            "activity": "Run_Notebook_01_IngestBronze",
+            "dependencyConditions": ["Succeeded"]
+          }
+        ],
+        "policy": {
+          "timeout": "0.00:45:00",
+          "retry": 2,
+          "retryIntervalInSeconds": 60
+        },
+        "typeProperties": {
+          "notebookId": "nb-02-bronze-to-silver-transform",
+          "workspaceId": "ws-presales-analytics-fabric"
+        }
+      },
+      {
+        "name": "Run_Notebook_03_SilverToGold",
+        "type": "FabricNotebook",
+        "dependsOn": [
+          {
+            "activity": "Run_Notebook_02_BronzeToSilver",
+            "dependencyConditions": ["Succeeded"]
+          }
+        ],
+        "policy": {
+          "timeout": "0.01:00:00",
+          "retry": 2,
+          "retryIntervalInSeconds": 60
+        },
+        "typeProperties": {
+          "notebookId": "nb-03-silver-to-gold-star-schema",
+          "workspaceId": "ws-presales-analytics-fabric",
+          "parameters": {
+            "optimize_zorder": {
+              "value": "true",
+              "type": "bool"
+            }
+          }
+        }
+      },
+      {
+        "name": "Trigger_DirectLake_FrameEviction",
+        "type": "WebActivity",
+        "dependsOn": [
+          {
+            "activity": "Run_Notebook_03_SilverToGold",
+            "dependencyConditions": ["Succeeded"]
+          }
+        ],
+        "policy": {
+          "timeout": "0.00:05:00",
+          "retry": 1
+        },
+        "typeProperties": {
+          "method": "POST",
+          "url": "https://api.fabric.microsoft.com/v1/workspaces/@{pipeline().parameters.workspace_id}/semanticModels/@{pipeline().parameters.dataset_id}/refreshes",
+          "authentication": {
+            "type": "ManagedIdentity"
+          },
+          "body": {
+            "type": "Full",
+            "commitMode": "Transactional"
+          }
+        }
+      },
+      {
+        "name": "Notify_Teams_On_Failure",
+        "type": "WebActivity",
+        "dependsOn": [
+          {
+            "activity": "Run_Notebook_01_IngestBronze",
+            "dependencyConditions": ["Failed"]
+          },
+          {
+            "activity": "Run_Notebook_02_BronzeToSilver",
+            "dependencyConditions": ["Failed"]
+          },
+          {
+            "activity": "Run_Notebook_03_SilverToGold",
+            "dependencyConditions": ["Failed"]
+          }
+        ],
+        "typeProperties": {
+          "method": "POST",
+          "url": "https://prod-webhook.office.com/webhook/presales-pipeline-alerts",
+          "body": {
+            "title": "Alert: Microsoft Fabric Pre-Sales Lakehouse Pipeline Failed",
+            "text": "Execution failed in pipeline Pipeline_PreSales_Lakehouse_E2E. Please inspect the activity run logs in Fabric Data Factory."
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "workspace_id": {
+        "type": "string",
+        "defaultValue": "ws-presales-analytics-fabric"
+      },
+      "dataset_id": {
+        "type": "string",
+        "defaultValue": "sm-presales-direct-lake"
+      }
+    }
+  }
+}

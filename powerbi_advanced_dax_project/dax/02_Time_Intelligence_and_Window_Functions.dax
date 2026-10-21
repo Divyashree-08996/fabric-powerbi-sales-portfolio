@@ -1,0 +1,273 @@
+// ===============================================================================
+// ADVANCED DAX LIBRARY: 02_Time_Intelligence_and_Window_Functions.dax
+// Time Intelligence & Modern DAX Window Functions (OFFSET, INDEX, WINDOW)
+// Table: '_Measures_TimeIntelligence'
+// Author: Alex Rivera | DP-600 & PL-300 Certified Analytics Engineer
+// ===============================================================================
+
+// -------------------------------------------------------------------------------
+// 1. Classic Time Intelligence Patterns (Standard Greg & Fiscal)
+// -------------------------------------------------------------------------------
+
+/// <summary>
+/// Net Revenue for the exact corresponding period in the prior year.
+/// Uses SAMEPERIODLASTYEAR with filter context transition on Dim_Date.
+/// </summary>
+Net Revenue PY = 
+CALCULATE ( 
+    [Net Revenue], 
+    SAMEPERIODLASTYEAR ( 'Dim_Date'[Date] ) 
+)
+
+
+/// <summary>
+/// Absolute Year-over-Year (YoY) dollar change in Net Revenue.
+/// </summary>
+Net Revenue YoY Growth $ = 
+VAR _Current = [Net Revenue]
+VAR _Prior = [Net Revenue PY]
+RETURN
+    IF ( 
+        NOT ISBLANK ( _Current ) && NOT ISBLANK ( _Prior ), 
+        _Current - _Prior, 
+        BLANK () 
+    )
+
+
+/// <summary>
+/// Percentage Year-over-Year (YoY) growth in Net Revenue.
+/// Handles edge cases where prior year baseline is zero or missing.
+/// </summary>
+Net Revenue YoY % = 
+VAR _Current = [Net Revenue]
+VAR _Prior = [Net Revenue PY]
+RETURN
+    DIVIDE ( 
+        _Current - _Prior, 
+        _Prior, 
+        BLANK () 
+    )
+
+
+/// <summary>
+/// Calendar Year-to-Date Net Revenue.
+/// Resets automatically on January 1st.
+/// </summary>
+Net Revenue YTD = 
+TOTALYTD ( 
+    [Net Revenue], 
+    'Dim_Date'[Date] 
+)
+
+
+/// <summary>
+/// Prior Year-to-Date Net Revenue for like-for-like comparison.
+/// Evaluates YTD within the prior year's timeframe.
+/// </summary>
+Net Revenue PYTD = 
+CALCULATE ( 
+    [Net Revenue YTD], 
+    SAMEPERIODLASTYEAR ( 'Dim_Date'[Date] ) 
+)
+
+
+/// <summary>
+/// Percentage growth of Year-to-Date Revenue vs Prior Year-to-Date Revenue.
+/// </summary>
+Net Revenue YTD YoY % = 
+VAR _CurrentYTD = [Net Revenue YTD]
+VAR _PriorYTD = [Net Revenue PYTD]
+RETURN
+    DIVIDE ( 
+        _CurrentYTD - _PriorYTD, 
+        _PriorYTD, 
+        BLANK () 
+    )
+
+
+/// <summary>
+/// Fiscal Year-to-Date Net Revenue (Fiscal Year starts July 1st).
+/// Uses DATESBETWEEN and Fiscal calendar attributes.
+/// </summary>
+Net Revenue FYTD = 
+VAR _MaxDate = MAX ( 'Dim_Date'[Date] )
+VAR _CurrentFiscalYear = 
+    LOOKUPVALUE ( 
+        'Dim_Date'[FiscalYear], 
+        'Dim_Date'[Date], 
+        _MaxDate 
+    )
+RETURN
+    CALCULATE ( 
+        [Net Revenue], 
+        FILTER ( 
+            ALL ( 'Dim_Date' ), 
+            'Dim_Date'[FiscalYear] = _CurrentFiscalYear && 
+            'Dim_Date'[Date] <= _MaxDate 
+        ) 
+    )
+
+
+// -------------------------------------------------------------------------------
+// 2. Modern DAX Window Functions (OFFSET, INDEX, WINDOW)
+// -------------------------------------------------------------------------------
+// PERFORMANCE NOTE:
+// Modern DAX window functions (OFFSET, INDEX, WINDOW) operate directly within 
+// the Storage Engine (SE) query cache. They bypass the row-by-row iteration 
+// loops of FILTER(ALL(...)) and avoid expensive context transitions.
+// -------------------------------------------------------------------------------
+
+/// <summary>
+/// Prior Period Net Revenue using modern OFFSET().
+/// Dynamically returns the preceding month's revenue based on YearMonth sorting.
+/// Works smoothly in Matrix visual rows without rigid Date-table day keys.
+/// </summary>
+Net Revenue Prior Month (OFFSET) = 
+CALCULATE ( 
+    [Net Revenue], 
+    OFFSET ( 
+        -1, 
+        ALLSELECTED ( 'Dim_Date'[YearMonth], 'Dim_Date'[MonthShort] ), 
+        ORDERBY ( 'Dim_Date'[YearMonth], ASC ) 
+    ) 
+)
+
+
+/// <summary>
+/// Month-over-Month (MoM) dollar variance using OFFSET.
+/// </summary>
+Net Revenue MoM Variance (OFFSET) = 
+VAR _Current = [Net Revenue]
+VAR _PriorMonth = [Net Revenue Prior Month (OFFSET)]
+RETURN
+    IF ( 
+        NOT ISBLANK ( _Current ) && NOT ISBLANK ( _PriorMonth ), 
+        _Current - _PriorMonth, 
+        BLANK () 
+    )
+
+
+/// <summary>
+/// Month-over-Month (MoM) growth percentage using OFFSET.
+/// </summary>
+Net Revenue MoM % (OFFSET) = 
+DIVIDE ( 
+    [Net Revenue MoM Variance (OFFSET)], 
+    [Net Revenue Prior Month (OFFSET)], 
+    BLANK () 
+)
+
+
+/// <summary>
+/// First Recorded Period Revenue in Current Visual Context using modern INDEX().
+/// Pinpoints the baseline period (Position 1) dynamically.
+/// </summary>
+Net Revenue Baseline Period (INDEX) = 
+CALCULATE ( 
+    [Net Revenue], 
+    INDEX ( 
+        1, 
+        ALLSELECTED ( 'Dim_Date'[YearMonth] ), 
+        ORDERBY ( 'Dim_Date'[YearMonth], ASC ) 
+    ) 
+)
+
+
+/// <summary>
+/// Growth vs Visual Baseline using INDEX().
+/// Shows percentage expansion since the starting period on the visual axis.
+/// </summary>
+Net Revenue Growth vs Baseline % = 
+VAR _Current = [Net Revenue]
+VAR _Baseline = [Net Revenue Baseline Period (INDEX)]
+RETURN
+    DIVIDE ( 
+        _Current - _Baseline, 
+        _Baseline, 
+        BLANK () 
+    )
+
+
+/// <summary>
+/// Rolling 3-Month Moving Average using modern WINDOW().
+/// Window frame: -2 relative (2 months prior) to 0 relative (current month).
+/// Replaces the verbose, error-prone DATESINPERIOD / CALCULATETABLE pattern.
+/// </summary>
+Net Revenue Rolling 3M Avg (WINDOW) = 
+VAR _WindowRows = 
+    WINDOW ( 
+        -2, RELATIVE, 
+        0, RELATIVE, 
+        ALLSELECTED ( 'Dim_Date'[YearMonth] ), 
+        ORDERBY ( 'Dim_Date'[YearMonth], ASC ) 
+    )
+VAR _TotalRevenueInWindow = 
+    CALCULATE ( 
+        [Net Revenue], 
+        _WindowRows 
+    )
+VAR _DistinctMonthsInWindow = 
+    CALCULATE ( 
+        DISTINCTCOUNT ( 'Dim_Date'[YearMonth] ), 
+        _WindowRows 
+    )
+RETURN
+    DIVIDE ( 
+        _TotalRevenueInWindow, 
+        _DistinctMonthsInWindow, 
+        BLANK () 
+    )
+
+
+/// <summary>
+/// Rolling 90-Day Trailing Moving Average.
+/// Smooths daily volatility using DATESINPERIOD across a 90-day interval.
+/// </summary>
+Net Revenue Trailing 90D Avg = 
+VAR _LastDate = MAX ( 'Dim_Date'[Date] )
+RETURN
+    CALCULATE ( 
+        AVERAGEX ( 
+            VALUES ( 'Dim_Date'[Date] ), 
+            [Net Revenue] 
+        ), 
+        DATESINPERIOD ( 
+            'Dim_Date'[Date], 
+            _LastDate, 
+            -90, 
+            DAY 
+        ) 
+    )
+
+
+// -------------------------------------------------------------------------------
+// 3. Dynamic Visual Granularity Switching (ISINSCOPE)
+// -------------------------------------------------------------------------------
+
+/// <summary>
+/// Dynamic Granularity Metric Header:
+/// Detects matrix/visual hierarchy drill depth using ISINSCOPE and adapts label or calculation.
+/// </summary>
+Visual Hierarchy Level = 
+SWITCH ( 
+    TRUE (), 
+    ISINSCOPE ( 'Dim_Date'[Date] ), "Daily Grain", 
+    ISINSCOPE ( 'Dim_Date'[YearMonth] ), "Monthly Grain", 
+    ISINSCOPE ( 'Dim_Date'[Quarter] ), "Quarterly Grain", 
+    ISINSCOPE ( 'Dim_Date'[Year] ), "Annual Grain", 
+    "Total Portfolio" 
+)
+
+
+/// <summary>
+/// Dynamically formats revenue with contextual units (K, M) based on magnitude.
+/// </summary>
+Formatted Revenue Display = 
+VAR _Rev = [Net Revenue]
+RETURN
+    SWITCH ( 
+        TRUE (), 
+        ABS ( _Rev ) >= 1000000, FORMAT ( _Rev / 1000000, "$#,##0.0M" ), 
+        ABS ( _Rev ) >= 1000, FORMAT ( _Rev / 1000, "$#,##0.0K" ), 
+        FORMAT ( _Rev, "$#,##0" ) 
+    )
