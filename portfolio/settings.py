@@ -104,4 +104,11 @@ STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # Allow embedding the dashboard preview in iframes (Same Origin)
 X_FRAME_OPTIONS = 'SAMEORIGIN'
 
+CSRF_TRUSTED_ORIGINS = [
+    'https://divyaanalytica.in',
+    'https://www.divyaanalytica.in',
+    'https://*.vercel.app',
+]
+
+
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
