@@ -76,5 +76,5 @@ Navigate to: **`http://127.0.0.1:8000/`**
 
 ## 📬 Contact & Connect
 
-- **Live Portfolio**: [https://divyaanalytica.in](https://divyaanalytica.in)
 - **GitHub**: [https://github.com/Divyashree-08996](https://github.com/Divyashree-08996)
+- **Portfolio**: Hosted live on Render
