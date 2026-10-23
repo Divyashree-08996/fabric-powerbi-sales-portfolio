@@ -1,13 +1,7 @@
-#!/usr/bin/env bash
-# Exit on error
-set -o errexit
-
-# Install dependencies
-pip install --upgrade pip
-pip install -r requirements.txt
-
-# Run migrations
-python manage.py migrate
-
-# Collect static files with WhiteNoise compression
-python manage.py collectstatic --no-input
+#!/bin/bash
+echo "Installing dependencies..."
+python3 -m pip install -r requirements.txt
+echo "Running migrations..."
+python3 manage.py migrate --noinput
+echo "Collecting static files..."
+python3 manage.py collectstatic --noinput --clear

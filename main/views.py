@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect, Http404
 from django.contrib import messages
 from django.views.decorators.clickjacking import xframe_options_exempt
-from .models import UserProfile, ContactMessage
+from .models import UserProfile, WorkExperience, Education, ContactMessage
 
 FEATURED_PROJECT = {
     "id": "fabric-sales-dashboard",
@@ -200,9 +200,14 @@ def home(request):
         {"name": "Data Modeling", "level": "Kimball Star Schema", "badge": "Core"}
     ]
 
+    experiences = WorkExperience.objects.all()
+    educations = Education.objects.all()
+
     context = {
         "profile": profile,
         "skills": skills,
+        "experiences": experiences,
+        "educations": educations,
         "featured_project": FEATURED_PROJECT,
         "other_projects": OTHER_PROJECTS,
         "total_projects_count": 10

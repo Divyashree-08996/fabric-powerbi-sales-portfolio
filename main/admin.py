@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import UserProfile, VisitorLog, ContactMessage
+from .models import UserProfile, WorkExperience, Education, VisitorLog, ContactMessage
 
 @admin.register(UserProfile)
 class UserProfileAdmin(admin.ModelAdmin):
@@ -17,10 +17,23 @@ class UserProfileAdmin(admin.ModelAdmin):
     )
 
     def has_add_permission(self, request):
-        # Only allow 1 profile record to keep it clean
         if self.model.objects.exists():
             return False
         return super().has_add_permission(request)
+
+
+@admin.register(WorkExperience)
+class WorkExperienceAdmin(admin.ModelAdmin):
+    list_display = ('role_title', 'company_name', 'duration', 'is_current', 'order')
+    list_editable = ('order', 'is_current')
+    search_fields = ('role_title', 'company_name', 'technologies')
+
+
+@admin.register(Education)
+class EducationAdmin(admin.ModelAdmin):
+    list_display = ('degree', 'institution', 'year', 'order')
+    list_editable = ('order',)
+    search_fields = ('degree', 'institution')
 
 
 @admin.register(VisitorLog)

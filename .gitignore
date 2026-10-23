@@ -1,20 +1,9 @@
-# Python
 __pycache__/
 *.py[cod]
 *$py.class
-*.so
-.Python
-
-# Virtual Environment
+*.log
+.env
+.venv
 env/
 venv/
-ENV/
-
-# Django
-*.log
-local_settings.py
-
-# IDE / Editor
-.vscode/
-.idea/
-*.swp
+staticfiles/
