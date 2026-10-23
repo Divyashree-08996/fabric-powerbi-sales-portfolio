@@ -1,83 +1,80 @@
-# Alex Rivera — Data Analyst & Power BI Developer Portfolio
+# Divyashree — Data Analyst & Microsoft Fabric / Power BI Specialist
+### Master of Science in Data Science | 4 Years Power BI & DAX | 2 Years SQL & ETL
 
-A high-performance, clean minimalist light portfolio tailored specifically for **Data Analysts**, **Power BI Developers**, and **Python Analytics Practitioners**.
+[![Power BI](https://img.shields.io/badge/Power_BI-Direct_Lake-F2C811?logo=powerbi&logoColor=black)](https://powerbi.microsoft.com/)
+[![Microsoft Fabric](https://img.shields.io/badge/Microsoft_Fabric-OneLake-0078D4?logo=microsoft)](https://azure.microsoft.com/products/microsoft-fabric)
+[![Python](https://img.shields.io/badge/Python-PySpark_%26_Django-3776AB?logo=python&logoColor=white)](https://www.python.org/)
+[![SQL](https://img.shields.io/badge/SQL-Advanced_Queries_%26_SSIS-CC292B?logo=microsoftsqlserver&logoColor=white)](https://learn.microsoft.com/en-us/sql/)
 
----
-
-## 🌟 Highlights & Features
-
-- **Aesthetic**: Clean Minimalist Light with crisp Inter typography, high-contrast metrics, refined borders, and generous whitespace.
-- **Interactive Executive BI Simulator**: Built with dynamic filters (Territory & Period) and interactive Chart.js visualizations that dynamically recalculate KPIs (Revenue, Margin, Accounts, Churn).
-- **In-Depth Case Studies**: Real-world business scenarios including:
-  1. *Enterprise SAP Partner 360 & Analytics in Microsoft Fabric* (Fabric OneLake + PySpark Delta Lake + Direct Lake Power BI)
-  2. *Executive B2B Sales & Margins Command Center* (Power BI + DAX)
-  3. *E-Commerce RFM Segmentation Engine* (Python + Scikit-Learn)
-  4. *Supply Chain & Stockout Prevention System* (Power BI + Python ETL)
-  5. *Automated SQL Data Quality & Reconciliation Suite* (PostgreSQL + Python)
-- **Production Code Snippets**: Expandable, syntax-highlighted PySpark Delta merges, DAX measures, and Python clustering pipelines.
-- **Skills Matrix & Certifications**: Showcasing DP-600 (Fabric Analytics Engineer Associate), PL-300 (Microsoft Power BI Data Analyst Associate), PCAP Python, and SQL optimization.
+A production-grade analytics portfolio featuring an **End-to-End Microsoft Fabric Lakehouse & Power BI Direct Lake Sales Analytics Platform**, alongside an enterprise portfolio of **10 production reports** built with Django, Tailwind CSS, and interactive Chart.js simulators.
 
 ---
 
-## 🚀 How to Run
+## 🌟 Featured Capstone Project
+### End-to-End Enterprise Sales Intelligence & Medallion Lakehouse in Microsoft Fabric
 
-### Option 1: Instant Direct Browser Preview (Zero Setup)
-Simply double-click or open [index.html](file:///c:/Users/hp/Documents/antigravity/dazzling-hypatia/index.html) directly in any modern web browser (Chrome, Edge, Firefox, Safari). No installation or build step required!
+- **Data Scope**: **35,502 fact sales transactions** across 7 global countries ($131.88M revenue, $69.6M gross margin).
+- **Architecture**: OneLake Medallion Architecture (Bronze Ingestion ➔ Silver Cleansing & Windowed Deduplication ➔ Gold Kimball Star Schema).
+- **Engine Optimization**: Delta Lake Parquet V-Order optimization and Z-Order clustering (`OPTIMIZE gold_fact_sales ZORDER BY (OrderDateKey, CustomerKey)`).
+- **Power BI Engine**: **Direct Lake Mode** providing sub-second in-memory VertiPaq queries directly over Delta Lake without scheduled data refresh delays.
+- **Advanced Features**:
+  - Interactive What-If margin sensitivity analysis (price elasticity & supplier cost inflation sliders).
+  - Dynamic Time Intelligence (YoY Sales Growth %, MoM %, YTD Sales).
+  - Quota attainment tracking vs FP&A budgets.
+  - T-SQL Analytics Endpoint views and Dynamic Row-Level Security (RLS).
 
 ---
 
-### Option 2: Python Flask Web Server
-Run the lightweight Python backend server that serves the portfolio and REST API endpoints:
+## 💼 Skills & Technical Toolkit
+
+| Domain | Competencies |
+| :--- | :--- |
+| **Business Intelligence** | Power BI Desktop & Service, Advanced DAX, Calculation Groups, Direct Lake Mode, Data Modeling (Kimball Star Schema) |
+| **Cloud Analytics** | Microsoft Fabric (OneLake, Lakehouse, Delta Lake, Fabric Data Factory Pipelines, PySpark) |
+| **Database & SQL** | T-SQL, Stored Procedures, Views, Window Functions, Query Performance Tuning, SSIS ETL Pipelines |
+| **Data Science & Scripting**| Python (Pandas, NumPy, Scikit-Learn), PySpark, Django Backend Engineering, Automation Scripting |
+| **Education** | **Master of Science in Data Science** |
+
+---
+
+## 🚀 How to Run the Portfolio Locally
 
 ```bash
-# 1. Install dependencies (if not already installed)
+# 1. Install dependencies
 pip install -r requirements.txt
 
-# 2. Run the application
-python app.py
-```
-Then navigate to: **`http://127.0.0.1:5000`**
+# 2. Run database migrations
+python manage.py migrate
 
-#### Available API Endpoints:
-- `GET /api/projects` — Retrieve case studies in JSON format (supports `?category=powerbi` filtering)
-- `GET /api/metrics` — Retrieve career benchmark numbers
-- `POST /api/contact` — Handle visitor contact submissions
+# 3. Start the local server
+python manage.py runserver
+```
+Navigate to: **`http://127.0.0.1:8000/`**
 
 ---
 
-### Option 3: Python Streamlit Application
-For a native, pure Python data app experience powered by Streamlit and Plotly:
-
-```bash
-# Run Streamlit
-streamlit run portfolio_streamlit.py
-```
-This opens an interactive data dashboard with live sliders, Plotly charts, and tabbed case studies.
-
----
-
-## 📁 Project Structure
+## 📁 Repository Structure
 
 ```text
-├── index.html              # Standalone Clean Minimalist Light Web Portfolio
-├── app.py                  # Python Flask server & REST API
-├── portfolio_streamlit.py  # Python Streamlit data portfolio app
-├── requirements.txt        # Python package requirements
-├── .streamlit/
-│   └── config.toml         # Streamlit clean light theme configuration
-└── README.md               # Documentation and guide
+├── fabric_sales_analytics_project/
+│   ├── data/                         # Intermediate enterprise sales datasets (CSV)
+│   ├── fabric_lakehouse_notebooks/   # PySpark Medallion Lakehouse ETL (01 Bronze, 02 Silver, 03 Gold)
+│   ├── fabric_pipeline/              # Fabric Data Factory orchestration pipeline JSON
+│   ├── sql_analytics_endpoint/       # T-SQL views, analytical queries, and Dynamic RLS
+│   ├── semantic_model/               # Production DAX measures library (YoY, AOV, Margin, What-If)
+│   ├── powerbi_pbip/                 # Power BI Developer Project files (.pbip)
+│   └── interactive_dashboard/        # Standalone interactive Power BI web simulator
+├── templates/                        # Django portfolio templates with Dark/Light mode
+├── main/                             # Django application models, views, and visitor tracking
+├── portfolio/                        # Django project configuration & WhiteNoise settings
+├── sales_dashboard_preview.html      # Zero-setup standalone Power BI interactive preview
+├── requirements.txt                  # Python dependencies
+└── build.sh                          # Render cloud deployment script
 ```
 
 ---
 
-## ✏️ How to Customize
+## 📬 Contact & Connect
 
-1. **Personal Information & Name**:
-   - In [index.html](file:///c:/Users/hp/Documents/antigravity/dazzling-hypatia/index.html), search for `Alex Rivera` and replace with your name.
-   - Update your contact links, LinkedIn, and GitHub in the Contact section.
-2. **Projects**:
-   - Add or modify case studies in both [index.html](file:///c:/Users/hp/Documents/antigravity/dazzling-hypatia/index.html) and [app.py](file:///c:/Users/hp/Documents/antigravity/dazzling-hypatia/app.py) (`PROJECTS_DATA`).
-3. **Deploying**:
-   - **GitHub Pages**: Simply push this repo to GitHub and enable GitHub Pages on `main` branch.
-   - **Streamlit Community Cloud**: Connect your repository and select `portfolio_streamlit.py`.
-   - **Render / Railway / Heroku**: Deploy `app.py` directly with `gunicorn app:app`.
+- **GitHub**: [https://github.com/Divyashree-08996](https://github.com/Divyashree-08996)
+- **Portfolio**: Hosted live on Render
