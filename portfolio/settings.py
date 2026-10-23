@@ -65,12 +65,32 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'portfolio.wsgi.application'
 
+import os
+import shutil
+
+# Database
+# If running on Vercel serverless, copy sqlite db to writable /tmp
+if os.environ.get('VERCEL') or os.environ.get('VERCEL_ENV'):
+    tmp_db = Path('/tmp') / 'db.sqlite3'
+    orig_db = BASE_DIR / 'db.sqlite3'
+    if orig_db.exists() and not tmp_db.exists():
+        try:
+            shutil.copy2(orig_db, tmp_db)
+        except Exception:
+            pass
+    DB_NAME = tmp_db if tmp_db.exists() else orig_db
+else:
+    DB_NAME = BASE_DIR / 'db.sqlite3'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'NAME': DB_NAME,
     }
 }
+
+# Use signed cookies for sessions so admin login persists seamlessly on serverless lambdas
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
 
 AUTH_PASSWORD_VALIDATORS = [
     {
