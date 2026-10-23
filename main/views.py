@@ -168,7 +168,7 @@ DEFAULT_PROFILE = {
     "education": "Master of Business Administration in Finance | B.E. Computer Science",
     "experience_powerbi": "4+ Years (Power BI & Advanced DAX)",
     "experience_sql": "2+ Years (SQL Server / T-SQL / SSIS)",
-    "email": "contact@divyaanalytica.in",
+    "email": "shreedivya08996@gmail.com",
     "phone": "+91 7676046225",
     "location": "Bengaluru, India / Open to Relocation",
     "linkedin_url": "https://www.linkedin.com/in/divyashree-l/",
