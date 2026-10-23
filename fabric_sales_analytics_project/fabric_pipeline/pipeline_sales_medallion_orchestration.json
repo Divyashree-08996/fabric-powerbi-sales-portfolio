@@ -1,0 +1,107 @@
+{
+  "name": "Pipeline_Sales_Medallion_Orchestration",
+  "properties": {
+    "description": "End-to-End Orchestration Pipeline for Omnichannel Sales Analytics in Microsoft Fabric OneLake",
+    "activities": [
+      {
+        "name": "Act_Copy_Landing_To_OneLake",
+        "type": "Copy",
+        "dependsOn": [],
+        "policy": {
+          "timeout": "0.01:00:00",
+          "retry": 2,
+          "retryIntervalInSeconds": 30
+        },
+        "typeProperties": {
+          "source": {
+            "type": "DelimitedTextSource",
+            "storeSettings": {
+              "type": "AzureBlobFSReadSettings",
+              "recursive": true
+            }
+          },
+          "sink": {
+            "type": "LakehouseTableSink",
+            "tableActionOption": "Overwrite"
+          }
+        }
+      },
+      {
+        "name": "Act_Notebook_01_Bronze_Ingestion",
+        "type": "FabricNotebook",
+        "dependsOn": [
+          {
+            "activity": "Act_Copy_Landing_To_OneLake",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "notebookId": "nb-fabric-bronze-sales-01",
+          "workspaceId": "ws-fabric-sales-bi-prod",
+          "parameters": {
+            "run_mode": "incremental"
+          }
+        }
+      },
+      {
+        "name": "Act_Notebook_02_Silver_Cleansing",
+        "type": "FabricNotebook",
+        "dependsOn": [
+          {
+            "activity": "Act_Notebook_01_Bronze_Ingestion",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "notebookId": "nb-fabric-silver-sales-02",
+          "workspaceId": "ws-fabric-sales-bi-prod"
+        }
+      },
+      {
+        "name": "Act_Notebook_03_Gold_Dimensional_Model",
+        "type": "FabricNotebook",
+        "dependsOn": [
+          {
+            "activity": "Act_Notebook_02_Silver_Cleansing",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "notebookId": "nb-fabric-gold-sales-03",
+          "workspaceId": "ws-fabric-sales-bi-prod"
+        }
+      },
+      {
+        "name": "Act_Refresh_PowerBI_DirectLake_Model",
+        "type": "WebActivity",
+        "dependsOn": [
+          {
+            "activity": "Act_Notebook_03_Gold_Dimensional_Model",
+            "dependencyConditions": [
+              "Succeeded"
+            ]
+          }
+        ],
+        "typeProperties": {
+          "method": "POST",
+          "url": "https://api.powerbi.com/v1.0/myorg/groups/{workspaceId}/datasets/{datasetId}/refreshes",
+          "authentication": {
+            "type": "ManagedIdentity"
+          }
+        }
+      }
+    ],
+    "parameters": {
+      "Environment": {
+        "type": "string",
+        "defaultValue": "Production"
+      }
+    }
+  }
+}

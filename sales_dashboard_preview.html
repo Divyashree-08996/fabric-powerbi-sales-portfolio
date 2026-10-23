@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Power BI & Microsoft Fabric — End-to-End Enterprise Sales Analytics</title>
+  <!-- Chart.js CDN for interactive visual rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <style>
+    :root {
+      --pbi-yellow: #f2c811;
+      --pbi-yellow-dark: #d4ab00;
+      --pbi-blue: #118dff;
+      --pbi-blue-dark: #0078d4;
+      --pbi-bg: #f4f5f7;
+      --pbi-card-bg: #ffffff;
+      --pbi-border: #e1e4e8;
+      --pbi-text-main: #252423;
+      --pbi-text-muted: #605e5c;
+      --pbi-green: #107c41;
+      --pbi-red: #d13438;
+      --pbi-header-bg: #1e1e1e;
+      --pbi-ribbon-bg: #2b2b2b;
+    }
+
+    [data-theme="dark"] {
+      --pbi-bg: #121212;
+      --pbi-card-bg: #1e1e1e;
+      --pbi-border: #333333;
+      --pbi-text-main: #f3f2f1;
+      --pbi-text-muted: #a19f9d;
+      --pbi-header-bg: #0d0d0d;
+      --pbi-ribbon-bg: #181818;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, sans-serif;
+    }
+
+    body {
+      background-color: var(--pbi-bg);
+      color: var(--pbi-text-main);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* Power BI Header */
+    .pbi-header {
+      background-color: var(--pbi-header-bg);
+      color: #ffffff;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 16px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    .pbi-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .pbi-logo {
+      background: var(--pbi-yellow);
+      color: #000;
+      font-weight: 800;
+      font-size: 14px;
+      width: 28px;
+      height: 28px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pbi-header-title {
+      font-size: 14px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+
+    .pbi-badge {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+    }
+
+    .badge-fabric {
+      background: rgba(17, 141, 255, 0.25);
+      color: #60b5ff;
+      border: 1px solid rgba(17, 141, 255, 0.4);
+    }
+
+    .badge-lakehouse {
+      background: rgba(16, 124, 65, 0.25);
+      color: #4ade80;
+      border: 1px solid rgba(16, 124, 65, 0.4);
+    }
+
+    .pbi-header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .pbi-btn {
+      background: transparent;
+      border: 1px solid rgba(255,255,255,0.2);
+      color: #fff;
+      padding: 4px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .pbi-btn:hover {
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.4);
+    }
+
+    .pbi-btn-primary {
+      background: var(--pbi-yellow);
+      color: #000;
+      border: none;
+      font-weight: 600;
+    }
+
+    .pbi-btn-primary:hover {
+      background: #e5bd0e;
+    }
+
+    /* Tab Navigation Strip */
+    .pbi-tabstrip {
+      background: var(--pbi-card-bg);
+      border-bottom: 1px solid var(--pbi-border);
+      display: flex;
+      padding: 0 16px;
+      gap: 8px;
+      overflow-x: auto;
+    }
+
+    .pbi-tab {
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--pbi-text-muted);
+      cursor: pointer;
+      border-bottom: 3px solid transparent;
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+
+    .pbi-tab:hover {
+      color: var(--pbi-text-main);
+    }
+
+    .pbi-tab.active {
+      color: var(--pbi-blue-dark);
+      border-bottom-color: var(--pbi-blue-dark);
+    }
+
+    /* Slicer Filter Bar */
+    .slicer-bar {
+      background: var(--pbi-card-bg);
+      border-bottom: 1px solid var(--pbi-border);
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      font-size: 12px;
+    }
+
+    .slicer-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .slicer-label {
+      font-weight: 600;
+      color: var(--pbi-text-muted);
+    }
+
+    .slicer-select {
+      padding: 4px 8px;
+      border-radius: 4px;
+      border: 1px solid var(--pbi-border);
+      background: var(--pbi-card-bg);
+      color: var(--pbi-text-main);
+      font-size: 12px;
+      outline: none;
+      cursor: pointer;
+    }
+
+    .slicer-select:focus {
+      border-color: var(--pbi-blue-dark);
+      box-shadow: 0 0 0 1px var(--pbi-blue-dark);
+    }
+
+    /* Main Dashboard Canvas */
+    .pbi-canvas {
+      flex: 1;
+      padding: 16px;
+      max-width: 1600px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    /* KPI Callout Grid */
+    .kpi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 12px;
+      margin-bottom: 16px;
+    }
+
+    .kpi-card {
+      background: var(--pbi-card-bg);
+      border: 1px solid var(--pbi-border);
+      border-radius: 6px;
+      padding: 14px 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      position: relative;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .kpi-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.08);
+    }
+
+    .kpi-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      color: var(--pbi-text-muted);
+      letter-spacing: 0.5px;
+      margin-bottom: 6px;
+    }
+
+    .kpi-value {
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--pbi-text-main);
+      line-height: 1.1;
+      margin-bottom: 8px;
+    }
+
+    .kpi-sub {
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .badge-growth-pos {
+      background: rgba(16, 124, 65, 0.12);
+      color: var(--pbi-green);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    .badge-growth-neg {
+      background: rgba(209, 52, 56, 0.12);
+      color: var(--pbi-red);
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 600;
+    }
+
+    /* Visual Grid */
+    .visual-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .col-8 { grid-column: span 8; }
+    .col-4 { grid-column: span 4; }
+    .col-5 { grid-column: span 5; }
+    .col-7 { grid-column: span 7; }
+    .col-12 { grid-column: span 12; }
+
+    @media (max-width: 1024px) {
+      .col-8, .col-4, .col-5, .col-7 {
+        grid-column: span 12;
+      }
+    }
+
+    .visual-card {
+      background: var(--pbi-card-bg);
+      border: 1px solid var(--pbi-border);
+      border-radius: 6px;
+      padding: 16px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .visual-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--pbi-border);
+    }
+
+    .visual-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--pbi-text-main);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .visual-subtitle {
+      font-size: 11px;
+      color: var(--pbi-text-muted);
+    }
+
+    .visual-body {
+      position: relative;
+      flex: 1;
+      min-height: 250px;
+    }
+
+    /* Interactive Table */
+    .pbi-table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    .pbi-table th {
+      background: rgba(0,0,0,0.02);
+      text-align: left;
+      padding: 8px 10px;
+      border-bottom: 2px solid var(--pbi-border);
+      font-weight: 600;
+      color: var(--pbi-text-muted);
+    }
+
+    .pbi-table td {
+      padding: 8px 10px;
+      border-bottom: 1px solid var(--pbi-border);
+      color: var(--pbi-text-main);
+    }
+
+    .pbi-table tr:hover {
+      background-color: rgba(17, 141, 255, 0.05);
+    }
+
+    .progress-bar-bg {
+      background: #e9ecef;
+      height: 6px;
+      border-radius: 3px;
+      overflow: hidden;
+      width: 80px;
+    }
+
+    .progress-bar-fill {
+      background: var(--pbi-blue-dark);
+      height: 100%;
+    }
+
+    /* Architecture View */
+    .arch-container {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .arch-layer {
+      background: var(--pbi-card-bg);
+      border: 1px solid var(--pbi-border);
+      border-left: 5px solid var(--pbi-blue-dark);
+      border-radius: 6px;
+      padding: 16px;
+    }
+
+    .arch-layer.bronze { border-left-color: #cd7f32; }
+    .arch-layer.silver { border-left-color: #a8a8a8; }
+    .arch-layer.gold { border-left-color: #ffd700; }
+    .arch-layer.directlake { border-left-color: #118dff; }
+
+    .arch-title {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .arch-desc {
+      font-size: 12px;
+      color: var(--pbi-text-muted);
+      line-height: 1.5;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Power BI Service Header Bar -->
+  <header class="pbi-header">
+    <div class="pbi-header-left">
+      <div class="pbi-logo">PB</div>
+      <div class="pbi-header-title">Microsoft Fabric & Power BI — Global Sales Revenue Intelligence</div>
+      <span class="pbi-badge badge-fabric">Direct Lake Mode</span>
+      <span class="pbi-badge badge-lakehouse">OneLake Medallion</span>
+    </div>
+    <div class="pbi-header-right">
+      <button id="btn-theme-toggle" class="pbi-btn">🌙 Dark Mode</button>
+      <button id="btn-export-csv" class="pbi-btn">📥 Export CSV</button>
+      <button id="btn-reset-filters" class="pbi-btn pbi-btn-primary">🔄 Reset Filters</button>
+    </div>
+  </header>
+
+  <!-- Report Navigation Tabs -->
+  <nav class="pbi-tabstrip">
+    <div class="pbi-tab active" data-tab="overview">📊 Executive Overview</div>
+    <div class="pbi-tab" data-tab="products">📦 Product & Category Analytics</div>
+    <div class="pbi-tab" data-tab="regions">🌍 Regional & Channel Performance</div>
+    <div class="pbi-tab" data-tab="whatif">🔮 What-If Margin Sensitivity</div>
+    <div class="pbi-tab" data-tab="fabric">🏗️ Fabric Lakehouse & DAX Model</div>
+  </nav>
+
+  <!-- Dynamic Slicer Strip -->
+  <div class="slicer-bar">
+    <div class="slicer-item">
+      <span class="slicer-label">📅 Fiscal Year:</span>
+      <select id="slicer-year" class="slicer-select">
+        <option value="2025" selected>FY 2025 (Current)</option>
+        <option value="2024">FY 2024 (Prior)</option>
+        <option value="2023">FY 2023 (Baseline)</option>
+      </select>
+    </div>
+    <div class="slicer-item">
+      <span class="slicer-label">🌍 Sales Region:</span>
+      <select id="slicer-region" class="slicer-select">
+        <option value="all" selected>Global (All Territories)</option>
+        <option value="NA">North America (NA)</option>
+        <option value="EMEA">Europe, Middle East, Africa (EMEA)</option>
+        <option value="APAC">Asia Pacific (APAC)</option>
+      </select>
+    </div>
+    <div class="slicer-item">
+      <span class="slicer-label">🏷️ Product Category:</span>
+      <select id="slicer-category" class="slicer-select">
+        <option value="all" selected>All Categories</option>
+        <option value="Hardware">Hardware</option>
+        <option value="Software Licenses">Software Licenses</option>
+        <option value="Cloud Services">Cloud Services</option>
+        <option value="Professional Services">Professional Services</option>
+      </select>
+    </div>
+    <div class="slicer-item" style="margin-left: auto; font-size: 11px; color: var(--pbi-text-muted);">
+      ⚡ Delta Cache: <strong>35,502 Direct Lake Rows</strong> • Refresh: <strong>Sub-Second</strong>
+    </div>
+  </div>
+
+  <!-- Main Canvas Container -->
+  <main class="pbi-canvas">
+
+    <!-- TAB 1: EXECUTIVE OVERVIEW -->
+    <div id="tab-overview" class="tab-content">
+      
+      <!-- KPI Callout Cards -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-title">Total Net Sales</div>
+          <div id="kpi-sales" class="kpi-value">$51.88M</div>
+          <div class="kpi-sub">
+            <span id="badge-yoy" class="badge-growth-pos">▲ +19.7% YoY</span>
+            <span style="color:var(--pbi-text-muted);">vs Prior Year</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-title">Gross Profit</div>
+          <div id="kpi-profit" class="kpi-value">$27.39M</div>
+          <div class="kpi-sub">
+            <span class="badge-growth-pos">▲ Healthy Margin</span>
+            <span style="color:var(--pbi-text-muted);">Net Sales - COGS</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-title">Gross Margin %</div>
+          <div id="kpi-margin" class="kpi-value">52.8%</div>
+          <div class="kpi-sub">
+            <span style="color:var(--pbi-text-muted);">Corporate Target: 50.0%</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-title">Total Orders Placed</div>
+          <div id="kpi-orders" class="kpi-value">13,929</div>
+          <div class="kpi-sub">
+            <span class="badge-growth-pos">▲ +18.1% Volume</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-title">Average Order Value (AOV)</div>
+          <div id="kpi-aov" class="kpi-value">$3,725</div>
+          <div class="kpi-sub">
+            <span style="color:var(--pbi-text-muted);">Revenue / Order Count</span>
+          </div>
+        </div>
+
+        <div class="kpi-card">
+          <div class="kpi-title">Budget Achievement</div>
+          <div id="kpi-budget-attain" class="kpi-value">105.9%</div>
+          <div class="kpi-sub">
+            <span id="badge-target" class="badge-growth-pos">🟢 +$2.88M vs Target</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main Visual Grid -->
+      <div class="visual-grid">
+        
+        <!-- Monthly Sales vs Target Combo Chart -->
+        <div class="visual-card col-8">
+          <div class="visual-header">
+            <div>
+              <div class="visual-title">📈 Monthly Sales Trend vs Budget Target</div>
+              <div class="visual-subtitle">Direct Lake In-Memory Aggregation with Prior Year (PY) Reference</div>
+            </div>
+          </div>
+          <div class="visual-body">
+            <canvas id="chart-monthly-trend"></canvas>
+          </div>
+        </div>
+
+        <!-- Regional Share Donut Chart -->
+        <div class="visual-card col-4">
+          <div class="visual-header">
+            <div>
+              <div class="visual-title">🌍 Regional Sales Mix</div>
+              <div class="visual-subtitle">Territory Distribution (NA, EMEA, APAC)</div>
+            </div>
+          </div>
+          <div class="visual-body">
+            <canvas id="chart-region-doughnut"></canvas>
+          </div>
+        </div>
+
+        <!-- Product Category Performance -->
+        <div class="visual-card col-4">
+          <div class="visual-header">
+            <div>
+              <div class="visual-title">🏷️ Category Revenue Contribution</div>
+              <div class="visual-subtitle">Hardware, Professional Services, Software, Cloud</div>
+            </div>
+          </div>
+          <div class="visual-body">
+            <canvas id="chart-category-bar"></canvas>
+          </div>
+        </div>
+
+        <!-- Top 10 Enterprise Accounts Table -->
+        <div class="visual-card col-8">
+          <div class="visual-header">
+            <div>
+              <div class="visual-title">🏆 Top Enterprise Accounts Performance</div>
+              <div class="visual-subtitle">Dynamic Ranking by Revenue & Line Item Margin %</div>
+            </div>
+          </div>
+          <div class="visual-body" style="overflow-x:auto;">
+            <table class="pbi-table">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Customer Account</th>
+                  <th>Region</th>
+                  <th>Total Sales</th>
+                  <th>Gross Margin %</th>
+                  <th>Orders</th>
+                </tr>
+              </thead>
+              <tbody id="table-customer-body"></tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- TAB 2: PRODUCT & CATEGORY ANALYTICS -->
+    <div id="tab-products" class="tab-content" style="display:none;">
+      <div class="visual-grid">
+        <div class="visual-card col-12">
+          <div class="visual-header">
+            <div>
+              <div class="visual-title">📦 Product Line Profitability & Volume Economics</div>
+              <div class="visual-subtitle">Breakdown of List Price, Standard Margin %, and Order Quantities</div>
+            </div>
+          </div>
+          <div class="visual-body" style="overflow-x:auto;">
+            <table class="pbi-table">
+              <thead>
+                <tr>
+                  <th>Product Code</th>
+                  <th>Product Name</th>
+                  <th>Category</th>
+                  <th>Sub-Category</th>
+                  <th>List Price (USD)</th>
+                  <th>Standard Cost (USD)</th>
+                  <th>Standard Margin %</th>
+                  <th>Catalog Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>PROD-101</td><td><strong>Enterprise Cloud Suite ERP</strong></td><td>Software Licenses</td><td>Enterprise ERP</td><td>$1,200.00</td><td>$450.00</td><td><span class="badge-growth-pos">62.5%</span></td><td><span class="pbi-badge badge-lakehouse">Active</span></td></tr>
+                <tr><td>PROD-102</td><td><strong>Advanced Analytics AI Engine</strong></td><td>Software Licenses</td><td>AI & ML</td><td>$850.00</td><td>$320.00</td><td><span class="badge-growth-pos">62.4%</span></td><td><span class="pbi-badge badge-lakehouse">Active</span></td></tr>
+                <tr><td>PROD-103</td><td><strong>CyberShield Threat Sentinel</strong></td><td>Software Licenses</td><td>Security</td><td>$580.00</td><td>$210.00</td><td><span class="badge-growth-pos">63.8%</span></td><td><span class="pbi-badge badge-lakehouse">Active</span></td></tr>
+                <tr><td>PROD-201</td><td><strong>Elastic API Gateway Tier-1</strong></td><td>Cloud Services</td><td>API Infrastructure</td><td>$240.00</td><td>$80.00</td><td><span class="badge-growth-pos">66.7%</span></td><td><span class="pbi-badge badge-lakehouse">Active</span></td></tr>
+                <tr><td>PROD-203</td><td><strong>OneLake Lakehouse Dedicated Compute</strong></td><td>Cloud Services</td><td>Data Platform</td><td>$1,600.00</td><td>$650.00</td><td><span class="badge-growth-pos">59.4%</span></td><td><span class="pbi-badge badge-lakehouse">Active</span></td></tr>
+                <tr><td>PROD-301</td><td><strong>Enterprise AI Edge Server X8</strong></td><td>Hardware</td><td>Edge Compute</td><td>$14,500.00</td><td>$7,200.00</td><td><span class="badge-growth-pos">50.3%</span></td><td><span class="pbi-badge badge-lakehouse">Active</span></td></tr>
+                <tr><td>PROD-302</td><td><strong>High-Throughput SAN Storage Array</strong></td><td>Hardware</td><td>Enterprise Storage</td><td>$22,000.00</td><td>$11,500.00</td><td><span class="badge-growth-pos">47.7%</span></td><td><span class="pbi-badge badge-lakehouse">Active</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 3: REGIONAL & CHANNEL PERFORMANCE -->
+    <div id="tab-regions" class="tab-content" style="display:none;">
+      <div class="visual-grid">
+        <div class="visual-card col-4">
+          <div class="visual-header">
+            <div class="visual-title">🇺🇸 North America (NA)</div>
+          </div>
+          <div class="visual-body">
+            <p><strong>Regional VP:</strong> David Vance</p>
+            <p><strong>Total Sales:</strong> $46.59M</p>
+            <p><strong>Target Quota:</strong> $44.00M</p>
+            <p><strong>Quota Attainment:</strong> <span class="badge-growth-pos">105.9%</span></p>
+            <p style="margin-top:10px; font-size:12px; color:var(--pbi-text-muted);">Channels: Direct Enterprise Sales, Digital Cloud Marketplace</p>
+          </div>
+        </div>
+
+        <div class="visual-card col-4">
+          <div class="visual-header">
+            <div class="visual-title">🇪🇺 Europe, Middle East & Africa (EMEA)</div>
+          </div>
+          <div class="visual-body">
+            <p><strong>Regional VP:</strong> Klaus Richter</p>
+            <p><strong>Total Sales:</strong> $45.98M</p>
+            <p><strong>Target Quota:</strong> $43.50M</p>
+            <p><strong>Quota Attainment:</strong> <span class="badge-growth-pos">105.7%</span></p>
+            <p style="margin-top:10px; font-size:12px; color:var(--pbi-text-muted);">Channels: Strategic Partners, UK Field, France Field</p>
+          </div>
+        </div>
+
+        <div class="visual-card col-4">
+          <div class="visual-header">
+            <div class="visual-title">🇯🇵 Asia Pacific (APAC)</div>
+          </div>
+          <div class="visual-body">
+            <p><strong>Regional VP:</strong> Mei Lin</p>
+            <p><strong>Total Sales:</strong> $39.32M</p>
+            <p><strong>Target Quota:</strong> $37.50M</p>
+            <p><strong>Quota Attainment:</strong> <span class="badge-growth-pos">104.8%</span></p>
+            <p style="margin-top:10px; font-size:12px; color:var(--pbi-text-muted);">Channels: Enterprise Alliance, Australia Hub</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 4: WHAT-IF SENSITIVITY SIMULATOR -->
+    <div id="tab-whatif" class="tab-content" style="display:none;">
+      <div class="visual-grid">
+        <div class="visual-card col-5">
+          <div class="visual-header">
+            <div class="visual-title">🎛️ Dynamic Parameter Control Panel</div>
+          </div>
+          <div class="visual-body" style="display:flex; flex-direction:column; gap:20px;">
+            <div>
+              <label style="font-weight:600; font-size:13px; display:flex; justify-content:space-between;">
+                <span>Price Adjustment (Elasticity):</span>
+                <span id="val-price" style="color:var(--pbi-blue-dark); font-weight:700;">0%</span>
+              </label>
+              <input type="range" id="slider-price" min="-20" max="20" value="0" step="1" style="width:100%; margin-top:8px;">
+              <span style="font-size:11px; color:var(--pbi-text-muted);">-20% Discount to +20% Price Increase</span>
+            </div>
+
+            <div>
+              <label style="font-weight:600; font-size:13px; display:flex; justify-content:space-between;">
+                <span>Supplier Cost Inflation:</span>
+                <span id="val-cost" style="color:var(--pbi-red); font-weight:700;">0%</span>
+              </label>
+              <input type="range" id="slider-cost" min="-15" max="25" value="0" step="1" style="width:100%; margin-top:8px;">
+              <span style="font-size:11px; color:var(--pbi-text-muted);">-15% Cost Savings to +25% Inflation</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="visual-card col-7">
+          <div class="visual-header">
+            <div class="visual-title">📊 Simulated Financial Outcomes</div>
+          </div>
+          <div class="visual-body">
+            <div class="kpi-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 0;">
+              <div class="kpi-card">
+                <div class="kpi-title">Simulated Net Revenue</div>
+                <div id="sim-sales" class="kpi-value">$51.88M</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-title">Simulated Gross Margin</div>
+                <div id="sim-profit" class="kpi-value">$27.39M</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-title">Simulated Margin %</div>
+                <div id="sim-margin" class="kpi-value">52.8%</div>
+              </div>
+              <div class="kpi-card">
+                <div class="kpi-title">Margin Rate Delta</div>
+                <div id="sim-shift" class="kpi-value badge-growth-pos">0 bps</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TAB 5: FABRIC LAKEHOUSE & DAX ARCHITECTURE -->
+    <div id="tab-fabric" class="tab-content" style="display:none;">
+      <div class="arch-container">
+        <div class="arch-layer bronze">
+          <div class="arch-title">🥉 Bronze Layer — Raw OneLake Landing Ingestion</div>
+          <div class="arch-desc">
+            Raw operational CSV/Parquet streams land in <code>Files/landing_sales/</code>. PySpark notebook <code>01_bronze_sales_ingestion.py</code> adds audit metadata (<code>_ingestion_timestamp</code>, <code>_source_file</code>, <code>_batch_id</code>) and writes immutable Delta tables.
+          </div>
+        </div>
+
+        <div class="arch-layer silver">
+          <div class="arch-title">🥈 Silver Layer — Cleaned, Conformed & Deduplicated</div>
+          <div class="arch-desc">
+            PySpark notebook <code>02_silver_sales_transformation.py</code> applies schema casting, null handling, fulfillment duration calculations (<code>FulfillmentDays</code>), and merges sales lines into <code>silver_sales</code>.
+          </div>
+        </div>
+
+        <div class="arch-layer gold">
+          <div class="arch-title">🥇 Gold Layer — Kimball Star Schema with V-Order</div>
+          <div class="arch-desc">
+            Notebook <code>03_gold_star_schema_modeling.py</code> models <code>gold_dim_date</code>, <code>gold_dim_customer</code>, <code>gold_dim_product</code>, <code>gold_dim_store_region</code>, and <code>gold_fact_sales</code> with Parquet V-Order optimization and Z-Order clustering for sub-second Direct Lake query speeds.
+          </div>
+        </div>
+
+        <div class="arch-layer directlake">
+          <div class="arch-title">⚡ Power BI Direct Lake Mode Semantic Model</div>
+          <div class="arch-desc">
+            Power BI reads directly from OneLake Delta Parquet files in memory with zero data duplication, eliminating scheduled dataset refreshes and DirectQuery latency.
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <script>
+    const SALES_DATABASE = {
+      years: ["2025", "2024", "2023"],
+      quarters: ["Q1", "Q2", "Q3", "Q4"],
+      regions: {
+        "NA": { name: "North America", vp: "David Vance" },
+        "EMEA": { name: "Europe, Middle East, Africa", vp: "Klaus Richter" },
+        "APAC": { name: "Asia Pacific", vp: "Mei Lin" }
+      },
+      monthlyData: [
+        { year: 2025, month: "Jan", sales: 3950000, budget: 3800000, pySales: 3200000 },
+        { year: 2025, month: "Feb", sales: 4120000, budget: 3900000, pySales: 3350000 },
+        { year: 2025, month: "Mar", sales: 4480000, budget: 4200000, pySales: 3600000 },
+        { year: 2025, month: "Apr", sales: 4310000, budget: 4100000, pySales: 3500000 },
+        { year: 2025, month: "May", sales: 4620000, budget: 4350000, pySales: 3750000 },
+        { year: 2025, month: "Jun", sales: 4890000, budget: 4500000, pySales: 3900000 },
+        { year: 2025, month: "Jul", sales: 4420000, budget: 4300000, pySales: 3650000 },
+        { year: 2025, month: "Aug", sales: 4580000, budget: 4400000, pySales: 3700000 },
+        { year: 2025, month: "Sep", sales: 4750000, budget: 4600000, pySales: 3950000 },
+        { year: 2025, month: "Oct", sales: 4950000, budget: 4700000, pySales: 4100000 },
+        { year: 2025, month: "Nov", sales: 5120000, budget: 4800000, pySales: 4250000 },
+        { year: 2025, month: "Dec", sales: 5690000, budget: 5200000, pySales: 4600000 }
+      ],
+      topCustomers: [
+        { id: "CUST-0001", name: "Apex Global Solutions", region: "NA", country: "USA", sales: 4850000, marginPct: 54.2, orders: 420 },
+        { id: "CUST-0002", name: "Quantum Logistics GmbH", region: "EMEA", country: "Germany", sales: 4120000, marginPct: 51.8, orders: 385 },
+        { id: "CUST-0003", name: "Nexus Healthcare Corp", region: "NA", country: "USA", sales: 3980000, marginPct: 56.4, orders: 340 },
+        { id: "CUST-0006", name: "Tokyo Telecom Nippon", region: "APAC", country: "Japan", sales: 3620000, marginPct: 49.3, orders: 310 },
+        { id: "CUST-0005", name: "Helvetia Alpine Tech", region: "EMEA", country: "Switzerland", sales: 3450000, marginPct: 53.1, orders: 295 },
+        { id: "CUST-0007", name: "Sydney Harbour Financial", region: "APAC", country: "Australia", sales: 3180000, marginPct: 52.0, orders: 270 },
+        { id: "CUST-0004", name: "Vortex Retail UK", region: "EMEA", country: "UK", sales: 2950000, marginPct: 48.7, orders: 260 },
+        { id: "CUST-0009", name: "CyberShield Security Ltd", region: "EMEA", country: "UK", sales: 2740000, marginPct: 62.1, orders: 245 },
+        { id: "CUST-0008", name: "Ontario Cloud Systems", region: "NA", country: "Canada", sales: 2590000, marginPct: 50.4, orders: 230 },
+        { id: "CUST-0010", name: "Kyoto Robotics Mfg", region: "APAC", country: "Japan", sales: 2410000, marginPct: 47.9, orders: 215 }
+      ],
+      categoryBreakdown: {
+        "Hardware": { sales: 54726265, cost: 28457650, share: 41.5, margin: 48.0 },
+        "Professional Services": { sales: 41019843, cost: 18458920, share: 31.1, margin: 55.0 },
+        "Software Licenses": { sales: 24809812, cost: 8931530, share: 18.8, margin: 64.0 },
+        "Cloud Services": { sales: 11332833, cost: 4441890, share: 8.6, margin: 60.8 }
+      },
+      regionBreakdown: {
+        "NA": { sales: 46592683, target: 44000000, rep: "David Vance", share: 35.3 },
+        "EMEA": { sales: 45980405, target: 43500000, rep: "Klaus Richter", share: 34.9 },
+        "APAC": { sales: 39315666, target: 37500000, rep: "Mei Lin", share: 29.8 }
+      }
+    };
+
+    let currentFilters = {
+      year: "2025",
+      region: "all",
+      category: "all",
+      priceAdjust: 0,
+      costAdjust: 0
+    };
+
+    let chartMonthly = null;
+    let chartCategory = null;
+    let chartRegion = null;
+
+    document.addEventListener("DOMContentLoaded", () => {
+      setupEventListeners();
+      renderDashboard();
+    });
+
+    function setupEventListeners() {
+      document.getElementById("slicer-year")?.addEventListener("change", (e) => {
+        currentFilters.year = e.target.value;
+        renderDashboard();
+      });
+
+      document.getElementById("slicer-region")?.addEventListener("change", (e) => {
+        currentFilters.region = e.target.value;
+        renderDashboard();
+      });
+
+      document.getElementById("slicer-category")?.addEventListener("change", (e) => {
+        currentFilters.category = e.target.value;
+        renderDashboard();
+      });
+
+      document.getElementById("slider-price")?.addEventListener("input", (e) => {
+        currentFilters.priceAdjust = parseFloat(e.target.value);
+        document.getElementById("val-price").textContent = `${currentFilters.priceAdjust > 0 ? '+' : ''}${currentFilters.priceAdjust}%`;
+        updateWhatIfSimulations();
+      });
+
+      document.getElementById("slider-cost")?.addEventListener("input", (e) => {
+        currentFilters.costAdjust = parseFloat(e.target.value);
+        document.getElementById("val-cost").textContent = `${currentFilters.costAdjust > 0 ? '+' : ''}${currentFilters.costAdjust}%`;
+        updateWhatIfSimulations();
+      });
+
+      document.getElementById("btn-reset-filters")?.addEventListener("click", () => {
+        currentFilters = { year: "2025", region: "all", category: "all", priceAdjust: 0, costAdjust: 0 };
+        document.getElementById("slicer-year").value = "2025";
+        document.getElementById("slicer-region").value = "all";
+        document.getElementById("slicer-category").value = "all";
+        if (document.getElementById("slider-price")) {
+          document.getElementById("slider-price").value = "0";
+          document.getElementById("val-price").textContent = "0%";
+        }
+        if (document.getElementById("slider-cost")) {
+          document.getElementById("slider-cost").value = "0";
+          document.getElementById("val-cost").textContent = "0%";
+        }
+        renderDashboard();
+      });
+
+      document.querySelectorAll(".pbi-tab").forEach(tab => {
+        tab.addEventListener("click", () => {
+          document.querySelectorAll(".pbi-tab").forEach(t => t.classList.remove("active"));
+          tab.classList.add("active");
+          const targetTab = tab.getAttribute("data-tab");
+          document.querySelectorAll(".tab-content").forEach(c => c.style.display = "none");
+          document.getElementById(`tab-${targetTab}`).style.display = "block";
+        });
+      });
+
+      document.getElementById("btn-theme-toggle")?.addEventListener("click", () => {
+        const isDark = document.body.getAttribute("data-theme") === "dark";
+        if (isDark) {
+          document.body.removeAttribute("data-theme");
+          document.getElementById("btn-theme-toggle").textContent = "🌙 Dark Mode";
+        } else {
+          document.body.setAttribute("data-theme", "dark");
+          document.getElementById("btn-theme-toggle").textContent = "☀️ Light Mode";
+        }
+        renderDashboard();
+      });
+
+      document.getElementById("btn-export-csv")?.addEventListener("click", exportSalesDataCSV);
+    }
+
+    function calculateCurrentMetrics() {
+      let scale = 1.0;
+      if (currentFilters.year === "2024") scale = 0.835;
+      if (currentFilters.year === "2023") scale = 0.706;
+
+      let regionFilterMultiplier = 1.0;
+      if (currentFilters.region === "NA") regionFilterMultiplier = 0.353;
+      if (currentFilters.region === "EMEA") regionFilterMultiplier = 0.349;
+      if (currentFilters.region === "APAC") regionFilterMultiplier = 0.298;
+
+      let catFilterMultiplier = 1.0;
+      if (currentFilters.category === "Hardware") catFilterMultiplier = 0.415;
+      if (currentFilters.category === "Professional Services") catFilterMultiplier = 0.311;
+      if (currentFilters.category === "Software Licenses") catFilterMultiplier = 0.188;
+      if (currentFilters.category === "Cloud Services") catFilterMultiplier = 0.086;
+
+      const totalSalesBase = 51882134 * scale * regionFilterMultiplier * catFilterMultiplier;
+      const totalCostBase = 24488390 * scale * regionFilterMultiplier * catFilterMultiplier;
+      const budgetBase = 49000000 * scale * regionFilterMultiplier * catFilterMultiplier;
+      const pySalesBase = 43336404 * (scale === 1.0 ? 1.0 : scale * 0.85) * regionFilterMultiplier * catFilterMultiplier;
+
+      const totalOrders = Math.round(13929 * scale * regionFilterMultiplier * catFilterMultiplier);
+      const unitsSold = Math.round(58200 * scale * regionFilterMultiplier * catFilterMultiplier);
+
+      const grossProfit = totalSalesBase - totalCostBase;
+      const marginPct = (grossProfit / totalSalesBase) * 100;
+      const aov = totalSalesBase / (totalOrders || 1);
+      const budgetVariance = totalSalesBase - budgetBase;
+      const budgetAchievedPct = (totalSalesBase / budgetBase) * 100;
+      const yoyGrowthPct = ((totalSalesBase - pySalesBase) / pySalesBase) * 100;
+
+      return {
+        sales: totalSalesBase,
+        cost: totalCostBase,
+        profit: grossProfit,
+        marginPct: marginPct,
+        orders: totalOrders,
+        units: unitsSold,
+        aov: aov,
+        budget: budgetBase,
+        budgetVariance: budgetVariance,
+        budgetAchievedPct: budgetAchievedPct,
+        yoyGrowthPct: yoyGrowthPct,
+        scale: scale,
+        regionMult: regionFilterMultiplier,
+        catMult: catFilterMultiplier
+      };
+    }
+
+    function formatUSD(val) {
+      if (Math.abs(val) >= 1e6) {
+        return '$' + (val / 1e6).toFixed(2) + 'M';
+      } else if (Math.abs(val) >= 1e3) {
+        return '$' + (val / 1e3).toFixed(1) + 'K';
+      }
+      return '$' + Math.round(val).toLocaleString();
+    }
+
+    function renderDashboard() {
+      const m = calculateCurrentMetrics();
+
+      document.getElementById("kpi-sales").textContent = formatUSD(m.sales);
+      document.getElementById("kpi-profit").textContent = formatUSD(m.profit);
+      document.getElementById("kpi-margin").textContent = m.marginPct.toFixed(1) + '%';
+      document.getElementById("kpi-orders").textContent = m.orders.toLocaleString();
+      document.getElementById("kpi-aov").textContent = '$' + Math.round(m.aov).toLocaleString();
+      document.getElementById("kpi-budget-attain").textContent = m.budgetAchievedPct.toFixed(1) + '%';
+
+      const badgeYoy = document.getElementById("badge-yoy");
+      if (badgeYoy) {
+        badgeYoy.className = m.yoyGrowthPct >= 0 ? "badge-growth-pos" : "badge-growth-neg";
+        badgeYoy.textContent = `${m.yoyGrowthPct >= 0 ? '▲ +' : '▼ '}${m.yoyGrowthPct.toFixed(1)}% YoY`;
+      }
+
+      const badgeTarget = document.getElementById("badge-target");
+      if (badgeTarget) {
+        const isExceeded = m.budgetAchievedPct >= 100;
+        badgeTarget.className = isExceeded ? "badge-growth-pos" : "badge-growth-neg";
+        badgeTarget.textContent = `${isExceeded ? '🟢' : '🔴'} ${formatUSD(m.budgetVariance)} vs Target`;
+      }
+
+      renderMonthlyTrendChart(m);
+      renderCategoryBreakdownChart(m);
+      renderRegionDoughnutChart(m);
+      renderCustomerTable(m);
+      updateWhatIfSimulations();
+    }
+
+    function renderMonthlyTrendChart(m) {
+      const ctx = document.getElementById("chart-monthly-trend")?.getContext("2d");
+      if (!ctx) return;
+
+      const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+      const salesData = SALES_DATABASE.monthlyData.map(d => d.sales * m.scale * m.regionMult * m.catMult);
+      const budgetData = SALES_DATABASE.monthlyData.map(d => d.budget * m.scale * m.regionMult * m.catMult);
+      const pyData = SALES_DATABASE.monthlyData.map(d => d.pySales * m.scale * m.regionMult * m.catMult);
+
+      if (chartMonthly) chartMonthly.destroy();
+
+      chartMonthly = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: months,
+          datasets: [
+            {
+              label: 'Net Sales ($)',
+              data: salesData,
+              backgroundColor: '#118dff',
+              borderRadius: 4,
+              order: 2
+            },
+            {
+              label: 'Budget Target ($)',
+              data: budgetData,
+              type: 'line',
+              borderColor: '#f2c811',
+              borderWidth: 3,
+              pointBackgroundColor: '#f2c811',
+              pointRadius: 4,
+              tension: 0.2,
+              order: 1
+            },
+            {
+              label: 'Prior Year (PY)',
+              data: pyData,
+              type: 'line',
+              borderColor: '#a19f9d',
+              borderWidth: 2,
+              borderDash: [5, 5],
+              pointRadius: 0,
+              tension: 0.2,
+              order: 3
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'top', labels: { boxWidth: 12, font: { size: 11 } } },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.dataset.label}: ${formatUSD(ctx.raw)}`
+              }
+            }
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              ticks: { callback: (val) => formatUSD(val), font: { size: 10 } }
+            },
+            x: { ticks: { font: { size: 11 } } }
+          }
+        }
+      });
+    }
+
+    function renderCategoryBreakdownChart(m) {
+      const ctx = document.getElementById("chart-category-bar")?.getContext("2d");
+      if (!ctx) return;
+
+      const cats = Object.keys(SALES_DATABASE.categoryBreakdown);
+      const catSales = cats.map(c => SALES_DATABASE.categoryBreakdown[c].sales * m.scale * m.regionMult * (currentFilters.category === "all" || currentFilters.category === c ? 1 : 0.05));
+      const catMargins = cats.map(c => SALES_DATABASE.categoryBreakdown[c].margin);
+
+      if (chartCategory) chartCategory.destroy();
+
+      chartCategory = new Chart(ctx, {
+        type: 'bar',
+        data: {
+          labels: cats,
+          datasets: [{
+            label: 'Net Sales ($)',
+            data: catSales,
+            backgroundColor: ['#0078d4', '#118dff', '#4ade80', '#f2c811'],
+            borderRadius: 4
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          indexAxis: 'y',
+          plugins: {
+            legend: { display: false },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `Sales: ${formatUSD(ctx.raw)} (Margin: ${catMargins[ctx.dataIndex]}%)`
+              }
+            }
+          },
+          scales: {
+            x: { ticks: { callback: (val) => formatUSD(val), font: { size: 10 } } },
+            y: { ticks: { font: { size: 11 } } }
+          }
+        }
+      });
+    }
+
+    function renderRegionDoughnutChart(m) {
+      const ctx = document.getElementById("chart-region-doughnut")?.getContext("2d");
+      if (!ctx) return;
+
+      const regions = ["NA", "EMEA", "APAC"];
+      const regionNames = ["North America", "EMEA", "Asia Pacific"];
+      const regionSales = regions.map(r => SALES_DATABASE.regionBreakdown[r].sales * m.scale * m.catMult * (currentFilters.region === "all" || currentFilters.region === r ? 1 : 0.1));
+
+      if (chartRegion) chartRegion.destroy();
+
+      chartRegion = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+          labels: regionNames,
+          datasets: [{
+            data: regionSales,
+            backgroundColor: ['#0078d4', '#107c41', '#f2c811'],
+            borderWidth: 2
+          }]
+        },
+        options: {
+          responsive: true,
+          maintainAspectRatio: false,
+          plugins: {
+            legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 11 } } },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.label}: ${formatUSD(ctx.raw)} (${((ctx.raw / (regionSales.reduce((a,b)=>a+b,0)))*100).toFixed(1)}%)`
+              }
+            }
+          },
+          cutout: '68%'
+        }
+      });
+    }
+
+    function renderCustomerTable(m) {
+      const tbody = document.getElementById("table-customer-body");
+      if (!tbody) return;
+
+      let customers = SALES_DATABASE.topCustomers;
+      if (currentFilters.region !== "all") {
+        customers = customers.filter(c => c.region === currentFilters.region);
+      }
+
+      tbody.innerHTML = customers.map((c, idx) => {
+        const adjSales = c.sales * m.scale * m.catMult;
+        return `
+          <tr>
+            <td><strong>#${idx + 1}</strong></td>
+            <td>
+              <div style="font-weight:600;">${c.name}</div>
+              <div style="font-size:10px; color:var(--pbi-text-muted);">${c.id} • ${c.country}</div>
+            </td>
+            <td><span class="pbi-badge badge-fabric">${c.region}</span></td>
+            <td><strong>${formatUSD(adjSales)}</strong></td>
+            <td>
+              <div style="display:flex; align-items:center; gap:6px;">
+                <div class="progress-bar-bg">
+                  <div class="progress-bar-fill" style="width:${c.marginPct}%;"></div>
+                </div>
+                <span>${c.marginPct}%</span>
+              </div>
+            </td>
+            <td>${Math.round(c.orders * m.scale)} orders</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    function updateWhatIfSimulations() {
+      const m = calculateCurrentMetrics();
+      const priceDelta = currentFilters.priceAdjust / 100;
+      const costDelta = currentFilters.costAdjust / 100;
+
+      const simSales = m.sales * (1 + priceDelta);
+      const simCost = m.cost * (1 + costDelta);
+      const simProfit = simSales - simCost;
+      const simMargin = (simProfit / simSales) * 100;
+      const marginShiftBps = ((simMargin - m.marginPct) * 100).toFixed(0);
+
+      const elSimSales = document.getElementById("sim-sales");
+      const elSimProfit = document.getElementById("sim-profit");
+      const elSimMargin = document.getElementById("sim-margin");
+      const elSimShift = document.getElementById("sim-shift");
+
+      if (elSimSales) elSimSales.textContent = formatUSD(simSales);
+      if (elSimProfit) elSimProfit.textContent = formatUSD(simProfit);
+      if (elSimMargin) elSimMargin.textContent = simMargin.toFixed(1) + '%';
+      if (elSimShift) {
+        elSimShift.textContent = `${marginShiftBps >= 0 ? '+' : ''}${marginShiftBps} bps`;
+        elSimShift.className = marginShiftBps >= 0 ? "badge-growth-pos" : "badge-growth-neg";
+      }
+    }
+
+    function exportSalesDataCSV() {
+      const m = calculateCurrentMetrics();
+      let csv = "Rank,CustomerID,CustomerName,Region,Country,NetSalesUSD,MarginPct,Orders\n";
+      SALES_DATABASE.topCustomers.forEach((c, idx) => {
+        csv += `${idx + 1},${c.id},"${c.name}",${c.region},${c.country},${(c.sales * m.scale).toFixed(2)},${c.marginPct},${c.orders}\n`;
+      });
+
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.setAttribute("download", `sales_performance_report_${currentFilters.year}.csv`);
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+    }
+  </script>
+</body>
+</html>

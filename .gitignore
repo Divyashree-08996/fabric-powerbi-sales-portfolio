@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual Environment
+env/
+venv/
+ENV/
+
+# Django
+*.log
+local_settings.py
+
+# Staticfiles manifest (Render will rebuild it)
+staticfiles/
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp

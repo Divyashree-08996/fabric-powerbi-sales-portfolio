@@ -1,0 +1,465 @@
+{% extends "base.html" %}
+
+{% block title %}{{ profile.full_name|default:"Data Analyst" }} | Power BI & Microsoft Fabric Portfolio{% endblock %}
+
+{% block content %}
+
+<!-- ========================================================================= -->
+<!-- 1. HERO SECTION -->
+<!-- ========================================================================= -->
+<section id="about" class="relative overflow-hidden py-16 sm:py-24 border-b border-slate-200 dark:border-slate-800">
+  <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-brand-500/15 via-indigo-500/10 to-transparent blur-3xl pointer-events-none -z-10"></div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+      
+      <!-- Hero Left: Profile & Headline -->
+      <div class="lg:col-span-7 space-y-6">
+        
+        <!-- Status Pill -->
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 dark:bg-emerald-950/40 text-emerald-700 dark:text-emerald-400 border border-emerald-200 dark:border-emerald-800/60 shadow-sm">
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-ping"></span>
+          <span>Open to Senior Data Analyst & BI Engineering Opportunities</span>
+        </div>
+
+        <h1 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+          Hi, I'm <span class="text-brand-600 dark:text-brand-400">{{ profile.full_name|default:"Alex Rivera" }}</span>
+          <span class="block text-2xl sm:text-3xl lg:text-4xl font-bold text-slate-700 dark:text-slate-300 mt-2 font-sans">
+            {{ profile.headline|default:"Data Analyst & Power BI / Microsoft Fabric Specialist" }}
+          </span>
+        </h1>
+
+        <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+          {{ profile.bio }}
+        </p>
+
+        <!-- Credentials & Education Badges -->
+        <div class="flex flex-wrap items-center gap-3 pt-1">
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+            <i data-lucide="graduation-cap" class="w-3.5 h-3.5 text-brand-600"></i>
+            {{ profile.education|default:"Master of Science in Data Science" }}
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+            <i data-lucide="award" class="w-3.5 h-3.5 text-amber-500"></i>
+            {{ profile.experience_powerbi|default:"4 Years Power BI & DAX" }}
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+            <i data-lucide="database" class="w-3.5 h-3.5 text-indigo-500"></i>
+            {{ profile.experience_sql|default:"2 Years SQL" }}
+          </span>
+          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-md text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200 dark:border-slate-700">
+            <i data-lucide="layers" class="w-3.5 h-3.5 text-teal-500"></i>
+            10 Production Reports Delivered
+          </span>
+        </div>
+
+        <!-- Social Connections & Action Buttons -->
+        <div class="flex flex-wrap items-center gap-4 pt-3">
+          <a href="#featured" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl font-semibold text-sm bg-brand-600 hover:bg-brand-700 text-white shadow-lg shadow-brand-600/25 transition-all transform hover:-translate-y-0.5">
+            <i data-lucide="sparkles" class="w-4 h-4"></i>
+            View Fabric Capstone
+          </a>
+
+          <!-- LinkedIn Primary Button -->
+          <a href="{{ profile.linkedin_url|default:'https://linkedin.com' }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-sm bg-[#0077b5] text-white hover:bg-[#005f93] shadow-md transition-all">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.64 1.64 0 1 0 0-3.28 1.64 1.64 0 0 0 0 3.28m1.4 9.74V9.93H5.06v8.57h2.8z"/></svg>
+            Connect on LinkedIn
+          </a>
+
+          <!-- GitHub Button -->
+          <a href="{{ profile.github_url|default:'https://github.com' }}" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl font-semibold text-sm bg-slate-900 dark:bg-slate-800 text-white hover:bg-black transition-all">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+            GitHub Projects
+          </a>
+
+          <a href="#contact" class="inline-flex items-center gap-1.5 text-sm font-semibold text-slate-600 dark:text-slate-400 hover:text-brand-600 dark:hover:text-brand-400">
+            <i data-lucide="mail" class="w-4 h-4"></i> Contact Directly
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Hero Right: Career Benchmark Stats Cards -->
+      <div class="lg:col-span-5 grid grid-cols-2 gap-4">
+        <div class="p-5 rounded-2xl glass-card border border-slate-200/80 dark:border-slate-800 shadow-sm">
+          <div class="text-brand-600 dark:text-brand-400 mb-2">
+            <i data-lucide="bar-chart" class="w-6 h-6"></i>
+          </div>
+          <div class="text-3xl font-extrabold text-slate-900 dark:text-white">4+ Yrs</div>
+          <div class="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">Power BI & DAX Architecture</div>
+        </div>
+
+        <div class="p-5 rounded-2xl glass-card border border-slate-200/80 dark:border-slate-800 shadow-sm">
+          <div class="text-indigo-600 dark:text-indigo-400 mb-2">
+            <i data-lucide="server" class="w-6 h-6"></i>
+          </div>
+          <div class="text-3xl font-extrabold text-slate-900 dark:text-white">2+ Yrs</div>
+          <div class="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">SQL & Stored Procedures</div>
+        </div>
+
+        <div class="p-5 rounded-2xl glass-card border border-slate-200/80 dark:border-slate-800 shadow-sm">
+          <div class="text-teal-600 dark:text-teal-400 mb-2">
+            <i data-lucide="file-check-2" class="w-6 h-6"></i>
+          </div>
+          <div class="text-3xl font-extrabold text-slate-900 dark:text-white">10 Reports</div>
+          <div class="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">Production Enterprise Delivered</div>
+        </div>
+
+        <div class="p-5 rounded-2xl glass-card border border-slate-200/80 dark:border-slate-800 shadow-sm">
+          <div class="text-amber-500 mb-2">
+            <i data-lucide="cpu" class="w-6 h-6"></i>
+          </div>
+          <div class="text-3xl font-extrabold text-slate-900 dark:text-white">Fabric</div>
+          <div class="text-xs text-slate-500 dark:text-slate-400 mt-1 font-medium">OneLake & Direct Lake Ready</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================= -->
+<!-- 2. SKILLS MATRIX SECTION -->
+<!-- ========================================================================= -->
+<section id="skills" class="py-12 bg-white dark:bg-slate-900/50 border-b border-slate-200 dark:border-slate-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-8">
+      <div>
+        <h2 class="text-xs font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest">Technical Toolkit</h2>
+        <p class="text-2xl font-bold text-slate-900 dark:text-white mt-1">Core Competencies & Stack</p>
+      </div>
+      <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 md:mt-0">
+        From Raw Ingestion & PySpark ETL to Star Schema Modeling and Sub-Second DAX
+      </p>
+    </div>
+
+    <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
+      {% for skill in skills %}
+      <div class="p-4 rounded-xl bg-slate-50 dark:bg-slate-800/60 border border-slate-200/80 dark:border-slate-700/60 text-center hover:border-brand-500 transition-colors group">
+        <span class="text-xs font-bold px-2 py-0.5 rounded-full bg-brand-500/10 text-brand-600 dark:bg-brand-500/20 dark:text-brand-300 inline-block mb-2">{{ skill.badge }}</span>
+        <h3 class="text-sm font-bold text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors">{{ skill.name }}</h3>
+        <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">{{ skill.level }}</p>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<!-- ========================================================================= -->
+<!-- 3. FEATURED ACTIVE SHOWCASE: MICROSOFT FABRIC & POWER BI -->
+<!-- ========================================================================= -->
+<section id="featured" class="py-16 sm:py-20 bg-slate-50 dark:bg-slate-950">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+      <div>
+        <span class="inline-flex items-center gap-1.5 text-xs font-bold px-3 py-1 rounded-full bg-brand-500/10 text-brand-600 dark:bg-brand-500/20 dark:text-brand-300 mb-2">
+          <i data-lucide="star" class="w-3.5 h-3.5 fill-current"></i>
+          FEATURED CAPSTONE CASE STUDY (1 of 10)
+        </span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white tracking-tight">
+          {{ featured_project.title }}
+        </h2>
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 mt-1">
+          {{ featured_project.subtitle }}
+        </p>
+      </div>
+      <div class="mt-4 md:mt-0 flex items-center gap-3">
+        <a href="/preview/sales-dashboard/" target="_blank" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold bg-brand-600 text-white hover:bg-brand-700 shadow-md transition-colors">
+          <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i>
+          Open Fullscreen
+        </a>
+        <a href="{{ featured_project.case_study_url }}" class="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-semibold bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-800 dark:text-slate-200 hover:bg-slate-100 transition-colors">
+          <i data-lucide="file-text" class="w-3.5 h-3.5"></i>
+          Technical Blueprint
+        </a>
+      </div>
+    </div>
+
+    <!-- Featured Project Container -->
+    <div class="bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-xl overflow-hidden">
+      
+      <!-- Top Metrics Ribbon -->
+      <div class="grid grid-cols-2 md:grid-cols-4 border-b border-slate-200 dark:border-slate-800 divide-x divide-slate-200 dark:divide-slate-800 bg-slate-50/50 dark:bg-slate-800/40">
+        {% for m in featured_project.metrics %}
+        <div class="p-4 sm:p-5 text-center">
+          <div class="text-xs font-semibold text-slate-500 dark:text-slate-400 uppercase tracking-wider">{{ m.label }}</div>
+          <div class="text-xl sm:text-2xl font-black text-slate-900 dark:text-white mt-1">{{ m.value }}</div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Live Embedded Interactive Preview -->
+      <div class="relative bg-slate-100 dark:bg-slate-950 p-2 sm:p-4 border-b border-slate-200 dark:border-slate-800">
+        <div class="flex items-center justify-between pb-3 px-2 text-xs text-slate-500 dark:text-slate-400">
+          <span class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500"></span>
+            <strong>Live Interactive Power BI Simulator</strong> (Select years, regions, and categories below)
+          </span>
+          <span class="font-mono">Direct Lake Mode Active</span>
+        </div>
+
+        <div class="w-full h-[640px] rounded-2xl overflow-hidden border border-slate-300/80 dark:border-slate-700/80 shadow-inner bg-white dark:bg-slate-900">
+          <iframe src="/preview/sales-dashboard/" class="w-full h-full border-0" title="Power BI Interactive Preview"></iframe>
+        </div>
+      </div>
+
+      <!-- Technical Breakdown & Tags -->
+      <div class="p-6 sm:p-8 space-y-6">
+        <div>
+          <h3 class="text-base font-bold text-slate-900 dark:text-white mb-2">Project Overview & Business Impact</h3>
+          <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
+            {{ featured_project.description }}
+          </p>
+        </div>
+
+        <div>
+          <h4 class="text-xs font-bold text-slate-500 dark:text-slate-400 uppercase tracking-wider mb-2.5">Implemented Technologies & Patterns</h4>
+          <div class="flex flex-wrap gap-2">
+            {% for tag in featured_project.tags %}
+            <span class="px-2.5 py-1 rounded-lg text-xs font-medium bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 border border-slate-200/80 dark:border-slate-700">
+              {{ tag }}
+            </span>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ========================================================================= -->
+<!-- 4. ALL 10 REPORTS: FEATURED + 9 "COMING SOON" TEASERS -->
+<!-- ========================================================================= -->
+<section id="projects" class="py-16 sm:py-24 bg-white dark:bg-slate-900 border-t border-slate-200 dark:border-slate-800">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <!-- Section Header -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+      <div>
+        <span class="text-xs font-bold text-brand-600 dark:text-brand-400 uppercase tracking-widest">Enterprise Portfolio Showcase</span>
+        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white mt-1">10 Production Analytics Reports</h2>
+        <p class="text-sm text-slate-500 dark:text-slate-400 mt-1">
+          Spanning FP&A, Supply Chain, Healthcare, Customer Segmentation, and Data Governance.
+        </p>
+      </div>
+
+      <!-- Filter Controls -->
+      <div class="mt-4 md:mt-0 flex flex-wrap gap-2 text-xs font-medium" id="filter-container">
+        <button class="filter-btn active px-3 py-1.5 rounded-lg bg-brand-600 text-white" data-filter="all">All (10)</button>
+        <button class="filter-btn px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200" data-filter="Power BI">Power BI</button>
+        <button class="filter-btn px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200" data-filter="Fabric">Microsoft Fabric</button>
+        <button class="filter-btn px-3 py-1.5 rounded-lg bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 hover:bg-slate-200" data-filter="Python">Python & ML</button>
+      </div>
+    </div>
+
+    <!-- 10 Project Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" id="projects-grid">
+      
+      <!-- Project 1: Featured Card (Interactive Live) -->
+      <div class="project-card rounded-2xl border-2 border-brand-500 dark:border-brand-500 bg-brand-50/20 dark:bg-brand-950/20 p-6 flex flex-col justify-between shadow-md relative overflow-hidden" data-category="Fabric Power BI">
+        <div class="absolute top-0 right-0 bg-brand-600 text-white text-[10px] font-black uppercase tracking-wider px-3 py-1 rounded-bl-xl shadow-sm">
+          Active Capstone
+        </div>
+
+        <div>
+          <div class="text-xs font-semibold text-brand-600 dark:text-brand-400 mb-1">#1 • Microsoft Fabric & Power BI</div>
+          <h3 class="text-lg font-bold text-slate-900 dark:text-white leading-snug">{{ featured_project.title }}</h3>
+          <p class="text-xs text-slate-600 dark:text-slate-300 mt-2 line-clamp-3">
+            {{ featured_project.description }}
+          </p>
+
+          <div class="grid grid-cols-2 gap-2 my-4 pt-3 border-t border-slate-200 dark:border-slate-800 text-xs">
+            <div>
+              <span class="text-slate-400 block text-[10px] uppercase font-bold">Volume</span>
+              <strong class="text-slate-800 dark:text-slate-200">35.5k Rows</strong>
+            </div>
+            <div>
+              <span class="text-slate-400 block text-[10px] uppercase font-bold">Revenue</span>
+              <strong class="text-slate-800 dark:text-slate-200">$131.88M</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="pt-3">
+          <div class="flex items-center gap-2">
+            <a href="/preview/sales-dashboard/" target="_blank" class="w-full text-center px-3 py-2 rounded-lg text-xs font-bold bg-brand-600 text-white hover:bg-brand-700 transition-colors">
+              Launch Live Simulator
+            </a>
+            <a href="{{ featured_project.case_study_url }}" class="px-3 py-2 rounded-lg text-xs font-bold bg-white dark:bg-slate-800 border border-slate-300 dark:border-slate-700 text-slate-700 dark:text-slate-300 hover:bg-slate-100 transition-colors" title="View Architecture Blueprint">
+              Blueprint
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Projects 2 to 10: Coming Soon Cards -->
+      {% for p in other_projects %}
+      <div class="project-card rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-6 flex flex-col justify-between hover:border-slate-400 dark:hover:border-slate-600 transition-all group" data-category="{{ p.category }}">
+        <div>
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-semibold text-slate-500 dark:text-slate-400">#{{ forloop.counter|add:1 }} • {{ p.category }}</span>
+            <span class="inline-flex items-center px-2 py-0.5 rounded text-[10px] font-bold bg-amber-100 dark:bg-amber-950 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800">
+              Coming Soon
+            </span>
+          </div>
+
+          <h3 class="text-base font-bold text-slate-900 dark:text-white group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors leading-snug">
+            {{ p.title }}
+          </h3>
+          <p class="text-xs text-slate-500 dark:text-slate-400 mt-2 line-clamp-3">
+            {{ p.description }}
+          </p>
+
+          <div class="grid grid-cols-2 gap-2 my-4 pt-3 border-t border-slate-100 dark:border-slate-800/80 text-xs">
+            {% for m in p.metrics %}
+            <div>
+              <span class="text-slate-400 block text-[10px] uppercase font-bold">{{ m.label }}</span>
+              <strong class="text-slate-800 dark:text-slate-200">{{ m.value }}</strong>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="pt-2 flex flex-wrap gap-1.5">
+          {% for tag in p.tags %}
+          <span class="text-[10px] px-2 py-0.5 rounded bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-400 font-medium">
+            {{ tag }}
+          </span>
+          {% endfor %}
+        </div>
+      </div>
+      {% endfor %}
+
+    </div>
+
+  </div>
+</section>
+
+<!-- ========================================================================= -->
+<!-- 5. CONTACT FORM & DATABASE SUBMISSION -->
+<!-- ========================================================================= -->
+<section id="contact" class="py-16 sm:py-24 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800">
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center space-y-3 mb-10">
+      <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 dark:text-white">Get in Touch</h2>
+      <p class="text-sm sm:text-base text-slate-600 dark:text-slate-300 max-w-xl mx-auto">
+        Have a project, role, or collaboration in mind? Leave a message or connect directly on LinkedIn.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
+      
+      <!-- Contact Info Cards -->
+      <div class="md:col-span-5 space-y-4">
+        
+        <!-- LinkedIn Card -->
+        <a href="{{ profile.linkedin_url|default:'https://linkedin.com' }}" target="_blank" rel="noopener noreferrer" class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center gap-4 hover:border-blue-500 transition-colors block">
+          <div class="w-10 h-10 rounded-xl bg-blue-50 dark:bg-blue-950 text-blue-600 flex items-center justify-center">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 8.76a1.64 1.64 0 1 0 0-3.28 1.64 1.64 0 0 0 0 3.28m1.4 9.74V9.93H5.06v8.57h2.8z"/></svg>
+          </div>
+          <div>
+            <div class="text-xs text-slate-400 font-bold uppercase">LinkedIn Profile</div>
+            <div class="text-sm font-bold text-slate-800 dark:text-slate-200">Connect & Message</div>
+          </div>
+        </a>
+
+        <!-- GitHub Card -->
+        <a href="{{ profile.github_url|default:'https://github.com' }}" target="_blank" rel="noopener noreferrer" class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center gap-4 hover:border-slate-400 transition-colors block">
+          <div class="w-10 h-10 rounded-xl bg-slate-100 dark:bg-slate-800 text-slate-800 dark:text-slate-200 flex items-center justify-center">
+            <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 2A10 10 0 0 0 2 12c0 4.42 2.87 8.17 6.84 9.5.5.08.66-.23.66-.5v-1.69c-2.77.6-3.36-1.34-3.36-1.34-.46-1.16-1.11-1.47-1.11-1.47-.91-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.87 1.52 2.34 1.07 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.92 0-1.11.38-2 1.03-2.71-.1-.25-.45-1.29.1-2.64 0 0 .84-.27 2.75 1.02.79-.22 1.65-.33 2.5-.33.85 0 1.71.11 2.5.33 1.91-1.29 2.75-1.02 2.75-1.02.55 1.35.2 2.39.1 2.64.65.71 1.03 1.6 1.03 2.71 0 3.82-2.34 4.66-4.57 4.91.36.31.69.92.69 1.85V21c0 .27.16.59.67.5C19.14 20.16 22 16.42 22 12A10 10 0 0 0 12 2z"/></svg>
+          </div>
+          <div>
+            <div class="text-xs text-slate-400 font-bold uppercase">GitHub</div>
+            <div class="text-sm font-bold text-slate-800 dark:text-slate-200">Inspect Source Code</div>
+          </div>
+        </a>
+
+        <!-- Direct Email -->
+        <div class="p-5 rounded-2xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 flex items-center gap-4">
+          <div class="w-10 h-10 rounded-xl bg-emerald-50 dark:bg-emerald-950 text-emerald-600 flex items-center justify-center">
+            <i data-lucide="mail" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <div class="text-xs text-slate-400 font-bold uppercase">Direct Email</div>
+            <div class="text-sm font-bold text-slate-800 dark:text-slate-200">{{ profile.email|default:"analyst@example.com" }}</div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Functional Django Contact Form -->
+      <div class="md:col-span-7 bg-white dark:bg-slate-900 p-6 sm:p-8 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm">
+        <form method="POST" action="/" class="space-y-4">
+          {% csrf_token %}
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase mb-1">Your Name *</label>
+            <input type="text" name="name" required placeholder="Jane Doe" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-brand-500">
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase mb-1">Your Email Address *</label>
+            <input type="email" name="email" required placeholder="jane@company.com" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-brand-500">
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase mb-1">Subject</label>
+            <input type="text" name="subject" placeholder="Opportunity / Project Inquiry" class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-brand-500">
+          </div>
+
+          <div>
+            <label class="block text-xs font-bold text-slate-700 dark:text-slate-300 uppercase mb-1">Message *</label>
+            <textarea name="message" rows="4" required placeholder="Hi Alex, I came across your Microsoft Fabric and Power BI portfolio..." class="w-full px-4 py-2.5 rounded-xl border border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-800 text-slate-900 dark:text-white text-sm focus:outline-none focus:border-brand-500"></textarea>
+          </div>
+
+          <button type="submit" class="w-full py-3 rounded-xl font-bold text-sm bg-brand-600 hover:bg-brand-700 text-white shadow-md transition-colors flex items-center justify-center gap-2">
+            <i data-lucide="send" class="w-4 h-4"></i>
+            Send Message (Stored in Database)
+          </button>
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  // Simple category filter for the 10 project cards
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const projectCards = document.querySelectorAll('.project-card');
+
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      filterBtns.forEach(b => {
+        b.classList.remove('bg-brand-600', 'text-white');
+        b.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+      });
+      btn.classList.add('bg-brand-600', 'text-white');
+      btn.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-700', 'dark:text-slate-300');
+
+      const filter = btn.getAttribute('data-filter');
+
+      projectCards.forEach(card => {
+        if (filter === 'all') {
+          card.style.display = 'flex';
+        } else {
+          const category = card.getAttribute('data-category');
+          if (category.toLowerCase().includes(filter.toLowerCase())) {
+            card.style.display = 'flex';
+          } else {
+            card.style.display = 'none';
+          }
+        }
+      });
+    });
+  });
+</script>
+{% endblock %}

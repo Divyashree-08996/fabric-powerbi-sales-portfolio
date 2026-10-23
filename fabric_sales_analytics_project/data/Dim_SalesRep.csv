@@ -1,0 +1,9 @@
+SalesRepID,SalesRepName,Email,RegionCode,RegionName,QuotaTier,AnnualTargetUSD,HireDate,Status
+REP-101,Sarah Jenkins,sarah.jenkins@company.com,NA,North America,Tier 1,5000000,2021-03-15,Active
+REP-102,David Vance,david.vance@company.com,NA,North America,Tier 1,6000000,2019-06-01,Active
+REP-103,Alex Rivera,alex.rivera@company.com,NA,North America,Tier 2,3500000,2022-01-10,Active
+REP-104,Hans Becker,hans.becker@company.com,EMEA,Europe,Tier 1,4800000,2020-08-20,Active
+REP-105,Elizabeth Ward,elizabeth.ward@company.com,EMEA,Europe,Tier 1,4500000,2021-11-05,Active
+REP-106,Pierre Dubois,pierre.dubois@company.com,EMEA,Europe,Tier 2,3200000,2022-05-18,Active
+REP-107,Kenji Sato,kenji.sato@company.com,APAC,Asia Pacific,Tier 1,4200000,2020-02-12,Active
+REP-108,Mei Lin,mei.lin@company.com,APAC,Asia Pacific,Tier 1,5200000,2019-10-01,Active

@@ -1,0 +1,7 @@
+CurrencyCode,CurrencyName,CurrencySymbol,IsDefault
+USD,US Dollar,$,1
+EUR,Euro,€,0
+GBP,British Pound,£,0
+JPY,Japanese Yen,¥,0
+CAD,Canadian Dollar,C$,0
+AUD,Australian Dollar,A$,0

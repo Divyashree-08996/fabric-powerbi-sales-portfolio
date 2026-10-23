@@ -1,0 +1,77 @@
+{
+  "semanticModel": "Sales_Analytics_DirectLake",
+  "storageMode": "DirectLake",
+  "lakehouse": "lh_sales_analytics",
+  "relationships": [
+    {
+      "name": "FactSales_DimDate_OrderDate",
+      "fromTable": "gold_fact_sales",
+      "fromColumn": "OrderDateKey",
+      "toTable": "gold_dim_date",
+      "toColumn": "DateKey",
+      "cardinality": "manyToOne",
+      "crossFilteringBehavior": "oneDirection",
+      "isActive": true
+    },
+    {
+      "name": "FactSales_DimDate_ShipDate",
+      "fromTable": "gold_fact_sales",
+      "fromColumn": "ShipDateKey",
+      "toTable": "gold_dim_date",
+      "toColumn": "DateKey",
+      "cardinality": "manyToOne",
+      "crossFilteringBehavior": "oneDirection",
+      "isActive": false
+    },
+    {
+      "name": "FactSales_DimCustomer",
+      "fromTable": "gold_fact_sales",
+      "fromColumn": "CustomerKey",
+      "toTable": "gold_dim_customer",
+      "toColumn": "CustomerKey",
+      "cardinality": "manyToOne",
+      "crossFilteringBehavior": "oneDirection",
+      "isActive": true
+    },
+    {
+      "name": "FactSales_DimProduct",
+      "fromTable": "gold_fact_sales",
+      "fromColumn": "ProductKey",
+      "toTable": "gold_dim_product",
+      "toColumn": "ProductKey",
+      "cardinality": "manyToOne",
+      "crossFilteringBehavior": "oneDirection",
+      "isActive": true
+    },
+    {
+      "name": "FactSales_DimStoreRegion",
+      "fromTable": "gold_fact_sales",
+      "fromColumn": "StoreRegionKey",
+      "toTable": "gold_dim_store_region",
+      "toColumn": "StoreRegionKey",
+      "cardinality": "manyToOne",
+      "crossFilteringBehavior": "oneDirection",
+      "isActive": true
+    },
+    {
+      "name": "FactBudget_DimDate",
+      "fromTable": "gold_fact_budget",
+      "fromColumn": "DateKey",
+      "toTable": "gold_dim_date",
+      "toColumn": "DateKey",
+      "cardinality": "manyToOne",
+      "crossFilteringBehavior": "oneDirection",
+      "isActive": true
+    },
+    {
+      "name": "FactBudget_DimStoreRegion",
+      "fromTable": "gold_fact_budget",
+      "fromColumn": "StoreRegionKey",
+      "toTable": "gold_dim_store_region",
+      "toColumn": "StoreRegionKey",
+      "cardinality": "manyToOne",
+      "crossFilteringBehavior": "oneDirection",
+      "isActive": true
+    }
+  ]
+}

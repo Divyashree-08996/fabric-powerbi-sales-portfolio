@@ -1,0 +1,113 @@
+{% extends "base.html" %}
+
+{% block title %}{{ project.title }} | Capstone Case Study{% endblock %}
+
+{% block content %}
+<div class="py-12 sm:py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+  
+  <!-- Back Button & Breadcrumbs -->
+  <div class="flex items-center justify-between">
+    <a href="/#featured" class="inline-flex items-center gap-2 text-sm font-semibold text-brand-600 dark:text-brand-400 hover:underline">
+      <i data-lucide="arrow-left" class="w-4 h-4"></i> Back to All 10 Projects
+    </a>
+    <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-brand-500/10 text-brand-600 dark:bg-brand-500/20 dark:text-brand-300">
+      Production Direct Lake Capstone
+    </span>
+  </div>
+
+  <!-- Header Banner -->
+  <div class="border-b border-slate-200 dark:border-slate-800 pb-8">
+    <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight">{{ project.title }}</h1>
+    <p class="text-base sm:text-lg text-slate-600 dark:text-slate-300 mt-2">{{ project.subtitle }}</p>
+
+    <!-- Metrics Bar -->
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8">
+      {% for m in project.metrics %}
+      <div class="p-4 rounded-xl bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-800 text-center">
+        <span class="text-xs uppercase text-slate-500 dark:text-slate-400 font-semibold">{{ m.label }}</span>
+        <div class="text-2xl font-black text-brand-600 dark:text-brand-400 mt-1">{{ m.value }}</div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+
+  <!-- Embedded Live Simulator -->
+  <div class="space-y-4">
+    <div class="flex items-center justify-between">
+      <div>
+        <h2 class="text-xl font-bold text-slate-900 dark:text-white">1. Interactive Executive Dashboard</h2>
+        <p class="text-xs text-slate-500 dark:text-slate-400">Test slicers, regional filters, and What-If margin sliders directly inside this embedded preview.</p>
+      </div>
+      <a href="/preview/sales-dashboard/" target="_blank" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-lg text-xs font-semibold bg-brand-600 text-white hover:bg-brand-700 transition-colors">
+        <i data-lucide="maximize-2" class="w-3.5 h-3.5"></i> Launch Full Screen
+      </a>
+    </div>
+
+    <div class="w-full h-[680px] rounded-2xl overflow-hidden border border-slate-300 dark:border-slate-700 shadow-xl bg-white dark:bg-slate-900">
+      <iframe src="/preview/sales-dashboard/" class="w-full h-full border-0" title="Interactive Power BI Simulator"></iframe>
+    </div>
+  </div>
+
+  <!-- Medallion Architecture Blueprint -->
+  <div class="space-y-6">
+    <h2 class="text-xl font-bold text-slate-900 dark:text-white">2. Microsoft Fabric Medallion Architecture</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      
+      <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border-l-4 border-amber-600 border border-slate-200 dark:border-slate-800">
+        <span class="text-xs font-bold uppercase text-amber-600">Bronze Layer</span>
+        <h3 class="text-base font-bold text-slate-900 dark:text-white mt-1">Raw Landing Ingestion</h3>
+        <p class="text-xs text-slate-600 dark:text-slate-400 mt-2">
+          Automated ingestion of CSV drops into OneLake Delta tables with system lineage metadata (<code class="font-mono">_ingestion_timestamp</code>, <code class="font-mono">_batch_id</code>).
+        </p>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border-l-4 border-slate-400 border border-slate-200 dark:border-slate-800">
+        <span class="text-xs font-bold uppercase text-slate-500 dark:text-slate-400">Silver Layer</span>
+        <h3 class="text-base font-bold text-slate-900 dark:text-white mt-1">PySpark Cleansing & Merge</h3>
+        <p class="text-xs text-slate-600 dark:text-slate-400 mt-2">
+          Schema enforcement, deduplication using <code class="font-mono">row_number()</code> over natural keys, line-item profit margin enrichment, and Delta MERGE upserts.
+        </p>
+      </div>
+
+      <div class="p-6 rounded-2xl bg-white dark:bg-slate-900 border-l-4 border-amber-400 border border-slate-200 dark:border-slate-800">
+        <span class="text-xs font-bold uppercase text-amber-500">Gold Layer</span>
+        <h3 class="text-base font-bold text-slate-900 dark:text-white mt-1">Kimball Star Schema</h3>
+        <p class="text-xs text-slate-600 dark:text-slate-400 mt-2">
+          Optimized Delta Parquet tables with integer surrogate keys. Clustered via <code class="font-mono">OPTIMIZE ... ZORDER BY</code> and V-Order for Direct Lake sub-second queries.
+        </p>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Key DAX Measures -->
+  <div class="space-y-4">
+    <h2 class="text-xl font-bold text-slate-900 dark:text-white">3. Core DAX Measures Implemented</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="p-5 rounded-xl bg-slate-900 text-slate-200 font-mono text-xs overflow-x-auto">
+        <div class="text-slate-400 mb-2">// 1. Time Intelligence YoY Growth %</div>
+        <pre><span class="text-amber-400">[Sales YoY Growth %]</span> = 
+VAR _Current = [Total Sales]
+VAR _Prior = CALCULATE([Total Sales], SAMEPERIODLASTYEAR(gold_dim_date[Date]))
+RETURN
+DIVIDE(_Current - _Prior, _Prior, BLANK())</pre>
+      </div>
+
+      <div class="p-5 rounded-xl bg-slate-900 text-slate-200 font-mono text-xs overflow-x-auto">
+        <div class="text-slate-400 mb-2">// 2. Dynamic Target Attainment & Status</div>
+        <pre><span class="text-amber-400">[Budget Status Indicator]</span> = 
+SWITCH(
+    TRUE(),
+    ISBLANK([Total Budget]), "⚪ No Target",
+    [Budget Achievement %] >= 1.0, "🟢 Exceeded",
+    [Budget Achievement %] >= 0.9, "🟡 On Track",
+    "🔴 Behind Target"
+)</pre>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endblock %}

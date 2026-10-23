@@ -1,0 +1,148 @@
+{
+  "name": "Sales_Analytics_SemanticModel",
+  "compatibilityLevel": 1567,
+  "model": {
+    "culture": "en-US",
+    "dataAccessOptions": {
+      "legacyRedirects": true,
+      "returnErrorValuesAsNull": true
+    },
+    "tables": [
+      {
+        "name": "Dim_Date",
+        "columns": [
+          { "name": "DateKey", "dataType": "int64", "isKey": true },
+          { "name": "Date", "dataType": "dateTime", "isKey": false },
+          { "name": "Year", "dataType": "int64" },
+          { "name": "Quarter", "dataType": "string" },
+          { "name": "MonthNum", "dataType": "int64" },
+          { "name": "MonthName", "dataType": "string" },
+          { "name": "YearMonth", "dataType": "int64" },
+          { "name": "FiscalYear", "dataType": "string" }
+        ]
+      },
+      {
+        "name": "Dim_Customer",
+        "columns": [
+          { "name": "CustomerKey", "dataType": "int64", "isKey": true },
+          { "name": "CustomerID", "dataType": "string" },
+          { "name": "CustomerName", "dataType": "string" },
+          { "name": "CustomerSegment", "dataType": "string" },
+          { "name": "Country", "dataType": "string" },
+          { "name": "Region", "dataType": "string" },
+          { "name": "CreditRating", "dataType": "string" }
+        ]
+      },
+      {
+        "name": "Dim_Product",
+        "columns": [
+          { "name": "ProductKey", "dataType": "int64", "isKey": true },
+          { "name": "ProductID", "dataType": "string" },
+          { "name": "ProductName", "dataType": "string" },
+          { "name": "Category", "dataType": "string" },
+          { "name": "SubCategory", "dataType": "string" },
+          { "name": "ListPriceUSD", "dataType": "double" },
+          { "name": "StandardCostUSD", "dataType": "double" }
+        ]
+      },
+      {
+        "name": "Dim_Store_Region",
+        "columns": [
+          { "name": "StoreRegionKey", "dataType": "int64", "isKey": true },
+          { "name": "ChannelID", "dataType": "string" },
+          { "name": "ChannelName", "dataType": "string" },
+          { "name": "RegionCode", "dataType": "string" },
+          { "name": "RegionalVP", "dataType": "string" },
+          { "name": "Country", "dataType": "string" }
+        ]
+      },
+      {
+        "name": "Fact_Sales",
+        "columns": [
+          { "name": "SalesLineID", "dataType": "int64", "isKey": true },
+          { "name": "SalesOrderNumber", "dataType": "string" },
+          { "name": "OrderDateKey", "dataType": "int64" },
+          { "name": "CustomerKey", "dataType": "int64" },
+          { "name": "ProductKey", "dataType": "int64" },
+          { "name": "StoreRegionKey", "dataType": "int64" },
+          { "name": "Quantity", "dataType": "int64" },
+          { "name": "NetSalesUSD", "dataType": "double" },
+          { "name": "TotalCostUSD", "dataType": "double" },
+          { "name": "MarginUSD", "dataType": "double" }
+        ],
+        "measures": [
+          {
+            "name": "Total Sales",
+            "expression": "SUM(Fact_Sales[NetSalesUSD])",
+            "formatString": "$#,##0"
+          },
+          {
+            "name": "Total Cost",
+            "expression": "SUM(Fact_Sales[TotalCostUSD])",
+            "formatString": "$#,##0"
+          },
+          {
+            "name": "Gross Profit",
+            "expression": "[Total Sales] - [Total Cost]",
+            "formatString": "$#,##0"
+          },
+          {
+            "name": "Gross Margin %",
+            "expression": "DIVIDE([Gross Profit], [Total Sales], 0)",
+            "formatString": "0.0%"
+          },
+          {
+            "name": "Total Orders",
+            "expression": "DISTINCTCOUNT(Fact_Sales[SalesOrderNumber])",
+            "formatString": "#,##0"
+          },
+          {
+            "name": "Average Order Value (AOV)",
+            "expression": "DIVIDE([Total Sales], [Total Orders], 0)",
+            "formatString": "$#,##0.00"
+          },
+          {
+            "name": "Sales Prior Year (PY)",
+            "expression": "CALCULATE([Total Sales], SAMEPERIODLASTYEAR(Dim_Date[Date]))",
+            "formatString": "$#,##0"
+          },
+          {
+            "name": "Sales YoY Growth %",
+            "expression": "DIVIDE([Total Sales] - [Sales Prior Year (PY)], [Sales Prior Year (PY)], 0)",
+            "formatString": "+0.0%;-0.0%;0.0%"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "Fact_Sales_Dim_Date",
+        "fromTable": "Fact_Sales",
+        "fromColumn": "OrderDateKey",
+        "toTable": "Dim_Date",
+        "toColumn": "DateKey"
+      },
+      {
+        "name": "Fact_Sales_Dim_Customer",
+        "fromTable": "Fact_Sales",
+        "fromColumn": "CustomerKey",
+        "toTable": "Dim_Customer",
+        "toColumn": "CustomerKey"
+      },
+      {
+        "name": "Fact_Sales_Dim_Product",
+        "fromTable": "Fact_Sales",
+        "fromColumn": "ProductKey",
+        "toTable": "Dim_Product",
+        "toColumn": "ProductKey"
+      },
+      {
+        "name": "Fact_Sales_Dim_Store_Region",
+        "fromTable": "Fact_Sales",
+        "fromColumn": "StoreRegionKey",
+        "toTable": "Dim_Store_Region",
+        "toColumn": "StoreRegionKey"
+      }
+    ]
+  }
+}

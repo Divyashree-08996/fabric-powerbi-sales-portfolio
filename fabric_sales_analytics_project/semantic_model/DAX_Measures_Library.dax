@@ -1,0 +1,227 @@
+// ==============================================================================
+// MICROSOFT FABRIC DIRECT LAKE SEMANTIC MODEL: DAX MEASURES LIBRARY
+// Project: End-to-End Enterprise Sales Analytics
+// Level: Intermediate / Production-Ready
+// ==============================================================================
+
+// ------------------------------------------------------------------------------
+// FOLDER: 01 - Core Sales Metrics
+// ------------------------------------------------------------------------------
+
+[Total Sales] = 
+SUM(gold_fact_sales[NetSalesUSD])
+// Format: \$#,##0
+
+[Total Cost] = 
+SUM(gold_fact_sales[TotalCostUSD])
+// Format: \$#,##0
+
+[Gross Profit] = 
+[Total Sales] - [Total Cost]
+// Format: \$#,##0
+
+[Gross Margin %] = 
+DIVIDE(
+    [Gross Profit],
+    [Total Sales],
+    0
+)
+// Format: 0.0%
+
+[Total Orders] = 
+DISTINCTCOUNT(gold_fact_sales[SalesOrderNumber])
+// Format: #,##0
+
+[Total Units Sold] = 
+SUM(gold_fact_sales[Quantity])
+// Format: #,##0
+
+[Average Order Value (AOV)] = 
+DIVIDE(
+    [Total Sales],
+    [Total Orders],
+    0
+)
+// Format: \$#,##0.00
+
+[Average Selling Price (ASP)] = 
+DIVIDE(
+    [Total Sales],
+    [Total Units Sold],
+    0
+)
+// Format: \$#,##0.00
+
+[Total Discount Amount] = 
+SUM(gold_fact_sales[DiscountAmountUSD])
+// Format: \$#,##0
+
+[Average Discount Rate %] = 
+DIVIDE(
+    [Total Discount Amount],
+    SUM(gold_fact_sales[GrossSalesUSD]),
+    0
+)
+// Format: 0.0%
+
+// ------------------------------------------------------------------------------
+// FOLDER: 02 - Target & Budget Variance
+// ------------------------------------------------------------------------------
+
+[Total Budget] = 
+SUM(gold_fact_budget[BudgetUSD])
+// Format: \$#,##0
+
+[Budget Variance] = 
+[Total Sales] - [Total Budget]
+// Format: +\$#,##0;-\$#,##0;\$0
+
+[Budget Variance %] = 
+DIVIDE(
+    [Budget Variance],
+    [Total Budget],
+    0
+)
+// Format: +0.0%;-0.0%;0.0%
+
+[Budget Achievement %] = 
+DIVIDE(
+    [Total Sales],
+    [Total Budget],
+    0
+)
+// Format: 0.0%
+
+[Budget Status Indicator] = 
+SWITCH(
+    TRUE(),
+    ISBLANK([Total Budget]), "⚪ No Target",
+    [Budget Achievement %] >= 1.0, "🟢 Exceeded Target",
+    [Budget Achievement %] >= 0.9, "🟡 On Track (>=90%)",
+    "🔴 Behind Target (<90%)"
+)
+
+// ------------------------------------------------------------------------------
+// FOLDER: 03 - Time Intelligence (YoY, MoM, YTD)
+// ------------------------------------------------------------------------------
+
+[Sales YTD] = 
+TOTALYTD(
+    [Total Sales],
+    gold_dim_date[Date]
+)
+// Format: \$#,##0
+
+[Budget YTD] = 
+TOTALYTD(
+    [Total Budget],
+    gold_dim_date[Date]
+)
+// Format: \$#,##0
+
+[Sales Prior Year (PY)] = 
+CALCULATE(
+    [Total Sales],
+    SAMEPERIODLASTYEAR(gold_dim_date[Date])
+)
+// Format: \$#,##0
+
+[Sales YoY Growth $] = 
+VAR _Current = [Total Sales]
+VAR _Prior = [Sales Prior Year (PY)]
+RETURN
+IF(
+    NOT ISBLANK(_Prior),
+    _Current - _Prior,
+    BLANK()
+)
+// Format: +\$#,##0;-\$#,##0;\$0
+
+[Sales YoY Growth %] = 
+VAR _Current = [Total Sales]
+VAR _Prior = [Sales Prior Year (PY)]
+RETURN
+DIVIDE(_Current - _Prior, _Prior, BLANK())
+// Format: +0.0%;-0.0%;0.0%
+
+[Sales Prior Month (PM)] = 
+CALCULATE(
+    [Total Sales],
+    DATEADD(gold_dim_date[Date], -1, MONTH)
+)
+// Format: \$#,##0
+
+[Sales MoM Growth %] = 
+VAR _Current = [Total Sales]
+VAR _PriorMonth = [Sales Prior Month (PM)]
+RETURN
+DIVIDE(_Current - _PriorMonth, _PriorMonth, BLANK())
+// Format: +0.0%;-0.0%;0.0%
+
+[Sales 3M Moving Average] = 
+AVERAGEX(
+    DATESINPERIOD(
+        gold_dim_date[Date],
+        MAX(gold_dim_date[Date]),
+        -3,
+        MONTH
+    ),
+    [Total Sales]
+)
+// Format: \$#,##0
+
+// ------------------------------------------------------------------------------
+// FOLDER: 04 - Customer & Segment Intelligence
+// ------------------------------------------------------------------------------
+
+[Customer Count] = 
+DISTINCTCOUNT(gold_fact_sales[CustomerKey])
+// Format: #,##0
+
+[Sales per Customer] = 
+DIVIDE([Total Sales], [Customer Count], 0)
+// Format: \$#,##0
+
+[Top 10 Customers Sales] = 
+CALCULATE(
+    [Total Sales],
+    KEEPFILTERS(
+        TOPN(
+            10,
+            ALLSELECTED(gold_dim_customer[CustomerName]),
+            [Total Sales],
+            DESC
+        )
+    )
+)
+// Format: \$#,##0
+
+// ------------------------------------------------------------------------------
+// FOLDER: 05 - What-If Scenario Analysis
+// ------------------------------------------------------------------------------
+
+[Simulated Sales] = 
+VAR _PriceFactor = 1 + SELECTEDVALUE('Param_WhatIf_Price'[PriceDeltaPercent], 0)
+RETURN
+SUMX(
+    gold_fact_sales,
+    gold_fact_sales[NetSalesUSD] * _PriceFactor
+)
+// Format: \$#,##0
+
+[Simulated Cost] = 
+VAR _CostFactor = 1 + SELECTEDVALUE('Param_WhatIf_Cost'[CostDeltaPercent], 0)
+RETURN
+SUMX(
+    gold_fact_sales,
+    gold_fact_sales[TotalCostUSD] * _CostFactor
+)
+// Format: \$#,##0
+
+[Simulated Gross Margin %] = 
+DIVIDE(
+    [Simulated Sales] - [Simulated Cost],
+    [Simulated Sales],
+    0
+)
+// Format: 0.0%
