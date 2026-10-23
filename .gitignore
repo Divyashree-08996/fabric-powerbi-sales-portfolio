@@ -14,9 +14,6 @@ ENV/
 *.log
 local_settings.py
 
-# Staticfiles manifest (Render will rebuild it)
-staticfiles/
-
 # IDE / Editor
 .vscode/
 .idea/
